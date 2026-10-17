@@ -5,7 +5,7 @@
   "adresse": "https://florianmousseau.com",
   "algorithme": "sha256"
  },
- "produite": "2026-10-15T10:34:11.970Z",
+ "produite": "2026-10-17T22:39:51.085Z",
  "operation": "existence et integrite d un objet de l archive",
  "objet": {
   "cle": "corpus-truecopy/1eef190aafce020bb40f",
@@ -15,7 +15,10 @@
   "sha256Range": "4493e620549d5adb9509f76fe83cf13446cb06caece91326dc564de440ec3518",
   "octetsBruts": 10928804,
   "octetsRanges": 10928804,
-  "integrite": null
+  "integrite": {
+   "verifie": "2026-10-17T22:13:56.125Z",
+   "ok": true
+  }
  },
  "premierTour": {
   "id": "20261015T053116Z",
@@ -98,14 +101,14 @@
   "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE1VDA2OjAxOjMyWiIsImNyaXQiOlsic2lnVCJdfQ.NmY2NmI5NWFhMDE1ZmU1MDNjYTI3NmZlNTRkMDVlNjQ2YmQ2YmNkYmUyZmZjMDMzMGFjOTFhN2FlMmViMzAxMQ.wV2C0EozHRnrYJit6uiaUMM4a8aUFAy0XU-0ZKIlGhsNI9s_TUzLFBi_QmPVIrdrynGLNMRnSrdzdz-_5F0oEw"
  },
  "dernierTour": {
-  "id": "20261015T101656Z",
-  "debut": "2026-10-15T10:16:56.501Z",
+  "id": "20261017T221356Z",
+  "debut": "2026-10-17T22:13:56.125Z",
   "feuille": {
    "cle": "corpus-truecopy/1eef190aafce020bb40f",
    "sha256": "4493e620549d5adb9509f76fe83cf13446cb06caece91326dc564de440ec3518",
    "jour": "2026-10-15"
   },
-  "index": 1966,
+  "index": 2040,
   "empreinte": "4d824bf1d29bf5360e57f44eb3aced8b21cb330063743be54de6c5e8f07c1a10",
   "chemin": [
    {
@@ -113,68 +116,72 @@
     "empreinte": "96080c3a3c6123edda05d32ba6531e2cb2eebc16a0fdbbd0b8e8d9e97c73da78"
    },
    {
-    "cote": "gauche",
-    "empreinte": "0a06a11f1b7be62ae58282185bcb380d392c48ed4b0c8e313b11415c3390e4f6"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "515a79e5723f24903ed4fb3e258a3a5bca12a40a4be9e0797d792d06179b0efe"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "6708aaae406daa70cdace5a17b6ceeefe578e865c6857ce1e8cab7bdf04ae8d5"
+    "cote": "droite",
+    "empreinte": "381b7b563462fb6d1e1dbac73bf49730ba1ca2d911e86f3e94fb95acc353a785"
    },
    {
     "cote": "droite",
-    "empreinte": "04e58f7e39f29e4ed91c41435013fed1a2b39b00b1fe46e9a25567e7ab0f1255"
+    "empreinte": "790b4c937dd08554f808536cf8d50cb797ce7babf6a412946ab983be25f6a44f"
    },
    {
     "cote": "gauche",
-    "empreinte": "7a0423a893edde87be5e6e0dd334397f204cabe44ba20b758c2188e96017e538"
+    "empreinte": "2d9777e7872f08ad29613c5ec212d024aa3d9cccbba3c5aaf196617de07d5fda"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "64460a6df3d462273193fe9fd6d57ceb0334a993f5ea7d2301fd22658b843bb4"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "19add79598140a5cabffbf33219929ce1db6983cea0f2facf3964710a11ed2e7"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "19b4bb8944a1f2a9aa6849128e2cdb7994ab1a4ebf3ea16da20cff1965e03d24"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "4341f0c24688d50539ba0add161fd1efa016617a5934f2ff8b83c6aebd3c4ba7"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "343ba4dbf188d78e85a93703858b5d9c9a50a87061112b6e0df7dab374f1fbfd"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "43cb743f596480cb5a3e0f13ab06bee900ad109a231fa6d5605ac554edd789e7"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "01ff93fc80318e7eb9003e4b4b065613c69c40844e163e8c7f78361f04fbf2cd"
    },
    {
     "cote": "droite",
-    "empreinte": "2c3095ccab785c191b0f07559560733184085bc1aef178af0ca824428407825b"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "4cc177710e5c7f5f33eff0b159e80f86549585256f3d2f571b0a522782e3ebee"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "c50f2e4b4516f19e802b2ae97e84fefa9ff63913ea0b006918e4be473ba3a945"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "02700c5662240ec1d95bced143cb104095f089a1902ac7bdc901c9576cb92706"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "efb1dce5a9cf6a912b8d88f36e31508e08fe95d0ac06f42c4edb7db46e6d4b30"
+    "empreinte": "2d9449f040f20bab8e77a5c68c2d08649e4a973d267a08549aae1cbda055b55f"
    },
    {
     "cote": "droite",
-    "empreinte": "cc545209e23f9c20bf15397b4722d94b99c1bdc424c521a540dfffc6bcc5f5bd"
+    "empreinte": "7f125feacd003f38292eb0081f62587763ad3e917907ddbb44eb832e2c0c2a30"
    },
    {
     "cote": "droite",
-    "empreinte": "7b1b0b7fa1f7eac78ec93df3d618cdea12ac7fe7bae8b95f5f8294a8f11b02cf"
+    "empreinte": "9e37a1f2ff3a8d6dd4ecb0b9ea7023a52e596a88ac9c76d5574cb5f80bf60346"
    }
   ],
-  "arbre": "2246fe45650a3a7456308a14e669225b61645958f6f41744eda7ebf47e834914",
-  "precedente": "6f66b95aa015fe503ca276fe54d05e646bd6bcdbe2ffc0330ac91a7ae2eb3011",
-  "racine": "81db0b75e20b4897e7e548e99849a523b48bfd774c64c7a55b543e080fa524a5",
+  "arbre": "ae22758726b10908d43c8e23249ee4253c47493eae96d60fdd40f4f8ee48e2e1",
+  "precedente": "019f75bb92e48b5a7313c2f4e021751804d9337713a211438979af81d76708b8",
+  "racine": "7e47233725529d3f171b0c48f777a19b3b5f3214b54dc9226291e33a9ab98f0c",
   "ancrage": {
    "ots": "calendrier",
    "bloc": null,
    "horodatage": {
     "etat": "deja",
-    "tour": "20261015T053116Z"
+    "tour": "20261017T041038Z"
    }
   },
-  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEI4g2u/SIKtjc/XK+fgO4YPWl4OuxWXzVJ5Bzo/X1Wn5LwECkhcu7CDjRcWNiVczoCaDMI//AILPMQZTXEWTUI8BClV/CCYKvidpnhHtYmOG7qCPEgeD1i0zufxyIlWZH2m0FYBVqViReO0ViCGwdxtLigGAEI8QRq0KwW8AjOc2s4f6xqbQCD3+MNLvkMji4taHR0cHM6Ly9hbGljZS5idGMuY2FsZW5kYXIub3BlbnRpbWVzdGFtcHMub3Jn//AQVMbJrtTpbhyG0epWxunkdwjwIBbhv7oUeFJO83VTo3b+1NzUmBFZDvJ0X4mutl0Ssz8fCPAgFQl2OLiGNmO4DJgvJNL2Jr9yRFeSVcrWCvh0Pw6DXHsI8QRq0KwW8AhDvnASIwqy8ACD3+MNLvkMjikoaHR0cHM6Ly9maW5uZXkuY2FsZW5kYXIuZXRlcm5pdHl3YWxsLmNvbf/wCF1L4LI2lbjbCPEghBCMyqWBFuQdaBY/29qde1VYKmQrxrlsOedaNgO04AMI8BD01nGpFLnjHZUPz+OwLNU+CPAgSy3FXrSoO7qSx3qmxr6Dw7/EyL+u/Ug54XMPYVG2KsgI8CC+8BZ5+YHI/6NLumGDQw5obQ/wqTqVU7SiA8B1YjmkRQjwIJwDyXUeeKIozbKZmvAuyJzoCViKrFTupw6UlK1mz+OPCPEEatCsFvAImh60dlv5150Ag9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmfwEHMTFq3GO9ZRDvoHVWP9qPII8SDRUG7ERuaWVeq3YhPemEsqBOPRhaCw5aYbEx3jla+1yQjxBGrQrBXwCEyzAHksC3ALAIPf4w0u+QyOIyJodHRwczovL2J0Yy5jYWxlbmRhci5jYXRhbGxheHkuY29t",
+  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEItWovSlI61Ct+mjbXBG/LCnD5z9TwOvYfv/iR0Eb2tKHwEIXywRPQQo+VdO1hHq2n+TYI//AQRxkuDLn01Fb1YsyY4Qi6BwjwINfhxeftlmEi0HdQ8wSDgYD6XlQtDjF4SLjVsEfKOYNwCPEEatP5FPAI/MXIhKRCpd8Ag9/jDS75DI4jImh0dHBzOi8vYnRjLmNhbGVuZGFyLmNhdGFsbGF4eS5jb23/8AiLqlGvR+nFfgjwEBU5GOZrcXB4Jj4YDQaBgKMI8SDXm7DAv3vxLbNKS1n4jiMA3Xq+jfkaDNnwJCQF/tS+0wjwIF50PTvA2AlPHGoZa9R0c3RlFR6Iyw6lHgtv2mcDEodTCPEEatP5FPAIj4VspcYXNZcAg9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmf/8BCWld4jZ9ZpNxaZMmQj0hq7CPEgD+h451iv9eQ90sw7U0fCivM5JxvJOd5YbgXoRBax42wI8SCeL0Y+OtdD8s4Bf0s3WtQZAXZEQQL8PpWTGnVVc6m6LgjxBGrT+RTwCGfCTM4Ynbj3AIPf4w0u+QyOKShodHRwczovL2Zpbm5leS5jYWxlbmRhci5ldGVybml0eXdhbGwuY29t8AjI3gtSvqUJQAjwEO6LI1kE+tpdipUpq8RUaAkI8CDlb3tw8jP9Z11crc8TKCAiRSa68wkosqH1zgcWEJ4xwwjwINvZsZ92tW/ENphESWlbl7VhsFg2upGZ7+gd1vmOGsmoCPEEatP5FfAI3+WLbt7QZB4Ag9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZw==",
   "tsrBase64": null,
-  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE1VDEwOjMzOjU2WiIsImNyaXQiOlsic2lnVCJdfQ.ODFkYjBiNzVlMjBiNDg5N2U3ZTU0OGU5OTg0OWE1MjNiNDhiZmQ3NzRjNjRjN2E1NWI1NDNlMDgwZmE1MjRhNQ.uWOnsj09VkeJonRPKjVAc-rMdCle2rSfxUunz3w3hFYvFCZp1l2-y1iyJGcqel5w3m7VZla5iRTahxYXfFOuOA"
+  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE3VDIyOjM5OjE1WiIsImNyaXQiOlsic2lnVCJdfQ.N2U0NzIzMzcyNTUyOWQzZjE3MWIwYzQ4Zjc3N2ExOWIzYjVmMzIxNGI1NGRjOTIyNjI5MWUzM2E5YWI5OGYwYw.R1fpDma-Xfxw1ChKXQc-JwK4MVdTtbKj9lhhyoDB2Fcz9LqlcpGxezFkYB5eU9O91tzZ0cIml0tvimmZXiYOew"
  },
  "recalcul": null
 }

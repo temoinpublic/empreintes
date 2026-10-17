@@ -5,7 +5,7 @@
   "adresse": "https://florianmousseau.com",
   "algorithme": "sha256"
  },
- "produite": "2026-10-16T06:21:35.831Z",
+ "produite": "2026-10-17T22:39:51.085Z",
  "operation": "existence et integrite d un objet de l archive",
  "objet": {
   "cle": "corpus-truecopy/21020c3189d6da1e5f51",
@@ -15,7 +15,10 @@
   "sha256Range": "7f9f0c3339228ebf51ab6dd2e07f8f03fa3e61f8811d9fce61761b2164c71f40",
   "octetsBruts": 393601,
   "octetsRanges": 393601,
-  "integrite": null
+  "integrite": {
+   "verifie": "2026-10-17T22:13:56.125Z",
+   "ok": true
+  }
  },
  "premierTour": {
   "id": "20261016T041744Z",
@@ -102,83 +105,87 @@
   "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE2VDA0OjU5OjQ3WiIsImNyaXQiOlsic2lnVCJdfQ.MWNjZmRiZDI5M2UxZmI3MDdmNjNiYTZkYjUxZGRkYmYxYzNjNWNhYWUyZWNjNzdlMjI3ZDc0ZWFkYTMxNzdiYg.0xDnSfHP9Vl2giuBiKzbnwKlic_DyV22tL_w7LXFrb-XKXSp-x_LbPRThVupmQ1PtvaripWBFvVdskFWNUU9ZQ"
  },
  "dernierTour": {
-  "id": "20261016T055008Z",
-  "debut": "2026-10-16T05:50:08.767Z",
+  "id": "20261017T221356Z",
+  "debut": "2026-10-17T22:13:56.125Z",
   "feuille": {
    "cle": "corpus-truecopy/21020c3189d6da1e5f51",
    "sha256": "7f9f0c3339228ebf51ab6dd2e07f8f03fa3e61f8811d9fce61761b2164c71f40",
    "jour": "2026-10-16"
   },
-  "index": 2043,
+  "index": 2048,
   "empreinte": "bef86f1c4099f151e9823f5d899dad589e94f61af2b6bbfef71d2af01dc9c6c1",
   "chemin": [
    {
-    "cote": "gauche",
-    "empreinte": "341da1a9d6cf8d3f9779567ffdab71c8ffe32f22a3430f91974ac3ef7ebabb89"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "895e56e872e7ef9543d2e4e2c37774751e0d68a94acbbac7bb0cf2dbb224b873"
+    "cote": "droite",
+    "empreinte": "215e17147b31c381a76740fee820b1899408db56a8ad05f4d33f733c33d6f21e"
    },
    {
     "cote": "droite",
-    "empreinte": "b8da27255675984f5b814b141e87eba2f42457e221437024be59cff9d38e03fe"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "0d793c9d47b9a0f6f69d62bedbc769fd45bb58cfdc1bd2dc218fa63d79620269"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "e56ccaf15dbaa54c21e41cdaca2d99dc3f9b8883583d5e39b129cb793cbe13e7"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "cae755e84629632ad8399e1e16d516dc016688dc65e8c9dc42ef4d012ec706e8"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "bc6cd1d0c3be8f8bb00a8bf7afaba1c0706de9ac189bc1135c8e41a306c8df8a"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "360644670309fcac6a3f3dbc7292855765826e7285ec25ba76e633ba4b9b0738"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "30452ae0549b12513f35073916746492b780abe4ce6ece4541793edc10831682"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "135df735274c9ca7e7e881cfa71fefc55f3feb4c3fcdf7fdb3a60d99a7ad9912"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "9974f8047d061fcaa842a30d17d6b69704b9454ffb901c314a136dd251646352"
+    "empreinte": "3050c4ff7488e9ddc62c19bb4498872d476da7272114f02bae4e5207b448852a"
    },
    {
     "cote": "droite",
-    "empreinte": "d0d284007266a87e1645436a702b6ef3f87f81e6734261e522d9162bb514ba4d"
+    "empreinte": "811d81ce29a6297be40d67d556506a735984390daf1c4ae675e57d6f8fe4246f"
    },
    {
     "cote": "droite",
-    "empreinte": "41b214c6c9cf2b70903c3510a20028759c845ad701b9103dac22ab0209d33fcb"
+    "empreinte": "559837bb93c199a0dc9921a5f6d195af7741af7e6c9ecd46ef199e0c2faf357e"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "68b4d5176bc4062f1355f6e90d6ae60188d61c35fd63a3689c518979afb67141"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "7c9239a542c0243ad00bbf4b47110a9daaa3b6708b1dba800bf02c742728c29c"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "c1453126e803c1804dbec0515a735312bc0aa345b6b43e001cc0e2d09043e1b5"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "603aa2e2059393d84f833c7e34049501a71089c7d3586b5733e08cbb229eba92"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "56dc5edc7d7a34d39e89a439d311745b9ba2a99afefa3c29dd89622ea2b4196a"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "9c82dda93b74c43c727744dd5054e8d5a387bd1b3f5111a3abf845e103f30cf4"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "6bab88a9c9a6281f203c693b6a228f1e1336c0999d9f9a8514c73b9fb9a65cc9"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "8e4536f58c1c16e67f81c7512cfa4c72e8562fcff322c89d0a21d5c19e95f7b7"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "7f125feacd003f38292eb0081f62587763ad3e917907ddbb44eb832e2c0c2a30"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "9e37a1f2ff3a8d6dd4ecb0b9ea7023a52e596a88ac9c76d5574cb5f80bf60346"
    }
   ],
-  "arbre": "9f7644681f5567c9a242a2b739fc9708143614801e52b8df8c3124a03c125250",
-  "precedente": "1ccfdbd293e1fb707f63ba6db51dddbf1c3c5caae2ecc77e227d74eada3177bb",
-  "racine": "367ca797a35353e21e404f91a37209d9a84e729539b8cc6e0b77cd32aa278b8a",
+  "arbre": "ae22758726b10908d43c8e23249ee4253c47493eae96d60fdd40f4f8ee48e2e1",
+  "precedente": "019f75bb92e48b5a7313c2f4e021751804d9337713a211438979af81d76708b8",
+  "racine": "7e47233725529d3f171b0c48f777a19b3b5f3214b54dc9226291e33a9ab98f0c",
   "ancrage": {
    "ots": "calendrier",
    "bloc": null,
    "horodatage": {
     "etat": "deja",
-    "tour": "20261016T041744Z"
+    "tour": "20261017T041038Z"
    }
   },
-  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEI2OdEPQTQaQ7m2+GqBw4GZ7YtkOIaeHJb1kMpMq0FrhzwEFdbv9z7T1uBeCLFairU/dQI//AIJTJ6NnG5LhQI8SCWuVRAC6/E/sk6I8XixSyeIdfLKGXjnZz8A9wowXuG3QjwEFOPkgENpx8ip/9Qi0BBixsI8SBvpaqkb6mShTnEDw8zBRPWza9ufhvnH0PW8zE9zoDQnwjxIJaKsyMAiNkpnH1Wz8x82zAOM5qg4RjXl2NQRxD929p4CPEEatHCW/AIESx0jqns2/IAg9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZ//wCC5/t59YbXejCPEghLVi60/h+xyKrD8fhd1KXbjWrMjyvs9IEkdmiH/FP94I8BDl8m2d729mP66udJ/bwvaTCPEgT7N6kUf/d1daJoiZQp7//E8vSiC+QsJEXj4IkPJXuhMI8QRq0cJb8AimVLPoa3E5aQCD3+MNLvkMjiwraHR0cHM6Ly9ib2IuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZ//wEFdulKqKx+haphS3fB5nVzsI8CBaivJFuuLkj46zZ8R/gN4/9EJ6+OA+eI9wKXjIQGCRDAjxIN7lc2mLWH6C2y/t772B1dqYhHKJ4HpdPPKExbZ1tI/cCPAgmeQ3OaixMq8c2zyryWOOgT+UzuSuOeCtMSRBD/0SzykI8QRq0cJb8AjHXQOoa+EiVQCD3+MNLvkMjikoaHR0cHM6Ly9maW5uZXkuY2FsZW5kYXIuZXRlcm5pdHl3YWxsLmNvbfAQ/VkCpdgmxzMsRie3DYroWAjxIJqWp8F7kUieMEGsf7y0vs49WA3QOmAGyzlGWN7kewjrCPEgfKDingJiIgj8sx8zvBxIoWuRFKNBXPb/K6jBAEwvG24I8QRq0cJb8Ah5ZwpwtPu0TACD3+MNLvkMjiMiaHR0cHM6Ly9idGMuY2FsZW5kYXIuY2F0YWxsYXh5LmNvbQ==",
+  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEItWovSlI61Ct+mjbXBG/LCnD5z9TwOvYfv/iR0Eb2tKHwEIXywRPQQo+VdO1hHq2n+TYI//AQRxkuDLn01Fb1YsyY4Qi6BwjwINfhxeftlmEi0HdQ8wSDgYD6XlQtDjF4SLjVsEfKOYNwCPEEatP5FPAI/MXIhKRCpd8Ag9/jDS75DI4jImh0dHBzOi8vYnRjLmNhbGVuZGFyLmNhdGFsbGF4eS5jb23/8AiLqlGvR+nFfgjwEBU5GOZrcXB4Jj4YDQaBgKMI8SDXm7DAv3vxLbNKS1n4jiMA3Xq+jfkaDNnwJCQF/tS+0wjwIF50PTvA2AlPHGoZa9R0c3RlFR6Iyw6lHgtv2mcDEodTCPEEatP5FPAIj4VspcYXNZcAg9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmf/8BCWld4jZ9ZpNxaZMmQj0hq7CPEgD+h451iv9eQ90sw7U0fCivM5JxvJOd5YbgXoRBax42wI8SCeL0Y+OtdD8s4Bf0s3WtQZAXZEQQL8PpWTGnVVc6m6LgjxBGrT+RTwCGfCTM4Ynbj3AIPf4w0u+QyOKShodHRwczovL2Zpbm5leS5jYWxlbmRhci5ldGVybml0eXdhbGwuY29t8AjI3gtSvqUJQAjwEO6LI1kE+tpdipUpq8RUaAkI8CDlb3tw8jP9Z11crc8TKCAiRSa68wkosqH1zgcWEJ4xwwjwINvZsZ92tW/ENphESWlbl7VhsFg2upGZ7+gd1vmOGsmoCPEEatP5FfAI3+WLbt7QZB4Ag9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZw==",
   "tsrBase64": null,
-  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE2VDA2OjIxOjE0WiIsImNyaXQiOlsic2lnVCJdfQ.MzY3Y2E3OTdhMzUzNTNlMjFlNDA0ZjkxYTM3MjA5ZDlhODRlNzI5NTM5YjhjYzZlMGI3N2NkMzJhYTI3OGI4YQ.g8mYg2FZHV9pZiwvnbZPnOUWUQDPwCSu1u4r45_rf5LYx1J4g7TxqrM74Nl95dXCRevPHEF1YJW2w6-IVFN6YQ"
+  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE3VDIyOjM5OjE1WiIsImNyaXQiOlsic2lnVCJdfQ.N2U0NzIzMzcyNTUyOWQzZjE3MWIwYzQ4Zjc3N2ExOWIzYjVmMzIxNGI1NGRjOTIyNjI5MWUzM2E5YWI5OGYwYw.R1fpDma-Xfxw1ChKXQc-JwK4MVdTtbKj9lhhyoDB2Fcz9LqlcpGxezFkYB5eU9O91tzZ0cIml0tvimmZXiYOew"
  },
  "recalcul": null
 }
