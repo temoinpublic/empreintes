@@ -29,7 +29,7 @@ import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance } from '../src/echeance.mjs';
-import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -75,7 +75,7 @@ fs.mkdirSync(options.etat, { recursive: true });
 const fichierEtat = path.join(options.etat, 'glane.json');
 const etat = fs.existsSync(fichierEtat) ? JSON.parse(fs.readFileSync(fichierEtat, 'utf8')) : { robots: {}, pdfs: {} };
 etat.budgets ??= {};
-const sauver = () => fs.writeFileSync(fichierEtat, `${JSON.stringify(etat)}\n`);
+const sauver = () => ecrireAtomique(fs, fichierEtat, `${JSON.stringify(etat)}\n`);
 
 // Un appel par hote toutes les INTERVALLE_MS, file par hote ; un hote qui refuse est laisse pour le passage.
 const prochain = new Map();

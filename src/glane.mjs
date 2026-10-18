@@ -475,3 +475,14 @@ export function lotsDuPassage(vus, absents, { parVus = 400, parAbsents = 100 } =
 		lots.push({ vus: vus.slice(i, i + parVus), absents: absents.slice(j, j + parAbsents) });
 	return lots;
 }
+
+/**
+ * Ecrit l'etat de la glane d'un bloc : un fichier voisin, puis un renommage.
+ * Une interruption laisse l'ancien etat entier, jamais un fichier tronque.
+ * `fs` est passe pour que ce module reste sans acces disque.
+ */
+export function ecrireAtomique(fs, chemin, texte) {
+	const voisin = `${chemin}.${process.pid}.tmp`;
+	fs.writeFileSync(voisin, texte);
+	fs.renameSync(voisin, chemin);
+}
