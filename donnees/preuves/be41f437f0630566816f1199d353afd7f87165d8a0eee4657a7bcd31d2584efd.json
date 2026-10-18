@@ -5,7 +5,7 @@
   "adresse": "https://florianmousseau.com",
   "algorithme": "sha256"
  },
- "produite": "2026-10-15T10:34:11.970Z",
+ "produite": "2026-10-18T00:21:05.500Z",
  "operation": "existence et integrite d un objet de l archive",
  "objet": {
   "cle": "corpus-truecopy/26fe07aa8fe1f7f5b31b",
@@ -15,7 +15,10 @@
   "sha256Range": "be41f437f0630566816f1199d353afd7f87165d8a0eee4657a7bcd31d2584efd",
   "octetsBruts": 310886,
   "octetsRanges": 310886,
-  "integrite": null
+  "integrite": {
+   "verifie": "2026-10-17T23:51:40.596Z",
+   "ok": true
+  }
  },
  "premierTour": {
   "id": "20261015T053116Z",
@@ -98,83 +101,87 @@
   "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE1VDA2OjAxOjMyWiIsImNyaXQiOlsic2lnVCJdfQ.NmY2NmI5NWFhMDE1ZmU1MDNjYTI3NmZlNTRkMDVlNjQ2YmQ2YmNkYmUyZmZjMDMzMGFjOTFhN2FlMmViMzAxMQ.wV2C0EozHRnrYJit6uiaUMM4a8aUFAy0XU-0ZKIlGhsNI9s_TUzLFBi_QmPVIrdrynGLNMRnSrdzdz-_5F0oEw"
  },
  "dernierTour": {
-  "id": "20261015T101656Z",
-  "debut": "2026-10-15T10:16:56.501Z",
+  "id": "20261017T235140Z",
+  "debut": "2026-10-17T23:51:40.596Z",
   "feuille": {
    "cle": "corpus-truecopy/26fe07aa8fe1f7f5b31b",
    "sha256": "be41f437f0630566816f1199d353afd7f87165d8a0eee4657a7bcd31d2584efd",
    "jour": "2026-10-15"
   },
-  "index": 1991,
+  "index": 2080,
   "empreinte": "0a092703743359bfef8fea92822880bc25d8757df5f9d4a72e3ed2c3060b2b33",
   "chemin": [
    {
-    "cote": "gauche",
-    "empreinte": "386df86f08b9540bedabeef7d3db7a9a752aed775420069e9f1eaeb00bb787ba"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "141d91ad261a3b71cc74b8408029fccfb1cce666686f378388120434c2c92ddf"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "281afa0d09ba33de17d7ef249db8412fa061aa1cfe6776b7827e867d066e3a48"
+    "cote": "droite",
+    "empreinte": "6c200e9d0f40ea0f5cf4192e5a755c13555ebc3a3e399191bfb24cd173721b79"
    },
    {
     "cote": "droite",
-    "empreinte": "12fba6e19ecec54155ed9d693ce157109bff78475705e2183b8c9737673ab511"
+    "empreinte": "ecd461fd9c8581e9836f77b81f3e766ba234ab8412c94046c9eaf2644aebfe81"
    },
    {
     "cote": "droite",
-    "empreinte": "c8022fb22a17ea8e5d710b8234563127c638cf1287a073d6bcfebd00002972f5"
+    "empreinte": "69c000fb03b0a0c6f69cd477d411127ffc49faa0a5cf9cd49cfe1609e9a7f7f7"
    },
    {
     "cote": "droite",
-    "empreinte": "0b3baff58c4bcf578e11a2c16e10f129e11788b7cb79ac1cd65eac99bf0aaa1f"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "08e6e69acacef365fb4b3c9ce22d1c1d4cf1c18955621a15a2cf0cbc896bad23"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "4cc177710e5c7f5f33eff0b159e80f86549585256f3d2f571b0a522782e3ebee"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "c50f2e4b4516f19e802b2ae97e84fefa9ff63913ea0b006918e4be473ba3a945"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "02700c5662240ec1d95bced143cb104095f089a1902ac7bdc901c9576cb92706"
-   },
-   {
-    "cote": "gauche",
-    "empreinte": "efb1dce5a9cf6a912b8d88f36e31508e08fe95d0ac06f42c4edb7db46e6d4b30"
+    "empreinte": "98d4636b474a22a6d61f1ca6cd4d7b370eb2cab0ed809776da1d1fa94cc8b2bb"
    },
    {
     "cote": "droite",
-    "empreinte": "cc545209e23f9c20bf15397b4722d94b99c1bdc424c521a540dfffc6bcc5f5bd"
+    "empreinte": "405fc8d57a5200be8cc403070e7db4f88d1d6ee85ea60da09465bcdc9ce5382e"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "1eb3bc5a64bbecc00f296121d0aaf2de075ccf2a61d87277438666b0e5346dba"
    },
    {
     "cote": "droite",
-    "empreinte": "7b1b0b7fa1f7eac78ec93df3d618cdea12ac7fe7bae8b95f5f8294a8f11b02cf"
+    "empreinte": "c1453126e803c1804dbec0515a735312bc0aa345b6b43e001cc0e2d09043e1b5"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "603aa2e2059393d84f833c7e34049501a71089c7d3586b5733e08cbb229eba92"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "56dc5edc7d7a34d39e89a439d311745b9ba2a99afefa3c29dd89622ea2b4196a"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "9c82dda93b74c43c727744dd5054e8d5a387bd1b3f5111a3abf845e103f30cf4"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "eb228c8c7ac929d98ea5f106850b9d4fe44b8ff145049200d35a36a068875ab3"
+   },
+   {
+    "cote": "gauche",
+    "empreinte": "899e4e4a8a7c216a1805ac03447567cbea81389b15d679ae34266943424a2128"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "38d7ddb56758f9cebb9d1e6787cf0c92affe49e407932b786f00e4023e7846b5"
+   },
+   {
+    "cote": "droite",
+    "empreinte": "32a25602f860559cb64fe6380ed6313442a6049beee5215328aad8c6c04286c0"
    }
   ],
-  "arbre": "2246fe45650a3a7456308a14e669225b61645958f6f41744eda7ebf47e834914",
-  "precedente": "6f66b95aa015fe503ca276fe54d05e646bd6bcdbe2ffc0330ac91a7ae2eb3011",
-  "racine": "81db0b75e20b4897e7e548e99849a523b48bfd774c64c7a55b543e080fa524a5",
+  "arbre": "cf26a6b3c42ceddea40de33256b58c63c50713596e37403e0c1d70101fe02945",
+  "precedente": "7e47233725529d3f171b0c48f777a19b3b5f3214b54dc9226291e33a9ab98f0c",
+  "racine": "f162755ddf5687247ff862c8f21c35537b1882b8388c59f87143e60aeed0e826",
   "ancrage": {
    "ots": "calendrier",
    "bloc": null,
    "horodatage": {
     "etat": "deja",
-    "tour": "20261015T053116Z"
+    "tour": "20261017T041038Z"
    }
   },
-  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEI4g2u/SIKtjc/XK+fgO4YPWl4OuxWXzVJ5Bzo/X1Wn5LwECkhcu7CDjRcWNiVczoCaDMI//AILPMQZTXEWTUI8BClV/CCYKvidpnhHtYmOG7qCPEgeD1i0zufxyIlWZH2m0FYBVqViReO0ViCGwdxtLigGAEI8QRq0KwW8AjOc2s4f6xqbQCD3+MNLvkMji4taHR0cHM6Ly9hbGljZS5idGMuY2FsZW5kYXIub3BlbnRpbWVzdGFtcHMub3Jn//AQVMbJrtTpbhyG0epWxunkdwjwIBbhv7oUeFJO83VTo3b+1NzUmBFZDvJ0X4mutl0Ssz8fCPAgFQl2OLiGNmO4DJgvJNL2Jr9yRFeSVcrWCvh0Pw6DXHsI8QRq0KwW8AhDvnASIwqy8ACD3+MNLvkMjikoaHR0cHM6Ly9maW5uZXkuY2FsZW5kYXIuZXRlcm5pdHl3YWxsLmNvbf/wCF1L4LI2lbjbCPEghBCMyqWBFuQdaBY/29qde1VYKmQrxrlsOedaNgO04AMI8BD01nGpFLnjHZUPz+OwLNU+CPAgSy3FXrSoO7qSx3qmxr6Dw7/EyL+u/Ug54XMPYVG2KsgI8CC+8BZ5+YHI/6NLumGDQw5obQ/wqTqVU7SiA8B1YjmkRQjwIJwDyXUeeKIozbKZmvAuyJzoCViKrFTupw6UlK1mz+OPCPEEatCsFvAImh60dlv5150Ag9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmfwEHMTFq3GO9ZRDvoHVWP9qPII8SDRUG7ERuaWVeq3YhPemEsqBOPRhaCw5aYbEx3jla+1yQjxBGrQrBXwCEyzAHksC3ALAIPf4w0u+QyOIyJodHRwczovL2J0Yy5jYWxlbmRhci5jYXRhbGxheHkuY29t",
+  "otsBase64": "AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEIAH0whHpvWrlKLqqSdojs/9gCc5a+JHgLHtpdfuMP6njwEOq0h56QGnqPkgGyIcff0IoI//AIOHpgexdSQbII8BBCf7VkcUUWfwRK5HxhusrzCPAgsTbWJVgYjSFp5/QyTaYPTn/8X+i5BCUxjpCOU+gjVioI8SD+aRJbbMj8QhY0fHCM9ueQtHfzkTxVY8lRUelYsOLcmgjwIHFbpjFLHW666BR5/xd49L40YyzscaobUbPGo9GC8K12CPEEatQQqfAIfioYf5VO46UAg9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZ//wEGaF6141BVjPD7LEbZR9Q1oI8CDUhxKtO9hmAuLyJeMUqQRbRhgecMBsEW4fsA0cx4ESBgjxINShWhCM2ilgMpXSgpz5w7XUC1yhQUIhkU3RDxZ5VWH5CPEEatQQqPAIs3UXE7LuO4gAg9/jDS75DI4pKGh0dHBzOi8vZmlubmV5LmNhbGVuZGFyLmV0ZXJuaXR5d2FsbC5jb23/8AivVaiB5hcD6QjwEEl+6dE/CsgDGXybhO3XN7kI8CBaQGKgHJXe/g7vGCvtvLEgqMoAJE3bOWk+zm/D5GymOwjwIIS+j8Syd4MN+xGAn+2SB+R8RwL1dAPHhsd/GmlvhU8vCPEEatQQqfAIWL/183R7knYAg9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmfwEK9V/LIfFGysVZcAPutcCykI8CDdt2OwoiYQ2TEpnTn8sHt9W3mic821FWpxkALgIKcxKgjxIJrZvAGzQZeWjgvorLm9J5sKKOeb7b/1/JTJ0boHju5XCPEEatQQqPAIydOFxv2CLtQAg9/jDS75DI4jImh0dHBzOi8vYnRjLmNhbGVuZGFyLmNhdGFsbGF4eS5jb20=",
   "tsrBase64": null,
-  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE1VDEwOjMzOjU2WiIsImNyaXQiOlsic2lnVCJdfQ.ODFkYjBiNzVlMjBiNDg5N2U3ZTU0OGU5OTg0OWE1MjNiNDhiZmQ3NzRjNjRjN2E1NWI1NDNlMDgwZmE1MjRhNQ.uWOnsj09VkeJonRPKjVAc-rMdCle2rSfxUunz3w3hFYvFCZp1l2-y1iyJGcqel5w3m7VZla5iRTahxYXfFOuOA"
+  "signature": "eyJhbGciOiJFUzI1NiIsInR5cCI6Impvc2UiLCJjdHkiOiJ0ZXh0L3BsYWluIiwieDVjIjpbIk1JSUJxRENDQVUrZ0F3SUJBZ0lVYVNrbjZTbVgyWjR4c1FsNFBvVkNJMVJObzF3d0NnWUlLb1pJemowRUF3SXdLakVvTUNZR0ExVUVBd3dmWlc1MGNtVndiM1FnTFNCemFXZHVZWFIxY21VZ1pIVWdhbTkxY201aGJEQWVGdzB5TmpFd01USXhPRFE0TVRGYUZ3MHpOakV3TURreE9EUTRNVEZhTUNveEtEQW1CZ05WQkFNTUgyVnVkSEpsY0c5MElDMGdjMmxuYm1GMGRYSmxJR1IxSUdwdmRYSnVZV3d3V1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVFjLzFaZFdCSS9tK1NTSTVRTVFiRVhOaWYvY0pnVW9BYlI0bnAzcjhzYUpFU2dBUjg4Um9UMHVIRlZITHJ3aFNpQ0d3YmJ5L1F2WjNWUkJVOFZYajhSbzFNd1VUQWRCZ05WSFE0RUZnUVVyc1V4K3VpR2xWdGdMc1ZiQUthY3ZYQ1ZCSWN3SHdZRFZSMGpCQmd3Rm9BVXJzVXgrdWlHbFZ0Z0xzVmJBS2FjdlhDVkJJY3dEd1lEVlIwVEFRSC9CQVV3QXdFQi96QUtCZ2dxaGtqT1BRUURBZ05IQURCRUFpQmRNcWNBcVVodHA4aXIvM3FLb3VlVHRiRWRIMXdLNXJTTE95MFUrMm1MRXdJZ1UvSXh6dG9MVWNkcXpHUzRwejY1WGVDZll4M0VkcGEyWitMeHo4ZnBaN0U9Il0sIng1dCNTMjU2IjoiVW1QLXVsX0hIRWNseVRNb3dNZGFsUHhPRzJNcnVmOEJWMEk1VlJxelM0QSIsInNpZ1QiOiIyMDI2LTEwLTE4VDAwOjE5OjUxWiIsImNyaXQiOlsic2lnVCJdfQ.ZjE2Mjc1NWRkZjU2ODcyNDdmZjg2MmM4ZjIxYzM1NTM3YjE4ODJiODM4OGM1OWY4NzE0M2U2MGFlZWQwZTgyNg.tMmzWM5ZfZ_Bm7GH3ZVljL44DeVWF6vxlmdL7AGf5_CQsvjj9jWU4Z0-6AUuDUlcl12r6qdVLsIds0FWBeyWjQ"
  },
  "recalcul": null
 }
