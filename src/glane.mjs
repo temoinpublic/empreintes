@@ -462,3 +462,16 @@ export function communesDuReleve(tsv) {
 			.filter(Boolean)
 	);
 }
+
+/**
+ * Les envois d'un passage, en lots bornes : tous les recus partent, au plus
+ * `vus` et `absents` par envoi (le service en admet 500 a la fois). Couper la
+ * liste a la premiere borne laissait les recus suivants d'une grande commune
+ * sur l'etat d'un ancien passage, pour toujours.
+ */
+export function lotsDuPassage(vus, absents, { parVus = 400, parAbsents = 100 } = {}) {
+	const lots = [];
+	for (let i = 0, j = 0; i < vus.length || j < absents.length; i += parVus, j += parAbsents)
+		lots.push({ vus: vus.slice(i, i + parVus), absents: absents.slice(j, j + parAbsents) });
+	return lots;
+}

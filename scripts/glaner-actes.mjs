@@ -29,7 +29,7 @@ import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance } from '../src/echeance.mjs';
-import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, issueDeRelecture, liensDe, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -275,8 +275,12 @@ async function noterLePassage(code, site, pdfs, lus) {
 	const { vus, absents } = passageDe(code, site, pdfs);
 	if (vus.length + absents.length === 0) return 'passage-vide';
 	try {
-		const r = await poster('/api/passages', { vus: vus.slice(0, 400), absents: absents.slice(0, 100) });
-		return `passage-${r.status}`;
+		let statut = 200;
+		for (const lot of lotsDuPassage(vus, absents)) {
+			const r = await poster('/api/passages', lot);
+			if (r.status !== 200) statut = r.status;
+		}
+		return `passage-${statut}`;
 	} catch {
 		// Le passage d'une commune perdu ne coute que son etat d'un jour : la glane continue.
 		return 'passage-erreur';

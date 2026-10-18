@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SANS_OBJET, acteDuLien, communesDuReleve, liensDe, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
+import { SANS_OBJET, acteDuLien, communesDuReleve, liensDe, lotsDuPassage, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
 
 const ICI = 'https://www.ville-echillais.fr/';
 const sites = [['ville-echillais.fr', '']];
@@ -209,4 +209,17 @@ test('le releve du jour dit les communes deja lues, sans son en-tete ni ligne vi
 	const tsv = 'code\tsite\taccueil\n44150\tsaint-aignan-grandlieu.fr\t200\n2A004\tajaccio.fr\trobots\n\n';
 	assert.deepEqual([...communesDuReleve(tsv)], ['44150', '2A004']);
 	assert.equal(communesDuReleve('code\tsite\n').size, 0);
+});
+
+test('un passage part en entier, en lots bornes', () => {
+	const ids = (n, c) => Array.from({ length: n }, (_, i) => c.repeat(60) + String(i).padStart(4, '0'));
+	const vus = ids(950, 'a');
+	const absents = ids(120, 'b');
+	const lots = lotsDuPassage(vus, absents);
+	assert.equal(lots.length, 3);
+	assert.ok(lots.every((l) => l.vus.length <= 400 && l.absents.length <= 100 && l.vus.length + l.absents.length <= 500));
+	assert.deepEqual(lots.flatMap((l) => l.vus), vus, 'aucun vu laisse au-dela de 400');
+	assert.deepEqual(lots.flatMap((l) => l.absents), absents, 'aucun absent laisse au-dela de 100');
+	assert.deepEqual(lotsDuPassage([], []), []);
+	assert.deepEqual(lotsDuPassage(['x'], []), [{ vus: ['x'], absents: [] }]);
 });
