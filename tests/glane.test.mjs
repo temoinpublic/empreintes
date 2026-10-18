@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SANS_OBJET, acteDuLien, communesDuReleve, liensDe, lotsDuPassage, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { SANS_OBJET, acteDuLien, communesDuReleve, ecrireAtomique, liensDe, lotsDuPassage, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
 
 const ICI = 'https://www.ville-echillais.fr/';
 const sites = [['ville-echillais.fr', '']];
@@ -222,4 +225,13 @@ test('un passage part en entier, en lots bornes', () => {
 	assert.deepEqual(lots.flatMap((l) => l.absents), absents, 'aucun absent laisse au-dela de 100');
 	assert.deepEqual(lotsDuPassage([], []), []);
 	assert.deepEqual(lotsDuPassage(['x'], []), [{ vus: ['x'], absents: [] }]);
+});
+
+test('l etat de la glane s ecrit d un bloc : une ecriture interrompue laisse l ancien entier', () => {
+	const chemin = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'glane-')), 'glane.json');
+	ecrireAtomique(fs, chemin, '{"pdfs":{"a":1}}\n');
+	assert.equal(fs.readFileSync(chemin, 'utf8'), '{"pdfs":{"a":1}}\n');
+	const coupe = { ...fs, writeFileSync: (f, t) => fs.writeFileSync(f, t.slice(0, 5)), renameSync: () => { throw new Error('interrompu'); } };
+	assert.throws(() => ecrireAtomique(coupe, chemin, '{"pdfs":{"a":1,"b":2}}\n'), /interrompu/);
+	assert.equal(fs.readFileSync(chemin, 'utf8'), '{"pdfs":{"a":1}}\n');
 });
