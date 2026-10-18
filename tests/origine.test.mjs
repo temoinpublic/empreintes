@@ -45,10 +45,14 @@ const ecdsaDer = (brute) => {
  * QcCompliance au besoin. Signe pour de vrai quand `par` (une cle et son
  * algorithme) est donne ; sinon sa signature est trois octets quelconques.
  */
-async function certificatDe({ spki, sujet, emetteur, debut = new Date('2026-01-01'), fin = new Date('2027-01-01'), qc = true, par = null }) {
-	const qcStatements = seq(seq(oid('2b06010505070103'), tlv(0x04, seq(seq(oid('04008e460101'))))));
+async function certificatDe({ spki, sujet, emetteur, debut = new Date('2026-01-01'), fin = new Date('2027-01-01'), qc = true, par = null, ca = null, pathLen = null, usage = null }) {
+	const extensions = [
+		...(qc ? [seq(oid('2b06010505070103'), tlv(0x04, seq(seq(oid('04008e460101')))))] : []),
+		...(ca === null ? [] : [seq(oid('551d13'), tlv(0x01, [0xff]), tlv(0x04, seq(...(ca ? [tlv(0x01, [0xff])] : []), ...(pathLen === null ? [] : [tlv(0x02, [pathLen])]))))]),
+		...(usage === null ? [] : [seq(oid('551d0f'), tlv(0x01, [0xff]), tlv(0x04, tlv(0x03, [1, usage])))])
+	];
 	const algorithme = par ? ALGORITHMES_X509[par.alg] : ECDSA_SHA256;
-	const tbs = seq(tlv(0xa0, tlv(0x02, [2])), tlv(0x02, [7]), algorithme, nom(emetteur), seq(temps(debut), temps(fin)), nom(sujet), spki, ...(qc ? [tlv(0xa3, qcStatements)] : []));
+	const tbs = seq(tlv(0xa0, tlv(0x02, [2])), tlv(0x02, [7]), algorithme, nom(emetteur), seq(temps(debut), temps(fin)), nom(sujet), spki, ...(extensions.length ? [tlv(0xa3, seq(...extensions))] : []));
 	let signature = Buffer.from([1, 2, 3]);
 	if (par) {
 		const brute = await subtle.sign(ALGOS[par.alg].signer, par.cle, tbs);
@@ -198,9 +202,36 @@ async function chaineDeTest() {
 	const inter = await subtle.generateKey(ALGOS.RS256.generer, true, ['sign', 'verify']);
 	const spki = async (k) => Buffer.from(await subtle.exportKey('spki', k.publicKey));
 	const derRacine = await certificatDe({ spki: await spki(racine), sujet: { cn: 'Racine de test' }, emetteur: { cn: 'Racine de test' }, qc: false, par: { alg: 'ES384', cle: racine.privateKey } });
-	const derInter = await certificatDe({ spki: await spki(inter), sujet: { cn: 'Intermediaire de test' }, emetteur: { cn: 'Racine de test' }, qc: false, par: { alg: 'ES384', cle: racine.privateKey } });
-	return { racine, inter, derRacine, derInter };
+	const derInter = await certificatDe({ spki: await spki(inter), sujet: { cn: 'Intermediaire de test' }, emetteur: { cn: 'Racine de test' }, qc: false, ca: true, usage: 0x06, par: { alg: 'ES384', cle: racine.privateKey } });
+	return { racine, inter, derRacine, derInter, spki };
 }
+
+test("un maillon qui n'est pas une autorite de certification ne mene a personne", async () => {
+	const { racine, inter, derRacine, derInter, spki } = await chaineDeTest();
+	const tout = { [empreinteDe(derRacine)]: { pays: 'FR', nom: 'Racine de test', usages: [] } };
+	const maillon = async (options) => {
+		const cle = await subtle.generateKey(ALGOS.ES256.generer, true, ['sign', 'verify']);
+		const der = await certificatDe({ spki: await spki(cle), sujet: { cn: 'Maillon' }, emetteur: { cn: 'Intermediaire de test' }, qc: false, par: { alg: 'RS256', cle: inter.privateKey }, ...options });
+		return { cle, der };
+	};
+	const fauxSous = async (parent) => {
+		const { jws } = await jwsDe({ certificat: { sujet: { cn: 'Identite fabriquee' }, par: { alg: 'ES256', cle: parent.cle.privateKey } }, chaine: [parent.der, derInter, derRacine] });
+		return JSON.parse(Buffer.from(jws.split('.')[0], 'base64url')).x5c;
+	};
+	// Le certificat d'un particulier, emis pour de vrai sous la racine, signe une identite fabriquee.
+	assert.equal(await autoriteDuCertificat(await fauxSous(await maillon({})), tout), null, 'sans basicConstraints');
+	assert.equal(await autoriteDuCertificat(await fauxSous(await maillon({ ca: false })), tout), null, 'cA faux');
+	assert.equal(await autoriteDuCertificat(await fauxSous(await maillon({ ca: true, usage: 0x80 })), tout), null, 'sans keyCertSign');
+	// Une autorite de certification en regle, elle, mene a la racine.
+	assert.deepEqual(await autoriteDuCertificat(await fauxSous(await maillon({ ca: true, usage: 0x06 })), tout), { pays: 'FR', nom: 'Racine de test' });
+	// pathLenConstraint : l'intermediaire n'admet aucune autorite sous lui.
+	const borne = await certificatDe({ spki: await spki(inter), sujet: { cn: 'Intermediaire de test' }, emetteur: { cn: 'Racine de test' }, qc: false, ca: true, pathLen: 0, par: { alg: 'ES384', cle: racine.privateKey } });
+	const sous = await maillon({ ca: true });
+	const { jws } = await jwsDe({ certificat: { par: { alg: 'ES256', cle: sous.cle.privateKey } }, chaine: [sous.der, borne, derRacine] });
+	assert.equal(await autoriteDuCertificat(JSON.parse(Buffer.from(jws.split('.')[0], 'base64url')).x5c, tout), null, 'pathLen 0 et une autorite en dessous');
+	const direct = await jwsDe({ certificat: { par: { alg: 'RS256', cle: inter.privateKey } }, chaine: [borne, derRacine] });
+	assert.deepEqual(await autoriteDuCertificat(JSON.parse(Buffer.from(direct.jws.split('.')[0], 'base64url')).x5c, tout), { pays: 'FR', nom: 'Racine de test' }, 'pathLen 0 au-dessus du seul deposant');
+});
 
 test("l'autorite se trouve en remontant x5c, chaque certificat signe par le suivant", async () => {
 	const { inter, derRacine, derInter } = await chaineDeTest();

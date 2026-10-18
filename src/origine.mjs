@@ -143,7 +143,7 @@ export function inscriteA(autorite, t) {
  */
 async function autoriteDeLaChaine(ders, autorites) {
 	let enfant = null;
-	for (const der of ders) {
+	for (const [rang, der] of ders.entries()) {
 		let cert;
 		try {
 			cert = certificat(der);
@@ -153,9 +153,51 @@ async function autoriteDeLaChaine(ders, autorites) {
 		if (enfant && !(await signePar(enfant, cert))) return null;
 		const autorite = enfant ? autorites[await sha256(der)] : null;
 		if (autorite) return inscriteA(autorite, enfant.debut) ? { pays: autorite.pays, nom: autorite.nom } : null;
+		// Un maillon qui en signe un autre doit etre une autorite de certification :
+		// sans cela, le certificat d'un particulier signerait une identite fabriquee.
+		if (enfant && !peutCertifier(der, rang - 1)) return null;
 		enfant = cert;
 	}
 	return null;
+}
+
+const BASIC_CONSTRAINTS = '551d13';
+const KEY_USAGE = '551d0f';
+/** keyCertSign, bit 5 de keyUsage (RFC 5280, 4.2.1.3) : 0x04 dans le premier octet. */
+const KEY_CERT_SIGN = 0x04;
+
+/** Les extensions d'un certificat en DER : la valeur de chacune (contenu de son OCTET STRING), par OID. */
+function extensionsDe(der) {
+	const dernier = enfants(enfants(element(der, 0))[0]).at(-1);
+	if (dernier.etiquette !== 0xa3) return {};
+	return Object.fromEntries(
+		enfants(enfants(dernier)[0]).map((extension) => {
+			const parties = enfants(extension);
+			return [hex(parties[0].contenu), parties.at(-1).contenu];
+		})
+	);
+}
+
+/**
+ * Vrai quand le certificat peut en certifier d'autres (RFC 5280, 4.2.1.9 et
+ * 6.1.4) : `cA` dans basicConstraints, keyCertSign s'il declare son usage, et
+ * un `pathLenConstraint` qui admet les `sous` autorites intermediaires placees
+ * en dessous de lui.
+ */
+function peutCertifier(der, sous) {
+	try {
+		const extensions = extensionsDe(der);
+		const contraintes = extensions[BASIC_CONSTRAINTS];
+		if (!contraintes) return false;
+		const champs = enfants(element(contraintes, 0));
+		if (champs[0]?.etiquette !== 0x01 || champs[0].contenu[0] === 0) return false;
+		const longueur = champs.find((c) => c.etiquette === 0x02);
+		if (longueur && longueur.contenu.reduce((n, o) => n * 256 + o, 0) < sous) return false;
+		const usage = extensions[KEY_USAGE];
+		return !usage || (element(usage, 0).contenu[1] & KEY_CERT_SIGN) !== 0;
+	} catch {
+		return false;
+	}
 }
 
 /**
