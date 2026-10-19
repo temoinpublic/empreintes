@@ -89,7 +89,10 @@ const TEXTES = {
 		jamais: { fr: 'Ce document n’a jamais été daté ici', de: 'Dieses Dokument wurde hier nie datiert' },
 		authentique: { fr: (j) => `Reçu authentique${NBSP}: document daté du ${j}`, de: (j) => `Echter Beleg: Dokument datiert am ${j}` },
 		inconnu: { fr: 'Reçu inconnu', de: 'Unbekannter Beleg' },
-		tour: { fr: (h) => `Tour ${h}`, de: (h) => `Runde ${h}` },
+		recalcule: {
+			fr: (n, h) => `Le dernier tour, ${h}, est recalculé depuis ses ${n.toLocaleString('fr-FR').replace(/ /g, NBSP)} empreintes.`,
+			de: (n, h) => `Die letzte Runde, ${h}, ist aus ihren ${n.toLocaleString('de-DE')} Prüfsummen neu berechnet.`
+		},
 		intacte: { fr: (n) => `Chaîne intacte, ${n} tours`, de: (n) => `Kette intakt, ${n} Runden` },
 		derniere: { fr: `Dernière racine${NBSP}:`, de: 'Letzte Wurzel:' },
 		rompue: { fr: 'Chaîne rompue', de: 'Kette unterbrochen' },

@@ -107,6 +107,42 @@ export async function verifierChaine(ids, lire, { surTour } = {}) {
 	return { ok: raisons.length === 0, tours: ids.length, derniere: precedente, raisons };
 }
 
+/**
+ * Verifie la chaine sur les seuls resumes des tours de `/tours.json` (`id`,
+ * `precedente`, `arbre`, `racine`) : chaque racine recalculee, chaque
+ * `precedente` egale a la racine d'avant, le premier sur la racine nulle. Ne
+ * relit aucune feuille, donc son cout ne croit qu'avec le nombre de tours.
+ */
+export async function verifierLiens(tours) {
+	const raisons = [];
+	let precedente = RACINE_NULLE;
+	for (const tour of tours) {
+		if (tour.precedente !== precedente) raisons.push(`${tour.id} : la racine precedente n'est pas celle du tour d'avant`);
+		if ((await chainer(tour)) !== tour.racine) raisons.push(`${tour.id} : la racine chainee ne correspond pas`);
+		precedente = tour.racine;
+	}
+	return { ok: raisons.length === 0, tours: tours.length, derniere: precedente, raisons };
+}
+
+/**
+ * La verification du navigateur : la chaine sur les resumes, puis le releve du
+ * dernier tour recalcule depuis ses feuilles et compare a son resume. Chaque
+ * releve porte l'etat entier de l'entrepot : les relire tous ferait
+ * telecharger au visiteur la somme de l'historique, qui croit au carre. Le
+ * script `verifier.mjs --chaine` recalcule, lui, chaque releve.
+ */
+export async function verifierChaineLegere(tours, lire) {
+	const v = await verifierLiens(tours);
+	const dernier = tours.at(-1);
+	if (!dernier) return { ...v, recalcule: null };
+	const releve = await lire(dernier.id);
+	const raisons = [...v.raisons, ...(await verifierReleve(releve))];
+	for (const champ of ['id', 'precedente', 'arbre', 'racine']) {
+		if (releve[champ] !== dernier[champ]) raisons.push(`${dernier.id} : le releve ne porte pas le ${champ} de la liste des tours`);
+	}
+	return { ok: raisons.length === 0, tours: v.tours, derniere: v.derniere, raisons, recalcule: { id: dernier.id, feuilles: releve.feuilles.length } };
+}
+
 /** La place d'un fichier dans un releve : sa feuille, son chemin d'audit, et ce que le chemin rend. */
 export async function placeDuFichier(releve, empreinteDuFichier) {
 	const index = releve.feuilles.findIndex((f) => f.sha256 === empreinteDuFichier);
