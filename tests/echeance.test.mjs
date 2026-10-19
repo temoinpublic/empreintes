@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { EcheanceDepassee, sousEcheance } from '../src/echeance.mjs';
+import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 
 test('un travail fini avant son echeance rend son resultat et son signal reste leve', async () => {
 	let vu;
@@ -35,4 +35,21 @@ test('le rejet du travail passe tel quel, une exception synchrone aussi', async 
 		}),
 		TypeError
 	);
+});
+
+test('passe l echeance, un effet garde par son arret n agit plus', async () => {
+	const faits = [];
+	let gardee;
+	await assert.rejects(
+		sousEcheance(30, 'commune 49007', async (arret) => {
+			gardee = tantQue(arret, (x) => faits.push(x));
+			gardee('avant');
+			await new Promise((r) => setTimeout(r, 80));
+			return gardee('apres');
+		}),
+		EcheanceDepassee
+	);
+	await new Promise((r) => setTimeout(r, 80));
+	assert.deepEqual(faits, ['avant']);
+	assert.throws(() => gardee('encore'), EcheanceDepassee);
 });
