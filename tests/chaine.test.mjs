@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, placeDuFichier, racineDepuisChemin, verifierChaine, verifierReleve } from '../src/chaine.mjs';
+import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, placeDuFichier, racineDepuisChemin, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
 
 const DONNEES = path.resolve(import.meta.dirname, '..', 'donnees', 'empreintes');
 const ids = fs.readdirSync(DONNEES).filter((f) => /^\d{8}T\d{6}Z\.json$/.test(f)).map((f) => f.slice(0, -5)).sort();
@@ -72,4 +72,37 @@ test("un fichier du journal retrouve sa place et son chemin ; un inconnu n'en a 
 	assert.equal(place.ok, true);
 	assert.equal(place.feuille.cle, feuille.cle);
 	assert.equal(await placeDuFichier(releve, h('absent')), null);
+});
+
+const resume = (id) => {
+	const r = lire(id);
+	return { id: r.id, precedente: r.precedente, arbre: r.arbre, racine: r.racine };
+};
+
+test('la chaine legere tient sur les resumes et recalcule le seul dernier releve', async () => {
+	const tours = ids.map(resume);
+	const lus = [];
+	const v = await verifierChaineLegere(tours, (id) => (lus.push(id), lire(id)));
+	assert.deepEqual(v.raisons, []);
+	assert.equal(v.ok, true);
+	assert.equal(v.tours, ids.length);
+	assert.equal(v.derniere, lire(ids.at(-1)).racine);
+	assert.deepEqual(lus, [ids.at(-1)]);
+	assert.deepEqual(v.recalcule, { id: ids.at(-1), feuilles: lire(ids.at(-1)).feuilles.length });
+	assert.deepEqual(await verifierChaineLegere([], lire), { ok: true, tours: 0, derniere: RACINE_NULLE, raisons: [], recalcule: null });
+});
+
+test('la chaine legere voit un lien coupe, une racine fausse et un releve qui ne suit pas son resume', async () => {
+	const tours = ids.map(resume);
+	const coupe = await verifierLiens([tours[0], tours[2]]);
+	assert.equal(coupe.ok, false);
+	assert.match(coupe.raisons.join(), /precedente/);
+	const fausse = await verifierLiens([{ ...tours[0], arbre: h(9) }]);
+	assert.match(fausse.raisons.join(), /racine chainee/);
+	const dernier = lire(ids.at(-1));
+	const autre = await verifierChaineLegere(tours, () => ({ ...dernier, feuilles: dernier.feuilles.slice(1) }));
+	assert.equal(autre.ok, false);
+	assert.match(autre.raisons.join(), /arbre recalcule/);
+	const resumeFaux = await verifierChaineLegere([...tours.slice(0, -1), { ...tours.at(-1), id: 'autre' }], () => dernier);
+	assert.match(resumeFaux.raisons.join(), /ne porte pas le id/);
 });

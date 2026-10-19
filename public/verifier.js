@@ -1,4 +1,4 @@
-import { sha256, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
+import { sha256, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
 import { cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '/horodatage.mjs';
 import { montrer, suivreLeChoix } from '/fichier.js';
@@ -246,16 +246,14 @@ $('fichier')?.addEventListener('change', () => $('fichier').files[0] && lancer()
 $('chaine')?.addEventListener('click', async () => {
 	const sortie = $('resultat-chaine');
 	try {
-		const ids = (await lesTours()).map((t) => t.id);
-		const v = await verifierChaine(ids, (id) => lire(`/empreintes/${id}.json`), {
-			surTour: (id) => (sortie.innerHTML = `<p>${t.tour(T.heure(id))}</p>`)
-		});
+		// La chaine se lit sur `/tours.json` ; seul le dernier releve se recalcule ici, le script les recalcule tous.
+		const v = await verifierChaineLegere(await lesTours(), (id) => lire(`/empreintes/${id}.json`));
 		const s = await verifierSignatures(await lesTours(), async (chemin) => (await fetch(chemin)).text());
 		const pq = await verifierSignaturesSlh(await lesTours(), octets);
 		const h = await verifierHorodatages(await lesTours(), octets);
 		const raisons = [...v.raisons, ...s.raisons, ...pq.raisons, ...h.raisons];
 		sortie.innerHTML = raisons.length === 0
-			? `<article class="ok"><h2>${t.intacte(v.tours)}</h2><p>${t.signatures(s.signees)}</p>${pq.signees ? `<p>${t.signaturesPq(pq.signees)}</p>` : ''}<p>${t.horodatages(h.horodates)}</p><p>${t.derniere} <code class="racine">${v.derniere}</code></p></article>`
+			? `<article class="ok"><h2>${t.intacte(v.tours)}</h2>${v.recalcule ? `<p>${t.recalcule(v.recalcule.feuilles, T.heure(v.recalcule.id))}</p>` : ''}<p>${t.signatures(s.signees)}</p>${pq.signees ? `<p>${t.signaturesPq(pq.signees)}</p>` : ''}<p>${t.horodatages(h.horodates)}</p><p>${t.derniere} <code class="racine">${v.derniere}</code></p></article>`
 			: `<article class="ko"><h2>${t.rompue}</h2><ul>${raisons.map((r) => `<li>${echapper(r)}</li>`).join('')}</ul></article>`;
 	} catch (erreur) {
 		sortie.innerHTML = `<article class="ko"><h2>${T.erreur}</h2><p>${echapper(erreur.message)}</p></article>`;
