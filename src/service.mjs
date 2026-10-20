@@ -7,6 +7,7 @@ import { nommeUnePersonne } from './personne.mjs';
 import { inscriptionDuRecu, sha256 } from './chaine.mjs';
 import { CLE_DE_LA_FLOTTE, cleDAdresse, estUnRecu, idDuRecu, jourDe, ligneDe, lireDemande, plafond, recuDe, secondesAvantDemain, selAleatoire } from './depot.mjs';
 import { PORTEE_DU_RECU, PREFIXE_CLIENT, cleDuClient, verdictDuRecu } from './client.mjs';
+import { PREFIXE_PRODUIT, cleDuProduit } from './produit.mjs';
 import { verifierSignatureDuDeposant } from './origine.mjs';
 import { AGENT, DELAI_MS, cleDeLecture, contenuAdmis, estUneIp, ipsDoH, lireBorne, resolutionAdmise, sautSuivant, urlAdmise } from './temoin.mjs';
 
@@ -48,7 +49,7 @@ const faire = (db, sql, ...args) => db.prepare(sql).bind(...args).run();
 async function selDuJour(db, jour) {
 	await faire(db, 'DELETE FROM sel WHERE jour < ?', jour);
 	// Le compte des jours passes ne survit qu'en agregat : combien de depots, combien d'adresses distinctes ce jour-la.
-	await faire(db, 'INSERT INTO bilan (jour, depots, deposants) SELECT jour, SUM(n), COUNT(*) FROM compte WHERE jour < ? AND adresse <> ? AND adresse NOT LIKE ? GROUP BY jour ON CONFLICT (jour) DO NOTHING', jour, CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`);
+	await faire(db, 'INSERT INTO bilan (jour, depots, deposants) SELECT jour, SUM(n), COUNT(*) FROM compte WHERE jour < ? AND adresse <> ? AND adresse NOT LIKE ? AND adresse NOT LIKE ? GROUP BY jour ON CONFLICT (jour) DO NOTHING', jour, CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`, `${PREFIXE_PRODUIT}%`);
 	await faire(db, 'DELETE FROM compte WHERE jour < ?', jour);
 	await faire(db, 'DELETE FROM lecture WHERE jour < ?', jour);
 	await faire(db, 'INSERT INTO sel (jour, valeur) VALUES (?, ?) ON CONFLICT (jour) DO NOTHING', jour, selAleatoire());
@@ -161,29 +162,33 @@ async function lireAutorites(autorites) {
  * `autorites()` le registre des autorites des listes de confiance, ou null.
  * `flotte` : la glane des actes des communes (D-178), qui ne depose que des
  * actes lus sur le site officiel, sous son propre plafond, hors du bilan des
- * deposants, et ne redate pas un acte deja date pour sa collectivite.
+ * deposants, et ne redate pas un acte deja date pour sa collectivite ; ou un
+ * produit de la flotte (D-167, `produit` dans la demande), qui depose
+ * l'empreinte declaree d'un recu qu'il sert, sous le plafond de ce produit.
  * `client` : un client des offres (D-195, `src/client.mjs`), sous son propre
  * plafond, hors du plafond public et du bilan ; sa reponse porte `portee`.
  */
 export async function deposer({ db, corps, adresse, maintenant = new Date(), temoin = temoigner, annuaire = async () => null, autorites = async () => null, flotte = false, client = null }) {
 	const { demande, erreurs } = lireDemande(corps);
 	if (erreurs) return refus(400, 'demande illisible', erreurs);
-	if (flotte && !demande.acte) return refus(400, 'demande illisible', ['la glane ne depose que des actes']);
+	if (demande.produit && !flotte) return refus(403, 'jeton de la flotte requis', ['un recu de produit se depose sous le jeton de la flotte']);
+	if (flotte && !demande.acte && !demande.produit) return refus(400, 'demande illisible', ['la flotte ne depose que des actes ou des recus de ses produits']);
+	const glane = flotte && Boolean(demande.acte);
 	const instant = maintenant.toISOString();
 	const jour = jourDe(instant);
 	const sel = await selDuJour(db, jour);
-	const cle = cleDeCompte({ flotte, client }) ?? (await cleDAdresse(adresse ?? 'inconnue', sel));
+	const cle = cleDeCompte({ flotte, client, produit: demande.produit }) ?? (await cleDAdresse(adresse ?? 'inconnue', sel));
 	// Les versions des flux suivis (D-170) ont leurs propres plafonds, hors de celui des depots exterieurs.
-	// Les actes de la glane (D-178) aussi.
+	// Les actes de la glane (D-178) et les recus des produits (D-167) aussi.
 	const duJour =
 		(await un(db, 'SELECT COALESCE(MAX(place), 0) AS n FROM depot WHERE jour = ?', jour)).n -
 		(await un(db, 'SELECT COUNT(*) AS n FROM version WHERE jour = ?', jour)).n -
-		(await un(db, 'SELECT COALESCE(SUM(n), 0) AS n FROM compte WHERE jour = ? AND (adresse = ? OR adresse LIKE ?)', jour, CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`)).n;
+		(await un(db, 'SELECT COALESCE(SUM(n), 0) AS n FROM compte WHERE jour = ? AND (adresse = ? OR adresse LIKE ? OR adresse LIKE ?)', jour, CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`, `${PREFIXE_PRODUIT}%`)).n;
 	const deCetteAdresse = (await un(db, 'SELECT n FROM compte WHERE jour = ? AND adresse = ?', jour, cle))?.n ?? 0;
-	const limite = plafond({ deCetteAdresse, duJour, instant, flotte, client });
+	const limite = plafond({ deCetteAdresse, duJour, instant, flotte: glane, client, produit: demande.produit ?? null });
 	const auPlafond = () => refus(429, limite.motif, [], { 'retry-after': String(limite.apres) });
 	// La glane relit aussi ses actes deja dates (D-193) : son plafond ne compte que les actes nouveaux, il se juge apres la lecture.
-	if (!limite.ok && !flotte) return auPlafond();
+	if (!limite.ok && !glane) return auPlafond();
 
 	let empreinte = demande.sha256;
 	let lu = null;
@@ -198,7 +203,7 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 			lu = await temoin(admise, { juger: true });
 		} catch (erreur) {
 			// Une source qui ne sert plus un acte deja date pour sa commune : la relecture le note, la reponse reste un refus.
-			if (flotte && demande.acte && SOURCE_DISPARUE.includes(erreur?.statut))
+			if (glane && SOURCE_DISPARUE.includes(erreur?.statut))
 				await noterRelecture(db, { jour, statut: erreur.statut, ou: 'collectivite = ? AND url = ?', args: [demande.acte.collectivite, adressePublique(admise.url)] });
 			return refus(422, 'lecture impossible', [String(erreur?.message ?? erreur)]);
 		}
@@ -213,12 +218,12 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	}
 
 	const acte = demande.acte ? { ...demande.acte, rattachement: await rattachement({ acte: demande.acte, demandee: demande.url, lue: lu.url, annuaire }) } : null;
-	if (flotte) {
+	if (glane) {
 		const refusDeLaGlane = await jugerLaGlane(db, { acte, empreinte, lue: adressePublique(lu.url), jour });
 		if (refusDeLaGlane) return refusDeLaGlane;
 		if (!limite.ok) return auPlafond();
 	}
-	const recu = recuDe({ sha256: empreinte, instant, libelle: demande.libelle, url: demande.url, temoin: lu, acte, affichage: demande.affichage ?? null, signature: signature && { valeur: demande.signature, certificat: signature.certificat.empreinte, sujet: signature.certificat.sujet, emetteur: signature.certificat.emetteur, autorite: signature.certificat.autorite } });
+	const recu = recuDe({ sha256: empreinte, instant, libelle: demande.libelle, url: demande.url, temoin: lu, acte, affichage: demande.affichage ?? null, produit: demande.produit ?? null, signature: signature && { valeur: demande.signature, certificat: signature.certificat.empreinte, sujet: signature.certificat.sujet, emetteur: signature.certificat.emetteur, autorite: signature.certificat.autorite } });
 	const id = await idDuRecu(recu);
 	const place = await inserer(db, { jour, empreinte, recu: id });
 	// La serie d'une collectivite ne tient que les actes lus sur son site officiel ; un acte declare reste dans son recu.
@@ -228,8 +233,9 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
 }
 
-/** La cle de compte de la glane ou d'un client ; null pour un deposant sans jeton, compte par son adresse. */
-function cleDeCompte({ flotte, client }) {
+/** La cle de compte d'un produit, de la glane ou d'un client ; null pour un deposant sans jeton, compte par son adresse. */
+function cleDeCompte({ flotte, client, produit }) {
+	if (produit) return cleDuProduit(produit.nom);
 	if (flotte) return CLE_DE_LA_FLOTTE;
 	return client ? cleDuClient(client) : null;
 }
@@ -311,8 +317,8 @@ export function lecturePublique(valeur) {
  */
 export async function bilanPublic({ db }) {
 	const { results } = await db
-		.prepare('SELECT jour, depots, deposants FROM bilan UNION ALL SELECT jour, SUM(n) AS depots, COUNT(*) AS deposants FROM compte WHERE adresse <> ? AND adresse NOT LIKE ? GROUP BY jour ORDER BY jour')
-		.bind(CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`)
+		.prepare('SELECT jour, depots, deposants FROM bilan UNION ALL SELECT jour, SUM(n) AS depots, COUNT(*) AS deposants FROM compte WHERE adresse <> ? AND adresse NOT LIKE ? AND adresse NOT LIKE ? GROUP BY jour ORDER BY jour')
+		.bind(CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`, `${PREFIXE_PRODUIT}%`)
 		.all();
 	const jours = results.map((r) => ({ jour: r.jour, depots: Number(r.depots), deposants: Number(r.deposants) }));
 	return { jours, deposantsAuMoins: Math.max(0, ...jours.map((j) => j.deposants)) };

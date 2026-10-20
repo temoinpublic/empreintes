@@ -13,11 +13,14 @@
 // est dans le recu, version 3. Un depot SIGNE par son deposant (D-164,
 // `src/origine.mjs`) porte sa signature (`jws` ou `cades`) et le certificat qu'elle nomme dans le
 // recu, version 4, quel que soit son type ; la ligne publique reste la meme.
+// Le recu d'un produit de la flotte (D-167, `src/produit.mjs`) porte le produit
+// et l'adresse publique de son recu, version 5.
 
 import { lireActe } from './acte.mjs';
 import { lireAffichage } from './affichage.mjs';
 import { sha256 } from './chaine.mjs';
 import { estUnJws, estUneSignature } from './origine.mjs';
+import { lireProduit, RECUS_PAR_PRODUIT_PAR_JOUR } from './produit.mjs';
 
 /** Au plus autant de depots par adresse et par jour. */
 export const DEPOTS_PAR_ADRESSE = 20;
@@ -37,6 +40,8 @@ export const VERSION_DU_RECU_ACTE = 2;
 export const VERSION_DU_RECU_AFFICHAGE = 3;
 /** Le recu d'un depot signe par son deposant, qui porte en plus son champ `signature`. */
 export const VERSION_DU_RECU_SIGNE = 4;
+/** Le recu d'un produit de la flotte, qui porte en plus son champ `produit`. */
+export const VERSION_DU_RECU_PRODUIT = 5;
 /** Les types de depot, hors le depot ordinaire qui n'en a pas. */
 export const TYPES = ['acte', 'affichage'];
 
@@ -55,7 +60,7 @@ export const jourDe = (instant) => new Date(instant).toISOString().slice(0, 10);
 export function lireDemande(corps) {
 	const erreurs = [];
 	if (!corps || typeof corps !== 'object' || Array.isArray(corps)) return { erreurs: ['corps : un objet JSON est attendu'] };
-	const inconnus = Object.keys(corps).filter((k) => !['sha256', 'url', 'libelle', 'type', 'collectivite', 'nature', 'signature'].includes(k));
+	const inconnus = Object.keys(corps).filter((k) => !['sha256', 'url', 'libelle', 'type', 'collectivite', 'nature', 'signature', 'produit'].includes(k));
 	if (inconnus.length) erreurs.push(`champs inconnus : ${inconnus.join(', ')}`);
 	const type = typeof corps.type === 'string' ? corps.type.trim() : corps.type;
 	if (type !== undefined && !TYPES.includes(type)) erreurs.push(`type : ${TYPES.map((t) => `"${t}"`).join(', ')} ou rien`);
@@ -68,9 +73,10 @@ export function lireDemande(corps) {
 	const libelle = lireLibelle(corps.libelle, erreurs);
 	const acte = lireActe(corps, erreurs);
 	const affichage = lireAffichage(corps, erreurs);
+	const produit = lireProduit(corps, erreurs);
 	if (corps.signature !== undefined && !estUneSignature(corps.signature)) erreurs.push('signature : un JWS compact (JAdES) ou une signature CAdES detachee en base64, 32 768 caracteres au plus');
 	if (erreurs.length) return { erreurs: [...new Set(erreurs)] };
-	return { demande: { ...(empreinte !== undefined ? { sha256: empreinte } : { url }), ...(libelle ? { libelle } : {}), ...(acte ? { acte } : {}), ...(affichage ? { affichage } : {}), ...(corps.signature ? { signature: corps.signature } : {}) } };
+	return { demande: { ...(empreinte !== undefined ? { sha256: empreinte } : { url }), ...(libelle ? { libelle } : {}), ...(acte ? { acte } : {}), ...(affichage ? { affichage } : {}), ...(produit ? { produit } : {}), ...(corps.signature ? { signature: corps.signature } : {}) } };
 }
 
 function lireLibelle(valeur, erreurs) {
@@ -110,16 +116,18 @@ export function selAleatoire() {
  * ligne publique qui lie les deux. `acte` porte la collectivite, la nature et
  * le rattachement (`site-officiel` ou `declaree`) d'un acte de collectivite ;
  * `affichage` porte le numero du permis dont le panneau est photographie ;
+ * `produit` le nom du produit de la flotte et l'adresse publique de son recu ;
  * `signature` la signature du deposant (`valeur`, rendue en `jws` ou `cades`)
  * et le certificat qu'elle nomme, deja verifies,
  * avec `autorite` (pays et nom) quand une liste de confiance porte son emetteur.
  */
-export function recuDe({ sha256: empreinte, instant, libelle = null, url = null, temoin = null, acte = null, affichage = null, signature = null, sel = selAleatoire() }) {
+export function recuDe({ sha256: empreinte, instant, libelle = null, url = null, temoin = null, acte = null, affichage = null, produit = null, signature = null, sel = selAleatoire() }) {
 	if (!HEX64.test(empreinte)) throw new Error('recu : sha256 illisible');
 	if (acte && !temoin) throw new Error('recu : un acte est toujours lu par le temoin');
 	if (affichage && temoin) throw new Error('recu : un affichage est une empreinte declaree, la photo reste sur le telephone');
+	if (produit && temoin) throw new Error('recu : le recu d un produit est une empreinte declaree, le recu reste chez le produit');
 	return {
-		version: versionDuRecu({ acte, affichage, signature }),
+		version: versionDuRecu({ acte, affichage, produit, signature }),
 		sha256: empreinte,
 		jour: jourDe(instant),
 		depose: new Date(instant).toISOString(),
@@ -129,19 +137,21 @@ export function recuDe({ sha256: empreinte, instant, libelle = null, url = null,
 		temoin: temoin ? { url: temoin.url, taille: temoin.taille, type: temoin.type ?? null, lu: temoin.lu } : undefined,
 		acte: acte ? { collectivite: acte.collectivite, nature: acte.nature, rattachement: acte.rattachement } : undefined,
 		affichage: affichage ? { permis: affichage.permis } : undefined,
+		produit: produit ? { nom: produit.nom, url: produit.url } : undefined,
 		signature: signature ? { ...(estUnJws(signature.valeur) ? { jws: signature.valeur } : { cades: signature.valeur }), certificat: signature.certificat, sujet: signature.sujet, emetteur: signature.emetteur, autorite: signature.autorite ?? undefined } : undefined,
 		sel
 	};
 }
 
-function versionDuRecu({ acte, affichage, signature }) {
+function versionDuRecu({ acte, affichage, produit, signature }) {
 	if (signature) return VERSION_DU_RECU_SIGNE;
 	if (acte) return VERSION_DU_RECU_ACTE;
-	return affichage ? VERSION_DU_RECU_AFFICHAGE : VERSION_DU_RECU;
+	if (affichage) return VERSION_DU_RECU_AFFICHAGE;
+	return produit ? VERSION_DU_RECU_PRODUIT : VERSION_DU_RECU;
 }
 
 /** Les versions de recu que le service a emises ; un recu d'une autre version n'en est pas un. */
-export const VERSIONS_DU_RECU = [VERSION_DU_RECU, VERSION_DU_RECU_ACTE, VERSION_DU_RECU_AFFICHAGE, VERSION_DU_RECU_SIGNE];
+export const VERSIONS_DU_RECU = [VERSION_DU_RECU, VERSION_DU_RECU_ACTE, VERSION_DU_RECU_AFFICHAGE, VERSION_DU_RECU_SIGNE, VERSION_DU_RECU_PRODUIT];
 
 /** Vrai quand la valeur a la forme d'un recu emis par le service : version connue, empreinte, sel. */
 export const estUnRecu = (r) => VERSIONS_DU_RECU.includes(r?.version) && HEX64.test(r.sha256 ?? '') && /^[0-9a-f]{32}$/.test(r.sel ?? '');
@@ -218,10 +228,12 @@ export async function estLaFlotte(entete, jeton) {
 
 /**
  * Le verdict des plafonds : `{ ok: true }`, ou le motif et le `retry-after` en
- * secondes. La glane de la flotte et un client des offres (D-195) n'ont que le
- * leur, `deCetteAdresse` est alors leur propre compte du jour.
+ * secondes. La glane de la flotte, un produit de la flotte (D-167) et un client
+ * des offres (D-195) n'ont que le leur, `deCetteAdresse` est alors leur propre
+ * compte du jour.
  */
-export function plafond({ deCetteAdresse, duJour, instant, flotte = false, client = null }) {
+export function plafond({ deCetteAdresse, duJour, instant, flotte = false, client = null, produit = null }) {
+	if (produit) return deCetteAdresse >= RECUS_PAR_PRODUIT_PAR_JOUR ? { ok: false, motif: 'plafond du produit atteint', apres: secondesAvantDemain(instant) } : { ok: true };
 	if (client) return deCetteAdresse >= client.plafond ? { ok: false, motif: 'plafond du client atteint', apres: secondesAvantDemain(instant) } : { ok: true };
 	if (flotte)
 		return deCetteAdresse >= ACTES_DE_LA_FLOTTE_PAR_JOUR ? { ok: false, motif: 'plafond de la flotte atteint', apres: secondesAvantDemain(instant) } : { ok: true };

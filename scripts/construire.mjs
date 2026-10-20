@@ -98,6 +98,6 @@ ecrire(`${CHEMIN_OFFRE_NOTAIRES.slice(1)}.html`, pageOffreNotaires());
 // L'offre des DRH (D-195), en francais seulement, sans prix.
 ecrire(`${CHEMIN_OFFRE_DRH.slice(1)}.html`, pageOffreDrh());
 for (const b of BESOINS) ecrire(`${b.chemin.slice(1)}.html`, pageBesoin(b));
-for (const m of ['chaine.mjs', 'horodatage.mjs', 'slh.mjs', 'depot.mjs', 'acte.mjs', 'personne.mjs', 'annuaire.mjs', 'affichage.mjs', 'origine.mjs', 'serie.mjs']) ecrire(m, fs.readFileSync(path.join(RACINE, 'src', m)));
+for (const m of ['chaine.mjs', 'horodatage.mjs', 'slh.mjs', 'depot.mjs', 'acte.mjs', 'personne.mjs', 'annuaire.mjs', 'affichage.mjs', 'origine.mjs', 'produit.mjs', 'serie.mjs']) ecrire(m, fs.readFileSync(path.join(RACINE, 'src', m)));
 for (const f of fs.readdirSync(path.join(RACINE, 'public'))) ecrire(f, fs.readFileSync(path.join(RACINE, 'public', f)));
 console.log(`${tours.length} tours, ${fichiers.length} fichiers du journal, ${preuves.length} preuves, ${entrees.length} disparus, dist/ ecrit`);

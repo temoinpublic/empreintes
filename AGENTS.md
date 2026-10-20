@@ -167,6 +167,13 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   officiel (sinon 422), sous son plafond (`ACTES_DE_LA_FLOTTE_PAR_JOUR`), hors
   du bilan public des deposants (cle de compte `flotte`), et un acte deja date
   pour sa commune rend son recu (200, `deja`). Etat et releves hors du depot.
+- Sous le meme jeton, un PRODUIT de la flotte (D-167, `src/produit.mjs` :
+  auregistre, quivad, titelia, murparmur, rendita) depose l'empreinte DECLAREE
+  d'un recu de consultation qu'il sert, `produit: { nom, url }` avec `sha256`
+  (jamais `url` a lire : le recu reste chez le produit, public a son adresse).
+  Recu version 5, plafond par produit (`RECUS_PAR_PRODUIT_PAR_JOUR`), cle de
+  compte `produit:<nom>`, hors du plafond du jour et du bilan public. Sans le
+  jeton, `produit` rend 403.
 - La glane tourne chaque nuit sur le VPS : `vps/glane-actes.service` et
   `.timer` (toutes les communes, `--departements tous`, memoire bornee a
   512 Mo), clone public a jour avant chaque passage, jeton dans

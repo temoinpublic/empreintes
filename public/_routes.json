@@ -19,6 +19,7 @@
 		"/personne.mjs",
 		"/annuaire.mjs",
 		"/affichage.mjs",
+		"/produit.mjs",
 		"/serie.mjs",
 		"/tours.json",
 		"/version.json",
