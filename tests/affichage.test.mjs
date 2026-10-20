@@ -65,7 +65,8 @@ test('un affichage se depose en empreinte declaree, son recu porte le numero en 
 	const f = await fichierDuJour({ db, nom: '2026-10-14.jsonl', maintenant: midi });
 	const [ligne] = lireFichierDuJour(f.corps, '2026-10-14');
 	assert.deepEqual(Object.keys(ligne), ['sha256', 'jour', 'place', 'recu']);
-	assert.ok(!f.corps.includes('069'), 'le numero du permis ne se publie pas');
+	// La ligne publique n'est que des hex minuscules : « A0001 » ne peut pas y venir d'un sha256, « 069 » si (run 39351334763).
+	assert.ok(!f.corps.includes('A0001'), 'le numero du permis ne se publie pas');
 	assert.throws(() => recuDe({ sha256: H, instant: midi.toISOString(), affichage: { permis: 'PC 069 123 24 A0001' }, temoin: { url: 'https://x.fr/p.jpg', taille: 1, lu: midi.toISOString() } }), /empreinte declaree/);
 });
 
