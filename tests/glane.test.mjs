@@ -235,3 +235,11 @@ test('l etat de la glane s ecrit d un bloc : une ecriture interrompue laisse l a
 	assert.throws(() => ecrireAtomique(coupe, chemin, '{"pdfs":{"a":1,"b":2}}\n'), /interrompu/);
 	assert.equal(fs.readFileSync(chemin, 'utf8'), '{"pdfs":{"a":1}}\n');
 });
+
+import { statutLu } from '../src/glane.mjs';
+
+test('une page coupee a la borne d octets ne compte pas comme lue en entier', () => {
+	assert.equal(statutLu({ statut: 200, tronque: false }), 200);
+	assert.equal(statutLu({ statut: 200, tronque: true }), 'tronque');
+	assert.equal(statutLu({ statut: 404 }), 404);
+});
