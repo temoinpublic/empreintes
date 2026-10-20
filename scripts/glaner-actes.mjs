@@ -31,7 +31,7 @@ import { parseArgs } from 'node:util';
 import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
-import { EcheanceDepassee, sousEcheance } from '../src/echeance.mjs';
+import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
 import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
 
@@ -309,11 +309,16 @@ async function noterLePassage(code, site, pdfs, lus) {
 	}
 }
 
-async function glanerCommune(code, [hote, prefixe]) {
+async function glanerCommune(code, [hote, prefixe], arret) {
+	// Passee l'echeance de la commune, plus aucune lecture ni aucun depot : l'ouvrier est deja sur la suivante.
+	const lire = tantQue(arret, page);
+	const releverLeBudget = tantQue(arret, releverBudget);
+	const deposerLActe = tantQue(arret, deposer);
+	const noterLeSien = tantQue(arret, noterLePassage);
 	const sites = [[hote, prefixe]];
 	const ligne = { code, site: `${hote}${prefixe}`, accueil: '', page: '', pdfs: 0, actes: 0, deposes: 0, autres: '', budgets: 0, genres: '', pageBudget: '' };
 	const lus = [];
-	const accueil = await page(`https://${hote}${prefixe}/`, lus);
+	const accueil = await lire(`https://${hote}${prefixe}/`, lus);
 	ligne.accueil = String(accueil.statut);
 	const pdfs = new Map();
 	const telechargements = new Map();
@@ -327,14 +332,14 @@ async function glanerCommune(code, [hote, prefixe]) {
 	const budgetsAVoir = new Map(pagesBudget(accueil.liens, { sites, ici: `https://${hote}${prefixe}/` }).map((l) => [l.href, l]));
 	for (const candidate of pagesCandidates(accueil.liens, { sites, ici: `https://${hote}${prefixe}/` })) {
 		lues.add(candidate.href);
-		const p = await page(candidate.href, lus);
+		const p = await lire(candidate.href, lus);
 		const avant = pdfs.size;
 		ajouter(p.liens);
 		pagesBudget(p.liens, { sites, ici: candidate.href, max: 1 }).forEach((l) => budgetsAVoir.has(l.href) || budgetsAVoir.set(l.href, l));
 		if (pdfs.size === avant)
 			for (const suite of pagesCandidates(p.liens, { sites, ici: candidate.href, max: 2, plancher: 3 })) {
 				lues.add(suite.href);
-				ajouter((await page(suite.href, lus)).liens);
+				ajouter((await lire(suite.href, lus)).liens);
 			}
 		if (pdfs.size > avant && !ligne.page) ligne.page = candidate.href;
 	}
@@ -344,19 +349,19 @@ async function glanerCommune(code, [hote, prefixe]) {
 		if (lues.has(href)) continue;
 		lues.add(href);
 		const avant = telechargements.size;
-		const p = await page(href, lusBudget);
+		const p = await lire(href, lusBudget);
 		releverSeulement(p.liens);
 		if (telechargements.size === avant)
 			for (const suite of pagesBudget(p.liens, { sites, ici: href, max: 2 }).filter((l) => !lues.has(l.href))) {
 				lues.add(suite.href);
-				releverSeulement((await page(suite.href, lusBudget)).liens);
+				releverSeulement((await lire(suite.href, lusBudget)).liens);
 			}
 		if (telechargements.size > avant && !ligne.pageBudget) ligne.pageBudget = href;
 	}
 	const nouveaux = { n: 0 };
 	const genres = new Set();
 	for (const doc of [...telechargements.values()].map(documentBudgetaireDe).filter(Boolean)) {
-		const releve = await releverBudget(code, doc, nouveaux);
+		const releve = await releverLeBudget(code, doc, nouveaux);
 		fs.appendFileSync(detailBudgets, `${JSON.stringify(releve)}\n`);
 		ligne.budgets++;
 		genres.add(doc.genre);
@@ -369,13 +374,13 @@ async function glanerCommune(code, [hote, prefixe]) {
 	let tentes = 0;
 	for (const acte of actes) {
 		if (tentes >= Number(options['par-commune'])) break;
-		const issue = await deposer(code, acte);
+		const issue = await deposerLActe(code, acte);
 		fs.appendFileSync(detail, `${JSON.stringify({ code, ...acte, issue })}\n`);
 		if (issue !== 'connu') tentes++;
 		issues[issue] = (issues[issue] ?? 0) + 1;
 	}
 	ligne.deposes = issues.depose ?? 0;
-	issues[await noterLePassage(code, `${hote}${prefixe}`, pdfs, lus)] = 1;
+	issues[await noterLeSien(code, `${hote}${prefixe}`, pdfs, lus)] = 1;
 	ligne.autres = Object.entries(issues)
 		.filter(([k]) => k !== 'depose')
 		.map(([k, n]) => `${k}:${n}`)
@@ -477,7 +482,7 @@ async function ouvrier(qui) {
 		const [code, site] = file[suivant++];
 		let ligne;
 		try {
-			ligne = await ouvrierCourant.run(qui, () => sousEcheance(COMMUNE_MS, `commune ${code}`, () => glanerCommune(code, site)));
+			ligne = await ouvrierCourant.run(qui, () => sousEcheance(COMMUNE_MS, `commune ${code}`, (arret) => glanerCommune(code, site, arret)));
 		} catch (e) {
 			if (e.message === 'jeton refuse') throw e;
 			ligne = { code, site: site.join(''), accueil: e instanceof EcheanceDepassee ? 'echeance' : 'erreur', page: '', pdfs: 0, actes: 0, deposes: 0, autres: String(e.message).slice(0, 80), budgets: 0, genres: '', pageBudget: '' };

@@ -29,3 +29,15 @@ export function sousEcheance(ms, quoi, travail) {
 	const fait = Promise.resolve().then(() => travail(controleur.signal));
 	return Promise.race([fait, echeance]).finally(() => clearTimeout(minuterie));
 }
+
+/**
+ * Rend `effet` garde par `arret` : passe l'echeance, il rejette avec la raison de
+ * l'arret au lieu d'agir. Un travail abandonne a son echeance ne lit et ne
+ * depose plus rien pendant que l'ouvrier est deja sur le suivant.
+ */
+export function tantQue(arret, effet) {
+	return (...args) => {
+		arret.throwIfAborted();
+		return effet(...args);
+	};
+}
