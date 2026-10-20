@@ -173,7 +173,10 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   (jamais `url` a lire : le recu reste chez le produit, public a son adresse).
   Recu version 5, plafond par produit (`RECUS_PAR_PRODUIT_PAR_JOUR`), cle de
   compte `produit:<nom>`, hors du plafond du jour et du bilan public. Sans le
-  jeton, `produit` rend 403.
+  jeton, `produit` rend 403. Le produit et l'adresse de son recu entrent dans
+  la table D1 `produit` : la page `/recu/<id>` et `/api/recus/<id>` les
+  donnent, et `POST /api/verifications` relit les octets a cette adresse par
+  le temoin (`produit.relecture` : `identique`, `different`, `illisible`).
 - La glane tourne chaque nuit sur le VPS : `vps/glane-actes.service` et
   `.timer` (toutes les communes, `--departements tous`, memoire bornee a
   512 Mo), clone public a jour avant chaque passage, jeton dans

@@ -35,7 +35,9 @@ export const SCHEMA = [
 	// (les memes octets), 404 ou 410 ; `depuis`, le premier jour de ce statut.
 	'CREATE TABLE IF NOT EXISTS relecture (recu TEXT PRIMARY KEY, jour TEXT NOT NULL, depuis TEXT NOT NULL, statut INTEGER NOT NULL) WITHOUT ROWID',
 	// D-200 : la liste d'attente d'une offre pas encore ouverte (`src/attente.mjs`) ; l'adresse electronique et le profil, rien d'autre.
-	'CREATE TABLE IF NOT EXISTS attente (offre TEXT NOT NULL, adresse TEXT NOT NULL, profil TEXT NOT NULL, jour TEXT NOT NULL, PRIMARY KEY (offre, adresse)) WITHOUT ROWID'
+	'CREATE TABLE IF NOT EXISTS attente (offre TEXT NOT NULL, adresse TEXT NOT NULL, profil TEXT NOT NULL, jour TEXT NOT NULL, PRIMARY KEY (offre, adresse)) WITHOUT ROWID',
+	// D-167 : le produit de la flotte qui a depose un recu de consultation, et l'adresse publique de ce recu (table ajoutee le 2026-10-20).
+	'CREATE TABLE IF NOT EXISTS produit (recu TEXT PRIMARY KEY, nom TEXT NOT NULL, url TEXT NOT NULL) WITHOUT ROWID'
 ];
 
 const JSON_UTF8 = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'access-control-allow-origin': '*' };
@@ -229,6 +231,8 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	// La serie d'une collectivite ne tient que les actes lus sur son site officiel ; un acte declare reste dans son recu.
 	if (acte?.rattachement === 'site-officiel')
 		await faire(db, 'INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)', id, acte.collectivite, acte.nature, demande.libelle ?? null, adressePublique(lu.url));
+	// Le recu d'un produit (D-167) : sa page nomme le produit et mene au recu que celui-ci sert.
+	if (demande.produit) await faire(db, 'INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url);
 	await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
 	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
 }
@@ -355,6 +359,12 @@ export async function acteDuRecu({ db, id }) {
 	return un(db, 'SELECT collectivite, nature, objet, url FROM acte WHERE recu = ?', id);
 }
 
+/** Le produit de la flotte qui a depose un recu, `{ nom, url }` ; null pour tout autre depot. */
+export async function produitDuRecu({ db, id }) {
+	if (!HEX64.test(id ?? '')) return null;
+	return un(db, 'SELECT nom, url FROM produit WHERE recu = ?', id);
+}
+
 const COLONNES_D_ACTE = 'SELECT d.jour, d.place, d.sha256, d.recu, a.collectivite, a.nature, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu';
 
 /** Au plus tant d'actes rendus pour un prefixe ambigu. */
@@ -390,13 +400,18 @@ export async function versionsDeLaSource({ db, collectivite, url }) {
 
 /**
  * La ligne publique d'un recu, plus `acte`, l'adresse perenne de l'acte qu'il
- * date (D-205), quand c'en est un ; null s'il est inconnu.
+ * date (D-205), quand c'en est un, et `produit`, le produit de la flotte et
+ * l'adresse du recu qu'il sert (D-167) ; null s'il est inconnu.
  */
 export async function ligneEtAdresseDuRecu({ db, id }) {
 	const ligne = await ligneDuRecu({ db, id });
 	if (!ligne) return null;
-	const acte = await acteDuRecu({ db, id });
-	return acte ? { ...ligne, acte: `https://temoinpublic.fr${cheminDeLActe({ ...acte, jour: ligne.jour, sha256: ligne.sha256 })}` } : ligne;
+	const [acte, produit] = await Promise.all([acteDuRecu({ db, id }), produitDuRecu({ db, id })]);
+	return {
+		...ligne,
+		...(acte ? { acte: `https://temoinpublic.fr${cheminDeLActe({ ...acte, jour: ligne.jour, sha256: ligne.sha256 })}` } : {}),
+		...(produit ? { produit: { nom: produit.nom, url: produit.url } } : {})
+	};
 }
 
 /** Au plus autant de recus dans un passage de la glane, vus et absents ensemble. */
@@ -481,13 +496,32 @@ export async function actesDisparus({ db, max = DISPARUS_DES_ACTES_MAX }) {
  * (chemin vers une reponse), la signature du deposant se verifie a l'instant du
  * depot. Toujours 200 sur un recu lisible : `authentique` dit le verdict.
  */
-export async function verifierUnRecu({ db, corps, lire, autorites = async () => null }) {
+export async function verifierUnRecu({ db, corps, lire, autorites = async () => null, temoin = temoigner }) {
 	if (!estUnRecu(corps)) return refus(400, 'recu illisible', ['un recu rendu par POST /api/depots est attendu, tel quel']);
 	const id = await idDuRecu(corps);
 	const ligne = await ligneDuRecu({ db, id });
 	if (!ligne) return reponse(200, verdictDuRecu({ id, recu: corps, ligne: null }));
-	const [inscription, signature] = await Promise.all([inscriptionLue(id, lire), signatureRelue(corps, autorites)]);
-	return reponse(200, verdictDuRecu({ id, recu: corps, ligne, inscription, signature }));
+	const [inscription, signature, produit] = await Promise.all([inscriptionLue(id, lire), signatureRelue(corps, autorites), produitRelu(corps, temoin)]);
+	return reponse(200, verdictDuRecu({ id, recu: corps, ligne, inscription, signature, produit }));
+}
+
+/**
+ * Le recu d'un produit de la flotte (D-167), relu a son adresse par le temoin :
+ * `identique` quand les octets servis aujourd'hui ont l'empreinte deposee,
+ * `different` sinon, `illisible` quand l'adresse ne repond pas (`statut` de la
+ * source quand elle a repondu). Null pour un recu sans produit.
+ */
+async function produitRelu(recu, temoin) {
+	if (!recu.produit) return null;
+	const { nom, url } = recu.produit;
+	const admise = urlAdmise(url);
+	if (admise.refus) return { nom, url, relecture: { etat: 'illisible', raison: admise.refus } };
+	try {
+		const lu = await temoin(admise);
+		return { nom, url, relecture: { etat: lu.sha256 === recu.sha256 ? 'identique' : 'different', sha256: lu.sha256, lu: lu.lu } };
+	} catch (erreur) {
+		return { nom, url, relecture: { etat: 'illisible', raison: String(erreur?.message ?? erreur), ...(erreur?.statut ? { statut: erreur.statut } : {}) } };
+	}
 }
 
 async function inscriptionLue(id, lire) {

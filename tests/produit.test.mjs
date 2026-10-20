@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { baseDeTest } from './d1.mjs';
 import { DEPOTS_PAR_JOUR, VERSION_DU_RECU_PRODUIT, lireDemande, plafond, recuDe } from '../src/depot.mjs';
 import { PRODUITS, RECUS_PAR_PRODUIT_PAR_JOUR, cleDuProduit, lireProduit } from '../src/produit.mjs';
-import { bilanPublic, deposer } from '../src/service.mjs';
+import { bilanPublic, deposer, ligneEtAdresseDuRecu, produitDuRecu, verifierUnRecu } from '../src/service.mjs';
+import { onRequestGet as pageDuRecu } from '../functions/recu/[id].js';
+import { onRequestGet as apiRecu } from '../functions/api/recus/[id].js';
 
 const midi = new Date('2026-10-20T12:00:00Z');
 const lendemain = new Date('2026-10-21T12:00:00Z');
@@ -76,4 +78,48 @@ test('les recus des produits ne prennent ni le plafond du jour ni le bilan publi
 	assert.deepEqual((await bilanPublic({ db })).jours, [{ jour: '2026-10-20', depots: 1, deposants: 1 }]);
 	await deposer({ db, corps: { sha256: 'e'.repeat(64) }, adresse: '198.51.100.2', maintenant: lendemain });
 	assert.deepEqual((await bilanPublic({ db })).jours[0], { jour: '2026-10-20', depots: 1, deposants: 1 }, 'le jour clos garde le bilan hors produits');
+});
+
+test('la page du recu d un produit nomme le produit et mene au recu qu il sert, en francais et en allemand', async () => {
+	const env = { DEPOTS: baseDeTest() };
+	const r = corpsDe(await deposerPourLaFlotte(env.DEPOTS, produit()));
+	assert.deepEqual({ ...(await produitDuRecu({ db: env.DEPOTS, id: r.id })) }, { nom: 'auregistre', url: URL_RECU });
+	assert.equal(await produitDuRecu({ db: env.DEPOTS, id: 'x' }), null);
+	const ligne = await ligneEtAdresseDuRecu({ db: env.DEPOTS, id: r.id });
+	assert.deepEqual(ligne.produit, { nom: 'auregistre', url: URL_RECU });
+	assert.equal(ligne.acte, undefined);
+	const page = await (await pageDuRecu({ request: new Request(`https://temoinpublic.fr/recu/${r.id}`), params: { id: r.id }, env })).text();
+	assert.match(page, new RegExp(`<div><dt>Produit</dt><dd>auregistre</dd></div>\n<div><dt>Reçu du produit</dt><dd><a href="${URL_RECU}">${URL_RECU}</a></dd></div>\n<div><dt>Empreinte</dt>`));
+	const allemande = await (await pageDuRecu({ request: new Request(`https://datumszeuge.de/recu/${r.id}`), params: { id: r.id }, env })).text();
+	assert.match(allemande, /<dt>Produkt<\/dt><dd>auregistre<\/dd>[\s\S]*<dt>Beleg des Produkts<\/dt>/);
+	assert.deepEqual((await (await apiRecu({ params: { id: r.id }, env })).json()).produit, { nom: 'auregistre', url: URL_RECU });
+	const ordinaire = corpsDe(await deposer({ db: env.DEPOTS, corps: { sha256: 'c'.repeat(64) }, adresse: '198.51.100.1', maintenant: midi }));
+	const sans = await (await pageDuRecu({ request: new Request(`https://temoinpublic.fr/recu/${ordinaire.id}`), params: { id: ordinaire.id }, env })).text();
+	assert.doesNotMatch(sans, /<dt>Produit<\/dt>/);
+	assert.equal((await (await apiRecu({ params: { id: ordinaire.id }, env })).json()).produit, undefined);
+});
+
+test('la verification d un recu de produit relit les octets a son adresse et compare', async () => {
+	const db = baseDeTest();
+	const lire = async () => new Response('', { status: 404 });
+	const recu = corpsDe(await deposerPourLaFlotte(db, produit())).recu;
+	const relu = (sha) => async (admise) => ({ url: admise.url, taille: 10, type: 'application/json', lu: midi.toISOString(), sha256: sha });
+	const verdict = async (temoin, corps = recu) => corpsDe(await verifierUnRecu({ db, corps, lire, temoin }));
+	const identique = await verdict(relu(H));
+	assert.equal(identique.authentique, true);
+	assert.deepEqual(identique.produit, { nom: 'auregistre', url: URL_RECU, relecture: { etat: 'identique', sha256: H, lu: midi.toISOString() } });
+	assert.equal((await verdict(relu('c'.repeat(64)))).produit.relecture.etat, 'different');
+	const muette = await verdict(async () => {
+		throw Object.assign(new Error('la source a repondu 404'), { statut: 404 });
+	});
+	assert.deepEqual(muette.produit.relecture, { etat: 'illisible', raison: 'la source a repondu 404', statut: 404 });
+	const coupee = await verdict(async () => {
+		throw new Error('hote sans adresse');
+	});
+	assert.deepEqual(coupee.produit.relecture, { etat: 'illisible', raison: 'hote sans adresse' });
+	const privee = await verdict(relu(H), { ...recu, produit: { nom: 'auregistre', url: 'https://localhost/recu/1.json' } });
+	assert.equal(privee.authentique, false, 'un recu modifie n est plus celui du registre');
+	assert.equal(privee.produit, undefined);
+	const ordinaire = corpsDe(await deposer({ db, corps: { sha256: 'd'.repeat(64) }, adresse: '198.51.100.1', maintenant: midi })).recu;
+	assert.equal((await verdict(relu(H), ordinaire)).produit, undefined);
 });
