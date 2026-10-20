@@ -55,7 +55,7 @@
     "operationId": "lireRecu",
     "summary": "La ligne publique d'un reçu",
     "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }],
-    "responses": { "200": { "description": "sha256, jour, place, recu ; acte, l'adresse pérenne d'un acte de collectivité" }, "404": { "description": "Reçu inconnu" } }
+    "responses": { "200": { "description": "sha256, jour, place, recu ; acte, l'adresse pérenne d'un acte de collectivité ; produit (nom, url), le produit de la flotte et l'adresse du reçu qu'il sert" }, "404": { "description": "Reçu inconnu" } }
    }
   },
   "/api/communes": {

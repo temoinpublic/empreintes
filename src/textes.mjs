@@ -157,6 +157,8 @@ export const TEXTES = {
 		place: { fr: (place, j) => `n°${NBSP}${place} du ${j}`, de: (place, j) => `Nr.${NBSP}${place} vom ${j}` },
 		registre: { fr: 'Registre', de: 'Register' },
 		lecture: { fr: 'lecture du registre', de: 'Register wird gelesen' },
+		produit: { fr: 'Produit', de: 'Produkt' },
+		recuDuProduit: { fr: 'Reçu du produit', de: 'Beleg des Produkts' },
 		imprimer: { fr: 'Imprimer le reçu', de: 'Beleg drucken' }
 	},
 	editeur: {
