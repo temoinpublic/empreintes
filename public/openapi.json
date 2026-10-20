@@ -26,6 +26,7 @@
          "type": { "type": "string", "enum": ["acte", "affichage"] },
          "collectivite": { "type": "string", "description": "Code INSEE ou SIREN, avec type acte" },
          "nature": { "type": "string", "enum": ["deliberation", "arrete", "decision"] },
+         "produit": { "type": "object", "description": "Réservé aux produits de la flotte, sous le jeton de la flotte : le recu de consultation qu'un produit sert, par son sha256 déclaré ; reçu version 5, avec produit", "additionalProperties": false, "required": ["nom", "url"], "properties": { "nom": { "type": "string", "enum": ["auregistre", "quivad", "titelia", "murparmur", "rendita"] }, "url": { "type": "string", "maxLength": 2048, "description": "Adresse https publique du reçu du produit" } } },
          "signature": { "type": "string", "maxLength": 32768, "description": "Signature du déposant : JWS compact JAdES (charge utile = l'empreinte du document en 64 hex, jointe ou détachée, certificat et sa chaîne dans x5c) ou CAdES détachée en base64 (messageDigest SHA-256 = l'empreinte, certificats dans le CMS) ; reçu version 4, avec signature.autorite quand la chaîne remonte à une autorité des listes de confiance européennes" }
         }
        }
