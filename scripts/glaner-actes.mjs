@@ -33,7 +33,7 @@ import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -137,12 +137,16 @@ async function recevoirTexte(url, hote, signal) {
 	}
 	const morceaux = [];
 	let taille = 0;
+	let tronque = false;
 	for await (const m of r.body) {
 		taille += m.byteLength;
-		if (taille > OCTETS_MAX) break;
+		if (taille > OCTETS_MAX) {
+			tronque = true;
+			break;
+		}
 		morceaux.push(m);
 	}
-	return { statut: r.status, url: r.url, texte: Buffer.concat(morceaux).toString('utf8') };
+	return { statut: r.status, tronque, url: r.url, texte: Buffer.concat(morceaux).toString('utf8') };
 }
 
 const robotsEnVol = new Map();
@@ -167,7 +171,7 @@ async function page(url, lus = []) {
 		return { statut: 'robots', liens: [] };
 	}
 	const r = await lireTexte(url);
-	lus.push(r.statut);
+	lus.push(statutLu(r));
 	return { statut: r.statut, liens: r.texte ? liensDe(r.texte, r.url) : [] };
 }
 

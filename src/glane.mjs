@@ -464,6 +464,13 @@ export function communesDuReleve(tsv) {
 }
 
 /**
+ * Ce qu'une page lue laisse dans les statuts du passage : une page coupee a la
+ * borne d'octets n'est pas lue en entier, et un passage n'annonce rien d'absent
+ * sur une page dont il n'a pas vu la fin.
+ */
+export const statutLu = (lecture) => (lecture.tronque ? 'tronque' : lecture.statut);
+
+/**
  * Les envois d'un passage, en lots bornes : tous les recus partent, au plus
  * `vus` et `absents` par envoi (le service en admet 500 a la fois). Couper la
  * liste a la premiere borne laissait les recus suivants d'une grande commune
