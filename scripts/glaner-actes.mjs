@@ -20,8 +20,11 @@
 // le temoin du service relit la source, note les memes octets ou une adresse en
 // 404/410, et date une version nouvelle ; releve dans `glane-<jour>-relectures.jsonl`.
 // Chaque lecture et chaque commune ont leur echeance propre (`src/echeance.mjs`) ; un
-// passage relance le meme jour reprend apres les communes deja au releve.
+// passage relance le meme jour reprend apres les communes deja au releve. Chaque
+// ouvrier dit l'etape qu'il attend, et un ouvrier immobile cinq minutes est nomme au
+// journal avec son adresse (`src/sentinelle.mjs`, ligne `immobiles`).
 
+import { AsyncLocalStorage } from 'node:async_hooks';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
@@ -29,6 +32,7 @@ import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance } from '../src/echeance.mjs';
+import { Sentinelle, veiller } from '../src/sentinelle.mjs';
 import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
@@ -63,6 +67,8 @@ const POST_DELAI_MS = 90000;
 const MARGE_MS = 10000;
 const COMMUNE_MS = 30 * 60000;
 const COMMUNES_PAR_REPARTITEUR = 500;
+const IMMOBILE_MS = 5 * 60000;
+const VEILLE_MS = 60000;
 const OCTETS_MAX = 3e6;
 const ROBOTS_DUREE_MS = 7 * 24 * 3600 * 1000;
 const REFUS = new Set([403, 418, 429, 503]);
@@ -77,10 +83,20 @@ const etat = fs.existsSync(fichierEtat) ? JSON.parse(fs.readFileSync(fichierEtat
 etat.budgets ??= {};
 const sauver = () => ecrireAtomique(fs, fichierEtat, `${JSON.stringify(etat)}\n`);
 
+// L'ouvrier courant (un numero, ou `r<n>` pour un relecteur) suit chaque await de sa commune.
+const ouvrierCourant = new AsyncLocalStorage();
+const sentinelle = new Sentinelle();
+const arreterLaVeille = veiller(sentinelle, { toutesLesMs: VEILLE_MS, seuilMs: IMMOBILE_MS, dire: (immobiles) => console.error(JSON.stringify({ immobiles })) });
+const noter = (quoi, ou) => {
+	const qui = ouvrierCourant.getStore();
+	if (qui !== undefined) sentinelle.noter(qui, quoi, ou);
+};
+
 // Un appel par hote toutes les INTERVALLE_MS, file par hote ; un hote qui refuse est laisse pour le passage.
 const prochain = new Map();
 const refuses = new Set();
 async function tourDe(hote) {
+	noter('tour', hote);
 	const t = Math.max(Date.now(), prochain.get(hote) ?? 0);
 	prochain.set(hote, t + INTERVALLE_MS);
 	await new Promise((r) => setTimeout(r, Math.max(0, t - Date.now())));
@@ -91,6 +107,7 @@ async function tourDe(hote) {
  * delai du `fetch` : `{ statut: 'echeance' }` quand le `fetch` n'a pas tenu le sien.
  */
 async function sousSonEcheance(ms, url, lecture) {
+	noter('lecture', url);
 	try {
 		return await sousEcheance(ms + MARGE_MS, url, (arret) => lecture(AbortSignal.any([AbortSignal.timeout(ms), arret])));
 	} catch (e) {
@@ -135,6 +152,7 @@ async function permis(url) {
 	if (!(connu && Date.now() - Date.parse(connu.lu) < ROBOTS_DUREE_MS)) {
 		// Seules les regles restent en memoire, jamais le texte lu : une page HTML servie pour robots.txt pese des centaines de Ko.
 		if (!robotsEnVol.has(hote)) robotsEnVol.set(hote, lireTexte(`${new URL(url).origin}/robots.txt`).then((r) => ({ statut: r.statut, regles: r.texte ? reglesRobots(r.texte) : [] })));
+		noter('robots', hote);
 		const r = await robotsEnVol.get(hote);
 		// RFC 9309 : injoignable ou en erreur serveur, rien ce jour-la ; absent, tout est permis.
 		if (typeof r.statut !== 'number' || r.statut >= 500 || REFUS.has(r.statut)) return false;
@@ -157,7 +175,10 @@ async function page(url, lus = []) {
 let lecturesEnCours = 0;
 const enAttente = [];
 async function aSonTour(travail) {
-	if (lecturesEnCours >= LECTURES_DE_DOCUMENTS) await new Promise((r) => enAttente.push(r));
+	if (lecturesEnCours >= LECTURES_DE_DOCUMENTS) {
+		noter('file des documents');
+		await new Promise((r) => enAttente.push(r));
+	}
 	lecturesEnCours++;
 	try {
 		return await travail();
@@ -218,6 +239,7 @@ async function releverBudget(code, doc, nouveaux) {
 
 /** Un appel au service sous le jeton de la flotte, borne : `{ status, corps }`, ou un rejet a l'echeance. */
 function poster(chemin, corps) {
+	noter('service', `${chemin} ${corps.url ?? ''}`.trimEnd());
 	return sousEcheance(POST_DELAI_MS, chemin, async (signal) => {
 		const r = await fetch(`${options.base}${chemin}`, {
 			method: 'POST',
@@ -403,15 +425,16 @@ if (!options.sec && Number(options.relectures) > 0) {
 	const file = aRelire(etat.pdfs, { jour, jours: Number(options['relecture-jours']), max: Number(options.relectures) });
 	const detailRelectures = path.join(options.etat, `glane-${jour}-relectures.jsonl`);
 	let i = 0;
-	const relecteur = async () => {
+	const relecteur = async (qui) => {
 		while (i < file.length) {
 			const [url, e] = file[i++];
-			const issue = await relire(url, e);
+			const issue = await ouvrierCourant.run(`r${qui}`, () => relire(url, e));
+			sentinelle.liberer(`r${qui}`);
 			fs.appendFileSync(detailRelectures, `${JSON.stringify({ code: e.code, url, recu: e.id, issue })}\n`);
 			relectures[issue] = (relectures[issue] ?? 0) + 1;
 		}
 	};
-	await Promise.all(Array.from({ length: Number(options.paralleles) }, relecteur));
+	await Promise.all(Array.from({ length: Number(options.paralleles) }, (_, qui) => relecteur(qui)));
 	sauver();
 	console.log(JSON.stringify({ relectures }));
 }
@@ -419,13 +442,23 @@ if (!options.sec && Number(options.relectures) > 0) {
 const communes = [];
 const seules = options.communes ? new Set(options.communes.split(',').map((c) => c.trim())) : null;
 const departements = options.departements === 'tous' ? Object.keys(DEPARTEMENTS) : options.departements.split(',').map((d) => d.trim());
+// L'annuaire se lit sous la meme echeance qu'un appel au service : aucun appel sans delai.
+async function annuaireDe(dep) {
+	return sousEcheance(POST_DELAI_MS, `annuaire ${dep}`, async (signal) => {
+		const r = await fetch(`${options.base}/annuaire/insee-${dep}.json`, { headers: { 'user-agent': AGENT_GLANE }, signal });
+		if (!r.ok) throw new Error(String(r.status));
+		return r.json();
+	});
+}
 for (const dep of departements) {
-	const r = await fetch(`${options.base}/annuaire/insee-${dep}.json`, { headers: { 'user-agent': AGENT_GLANE } });
-	if (!r.ok) {
-		console.error(`annuaire ${dep} : ${r.status}`);
+	let fragment;
+	try {
+		fragment = await annuaireDe(dep);
+	} catch (e) {
+		console.error(`annuaire ${dep} : ${e.message}`);
 		continue;
 	}
-	for (const [code, sites] of Object.entries(await r.json())) if (!seules || seules.has(code)) communes.push([code, sites[0]]);
+	for (const [code, sites] of Object.entries(fragment)) if (!seules || seules.has(code)) communes.push([code, sites[0]]);
 }
 const releve = path.join(options.etat, `glane-${jour}.tsv`);
 // Un passage relance le meme jour reprend apres les communes deja inscrites au releve.
@@ -439,16 +472,17 @@ const detailBudgets = path.join(options.etat, `glane-${jour}-budgets.jsonl`);
 if (!fs.existsSync(releve)) fs.writeFileSync(releve, 'code\tsite\taccueil\tpage\tpdfs\tactes\tdeposes\tautres\tbudgets\tgenres\tpage_budget\n');
 let suivant = 0;
 const totaux = { communes: 0, avecPage: 0, pdfs: 0, actes: 0, deposes: 0, avecBudgets: 0, budgets: 0 };
-async function ouvrier() {
+async function ouvrier(qui) {
 	while (suivant < file.length) {
 		const [code, site] = file[suivant++];
 		let ligne;
 		try {
-			ligne = await sousEcheance(COMMUNE_MS, `commune ${code}`, () => glanerCommune(code, site));
+			ligne = await ouvrierCourant.run(qui, () => sousEcheance(COMMUNE_MS, `commune ${code}`, () => glanerCommune(code, site)));
 		} catch (e) {
 			if (e.message === 'jeton refuse') throw e;
 			ligne = { code, site: site.join(''), accueil: e instanceof EcheanceDepassee ? 'echeance' : 'erreur', page: '', pdfs: 0, actes: 0, deposes: 0, autres: String(e.message).slice(0, 80), budgets: 0, genres: '', pageBudget: '' };
 		}
+		sentinelle.liberer(qui);
 		fs.appendFileSync(releve, `${[ligne.code, ligne.site, ligne.accueil, ligne.page, ligne.pdfs, ligne.actes, ligne.deposes, ligne.autres, ligne.budgets, ligne.genres, ligne.pageBudget].join('\t')}\n`);
 		totaux.communes++;
 		totaux.avecPage += ligne.page ? 1 : 0;
@@ -464,6 +498,7 @@ async function ouvrier() {
 		}
 	}
 }
-await Promise.all(Array.from({ length: Number(options.paralleles) }, ouvrier));
+await Promise.all(Array.from({ length: Number(options.paralleles) }, (_, qui) => ouvrier(qui)));
+arreterLaVeille();
 sauver();
 console.log(JSON.stringify({ ...totaux, relectures, plafondAtteint }));
