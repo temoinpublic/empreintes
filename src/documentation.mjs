@@ -37,6 +37,7 @@ export const ADRESSES = {
 		['bilanCommunes', 'GET /api/communes'],
 		['tours', 'GET /tours.json'],
 		['releve', 'GET /empreintes/&lt;tour&gt;.json'],
+		['delta', 'GET /empreintes/&lt;tour&gt;.delta.json'],
 		['signature', 'GET /empreintes/&lt;tour&gt;.racine.jws'],
 		['signaturePostQuantique', 'GET /empreintes/&lt;tour&gt;.racine.slh'],
 		['clePostQuantique', 'GET /empreintes/cle-slh-dsa.pub'],

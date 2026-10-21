@@ -1,4 +1,4 @@
-import { sha256, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
+import { sha256, lecteurDeReleves, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
 import { cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '/horodatage.mjs';
 import { montrer, suivreLeChoix } from '/fichier.js';
@@ -21,6 +21,12 @@ const lire = async (chemin) => {
 };
 let tours = null;
 const lesTours = async () => (tours ??= (await lire('/tours.json')).tours);
+/** Un releve plein, publie tel quel ou reconstruit depuis sa base quand le tour est en delta. */
+const lireReleve = async (id) =>
+	lecteurDeReleves(async (nom) => {
+		const r = await fetch(`/empreintes/${nom}`);
+		return r.ok ? r.json() : null;
+	}, await lesTours())(id);
 
 function ancrage(tour) {
 	if (tour?.ots === 'bitcoin' && tour.bloc) return `<a href="https://mempool.space/block/${tour.bloc}">${T.bloc(tour.bloc)}</a>`;
@@ -60,7 +66,7 @@ async function horodatageDu(id) {
 }
 
 async function constat(empreinte, vu) {
-	const releve = await lire(`/empreintes/${vu.premier}.json`);
+	const releve = await lireReleve(vu.premier);
 	const place = await placeDuFichier(releve, empreinte);
 	const tour = (await lesTours()).find((t) => t.id === vu.premier);
 	const signature = tour ? await signatureDe(tour, releve.racine) : null;
@@ -247,7 +253,7 @@ $('chaine')?.addEventListener('click', async () => {
 	const sortie = $('resultat-chaine');
 	try {
 		// La chaine se lit sur `/tours.json` ; seul le dernier releve se recalcule ici, le script les recalcule tous.
-		const v = await verifierChaineLegere(await lesTours(), (id) => lire(`/empreintes/${id}.json`));
+		const v = await verifierChaineLegere(await lesTours(), lireReleve);
 		const s = await verifierSignatures(await lesTours(), async (chemin) => (await fetch(chemin)).text());
 		const pq = await verifierSignaturesSlh(await lesTours(), octets);
 		const h = await verifierHorodatages(await lesTours(), octets);

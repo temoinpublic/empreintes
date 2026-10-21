@@ -251,6 +251,10 @@ export const TEXTES = {
 			bilan: { fr: 'dépôts et déposants distincts, jour par jour', de: 'Datierungen und verschiedene Einreicher, Tag für Tag' },
 			tours: { fr: 'les tours du registre', de: 'die Runden des Registers' },
 			releve: { fr: 'le relevé d’un tour, avec <code>.racine</code>, <code>.racine.ots</code>, <code>.racine.tsr</code>', de: 'das Protokoll einer Runde, mit <code>.racine</code>, <code>.racine.ots</code>, <code>.racine.tsr</code>' },
+			delta: {
+				fr: 'un tour publié en delta\u00A0: <code>base</code> (le relevé plein du jour), <code>ajoutees</code> (chaque feuille ajoutée ou changée, avec son <code>index</code>), <code>retirees</code> (les clés sorties)\u00A0; <code>reconstruireReleve</code> de <code>chaine.mjs</code> rend le relevé plein, même arbre, même racine',
+				de: 'eine als Delta veröffentlichte Runde: <code>base</code> (das vollständige Protokoll des Tages), <code>ajoutees</code> (jedes hinzugefügte oder geänderte Blatt, mit seinem <code>index</code>), <code>retirees</code> (die entfernten Schlüssel); <code>reconstruireReleve</code> aus <code>chaine.mjs</code> liefert das vollständige Protokoll, gleicher Baum, gleiche Wurzel'
+			},
 			signature: {
 				fr: 'la signature du journal d’un tour\u00A0: JWS compact ES256, la racine en charge utile, <code>x5c</code> épinglé dans la formule ci-dessous',
 				de: 'die Signatur des Journals einer Runde: kompaktes JWS ES256, die Wurzel als Nutzlast, <code>x5c</code> wie in der Formel unten festgelegt'

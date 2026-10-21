@@ -9,7 +9,7 @@
 // Sortie 0 : servi tel quel (ou chaine intacte) ; 1 : inconnu ou rompu ; 2 : usage.
 
 import fs from 'node:fs';
-import { sha256, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '../src/chaine.mjs';
+import { sha256, lecteurDeReleves, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '../src/chaine.mjs';
 import { CLES_SLH_DU_JOURNAL, cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '../src/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '../src/horodatage.mjs';
 
@@ -49,14 +49,23 @@ async function lire(site, chemin) {
 	return r.json();
 }
 
+/** Le lecteur des releves pleins du site : un tour en delta se reconstruit depuis sa base. */
+function lecteurDuSite(site, tours) {
+	return lecteurDeReleves(async (nom) => {
+		const r = await fetch(new URL(`/empreintes/${nom}`, site));
+		return r.ok ? r.json() : null;
+	}, tours);
+}
+
 /** Les constats d'une empreinte : une ligne par objet du journal qui l'a portee. */
 export async function verifierEmpreinte(site, empreinte) {
 	const r = await fetch(new URL(`/index/${empreinte.slice(0, 2)}.json`, site));
 	const vus = r.ok ? ((await r.json())[empreinte] ?? []) : [];
 	const constats = [];
 	const tours = vus.length ? (await lire(site, '/tours.json')).tours : [];
+	const lireReleve = lecteurDuSite(site, tours);
 	for (const vu of vus) {
-		const releve = await lire(site, `/empreintes/${vu.premier}.json`);
+		const releve = await lireReleve(vu.premier);
 		const place = await placeDuFichier(releve, empreinte);
 		const signee = tours.find((t) => t.id === vu.premier)?.fichiers?.includes(`${vu.premier}.racine.jws`);
 		const signature = signee ? await verifierSignatureDuJournal(await lireTexte(site, `/empreintes/${vu.premier}.racine.jws`), releve.racine, certificatDuTour(vu.premier)) : null;
@@ -80,7 +89,7 @@ async function principal(args) {
 		const { tours } = await lire(site, '/tours.json');
 		const v = await verifierChaine(
 			tours.map((t) => t.id),
-			(id) => lire(site, `/empreintes/${id}.json`)
+			lecteurDuSite(site, tours)
 		);
 		const s = await verifierSignatures(tours, (chemin) => lireTexte(site, chemin));
 		const pq = await verifierSignaturesSlh(tours, (chemin) => lireOctets(site, chemin));
