@@ -28,6 +28,12 @@ test('la construction a produit la surface', () => {
 	assert.match(fs.readFileSync(path.join(DIST, 'llms.txt'), 'utf8'), /^# Témoin public\n/);
 });
 
+test('toute page porte les six protections du navigateur', () => {
+	const bloc = fs.readFileSync(path.join(DIST, '_headers'), 'utf8').split(/\n(?=\S)/)[0];
+	for (const entete of ['Strict-Transport-Security', 'Permissions-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'Content-Security-Policy']) assert.match(bloc, new RegExp(`^  ${entete}: `, 'm'), entete);
+	assert.match(bloc, /frame-ancestors 'none'/);
+});
+
 test('un fichier du journal se dit servi tel quel ; une empreinte inconnue ne trouve rien', async () => {
 	const serveur = await servir();
 	const site = `http://127.0.0.1:${serveur.address().port}`;
