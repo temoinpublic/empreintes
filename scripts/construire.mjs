@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, indexDesEmpreintes, resumeDe } from '../src/journal.mjs';
+import { lecteurDeReleves } from '../src/chaine.mjs';
 import { BESOINS } from '../src/besoins.mjs';
 import { entreesDe, sitesDe } from '../src/disparus.mjs';
 import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, robots } from '../src/pages.mjs';
@@ -37,10 +38,14 @@ const ecrire = (relatif, contenu) => {
 };
 
 const fichiers = fs.readdirSync(DONNEES).filter((f) => FICHIER_PUBLIE.test(f));
-const ids = fichiers.filter((f) => f.endsWith('.json') && ID_DE_TOUR.test(f.slice(0, -5))).map((f) => f.slice(0, -5)).sort();
+// Un tour est publie plein (`<id>.json`) ou en delta (`<id>.delta.json`, D-158) ; la surface le sert tel quel et le lit plein.
+const fichierDuTour = (f) => /^\d{8}T\d{6}Z(\.delta)?\.json$/.exec(f)?.[0];
+const ids = [...new Set(fichiers.filter(fichierDuTour).map((f) => f.slice(0, 16)).filter((id) => ID_DE_TOUR.test(id)))].sort();
 const ancrages = fs.existsSync(path.join(DONNEES, 'ancrages.json')) ? lireJson(path.join(DONNEES, 'ancrages.json')) : { tours: {} };
-const releves = ids.map((id) => lireJson(path.join(DONNEES, `${id}.json`)));
-const tours = releves.map((r) => resumeDe(r, ancrages.tours?.[r.id], fichiers, fs.statSync(path.join(DONNEES, `${r.id}.json`)).size));
+const fichierPublie = (id) => (fichiers.includes(`${id}.json`) ? `${id}.json` : `${id}.delta.json`);
+const lireReleve = lecteurDeReleves((nom) => (fichiers.includes(nom) ? lireJson(path.join(DONNEES, nom)) : null));
+const releves = await Promise.all(ids.map(lireReleve));
+const tours = releves.map((r) => resumeDe(r, ancrages.tours?.[r.id], fichiers, fs.statSync(path.join(DONNEES, fichierPublie(r.id))).size, fichiers.includes(`${r.id}.json`) ? null : lireJson(path.join(DONNEES, `${r.id}.delta.json`)).base));
 
 fs.rmSync(DIST, { recursive: true, force: true });
 for (const f of fichiers) ecrire(path.join('empreintes', f), fs.readFileSync(path.join(DONNEES, f)));

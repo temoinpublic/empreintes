@@ -46,6 +46,17 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   4e trimestre 2026.
 - Rien que des empreintes : `FICHIER_PUBLIE` fixe ce qui se publie de
   `donnees/empreintes/`.
+- Un tour se publie PLEIN (`<id>.json`) ou EN DELTA (`<id>.delta.json`, D-158 :
+  un releve plein par jour, celui du `.tsr`, des deltas entre). Le delta porte
+  les memes champs sans `feuilles`, plus `base` (l'identifiant du releve plein
+  dont il part), `ajoutees` (chaque feuille ajoutee, changee ou deplacee, avec
+  `index`, sa place dans la liste reconstruite) et `retirees` (les cles sorties).
+  `reconstruireReleve` et `lecteurDeReleves` (`src/chaine.mjs`, MIT) rendent le
+  releve plein ; l'arbre et la racine ne changent pas, donc `verifierReleve` juge
+  la reconstruction. Toute lecture d'un releve (construction, verificateur, script,
+  recu) passe par le lecteur, jamais par `<id>.json` en dur ; `tours.json` porte
+  `base` par tour (null pour un releve plein) et la sonde mesure le mur de Pages
+  sur le dernier releve PLEIN.
 - Une page affiche, elle n'explique pas ; deux-points soudes (` `),
   tenu par `tests/pages.test.mjs`.
 - Sonde : `/health` (Pages Function), 200 toujours, `alerte` sur l'age du

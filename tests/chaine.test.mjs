@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, placeDuFichier, racineDepuisChemin, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
+import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, estUnDelta, lecteurDeReleves, placeDuFichier, racineDepuisChemin, reconstruireReleve, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
 
 const DONNEES = path.resolve(import.meta.dirname, '..', 'donnees', 'empreintes');
 const ids = fs.readdirSync(DONNEES).filter((f) => /^\d{8}T\d{6}Z\.json$/.test(f)).map((f) => f.slice(0, -5)).sort();
@@ -105,4 +105,101 @@ test('la chaine legere voit un lien coupe, une racine fausse et un releve qui ne
 	assert.match(autre.raisons.join(), /arbre recalcule/);
 	const resumeFaux = await verifierChaineLegere([...tours.slice(0, -1), { ...tours.at(-1), id: 'autre' }], () => dernier);
 	assert.match(resumeFaux.raisons.join(), /ne porte pas le id/);
+});
+
+// Le delta tel que l'entrepot l'ecrira (D-158) : ce qui sort, ce qui entre avec sa place dans la liste neuve.
+function deltaEntre(base, releve) {
+	const meme = (a, b) => a && a.sha256 === b.sha256 && (a.jour ?? null) === (b.jour ?? null);
+	const avant = new Map(base.feuilles.map((f, i) => [f.cle, { ...f, index: i }]));
+	const apres = new Map(releve.feuilles.map((f, i) => [f.cle, { ...f, index: i }]));
+	const gardees = [];
+	for (const [cle, f] of avant) if (apres.has(cle) && meme(f, apres.get(cle))) gardees.push(cle);
+	// Une feuille gardee qui n'a plus le meme rang relatif se reprend : son index est celui de la liste neuve.
+	const rangs = gardees.map((cle) => apres.get(cle).index);
+	const stables = new Set();
+	let dernier = -1;
+	for (const [i, cle] of gardees.entries()) {
+		if (rangs[i] > dernier) {
+			stables.add(cle);
+			dernier = rangs[i];
+		}
+	}
+	const { feuilles, ...tour } = releve;
+	return {
+		...tour,
+		base: base.id,
+		ajoutees: feuilles.map((f, index) => ({ index, ...f })).filter((f) => !stables.has(f.cle)),
+		retirees: [...avant.keys()].filter((cle) => !apres.has(cle))
+	};
+}
+
+test('un tour en delta se reconstruit depuis sa base, meme arbre et meme racine, sur le journal reel', async () => {
+	const [base, suivant] = ids.slice(-2).map(lire);
+	const delta = deltaEntre(base, suivant);
+	assert.ok(estUnDelta(delta) && !estUnDelta(suivant) && !estUnDelta(null));
+	assert.ok(delta.ajoutees.length < suivant.feuilles.length / 2, 'le delta est plus petit que le releve');
+	const reconstruit = reconstruireReleve(base, delta);
+	assert.deepEqual(reconstruit, suivant);
+	assert.deepEqual(await verifierReleve(reconstruit), []);
+});
+
+test('le delta porte les ajouts, les changements, les retraits et les deplacements, chacun a sa place', async () => {
+	const feuille = (cle, i, jour = '2026-10-20') => ({ cle, sha256: h(i), jour });
+	const base = { id: '20261020T040000Z', precedente: RACINE_NULLE, feuilles: [feuille('a', 1), feuille('b', 2), feuille('c', 3), feuille('manifeste:2026-10-20', 4), feuille('depots:10', 5)] };
+	const feuillesNeuves = [feuille('a', 1), feuille('b', 22), feuille('bb', 23, null), feuille('d', 6), feuille('manifeste:2026-10-20', 4), feuille('liste:x', 7), feuille('depots:12', 8)];
+	const empreintes = await Promise.all(feuillesNeuves.map(empreinteDeFeuille));
+	const a = await arbre(empreintes);
+	const suivant = { id: '20261020T100000Z', precedente: 'r', arbre: a, racine: await chainer({ id: '20261020T100000Z', precedente: 'r', arbre: a }), feuilles: feuillesNeuves };
+	const delta = deltaEntre(base, suivant);
+	assert.deepEqual(delta.retirees, ['c', 'depots:10']);
+	assert.deepEqual(delta.ajoutees.map((f) => [f.index, f.cle]), [[1, 'b'], [2, 'bb'], [3, 'd'], [5, 'liste:x'], [6, 'depots:12']]);
+	assert.equal(delta.ajoutees[1].jour, null);
+	const reconstruit = reconstruireReleve(base, delta);
+	assert.deepEqual(reconstruit, suivant);
+	assert.deepEqual(await verifierReleve(reconstruit), []);
+	// Un delta sans ajout ni retrait rend la base telle quelle sous l'identite du tour.
+	assert.deepEqual(reconstruireReleve(base, { id: 'x', base: base.id }).feuilles, base.feuilles);
+});
+
+test("un delta refuse une base qui n'est pas la sienne, une place hors liste, ou un releve plein", () => {
+	const base = { id: '20261020T040000Z', feuilles: [{ cle: 'a', sha256: 'aa' }] };
+	assert.throws(() => reconstruireReleve({ id: 'autre', feuilles: [] }, { id: 't', base: base.id, ajoutees: [], retirees: [] }), /n'est pas le releve fourni/);
+	assert.throws(() => reconstruireReleve({ id: base.id, base: 'y' }, { id: 't', base: base.id }), /n'est pas le releve fourni/);
+	assert.throws(() => reconstruireReleve(base, { id: 't', base: base.id, ajoutees: [{ index: 3, cle: 'z', sha256: 'zz' }] }), /n'a pas de place \(3\)/);
+	assert.throws(() => reconstruireReleve(base, { id: 't', base: base.id, ajoutees: [{ cle: 'z', sha256: 'zz' }] }), /n'a pas de place/);
+	assert.throws(() => reconstruireReleve(base, base), /pas un tour en delta/);
+});
+
+test('le lecteur rend chaque tour plein, lit une base une seule fois, et nomme ce qui manque', async () => {
+	const [base, suivant] = ids.slice(-2).map(lire);
+	const delta = deltaEntre(base, suivant);
+	const publies = { [`${base.id}.json`]: base, [`${suivant.id}.delta.json`]: delta, 'boucle.delta.json': { id: 'boucle', base: 'boucle' }, 'tard.delta.json': { id: 'tard', base: 'zzz' } };
+	const lus = [];
+	const lireFichier = async (nom) => {
+		lus.push(nom);
+		return publies[nom] ?? null;
+	};
+	const sansResume = lecteurDeReleves(lireFichier);
+	assert.deepEqual(await sansResume(suivant.id), suivant);
+	assert.deepEqual(await sansResume(suivant.id), suivant);
+	assert.deepEqual(await sansResume(base.id), base);
+	assert.deepEqual(lus, [`${suivant.id}.json`, `${suivant.id}.delta.json`, `${base.id}.json`, `${suivant.id}.json`, `${suivant.id}.delta.json`, `${base.id}.json`]);
+	lus.length = 0;
+	const avecResume = lecteurDeReleves(lireFichier, [{ id: base.id, base: null }, { id: suivant.id, base: base.id }]);
+	assert.deepEqual(await avecResume(suivant.id), suivant);
+	assert.deepEqual(lus, [`${suivant.id}.delta.json`, `${base.id}.json`]);
+	await assert.rejects(sansResume('absent'), /absent : aucun releve publie/);
+	await assert.rejects(sansResume('boucle'), /ne precede pas le tour/);
+	await assert.rejects(sansResume('tard'), /ne precede pas le tour/);
+	const sansFin = lecteurDeReleves(async (nom) => (nom.endsWith('.delta.json') ? { id: nom.slice(0, -11), base: `${nom.slice(0, -11)}0`.slice(1) } : null));
+	await assert.rejects(sansFin('99999999'), /aucun releve publie|ne finit pas|ne precede pas/);
+});
+
+test("la chaine entiere se verifie quand le dernier tour n'est publie qu'en delta", async () => {
+	const [base, suivant] = ids.slice(-2).map(lire);
+	const delta = deltaEntre(base, suivant);
+	const lireFichier = async (nom) => (nom === `${suivant.id}.delta.json` ? delta : nom === `${suivant.id}.json` ? null : /\.json$/.test(nom) && !nom.includes('.delta.') ? lire(nom.slice(0, -5)) : null);
+	const v = await verifierChaine(ids, lecteurDeReleves(lireFichier));
+	assert.deepEqual(v.raisons, []);
+	assert.equal(v.tours, ids.length);
 });

@@ -11,7 +11,7 @@ test("l'instant d'un tour se lit sur son identifiant ; un identifiant illisible 
 });
 
 test('seuls les fichiers du journal se publient, jamais le cache ni une sauvegarde', () => {
-	for (const f of ['20261012T101314Z.json', '20261012T101314Z.racine', '20261012T101314Z.racine.ots', '20261012T101314Z.racine.tsr', '20261012T101314Z.racine.jws', 'ancrages.json']) assert.ok(FICHIER_PUBLIE.test(f), f);
+	for (const f of ['20261012T101314Z.json', '20261012T101314Z.delta.json', '20261012T101314Z.racine', '20261012T101314Z.racine.ots', '20261012T101314Z.racine.tsr', '20261012T101314Z.racine.jws', 'ancrages.json']) assert.ok(FICHIER_PUBLIE.test(f), f);
 	assert.ok(PREUVE_PUBLIEE.test(`${'a'.repeat(64)}.json`));
 	for (const f of [`${'a'.repeat(64)}.json.tmp`, 'par-url.json', `${'A'.repeat(64)}.json`]) assert.ok(!PREUVE_PUBLIEE.test(f), f);
 	for (const f of ['20261012T101314Z.racine.ots.bak', 'cache', '../etat.json', 'x.json']) assert.ok(!FICHIER_PUBLIE.test(f), f);
@@ -36,6 +36,8 @@ test('le resume compte les objets et nomme les fichiers du tour', () => {
 	assert.equal(resumeDe(r1, undefined, []).ots, null);
 	assert.equal(resumeDe(r1, undefined, []).octets, null);
 	assert.equal(resumeDe(r1, undefined, [], 1905170).octets, 1905170);
+	assert.equal(resumeDe(r1, undefined, []).base, null);
+	assert.equal(resumeDe(r2, undefined, ['20261012T101314Z.delta.json'], 50000, r1.id).base, r1.id);
 });
 
 const tour = (instant, ots = 'bitcoin') => ({ id: instant.replace(/[-:]/g, ''), instant, ots });
@@ -84,5 +86,8 @@ test('un releve qui approche la limite d un fichier Pages est un constat : atten
 	const critique = { ...recent, octets: SEUIL_RELEVE_ROUGE + 1 };
 	assert.equal(verdict([critique], maintenant).alerte, 'rouge');
 	assert.equal(verdict([critique, recent], maintenant).alerte, 'ok', 'seul le dernier releve compte : les anciens ne grossissent plus');
+	const delta = { ...tour('2026-10-12T11:00:00Z'), octets: 50000, base: '20261012T100000Z' };
+	assert.equal(verdict([critique, delta], maintenant).alerte, 'rouge', 'un tour en delta est petit par construction : le mur se lit sur le dernier releve plein');
+	assert.equal(verdict([recent, delta], maintenant).alerte, 'ok');
 	assert.equal(LIMITE_FICHIER_PAGES, 26214400);
 });

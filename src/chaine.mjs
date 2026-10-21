@@ -26,6 +26,53 @@ function octetsDe(h) {
 	return octets;
 }
 
+/**
+ * Un tour publie EN DELTA (D-158) : `<id>.delta.json` au lieu de `<id>.json`,
+ * les memes champs sans `feuilles`, plus `base` (l'identifiant du releve plein
+ * dont il part), `ajoutees` (chaque feuille ajoutee, changee ou deplacee, avec
+ * `index`, sa place dans la liste reconstruite) et `retirees` (les cles qui
+ * sortent). L'arbre, la racine et la chaine ne changent pas : la racine ne
+ * depend que des feuilles, et `verifierReleve` juge la reconstruction.
+ */
+export const estUnDelta = (releve) => typeof releve?.base === 'string' && !Array.isArray(releve?.feuilles);
+
+/** Le releve plein d'un tour en delta, reconstruit depuis sa base : les cles retirees et reprises sortent, chaque ajoutee reprend sa place. */
+export function reconstruireReleve(base, delta) {
+	if (!estUnDelta(delta)) throw new Error(`${delta?.id} : pas un tour en delta`);
+	if (base?.id !== delta.base || !Array.isArray(base.feuilles)) throw new Error(`${delta.id} : la base ${delta.base} n'est pas le releve fourni`);
+	const sortantes = new Set([...(delta.retirees ?? []), ...(delta.ajoutees ?? []).map((f) => f.cle)]);
+	const feuilles = base.feuilles.filter((f) => !sortantes.has(f.cle));
+	for (const { index, ...feuille } of [...(delta.ajoutees ?? [])].sort((a, b) => a.index - b.index)) {
+		if (!Number.isInteger(index) || index < 0 || index > feuilles.length) throw new Error(`${delta.id} : la feuille ${feuille.cle} n'a pas de place (${index})`);
+		feuilles.splice(index, 0, feuille);
+	}
+	const { base: _, ajoutees: _a, retirees: _r, ...tour } = delta;
+	return { ...tour, feuilles };
+}
+
+/**
+ * Un lecteur de releves qui rend chaque tour PLEIN, publie tel quel ou en
+ * delta : `lireFichier(nom)` rend le JSON d'un fichier du journal, ou null
+ * quand il n'est pas publie. `tours` (les resumes de `/tours.json`) epargne
+ * l'essai du fichier plein a un tour dont le resume dit la base. Une base est
+ * lue une fois par lecteur.
+ */
+export function lecteurDeReleves(lireFichier, tours = null) {
+	const bases = new Map();
+	const nomDe = (id) => (tours?.find((t) => t.id === id)?.base ? `${id}.delta.json` : `${id}.json`);
+	async function lire(id, profondeur = 0) {
+		if (profondeur > 8) throw new Error(`${id} : la chaine des bases ne finit pas`);
+		const nom = nomDe(id);
+		const releve = (await lireFichier(nom)) ?? (nom.endsWith('.delta.json') ? null : await lireFichier(`${id}.delta.json`));
+		if (!releve) throw new Error(`${id} : aucun releve publie`);
+		if (!estUnDelta(releve)) return releve;
+		if (!(releve.base < id)) throw new Error(`${id} : la base ${releve.base} ne precede pas le tour`);
+		if (!bases.has(releve.base)) bases.set(releve.base, lire(releve.base, profondeur + 1));
+		return reconstruireReleve(await bases.get(releve.base), releve);
+	}
+	return (id) => lire(id);
+}
+
 /** Le hache de deux noeuds de l'arbre, gauche puis droite, en octets. */
 export async function paire(gauche, droite) {
 	const a = octetsDe(gauche);
@@ -91,7 +138,8 @@ export async function verifierReleve(releve) {
 /**
  * Verifie la chaine de bout en bout : chaque releve recalcule, chaque
  * `precedente` egale a la racine du tour d'avant, le premier sur la racine
- * nulle. `lire(id)` rend un releve ; `racines` est la liste ordonnee des tours.
+ * nulle. `lire(id)` rend un releve PLEIN (`lecteurDeReleves` pour un journal qui
+ * publie des tours en delta) ; `ids` est la liste ordonnee des tours.
  */
 export async function verifierChaine(ids, lire, { surTour } = {}) {
 	const raisons = [];
@@ -207,7 +255,10 @@ export async function inscriptionDuRecu(id, lire) {
 	const { tours } = await (await lire('/tours.json')).json();
 	const tour = tours.find((t) => t.depots >= rang);
 	if (!tour) return { etat: 'attente', rang };
-	const releve = await (await lire(`/empreintes/${tour.id}.json`)).json();
+	const releve = await lecteurDeReleves(async (nom) => {
+		const f = await lire(`/empreintes/${nom}`);
+		return f.ok ? f.json() : null;
+	}, tours)(tour.id);
 	return { ...(await preuveDuDepot({ recu: id, texteDesDepots, releves: [releve] })), bloc: tour.ots === 'bitcoin' ? tour.bloc : null };
 }
 

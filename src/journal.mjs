@@ -7,7 +7,7 @@ import { CLES_SLH_DU_JOURNAL, toursSansSignatureSlh } from './slh.mjs';
 export const ID_DE_TOUR = /^\d{8}T\d{6}Z$/;
 
 /** Les fichiers du journal qui se publient ; tout le reste (cache, .bak) reste chez l'entrepot. */
-export const FICHIER_PUBLIE = /^(\d{8}T\d{6}Z\.(json|racine|racine\.ots|racine\.tsr|racine\.jws|racine\.slh)|cle-slh-dsa(-\d+)?\.pub|ancrages\.json|depots\.jsonl)$/;
+export const FICHIER_PUBLIE = /^(\d{8}T\d{6}Z\.(json|delta\.json|racine|racine\.ots|racine\.tsr|racine\.jws|racine\.slh)|cle-slh-dsa(-\d+)?\.pub|ancrages\.json|depots\.jsonl)$/;
 
 /** Une preuve d'objet publiee par l'entrepot : `preuves/<sha256>.json`. */
 export const PREUVE_PUBLIEE = /^[0-9a-f]{64}\.json$/;
@@ -22,13 +22,18 @@ export function instantDe(id) {
 	return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}Z`;
 }
 
-/** Le resume d'un tour : ce que la page et le verificateur lisent sans ouvrir le releve ; `octets`, la taille du releve publie. */
-export function resumeDe(releve, ancrage, fichiers, octets = null) {
+/**
+ * Le resume d'un tour : ce que la page et le verificateur lisent sans ouvrir le
+ * releve ; `octets`, la taille du fichier publie ; `base`, le releve plein dont
+ * un tour publie en delta se reconstruit (D-158), null pour un releve plein.
+ */
+export function resumeDe(releve, ancrage, fichiers, octets = null, base = null) {
 	return {
 		id: releve.id,
 		instant: instantDe(releve.id),
 		feuilles: releve.feuilles.length,
 		octets,
+		base,
 		objets: releve.feuilles.filter(estUnObjet).length,
 		precedente: releve.precedente,
 		arbre: releve.arbre,
@@ -81,7 +86,7 @@ export const SEUIL_RELEVE_ROUGE = (LIMITE_FICHIER_PAGES * 9) / 10;
 
 const enMio = (octets) => (octets / (1024 * 1024)).toFixed(1).replace('.', ',');
 
-/** Le constat sur la taille du dernier releve, et son niveau ; null sous le seuil ou sans taille connue. */
+/** Le constat sur la taille d'un releve, et son niveau ; null sous le seuil ou sans taille connue. */
 export function constatDeTaille(tour) {
 	if (!(tour?.octets > SEUIL_RELEVE_ATTENTION)) return null;
 	const niveau = tour.octets > SEUIL_RELEVE_ROUGE ? 'rouge' : 'attention';
@@ -121,7 +126,8 @@ export function verdict(tours, maintenant = new Date(), copie = null, clesSlh = 
 		monter('attention');
 		constats.push(`dernier horodatage qualifie ${horodate.id}, il y a ${Math.round(ageHorodatage)} h`);
 	}
-	const taille = constatDeTaille(dernier);
+	// Le mur de Pages se mesure sur le dernier releve PLEIN : un delta est petit par construction.
+	const taille = constatDeTaille(tours.findLast((t) => !t.base) ?? dernier);
 	if (taille) {
 		monter(taille.niveau);
 		constats.push(taille.constat);
