@@ -22,12 +22,13 @@ export function instantDe(id) {
 	return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}Z`;
 }
 
-/** Le resume d'un tour : ce que la page et le verificateur lisent sans ouvrir le releve. */
-export function resumeDe(releve, ancrage, fichiers) {
+/** Le resume d'un tour : ce que la page et le verificateur lisent sans ouvrir le releve ; `octets`, la taille du releve publie. */
+export function resumeDe(releve, ancrage, fichiers, octets = null) {
 	return {
 		id: releve.id,
 		instant: instantDe(releve.id),
 		feuilles: releve.feuilles.length,
+		octets,
 		objets: releve.feuilles.filter(estUnObjet).length,
 		precedente: releve.precedente,
 		arbre: releve.arbre,
@@ -72,6 +73,20 @@ export const SEUIL_ROUGE_H = 36;
 export const SEUIL_CALENDRIER_H = 48;
 /** Un horodatage qualifie par jour : au-dela, le dernier en manque au moins un. */
 export const SEUIL_HORODATAGE_H = 36;
+/** Cloudflare Pages refuse un fichier au-dela de 25 Mio : un releve qui l'atteint casse le deploiement entier. */
+export const LIMITE_FICHIER_PAGES = 25 * 1024 * 1024;
+/** Le releve porte l'etat entier et grossit avec lui (D-158) : attention a la moitie de la limite, rouge aux neuf dixiemes. */
+export const SEUIL_RELEVE_ATTENTION = LIMITE_FICHIER_PAGES / 2;
+export const SEUIL_RELEVE_ROUGE = (LIMITE_FICHIER_PAGES * 9) / 10;
+
+const enMio = (octets) => (octets / (1024 * 1024)).toFixed(1).replace('.', ',');
+
+/** Le constat sur la taille du dernier releve, et son niveau ; null sous le seuil ou sans taille connue. */
+export function constatDeTaille(tour) {
+	if (!(tour?.octets > SEUIL_RELEVE_ATTENTION)) return null;
+	const niveau = tour.octets > SEUIL_RELEVE_ROUGE ? 'rouge' : 'attention';
+	return { niveau, constat: `releve ${tour.id} : ${enMio(tour.octets)} Mio, la limite d'un fichier Pages est ${enMio(LIMITE_FICHIER_PAGES)} Mio` };
+}
 
 /**
  * Le verdict de la sonde : `ok`, `attention` ou `rouge`, avec ses constats.
@@ -105,6 +120,11 @@ export function verdict(tours, maintenant = new Date(), copie = null, clesSlh = 
 	if (ageHorodatage > SEUIL_HORODATAGE_H) {
 		monter('attention');
 		constats.push(`dernier horodatage qualifie ${horodate.id}, il y a ${Math.round(ageHorodatage)} h`);
+	}
+	const taille = constatDeTaille(dernier);
+	if (taille) {
+		monter(taille.niveau);
+		constats.push(taille.constat);
 	}
 	const sansSlh = toursSansSignatureSlh(tours, clesSlh);
 	if (sansSlh.length) {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { FICHIER_PUBLIE, PREUVE_PUBLIEE, indexDesEmpreintes, instantDe, resumeDe, verdict } from '../src/journal.mjs';
+import { FICHIER_PUBLIE, LIMITE_FICHIER_PAGES, PREUVE_PUBLIEE, SEUIL_RELEVE_ATTENTION, SEUIL_RELEVE_ROUGE, constatDeTaille, indexDesEmpreintes, instantDe, resumeDe, verdict } from '../src/journal.mjs';
 
 const r1 = { id: '20261011T041935Z', precedente: '0', arbre: 'a', racine: 'r1', feuilles: [{ cle: 'src/x', sha256: 'aa11', jour: '2026-10-10' }, { cle: 'manifeste:2026-10-11', sha256: 'bb22', jour: '2026-10-11' }] };
 const r2 = { id: '20261012T101314Z', precedente: 'r1', arbre: 'b', racine: 'r2', feuilles: [{ cle: 'src/x', sha256: 'aa11', jour: '2026-10-10' }, { cle: 'src/y', sha256: 'aa11', jour: '2026-10-12' }, { cle: 'liste:z', sha256: 'cc33', jour: '2026-10-12' }] };
@@ -34,6 +34,8 @@ test('le resume compte les objets et nomme les fichiers du tour', () => {
 	assert.equal(t.horodatage, 'fait');
 	assert.deepEqual(t.fichiers, ['20261012T101314Z.json', '20261012T101314Z.racine.ots']);
 	assert.equal(resumeDe(r1, undefined, []).ots, null);
+	assert.equal(resumeDe(r1, undefined, []).octets, null);
+	assert.equal(resumeDe(r1, undefined, [], 1905170).octets, 1905170);
 });
 
 const tour = (instant, ots = 'bitcoin') => ({ id: instant.replace(/[-:]/g, ''), instant, ots });
@@ -70,4 +72,17 @@ test("l'horodatage eIDAS du jour manque au-dela de 36 h : attention ; un recent 
 	const v = verdict([horodate('2026-10-10T20:00:00Z'), tour('2026-10-12T10:00:00Z')], maintenant);
 	assert.deepEqual(v, { alerte: 'attention', constats: ['dernier horodatage qualifie 20261010T200000Z, il y a 40 h'] });
 	assert.deepEqual(verdict([horodate('2026-10-11T04:00:00Z'), tour('2026-10-12T10:00:00Z')], maintenant), { alerte: 'ok', constats: [] });
+});
+
+test('un releve qui approche la limite d un fichier Pages est un constat : attention a la moitie, rouge aux neuf dixiemes, rien en dessous', () => {
+	const recent = { ...tour('2026-10-12T10:00:00Z'), octets: SEUIL_RELEVE_ATTENTION };
+	assert.equal(constatDeTaille(recent), null);
+	assert.equal(constatDeTaille(tour('2026-10-12T10:00:00Z')), null, 'sans taille connue, rien');
+	assert.deepEqual(verdict([recent], maintenant), { alerte: 'ok', constats: [] });
+	const gros = { ...recent, octets: SEUIL_RELEVE_ATTENTION + 1 };
+	assert.deepEqual(verdict([gros], maintenant), { alerte: 'attention', constats: ['releve 20261012T100000Z : 12,5 Mio, la limite d\'un fichier Pages est 25,0 Mio'] });
+	const critique = { ...recent, octets: SEUIL_RELEVE_ROUGE + 1 };
+	assert.equal(verdict([critique], maintenant).alerte, 'rouge');
+	assert.equal(verdict([critique, recent], maintenant).alerte, 'ok', 'seul le dernier releve compte : les anciens ne grossissent plus');
+	assert.equal(LIMITE_FICHIER_PAGES, 26214400);
 });

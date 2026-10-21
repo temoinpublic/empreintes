@@ -40,7 +40,7 @@ const fichiers = fs.readdirSync(DONNEES).filter((f) => FICHIER_PUBLIE.test(f));
 const ids = fichiers.filter((f) => f.endsWith('.json') && ID_DE_TOUR.test(f.slice(0, -5))).map((f) => f.slice(0, -5)).sort();
 const ancrages = fs.existsSync(path.join(DONNEES, 'ancrages.json')) ? lireJson(path.join(DONNEES, 'ancrages.json')) : { tours: {} };
 const releves = ids.map((id) => lireJson(path.join(DONNEES, `${id}.json`)));
-const tours = releves.map((r) => resumeDe(r, ancrages.tours?.[r.id], fichiers));
+const tours = releves.map((r) => resumeDe(r, ancrages.tours?.[r.id], fichiers, fs.statSync(path.join(DONNEES, `${r.id}.json`)).size));
 
 fs.rmSync(DIST, { recursive: true, force: true });
 for (const f of fichiers) ecrire(path.join('empreintes', f), fs.readFileSync(path.join(DONNEES, f)));
