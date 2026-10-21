@@ -1,5 +1,5 @@
 {
- "dernier": "20261021T041053Z",
+ "dernier": "20261021T091004Z",
  "tours": {
   "20261011T041935Z": {
    "ots": "bitcoin",
@@ -933,11 +933,11 @@
    "bloc": 972390
   },
   "20261021T041053Z": {
-   "ots": "calendrier",
+   "ots": "bitcoin",
    "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
    "racine": "75bb4d99df0d55d65f2d29e3fd9e1c307cf55b144bc014badee6ee588fd74aa8",
    "feuilles": 11388,
-   "maj": "2026-10-21T05:23:20.119Z",
+   "maj": "2026-10-21T06:53:48.866Z",
    "signature": {
     "etat": "signe",
     "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
@@ -956,6 +956,50 @@
     "signataire": "DirName:/C=ES/O=Sectigo (Europe) SL/CN=Sectigo Qualified Time Stamping Signer #3",
     "prestataire": "timestamp.sectigo.com",
     "verifie": true
+   },
+   "bloc": 972423
+  },
+  "20261021T055552Z": {
+   "ots": "bitcoin",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "7dee075fede4c5c1883b0411b1112d3543f02b7a7f335683369acfe891803e66",
+   "feuilles": 11588,
+   "maj": "2026-10-21T09:45:50.712Z",
+   "signature": {
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-10-21T06:53:48Z"
+   },
+   "signatureSlh": {
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
+   },
+   "horodatage": {
+    "etat": "deja",
+    "tour": "20261021T041053Z"
+   },
+   "bloc": 972434
+  },
+  "20261021T091004Z": {
+   "ots": "calendrier",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "2a049127dae2311845c465ff6d6ce61c88ee284381d0fc8c01281ab14510fd09",
+   "feuilles": 11683,
+   "maj": "2026-10-21T09:45:50.712Z",
+   "signature": {
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-10-21T09:45:50Z"
+   },
+   "signatureSlh": {
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
+   },
+   "horodatage": {
+    "etat": "deja",
+    "tour": "20261021T041053Z"
    }
   }
  }
