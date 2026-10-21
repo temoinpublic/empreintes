@@ -99,6 +99,7 @@ test('le plan du site, les robots et llms.txt de chaque edition parlent de son s
 	assert.match(robots('de'), /^User-agent: \*\nAllow: \/\nDisallow: \/index\/\n\nSitemap: https:\/\/datumszeuge.de\/sitemap.xml\n$/);
 	assert.match(robots(), /Sitemap: https:\/\/temoinpublic.fr\/sitemap.xml/);
 	assert.match(EDITIONS.de.llms, /^# Datumszeuge\n/);
+	assert.match(EDITIONS.de.llms, /\n## Zitieren\n\nDatierung: Datumszeuge \(datumszeuge.de\), öffentliches Datumsregister, Stand \[Datum der Datierung laut Beleg, UTC\]\.\n$/);
 	assert.ok(!EDITIONS.de.llms.includes('temoinpublic.fr') && !EDITIONS.de.llms.includes('/acte'));
 	for (const adresse of ['https://datumszeuge.de/datieren', 'https://datumszeuge.de/pruefen', 'https://datumszeuge.de/register', 'https://datumszeuge.de/dokumentation']) assert.ok(EDITIONS.de.llms.includes(adresse), adresse);
 	assert.match(EDITIONS.fr.llms, /https:\/\/temoinpublic.fr\/acte/);
