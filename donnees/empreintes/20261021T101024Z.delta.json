@@ -1,0 +1,1114 @@
+{
+ "id": "20261021T101024Z",
+ "debut": "2026-10-21T10:10:24.313Z",
+ "algorithme": "sha256",
+ "precedente": "2a049127dae2311845c465ff6d6ce61c88ee284381d0fc8c01281ab14510fd09",
+ "arbre": "62108b767afa9256d46611e51bbc74a1264d232a51eaf4c23f2a7b655a8aba98",
+ "racine": "59a97066d40d87a0b44d3e7955c1bfd5b52d2378495c158861e338872fe7f537",
+ "base": "20261021T091004Z",
+ "ajoutees": [
+  {
+   "index": 570,
+   "cle": "ansm-disponibilites",
+   "sha256": "3c69b001f6fc2b7579cce8d7dbd9364668efc47257f26af4bf63f8f5ea1f7b66",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1030,
+   "cle": "av-cardif-annexes-uc/880c198e2ddb64fbdc82",
+   "sha256": "582012e5c047ec87e1886c082a7a8ef65c4cea26d2f4b37bf86db80b242c0d94",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1037,
+   "cle": "av-cardif-annexes-uc/91bb3afba172dc4814e6",
+   "sha256": "0a079dd7e26f03d2ebbd757e12df01dccf7aae60d20e2ce3722df610828f56bd",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1038,
+   "cle": "av-cardif-annexes-uc/928e3dfd9ca6ce02a516",
+   "sha256": "3e8421ff96340077dac0c156616819d43e30baa3096153e68317a5c5598da64d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1044,
+   "cle": "av-cardif-annexes-uc/98e626e2eafe85da3dfe",
+   "sha256": "e09421b4f46447a371dc05f09a34a63cc30397c7f4fffc4f00be5842d41a1743",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1046,
+   "cle": "av-cardif-annexes-uc/9eff7ca6fa8351199b4e",
+   "sha256": "7c092d59901f67cac5604069cf97fa9c582b269470c6ba1a39345a3e3d3d6c5b",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 1050,
+   "cle": "av-cardif-annexes-uc/a683453a89d8e62108c6",
+   "sha256": "ea7b648b7fef4d63077c67849b8825b53270ac4def2dd4ff082afbf772603a45",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5496,
+   "cle": "esma-entites-agreees-0",
+   "sha256": "98a619182d499bafe1ea7fb359256d44254d7178f7bf8ca1517bd1c5d31bfee8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5497,
+   "cle": "esma-entites-agreees-1",
+   "sha256": "11a5d0a68ed0737ed699a808f3039fc0c5a6bdbdb74dd1b49eee60daa22b9452",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5498,
+   "cle": "esma-entites-agreees-2",
+   "sha256": "1376b6cc36c25e4d6e37a0c4ef20302759e731d78a061a69c63ce33fbe1a18c3",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5499,
+   "cle": "esma-entites-agreees-3",
+   "sha256": "3f88c36a286daeb733411c639f650e25ad956dc5aea13488c65e4136d764c7af",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5500,
+   "cle": "esma-entites-agreees-4",
+   "sha256": "b382da317344daa211be3332a8634f2bf640969070ca4b5bbc10fdab852ef85d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5501,
+   "cle": "esma-entites-agreees-5",
+   "sha256": "54b6511b3a3eb0b3b3a8ce340d106cca1e2320a3bacd62cec41e4c0f3d1811bf",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5506,
+   "cle": "esma-indices-references",
+   "sha256": "8d1c6e679d74aaed029825544b744c26fe1d8f87d6d9b662a9686a6dc92be81d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5512,
+   "cle": "esma-ventes-decouvert-exemptions-at",
+   "sha256": "71446dee6164aa75e55e9e0bf9bb0780f9a552508acfdf7167cf17dab7b6159f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5513,
+   "cle": "esma-ventes-decouvert-exemptions-be",
+   "sha256": "f8e9b505ce1d71c04328638d03ca5b7a8f98a677f1d05940756198e7cc0578fa",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5514,
+   "cle": "esma-ventes-decouvert-exemptions-bg",
+   "sha256": "fa155f8037787dab86093878cc50e5177537e586eb2402f69503e16853fd8502",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5515,
+   "cle": "esma-ventes-decouvert-exemptions-cy",
+   "sha256": "993dda2c7e5893158df1d4305499e0c8b85e1f3939fb0cdb629e157e3b3fddf5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5516,
+   "cle": "esma-ventes-decouvert-exemptions-cz",
+   "sha256": "4a62adf47b1880e2e65363062487f0559b8112b72083d4f7fb130331b8b602b1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5517,
+   "cle": "esma-ventes-decouvert-exemptions-de",
+   "sha256": "6a818fb7d08c0594fd4917e445631b0fd89ba6eb452ce10c61ac0c8938df4852",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5518,
+   "cle": "esma-ventes-decouvert-exemptions-dk",
+   "sha256": "1217e75bcd38e5d986a8c8859aca59099a0907130814bd51c3d05a31e3eda167",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5520,
+   "cle": "esma-ventes-decouvert-exemptions-es",
+   "sha256": "8d7483714c1cc9080e1b031306a4dec7f553e1d75688916e32747de523bd3f7f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5521,
+   "cle": "esma-ventes-decouvert-exemptions-fi",
+   "sha256": "35e9a22dbb653e49458a96946a8d31f48dc89092b9a9bc9582534f6ea5e20073",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5522,
+   "cle": "esma-ventes-decouvert-exemptions-fr",
+   "sha256": "dbf25949a53a918deff56d4a46470697f0fb23413a43ac3f41a3c2c60275cc64",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5523,
+   "cle": "esma-ventes-decouvert-exemptions-gb",
+   "sha256": "3a637745e94740688b5010675e05b85bc31e39f3e8d1ccf67a257b200e3139f8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5524,
+   "cle": "esma-ventes-decouvert-exemptions-gr",
+   "sha256": "d2c327c40a5355e6cfd38b8f44c12f9c044356b0a0cfffb81503f63fb2220cca",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5525,
+   "cle": "esma-ventes-decouvert-exemptions-hr",
+   "sha256": "1a1c1e1d67201416215a4ac700c0b340fef0bb00649bfcab550ca8339d9c130d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5526,
+   "cle": "esma-ventes-decouvert-exemptions-hu",
+   "sha256": "e9a7a2539d3f1322550228f60a4a36d189864eb8d5da67610fb5b609438f2928",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5527,
+   "cle": "esma-ventes-decouvert-exemptions-ie",
+   "sha256": "8f636a1294f620049e251be9b57d583bb2643e7b2d8415346e237d3020c5f113",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5528,
+   "cle": "esma-ventes-decouvert-exemptions-is",
+   "sha256": "e00cc348c2155c88c9bba0127943ed96bec4dfeabbf7bc631dd337981a64e4c5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5530,
+   "cle": "esma-ventes-decouvert-exemptions-li",
+   "sha256": "eb13ef9e052dc29339a35fb27db711df0e321b07bdd087531f9fd0b5b34d23a2",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5532,
+   "cle": "esma-ventes-decouvert-exemptions-lu",
+   "sha256": "694ac411340f0bb8418e0a26b5388a5f8842187e713eb845c8fed4d209054f7b",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5536,
+   "cle": "esma-ventes-decouvert-exemptions-no",
+   "sha256": "c4cdefd880f7903502989ab1b7b7aa7c4eb6f1b03a10a6d4e77642c759722ec5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5537,
+   "cle": "esma-ventes-decouvert-exemptions-pl",
+   "sha256": "6a395bacb65ce195d152d3e5d8b169e28c890816390348cc8963f7ff9f657495",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5538,
+   "cle": "esma-ventes-decouvert-exemptions-pt",
+   "sha256": "80f297915448ed144f8ab0f2444996b4bbee55403a6d93270d4af2fc7cc0ecca",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5540,
+   "cle": "esma-ventes-decouvert-exemptions-se",
+   "sha256": "53100c5ac7e765cc5334db37e64fdae39b8ea94b128aae34c0a2fca473933129",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5542,
+   "cle": "esma-ventes-decouvert-exemptions-sk",
+   "sha256": "e03f71835129434945f897b962ab83d499b0a751a7bcc75f99593d6995ecab4d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5716,
+   "cle": "gfsc-entites-reglementees-investment",
+   "sha256": "aafd2703609b8f772e8d706ba0c1b494ce50319f650e7f47062076c06369785d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5731,
+   "cle": "gpu-index-8",
+   "sha256": "39414ca9609e6b9b6a0fc83496a9309647f9a14c1f7043a7d14178a232c5c125",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5732,
+   "cle": "gpu-index-9",
+   "sha256": "7c8db98d9593d8b2ef80d8a520dbe96a3a36fd7a7dd9670abc8cc05967f03883",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5965,
+   "cle": "kgc-titulaires-permis",
+   "sha256": "8b5c7b544cef164c9fd28ab60b62748fe881229750a3b57f4fe01baaea1a2cd8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5968,
+   "cle": "lyon-chantiers-perturbants",
+   "sha256": "80e1c48910074835e23f14189215048c540b44cd54152dc06b737de3c179cc49",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5971,
+   "cle": "paris-chantiers-perturbants",
+   "sha256": "e80446009a030627e5d0f706690db29f061423c6bf77652a13b7b21775a43725",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 5995,
+   "cle": "promesses-municipales-2026/0111108cb4887a7f2460",
+   "sha256": "6d163c2ee648a24001f04b27250f77300886cb523be473a4d135e2a863d48d06",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6000,
+   "cle": "promesses-municipales-2026/0149b55fbc1550288b16",
+   "sha256": "9c3b27c7f43a9f553352b01c3e1227e831550965e139312f769ab3f1acba022f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6007,
+   "cle": "promesses-municipales-2026/01b7824caa52172286f0",
+   "sha256": "89c7d950cd4b9738f638001b5197d701401ec78a25ff96976123324336358123",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6016,
+   "cle": "promesses-municipales-2026/021d4ecc41430807a785",
+   "sha256": "9daee462669f2ec9294826c6f1498cfa37867ac9477fa199df71ef825b179f1b",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6024,
+   "cle": "promesses-municipales-2026/02b75e89557ad5949ae5",
+   "sha256": "650da00876ba18a641619d6053539cbfc16edb86defdc15b744711157b395561",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6027,
+   "cle": "promesses-municipales-2026/02d2337dfd3001d466fe",
+   "sha256": "59d67b2c93003b96e177f6f11a92f5dfb864a6e9d94fd8fffc6c80f257932fd1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6035,
+   "cle": "promesses-municipales-2026/0378d881105b0bed11e5",
+   "sha256": "cb9724c34740351ba2b538782e16707979c95410f8d481d19d6d6ba8586529c5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6039,
+   "cle": "promesses-municipales-2026/03ce15f6023e88b944fa",
+   "sha256": "54ea74dac79ffa5675b1b662146ddce0166926451c967d53ae896a3e0b315462",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6051,
+   "cle": "promesses-municipales-2026/04ae7d48341555da5364",
+   "sha256": "682999880cb8f3e54730c616426e759267720e95616dca3f250abc06a95600b2",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6052,
+   "cle": "promesses-municipales-2026/04af4aadec644e6065d0",
+   "sha256": "c0aac797fd36a497a58949784e06a415748a171b4c3cda6537a794dbe5c5d41c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6056,
+   "cle": "promesses-municipales-2026/0510e4533c2fc756eba2",
+   "sha256": "d910ef6aa24e9d1ae5c9085141f4be084c98c94a7542e0306d8c7ec6c35ac574",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6060,
+   "cle": "promesses-municipales-2026/059039cfeeb75f093433",
+   "sha256": "cfa7e8b8fc6918d5e1dca60b461d019a5073c5df33d575e8912f9491ce708e63",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6066,
+   "cle": "promesses-municipales-2026/061dafb33c0282803dde",
+   "sha256": "f0cfe6744d3960ef74d42af39b06e0ee0710556f30d09659303556844af79d65",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6074,
+   "cle": "promesses-municipales-2026/067cf51af3449490be2b",
+   "sha256": "2078cbb1ed85d81ba594f782d530fef13ba9e070ad2ea255223464cc545f83b6",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6081,
+   "cle": "promesses-municipales-2026/0735d624fe67253e432b",
+   "sha256": "97f890fa80616cfa7b5058e8501537b99b77c49fe3197002312e3df2520b32db",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6097,
+   "cle": "promesses-municipales-2026/08afe7957425ac9527c8",
+   "sha256": "ffa96c5b0101e41ffa6fdbfbc848d0920f1b6f59f701307abfd5c29a8a022dde",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6102,
+   "cle": "promesses-municipales-2026/092334c96e0bb0394eb6",
+   "sha256": "f7b2bd27f578e9a23133e2831de9dfe58c61a2f108f20ac33e77cfe4bc023149",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6108,
+   "cle": "promesses-municipales-2026/09da2f51619949f0d89a",
+   "sha256": "a08f04b94598bb266fdadc5ee3a5c5651f2a04f102ce8067ebc45491114c0556",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6120,
+   "cle": "promesses-municipales-2026/0a7bdc7852b126a7edf8",
+   "sha256": "d5869380503e85588258ad2f5865ea5cead01185f4452adbf3b31ba66f1ea2ea",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6131,
+   "cle": "promesses-municipales-2026/0aee4bd5b5f5c71a31e3",
+   "sha256": "9d687fab15dcf143b944fa10381af38957dd3897936bffb0ccc680db2ee5c746",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6132,
+   "cle": "promesses-municipales-2026/0af47a8bad1a6754288e",
+   "sha256": "89c36f1e097070ab1756c97b083e4fec4a0240c3c3d6fd6d5c182789cc9367d5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6149,
+   "cle": "promesses-municipales-2026/0bda9aac8f48b850e9bb",
+   "sha256": "f6adf6bcd77008bfcbb2541e0126d35a092d9fe54086333349e53e1a91464386",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6153,
+   "cle": "promesses-municipales-2026/0c092546fdd5bcde534b",
+   "sha256": "5604d8a2b5f27651a830aa2317420eb369c9976aee32236951b9dbb06e2d8668",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6155,
+   "cle": "promesses-municipales-2026/0c374a2a1263eb84ac94",
+   "sha256": "48e1859187d7f8917156c2d52b50bdfaa270df2e1d58c9830180cb42acae18f6",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6161,
+   "cle": "promesses-municipales-2026/0cd054f7a0d06aebd2d4",
+   "sha256": "0590e654113edbb3fdfba70cda3b81052f18e85455b7833f44e8f00545a947b9",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6183,
+   "cle": "promesses-municipales-2026/0e4302f6ff5aef009063",
+   "sha256": "b33d65d76915f4ba346593fc4e06c7ac58491f822120f86bb6f60b4af9b5a927",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6187,
+   "cle": "promesses-municipales-2026/0e7e717b8f64afb3949f",
+   "sha256": "2c0d963da983585ae796df7c7c52dd7e99d05e2004f075c97fbe2635b09f5975",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6192,
+   "cle": "promesses-municipales-2026/0ed6f3712d8e8064a6c7",
+   "sha256": "526b3a4a488c96bb12216cfd189206416cb97025151aea652723df4c75f177c3",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6210,
+   "cle": "promesses-municipales-2026/10763f0417a88348fcbb",
+   "sha256": "585dc79a87bf15ce9b76d419478d6f1990de51d2dbfe0fadd3e81309d1245694",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6232,
+   "cle": "promesses-municipales-2026/11f09e24cf805f015dc7",
+   "sha256": "6f88ffa16a6c2ea456ded95b3cdcfe1f57b7d50ab5daf9dbe96a59a5ccdc10f7",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6233,
+   "cle": "promesses-municipales-2026/11f70c218f034ce81ded",
+   "sha256": "7f910e4f10e21c440cb48b2d9787f75fcd0483080514a18686655e00fbda789f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6234,
+   "cle": "promesses-municipales-2026/11fea3b3af12d7878d47",
+   "sha256": "ab0e2d4623c0ee6065529fedecda6f14789abdfd053f88f16694458a5439f60c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6240,
+   "cle": "promesses-municipales-2026/124b87413809ae0555d1",
+   "sha256": "0e63252f3caaae5635416e005e2e1c856badfbee4c394160250bf5f14593c6ef",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6257,
+   "cle": "promesses-municipales-2026/1399f457278aef5d7c1a",
+   "sha256": "ea34f94553fec5bd379cba71cd7e2ca3bb31edc176e464b86c9ae96b06c0542a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6258,
+   "cle": "promesses-municipales-2026/13be19a53a6de4c7957c",
+   "sha256": "d67a97b3148bdd54fae6e1c1688eda14a01b88e9c7bdfb69bb57c30bd0e832e8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6265,
+   "cle": "promesses-municipales-2026/1447c7bdac24355c457b",
+   "sha256": "459f0ea66e3630e2d905a931d4523d19b13d6c327a4467588ed58fdb6a36c802",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6279,
+   "cle": "promesses-municipales-2026/153190eac8d54c40a3d4",
+   "sha256": "4bd88252bd47d8645d65d1e43a9338bb2eea3844e092f4605731e06d52d7bf3e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6281,
+   "cle": "promesses-municipales-2026/15725d1f67e66e4b6d20",
+   "sha256": "f6ed94c9f775a6502a130246985f11feb9732af0c889f0631c62660f891a854c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6285,
+   "cle": "promesses-municipales-2026/15b03f0f2fbd8d0635e7",
+   "sha256": "5b9fac81b01b1d2ba77c67df91420eb1655f0078e230e39abe5f505055cb0ab8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6306,
+   "cle": "promesses-municipales-2026/1739b6e729fdf913c709",
+   "sha256": "0ef200ce5865177e956021c51239ad2efc34e6b17d52b203a4b5907675631ac7",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6331,
+   "cle": "promesses-municipales-2026/1846ef8fbcb9785f8799",
+   "sha256": "9b1dcd9485cee4c2f99dee15cce36c617a3b5441a9156010a70260f54a76a9e8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6356,
+   "cle": "promesses-municipales-2026/1a48755b229c1bac59e7",
+   "sha256": "6278373da0729623869eec030e3b9aea97a9cf85534589a43bd3adeb4b970e6f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6370,
+   "cle": "promesses-municipales-2026/1b360861e5901aab7327",
+   "sha256": "c15ff38f209516c6b6540cca112fa366b893e3c9974bec036544af5b831564eb",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6371,
+   "cle": "promesses-municipales-2026/1b3649d8dca2f4101c76",
+   "sha256": "1debe653a8b630ff823fc46416cd99daabf87979ede21c1e91cc810e1d95770e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6372,
+   "cle": "promesses-municipales-2026/1b3713fba57bf940e0e1",
+   "sha256": "6899da758dc8f2ef97b6f4243bc6600680c272f45f8a71cff67f1eba29faec86",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6381,
+   "cle": "promesses-municipales-2026/1ba785b042e560e9b312",
+   "sha256": "0ef06986d85c4b6a31762c64d30a79044cbb16753f37c983b724aa67210d4782",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6395,
+   "cle": "promesses-municipales-2026/1c5817efc5cdc5108810",
+   "sha256": "0c7bde2f40b9e56536ac9ad5910e16309e154150d2700861880fbfeb6479cacb",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6399,
+   "cle": "promesses-municipales-2026/1cc4821496a18da0281a",
+   "sha256": "e86dc24ed71f53e633787340ea68fe3b6e15c995929d5c91949fcceb3fd9d5cc",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6405,
+   "cle": "promesses-municipales-2026/1d29671f8c73c21609ce",
+   "sha256": "622b9c9a843c658e4ee4a20919e2760e2f06ef96986124e042d091aa3d7944a6",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6412,
+   "cle": "promesses-municipales-2026/1de7427605985b42bad1",
+   "sha256": "844095a8a3c067b7fe5b073f5c118bc147cc7f71c9061bcaf8ff5f72feb136bb",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6415,
+   "cle": "promesses-municipales-2026/1ded9155b7eb98f879ab",
+   "sha256": "5043fb798e179dc4abed21252d0aad1ed6a0bb957fda1f53ccfb330f141c7d6a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6426,
+   "cle": "promesses-municipales-2026/1f04fbbe7b0a838f7285",
+   "sha256": "64cadca3ff1dd727088148989126d0e8a9070f3371b404c1b8b855035d04ac3d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6430,
+   "cle": "promesses-municipales-2026/1f62e5e17660ed30ae7a",
+   "sha256": "e199d800a581291d578e8812d2d50bdfb9d1b51e6dbc0a755db2a6e5131ba27b",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6452,
+   "cle": "promesses-municipales-2026/20bed1d81d4066e29746",
+   "sha256": "a0216a9b5192fecbdbc517c096e1a9c32ecc9b17cf6e707ed09e1557dede34a3",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6459,
+   "cle": "promesses-municipales-2026/215c1ec5bba4c8f52142",
+   "sha256": "93f8f4bd6950c3f5861efe2b1db54c502a534bf20613fd90693dbb9a53bac534",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6475,
+   "cle": "promesses-municipales-2026/227b848c9b5e86e2b6d3",
+   "sha256": "164348d2b2c45f1cf52271d77cace032b67a5ea65d3aaa6e8da31ed92232f9ab",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6481,
+   "cle": "promesses-municipales-2026/22d67cf2baf5e4c2947c",
+   "sha256": "32148518b956da09be3f6d1279988932e8b1ea57b4ec142f93e71dc7affb01eb",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6501,
+   "cle": "promesses-municipales-2026/24995af25a76fde591a6",
+   "sha256": "a7be6687583e84a243111353e97f245dd4e01a19816712481745cd846ee8c884",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6527,
+   "cle": "promesses-municipales-2026/26fea96994c49142d97e",
+   "sha256": "e300fda83a37b2e5564784646a2edfea948f8e28673180e9959402a53ee1d6ab",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6528,
+   "cle": "promesses-municipales-2026/27059793461a70ed3c71",
+   "sha256": "b3585f3c831f4f591127ac558c587a13cfb21f74fd0ed4826649854c4d2b69c4",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6564,
+   "cle": "promesses-municipales-2026/2978180eb9e10a199a07",
+   "sha256": "0dcec0e19219affc6fca395abb0383ad56134f2188e4291e012040fa286e698e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6568,
+   "cle": "promesses-municipales-2026/299a3e1eec8ee307d492",
+   "sha256": "7c3189f77bdb3b564b84a82aa729807837554004b8b80f05eda716ec9d2ce97c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6572,
+   "cle": "promesses-municipales-2026/29c23a4e8b27dd46b289",
+   "sha256": "4b8764731e41c05d7156593c16be2adac80e925cb1d9f81ba608a2cabad1950c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6583,
+   "cle": "promesses-municipales-2026/2aa7528aa25ef251b6b3",
+   "sha256": "f486f3f213a82b3e50b301a39841c94c9a44a68da5c1025c545896da0b1f809a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6589,
+   "cle": "promesses-municipales-2026/2b2dbf5071b7f8cd99b3",
+   "sha256": "4b4cbab10a14f8a8706279827e2f3ab50723438b2af91fb3e5a62a92f02bbb8a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6590,
+   "cle": "promesses-municipales-2026/2b332f49398f9691c2d2",
+   "sha256": "aa4fb9c86fde24e75359df7bf65add18cf343586f067133ebd86cd66c14af369",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6591,
+   "cle": "promesses-municipales-2026/2b4ab6d2b4ccfbb239a7",
+   "sha256": "b87e4c63690a54d2f0cb5517168c26676f30271f664527ff807c2a05602d13cc",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6598,
+   "cle": "promesses-municipales-2026/2c0816c7bb7dfc3f17ad",
+   "sha256": "39150d073d1108ac09a8094a402a8c15f885ff98b302b12ca373a61d73d97a87",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6600,
+   "cle": "promesses-municipales-2026/2c1b0b456e68e27fc951",
+   "sha256": "d25e4f63769c781ab4f5a69454f97ab0a409352195faeaa8cd3f11846477b421",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6612,
+   "cle": "promesses-municipales-2026/2d25c7744fb97fb83b91",
+   "sha256": "a13beca689c58e77925fcb66c9fd2e276b86fbffb9403106d2286e073a474134",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6615,
+   "cle": "promesses-municipales-2026/2d4bfe93bacdf2b40efa",
+   "sha256": "e667619a22670188357b9cde8afca33dee85ffe4f2a00425460135f4b2747857",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6619,
+   "cle": "promesses-municipales-2026/2d7721eeba300f7db7d5",
+   "sha256": "db622b3fa9df3320235c0835fa3ad40b9c9b71d3e6f85862c4ef9207c730faa4",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6624,
+   "cle": "promesses-municipales-2026/2dd223a5a01bbc5794e5",
+   "sha256": "8ddf36386a6d33f6ae526694aa6cf2ee3e5713d690438c7d21ec9a30af448d24",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6635,
+   "cle": "promesses-municipales-2026/2eb9d616aa94b2cb8e9e",
+   "sha256": "d76d4e80c5dc7adbe26f96d622c22c0013a286165ec48e06aee0af0e57ba183a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6643,
+   "cle": "promesses-municipales-2026/2fa83e2019b6a4f28a72",
+   "sha256": "a554d2f7627a29ea40811ca7122337bf722021f2b4e9c55bfb34b15c90fbd883",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6649,
+   "cle": "promesses-municipales-2026/3012395f0f23778f762e",
+   "sha256": "3be7a455de86712d8a7bef66d37ded7381d2137358347aeaebf599ba0dc56780",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6664,
+   "cle": "promesses-municipales-2026/31366c715739f86d4f8d",
+   "sha256": "3d2c0acbd9f17b3c824091924a39e7e6ebbdb102d56156ee5fbf18b1e4bf5923",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6669,
+   "cle": "promesses-municipales-2026/3194fc67ee706dda8694",
+   "sha256": "be6c9aece341044c155062ada4c09f4df9e79b4abf5405f04a5ce77628b768a3",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6673,
+   "cle": "promesses-municipales-2026/321be14da94a4ec71260",
+   "sha256": "e3a622370f84785daf06512c5c09a91011b6b77b4836035b3c4e4b24a932c1a7",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6678,
+   "cle": "promesses-municipales-2026/32be47d6e31f78262a21",
+   "sha256": "0f45ea034128af4ee670512783ba26e1a7bb2a315f837b9dbc97b60fa4d90385",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6691,
+   "cle": "promesses-municipales-2026/339b1e64664d14f1a5ae",
+   "sha256": "7cd5c265ead3c9cf508b82cdd953ad0d1c2bed5c4adec512a684be759d74258f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6702,
+   "cle": "promesses-municipales-2026/343a43a6454ebd67be9f",
+   "sha256": "282bcda0cdc2b00f4fc1fb0dfe9a050f831486e4f08e1672c8b14bb52b2eeef1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6711,
+   "cle": "promesses-municipales-2026/350a5f8957d200c22115",
+   "sha256": "e1565db3635b76a6b4774972cad1f0045d9a4006af146b17d2ed9e1ca6ed3f7e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6728,
+   "cle": "promesses-municipales-2026/3686e60de4b01c0948ee",
+   "sha256": "7a0143ae5edb11e2c3da77c7f76681b9f9777039c41cb0f09ff8cde1917970d4",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6730,
+   "cle": "promesses-municipales-2026/369747f98e26e5cd2dd0",
+   "sha256": "5b601418fd89ac5b1609f346622f35f79d6b5d0ec572b04ee8ff01beade912e7",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6732,
+   "cle": "promesses-municipales-2026/36ab4feecd83d7cacda9",
+   "sha256": "7535cc75e1e1c26bbb08578bba72295dcc12cd3fbed06f43e229026493667429",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6741,
+   "cle": "promesses-municipales-2026/37ce5f7ce63459cc46cb",
+   "sha256": "a3205e8eae305444e4223d5e4ade15a2b3d65335ce10e761de670bddf7aa26d9",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6745,
+   "cle": "promesses-municipales-2026/381225fe181f83bafee3",
+   "sha256": "55a3cc4e2710a01d00d6eb59a8e642eb2fa35f4fca97cf6a4b1fcdc920b6ef7c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6747,
+   "cle": "promesses-municipales-2026/3830e4f5b4e9ff70d780",
+   "sha256": "e6970a32ef3f4b41ceca573d7ee479e6c81724c5cce4ffa846880a1e28f40648",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6752,
+   "cle": "promesses-municipales-2026/385d4d3d4f358df60711",
+   "sha256": "0a34c8a5a352b45ce5d34640816b423e7e9a14e8071de6216657d883473e3590",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6754,
+   "cle": "promesses-municipales-2026/3884885a8409f57b0166",
+   "sha256": "6ce880465ff2a7afe94802915dbd3a9df75654546814eaf144427c4ef465b902",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6758,
+   "cle": "promesses-municipales-2026/38ff918eab5e0abc2d1d",
+   "sha256": "21bcc7bb38a2adb9cef422c2d0f4d1dcfe8e496a602f13013fd942d96a3e672a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6768,
+   "cle": "promesses-municipales-2026/396452b8e3836ed621c8",
+   "sha256": "fb9244fe95549bf0ae661be38451d2b8f452d4ff7f28f3c10f83cb1d9fab2fef",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6775,
+   "cle": "promesses-municipales-2026/399ae08aa08a857aeb94",
+   "sha256": "14bd4cfd46f20df7c3a7daa2eff5e0153d2b42d4cdca7a34cad647b29bbd7cd7",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6785,
+   "cle": "promesses-municipales-2026/3a1b56784f1b28af8e82",
+   "sha256": "15be9ddc175d8e93247dea2e97a71837cea55d1c631a14266a6b7b7f3fbd042f",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6788,
+   "cle": "promesses-municipales-2026/3a5284782aeca80399b5",
+   "sha256": "ff86f10140ee1adfb123c8dea2fa3a6c951b3243731427edd35544c4bfec4a51",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6790,
+   "cle": "promesses-municipales-2026/3a982356825e87a88ddd",
+   "sha256": "d314919e2ef192895114c3b6603cf6c8743e7f27faca87fcd5f78cd4d4d38b5c",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6792,
+   "cle": "promesses-municipales-2026/3a9e4db231d53aae52bb",
+   "sha256": "dbaadfb66a9b76fdb0b4001507e27c214a50a8090a84dd4e460b2bcbe465a5e8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6809,
+   "cle": "promesses-municipales-2026/3b9ed2419f65d07e2e3c",
+   "sha256": "38935df1f8929e66ccc566c404f142743c029e2585dc224618905201a2ffa9dc",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6818,
+   "cle": "promesses-municipales-2026/3c048ca533aedae7f5dd",
+   "sha256": "77320d226eaaed05b9be18137f2fccf4e6c0175592973332b200b00a109c4858",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6824,
+   "cle": "promesses-municipales-2026/3c5acaf91f4eb89b2669",
+   "sha256": "0991995743706c45cf7262830c1f7c75bc31fdd7aa17d64f5fbff51235d60db1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6827,
+   "cle": "promesses-municipales-2026/3c6d2bc4d4b0cdbf35b4",
+   "sha256": "8ebc64fa2ce1e970498dcbd910576c04c14b2f482ef192749debfdd8f8d9a193",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6841,
+   "cle": "promesses-municipales-2026/3d6a64c26c3290204faf",
+   "sha256": "b3ed2f44b1137100834f6cdb7af5413d1c2fa6d4bd4aee1c644bffc90467f6e8",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6845,
+   "cle": "promesses-municipales-2026/3dfac8e64b8ad659a873",
+   "sha256": "ee7e9fe61bacf649485422f7527d67003f58b4f57b3b8278d846b3635fc2a720",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6853,
+   "cle": "promesses-municipales-2026/3ebfa91634e67f3e0c55",
+   "sha256": "4ff1f7ddd4d00a3290f297f7a3fc3b719f5da66ed55853c671cf7a5dc9bef630",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6875,
+   "cle": "promesses-municipales-2026/4060afadd752ec02be7e",
+   "sha256": "f4deb1d28bdcb95c8ac307ceca9f96be7e0e5dc4f1a8e17e1c991b69b530b75e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6876,
+   "cle": "promesses-municipales-2026/40783f0257ab912152f3",
+   "sha256": "5286f3c517a16fb3e9968a048d2490f3eca392e3cc8c3e041f0a2e50cc1330c1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6887,
+   "cle": "promesses-municipales-2026/4153a53e0dec4bfd91b6",
+   "sha256": "63fd2eed2a5f8582668e0b416078327a28f0f299e4b767428dfde78f3fba745e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6905,
+   "cle": "promesses-municipales-2026/4227f21a0bc30dc7586e",
+   "sha256": "de367f65e8b34d0fc926a7ff3592de7d958f53eeeb8b206d5e58a32ea10803f5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6917,
+   "cle": "promesses-municipales-2026/42b34862792c64fb39aa",
+   "sha256": "ecadedb8a71798b3bdec0846c111061866983b84d14e3e35f755b3519336bd44",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6921,
+   "cle": "promesses-municipales-2026/42d05ee5df01563f62d1",
+   "sha256": "bc583d16feea533e771eaa21df15f00946bcbe2680ba6548f3d49aafb0ef73d5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 6946,
+   "cle": "promesses-municipales-2026/4415e0a3975acf6dba4a",
+   "sha256": "6a91727974b6a29d10dabe1fd3126c85e2c349f315cfb91825e97946b78a7124",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9534,
+   "cle": "promesses-municipales-2026/facb48d5146bd0291ff4",
+   "sha256": "b92098ba278968845b93aed7a719d68c9390250e5afbeb573524adac2e4ee6bd",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9535,
+   "cle": "promesses-municipales-2026/fae36cdf80c5732e01f7",
+   "sha256": "b3cbb61bad1b0f03bd55cb2e2c4cd3a10e4e89db2730379576bc204c2b416f1e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9538,
+   "cle": "promesses-municipales-2026/fafabf917ec386dd832e",
+   "sha256": "fa002e732385dd5ae07aa93876f539a6c1a20c148127be6428ca5401df017a86",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9548,
+   "cle": "promesses-municipales-2026/fb6a0916d0257f6103e5",
+   "sha256": "d994a77093b1f74ef9084a64015c4389c53add18fe336b9aaeec666f72733a10",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9550,
+   "cle": "promesses-municipales-2026/fb8f67e468c9257172d0",
+   "sha256": "295b992de8ac96e8e561e2c0a48d631ca5964802fbfdcc887e44f1471766801a",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9552,
+   "cle": "promesses-municipales-2026/fbac37bdfe56e4686ab9",
+   "sha256": "1f0ab5ea22f600ee026eed95ebde363a15d386c7b83b74819d5c59c3d827d7c6",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9557,
+   "cle": "promesses-municipales-2026/fc11f0197b121761a13c",
+   "sha256": "4e9ec4d93adb759456ffac04620bc0823fa505d594ed17c757c771a0dc78e4e5",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9560,
+   "cle": "promesses-municipales-2026/fc4feaea20f5df268392",
+   "sha256": "0bbbc79e19d79b8cafcee856a404274210ef3c6f2bc46cfdf00882092b3b961b",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9564,
+   "cle": "promesses-municipales-2026/fc9010f0e80d2670d971",
+   "sha256": "a4deecbe32902c4ba4e1104bed5e2674534dd2ff4135bca8c7fc8e90a84551ff",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9568,
+   "cle": "promesses-municipales-2026/fcd01f8489d892d143da",
+   "sha256": "5b079554e2f08f26acc46eacf89e46d3f811f76b6228ade05ade38003f9a5c48",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9570,
+   "cle": "promesses-municipales-2026/fcdc1b1931430702fd4a",
+   "sha256": "f8507ff4bf0b35c4e4f7280b15acca956fdcc8631eb35bf507f55dd27406bc89",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9572,
+   "cle": "promesses-municipales-2026/fd09e1f41679b5ef7748",
+   "sha256": "cf834360eb6f473893c8dbec027063f337c66052801e85fb3889c9c24b068e27",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9573,
+   "cle": "promesses-municipales-2026/fd1228861b0433b5d47c",
+   "sha256": "9bbf7b4c3ab5f7651777df10ed457eaa3591065cf889b42c199913f8f212196e",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9574,
+   "cle": "promesses-municipales-2026/fd154516e8176fd63a15",
+   "sha256": "cc0cfe974f2ebac61331c571aa870f8ace75a56c057db09c7ab0a4725877e63d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9575,
+   "cle": "promesses-municipales-2026/fd1766a7d812bf68d55e",
+   "sha256": "fcf4e786c3b9b1667bdfbad95283050bd0f0c7b6dab90efd1c521d372221faa2",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9577,
+   "cle": "promesses-municipales-2026/fd1cb8f58742309857e2",
+   "sha256": "324c50c0db90def6ad455eecd632ec183aae163ce7c2f498dbc32982a8f481a4",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9583,
+   "cle": "promesses-municipales-2026/fdbead71b41655eb7890",
+   "sha256": "b7734368609d81d4da3417e370dd16daf359baa4a9e4809728847e5d631489ff",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9584,
+   "cle": "promesses-municipales-2026/fdbf7905d671466c3591",
+   "sha256": "1e4d061ef470b8d2dc33cdd555753e311ec471a31bec1125386f74403ca1a793",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9587,
+   "cle": "promesses-municipales-2026/fde5da9b30113cab85bb",
+   "sha256": "85d555acd2183bd477588d015251ce8422605450c3d008c40f78a7631ffb8139",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9594,
+   "cle": "promesses-municipales-2026/fec304a1e59eb3cab4ab",
+   "sha256": "abc22ecd0f9927acebf8398a0b1513ecc4384b7c3eec76f030b8cd2b81e316f1",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9595,
+   "cle": "promesses-municipales-2026/fed54adb1962be3b812e",
+   "sha256": "e261434776cce25ad26a197259f870bd51a7f0e92931e74eeb202da182123c07",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9598,
+   "cle": "promesses-municipales-2026/fefb4663b6fdef6c8449",
+   "sha256": "67d7f135553de78cd481d8fd4b9c3f7f6bf763d80caad68e2dd0f3fb0189d0c6",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9601,
+   "cle": "promesses-municipales-2026/ff62be2997e39406b8ac",
+   "sha256": "08b110e4dbf8e30dc8defef5bb349fcfa5cbc72634488e0ea6f814e215fe514d",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 9602,
+   "cle": "promesses-municipales-2026/ff77300cecb1034aeee8",
+   "sha256": "4d52ff7cb843640b7fb62bbca6df605c9068810a0145c00ea5881d13f0e9b2cc",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 11643,
+   "cle": "manifeste:2026-10-21",
+   "sha256": "394a05781c9c966a2fae724a722ec97afb734662e073b79da718d8eea35ba362",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 11644,
+   "cle": "evenements:20261021T101024Z",
+   "sha256": "099a8b0ba681782bfcf62375445ef9e88e5a4b7dd4afc76261b6abb94e63045e",
+   "jour": null
+  },
+  {
+   "index": 11645,
+   "cle": "consultations:47",
+   "sha256": "7686b4f969b0b718f19f67c7845410f6be574d231992e1062eabe66dea33b1bd",
+   "jour": "2026-10-21"
+  },
+  {
+   "index": 11647,
+   "cle": "marches:290",
+   "sha256": "c2adf676a178df2c01fdee3151166355d5cffd5b370d9c2e7a8ef5b87736ea2a",
+   "jour": "2026-10-21"
+  }
+ ],
+ "retirees": [
+  "evenements:20261021T091004Z",
+  "consultations:46",
+  "marches:287"
+ ]
+}
