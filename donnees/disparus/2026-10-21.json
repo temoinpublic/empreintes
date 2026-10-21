@@ -1,0 +1,17 @@
+{
+ "jour": "2026-10-21",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2024/10/a9f37ba3-256a-4b2e-b8aa-55f115de7dbb-11.07.2024-Statuts-Novapierre-Residentiel.pdf",
+   "date": "2026-10-21",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "a6c362e9699380cc32582ada2e214523aef9803bc2c68cf8ff883481a656a9e1"
+   },
+   "apres": null
+  }
+ ]
+}
