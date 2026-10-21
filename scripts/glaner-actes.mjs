@@ -32,6 +32,7 @@ import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
+import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
 import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
@@ -66,6 +67,8 @@ const POST_DELAI_MS = 90000;
 // L'echeance propre d'une lecture tombe MARGE_MS apres celle du fetch ; une commune entiere a COMMUNE_MS.
 const MARGE_MS = 10000;
 const COMMUNE_MS = 30 * 60000;
+// Le tour fini, le processus a ARRET_MS pour s'arreter de lui-meme avant d'etre tue.
+const ARRET_MS = 30000;
 const COMMUNES_PAR_REPARTITEUR = 500;
 const IMMOBILE_MS = 5 * 60000;
 const VEILLE_MS = 60000;
@@ -511,3 +514,5 @@ await Promise.all(Array.from({ length: Number(options.paralleles) }, (_, qui) =>
 arreterLaVeille();
 sauver();
 console.log(JSON.stringify({ ...totaux, relectures, plafondAtteint }));
+// Tout est ecrit : si un thread du pool reste coince, le processus ne finirait jamais (src/garde-arret.mjs).
+armerLaGardeDArret(ARRET_MS);
