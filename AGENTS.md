@@ -188,6 +188,9 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   Le repartiteur de `fetch` se renouvelle toutes les 500 communes
   (`src/connexions.mjs`) : il gardait 16 Ko par origine, 203 Mo pour 12 366 origines.
   Relance le meme jour, un passage reprend apres les communes deja au releve.
+  Le tour fini, une garde a part tue le processus apres 30 s s'il ne s'arrete pas
+  seul (`src/garde-arret.mjs`) : un thread du pool coince dans un appel bloquant
+  suffit a bloquer l'arret de Node, et le tour suivant ne partirait pas.
 - Un refus de lecture du temoin (422 `lecture impossible`) se classe sur son motif
   (`refusDeDepot`, `src/glane.mjs`) et se compte au releve par classe (`422-disparu`,
   `422-contenu`, `422-trop-gros`, `422-adresse`, `422-source-4xx` : definitifs ;

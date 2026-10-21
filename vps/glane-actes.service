@@ -13,7 +13,7 @@ User=debian
 EnvironmentFile=/etc/glane-actes.env
 WorkingDirectory=/var/lib/glane-actes/empreintes
 ExecStartPre=/usr/bin/git -C /var/lib/glane-actes/empreintes pull --ff-only --quiet
-ExecStart=/usr/bin/node --max-old-space-size=384 scripts/glaner-actes.mjs --departements tous --etat /var/lib/glane-actes/etat --paralleles 30 --par-commune 15
+ExecStart=/opt/node22/bin/node --max-old-space-size=384 scripts/glaner-actes.mjs --departements tous --etat /var/lib/glane-actes/etat --paralleles 30 --par-commune 15
 MemoryMax=512M
 CPUQuota=50%
 Nice=10
