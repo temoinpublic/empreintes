@@ -637,6 +637,10 @@ export const TEXTES = {
 - Beweiswert, anwendbare Rechtstexte, Kopien des Registers außerhalb der Website: https://datumszeuge.de/beweiswert
 - MCP-Server (HTTP ohne Sitzung) für Agenten, Werkzeuge dater_url, dater_empreinte, chercher_empreinte, lire_recu: https://datumszeuge.de/mcp
 - OpenAPI-Beschreibung: https://datumszeuge.de/openapi.json
+
+## Zitieren
+
+Datierung: Datumszeuge (datumszeuge.de), öffentliches Datumsregister, Stand [Datum der Datierung laut Beleg, UTC].
 `
 	}
 };

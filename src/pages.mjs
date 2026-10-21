@@ -21,12 +21,27 @@ export const ACTES = EDITIONS.fr.actes;
 /** Les pages statiques francaises que les moteurs lisent, dans l'ordre du plan du site. */
 export const PLAN = planDe('fr');
 
-/** Le plan du site d'une edition, au format sitemaps.org. */
-export const planDuSite = (chemins = PLAN, langue = 'fr') => `<?xml version="1.0" encoding="UTF-8"?>
+/** Le plan du site d'une edition, au format sitemaps.org ; `dates` donne le lastmod d'un chemin, une page sans date n'en porte pas. */
+export const planDuSite = (chemins = PLAN, langue = 'fr', dates = {}) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${chemins.map((c) => `<url><loc>${EDITIONS[langue].adresse}${c}</loc></url>`).join('\n')}
+${chemins.map((c) => `<url><loc>${EDITIONS[langue].adresse}${c}</loc>${dates[c] ? `<lastmod>${dates[c]}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `;
+
+/**
+ * Le lastmod des pages statiques dont la donnee est datee, jamais la date de
+ * construction : l'accueil et le registre a l'instant du dernier tour, ce qui a
+ * disparu a sa derniere entree (en francais).
+ */
+export function datesDuPlan(tours, entrees = [], langue = 'fr') {
+	const dates = {};
+	const dernier = tours.at(-1)?.instant;
+	if (dernier) Object.assign(dates, { '/': dernier, [EDITIONS[langue].actes.journal.chemin]: dernier });
+	if (langue !== 'fr' || !entrees.length) return dates;
+	dates[CHEMIN_DISPARUS] = entrees.map((e) => e.date).sort().at(-1);
+	for (const e of entrees) if (!(dates[cheminDuSite(e.site)] >= e.date)) dates[cheminDuSite(e.site)] = e.date;
+	return dates;
+}
 
 /** Les consignes aux robots d'une edition : tout, sauf l'index des empreintes, et ses plans (les communes et les actes, en francais). */
 export const robots = (langue = 'fr') => `User-agent: *

@@ -12,7 +12,7 @@ import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, indexDesEmpreintes, resumeD
 import { lecteurDeReleves } from '../src/chaine.mjs';
 import { BESOINS } from '../src/besoins.mjs';
 import { entreesDe, sitesDe } from '../src/disparus.mjs';
-import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, robots } from '../src/pages.mjs';
+import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, datesDuPlan, robots } from '../src/pages.mjs';
 import { EDITIONS, dossierDe, planDe } from '../src/edition.mjs';
 import { CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_NOTAIRES } from '../src/offre.mjs';
 import * as SCHEMA from '../src/schemaadresse.mjs';
@@ -79,7 +79,7 @@ for (const [langue, e] of Object.entries(EDITIONS)) {
 	dans(`${e.actes.conditions.chemin.slice(1)}.html`, pageSections('conditions', langue));
 	dans(`${e.actes.roles.chemin.slice(1)}.html`, pageRoles(langue));
 	for (const acte of TEXTES_DE_L_ARCHIVAGE) dans(`${e.actes[acte].chemin.slice(1)}.html`, pageSections(acte, langue));
-	dans('sitemap.xml', planDuSite(langue === 'fr' ? [...planDe(langue), SCHEMA.CHEMIN_DE_LA_PAGE, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_NOTAIRES, CHEMIN_OFFRE_DRH, ...(entrees.length ? [CHEMIN_DISPARUS] : []), ...sites.map((x) => cheminDuSite(x.site))] : planDe(langue), langue));
+	dans('sitemap.xml', planDuSite(langue === 'fr' ? [...planDe(langue), SCHEMA.CHEMIN_DE_LA_PAGE, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_NOTAIRES, CHEMIN_OFFRE_DRH, ...(entrees.length ? [CHEMIN_DISPARUS] : []), ...sites.map((x) => cheminDuSite(x.site))] : planDe(langue), langue, datesDuPlan(tours, entrees, langue)));
 	dans('robots.txt', robots(langue));
 	dans('llms.txt', e.llms);
 }

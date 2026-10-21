@@ -46,12 +46,14 @@ export async function reponseCollectivite({ db, code, commune }) {
  */
 export async function communesAvecActes({ db, commune }) {
 	const parInsee = new Map();
-	for (const { code, actes } of await actesParCollectivite({ db })) {
+	for (const { code, actes, jour } of await actesParCollectivite({ db })) {
 		const insee = estUnInsee(code) ? code : (await commune(code))?.insee;
-		if (insee) parInsee.set(insee, (parInsee.get(insee) ?? 0) + actes);
+		if (!insee) continue;
+		const avant = parInsee.get(insee) ?? { actes: 0, jour: null };
+		parInsee.set(insee, { actes: avant.actes + actes, jour: plusRecent(avant.jour, jour) });
 	}
 	return [...parInsee]
-		.map(([insee, actes]) => ({ insee, departement: departementDe(insee), actes }))
+		.map(([insee, { actes, jour }]) => ({ insee, departement: departementDe(insee), actes, jour }))
 		.sort((a, b) => a.insee.localeCompare(b.insee));
 }
 
@@ -93,13 +95,26 @@ export async function reponseDepartement({ db, code, commune }) {
 	return { statut: 200, corps: pageDepartement({ code: lu, nom: DEPARTEMENTS[lu], communes: nommees }), entetes: LISTE };
 }
 
-/** Le plan des pages de communes : l'index, chaque departement et chaque commune qui ont au moins un acte. */
+/** Le plus recent de deux jours ISO, null ignore. */
+const plusRecent = (a, b) => (a && b ? (a > b ? a : b) : (a ?? b));
+
+/** Le plus recent jour de datation d'un groupe de communes, null s'il n'y en a aucun. */
+const dernierJour = (communes) => communes.reduce((j, c) => plusRecent(j, c.jour), null);
+
+/**
+ * Le plan des pages de communes : l'index, chaque departement et chaque commune qui ont au moins un acte,
+ * chacune datee (lastmod) du jour de son dernier acte date.
+ */
 export function planDesCommunes(communes) {
 	const adresse = EDITIONS.fr.adresse;
-	const chemins = ['/collectivite', ...departementsDe(communes).map((d) => `/collectivite/departement/${d.code}`), ...communes.map((c) => `/collectivite/${c.insee}`)];
+	const entrees = [
+		['/collectivite', dernierJour(communes)],
+		...departementsDe(communes).map((d) => [`/collectivite/departement/${d.code}`, dernierJour(communes.filter((c) => c.departement === d.code))]),
+		...communes.map((c) => [`/collectivite/${c.insee}`, c.jour])
+	];
 	return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${chemins.map((c) => `<url><loc>${adresse}${c}</loc></url>`).join('\n')}
+${entrees.map(([c, jour]) => `<url><loc>${adresse}${c}</loc>${jour ? `<lastmod>${jour}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `;
 }

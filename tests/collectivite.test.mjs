@@ -173,8 +173,8 @@ test("l'index ne compte que les communes datees, un acte sous le SIREN a sa comm
 	const db = await baseAvecDeuxDepartements();
 	const communes = await communesAvecActes({ db, commune });
 	assert.deepEqual(communes, [
-		{ insee: '17133', departement: '17', actes: 2 },
-		{ insee: '37018', departement: '37', actes: 1 }
+		{ insee: '17133', departement: '17', actes: 2, jour: '2026-10-12' },
+		{ insee: '37018', departement: '37', actes: 1, jour: null }
 	]);
 	assert.deepEqual(departementsDe(communes), [
 		{ code: '17', nom: 'Charente-Maritime', communes: 1, actes: 2 },
@@ -235,6 +235,11 @@ test('le plan des communes porte l index, les departements et chaque commune dat
 		'https://temoinpublic.fr/collectivite/17133',
 		'https://temoinpublic.fr/collectivite/37018'
 	]);
+	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite<\/loc><lastmod>2026-10-12<\/lastmod><\/url>/);
+	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite\/departement\/17<\/loc><lastmod>2026-10-12<\/lastmod><\/url>/);
+	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite\/17133<\/loc><lastmod>2026-10-12<\/lastmod><\/url>/);
+	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite\/37018<\/loc><\/url>/, 'une commune sans jour de datation reste sans lastmod');
+	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite\/departement\/37<\/loc><\/url>/);
 	const r = await reponsePlanDesCommunes({ db, commune });
 	assert.equal(r.entetes['content-type'], 'application/xml; charset=utf-8');
 	assert.match(robots(), /Sitemap: https:\/\/temoinpublic.fr\/sitemap-communes.xml\nSitemap: https:\/\/temoinpublic.fr\/sitemap-actes.xml\n$/);
