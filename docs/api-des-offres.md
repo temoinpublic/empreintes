@@ -11,13 +11,15 @@ pose, rien ne se facture avant le 2027-08-14.
 | --- | --- | --- |
 | Dater | `POST /api/depots` avec `authorization: Bearer <cle>`, le meme corps que le depot gratuit (`sha256`, `url`, `libelle`, `type`, `signature`) | 201 : `jour`, `place`, `ligne`, `id`, `recu`, plus `client` et `portee` |
 | Garder | le `recu` de la reponse, tel quel (JSON) | |
-| Verifier | `POST /api/verifications` avec le `recu` en corps | 200 : `authentique`, `id`, `empreinte`, `jour`, `place`, `depose`, `source`, `inscription`, `signature` (recu signe), `produit` (recu d'un produit de la flotte : `nom`, `url`, `relecture` des octets a l'adresse, `identique`, `different` ou `illisible`), `page`, `portee` |
+| Verifier | `POST /api/verifications` avec le `recu` en corps | 200 : `authentique`, `verification` (`complete`, `attente`, `indeterminee` ou `refusee`), `id`, `empreinte`, `jour`, `place`, `depose`, `source`, `inscription`, `signature` (recu signe), `produit` (recu d'un produit de la flotte : `nom`, `url`, `relecture` des octets a l'adresse, `identique`, `different` ou `illisible`), `page`, `portee` |
 
 La verification ne demande pas de cle : celui qui recoit un recu doit pouvoir
 le relire. Elle recalcule l'identifiant du recu, relit sa ligne publique, lit
 son inscription dans le journal publie (`etat` : `inscrit` avec `tour`,
 `racine` et `bloc` Bitcoin, `attente`, `non conforme`, `illisible`) et verifie la
-signature du deposant a l'instant du depot. Un recu modifie d'un seul champ
+signature du deposant a l'instant du depot. `verification` dit jusqu'ou elle est
+allee : un journal illisible laisse `authentique: true` mais rend `indeterminee`,
+jamais `complete`. Un recu modifie d'un seul champ
 rend `authentique: false`, `raison: "recu inconnu du registre"`. Un corps qui
 n'a pas la forme d'un recu rend 400.
 

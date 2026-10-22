@@ -193,3 +193,15 @@ test('la portee du recu ne promet ni date certaine ni qualification', () => {
 	assert.doesNotMatch(texte.replace(/n’est pas qualifié/, ''), /qualifié/, 'le mot n apparait que nie');
 	assert.ok(Object.isFrozen(PORTEE_DU_RECU));
 });
+
+test('la verification dit jusqu ou elle est allee : un journal illisible n est pas une inscription relue', () => {
+	const ligne = { sha256: 'a'.repeat(64), jour: '2026-10-12', place: 1 };
+	const recu = { depose: '2026-10-12T12:00:00.000Z', source: null };
+	const v = (inscription, signature = null) => verdictDuRecu({ id: 'r', recu, ligne, inscription, signature }).verification;
+	assert.equal(v({ etat: 'inscrit' }), 'complete');
+	assert.equal(v({ etat: 'attente' }), 'attente');
+	assert.equal(v({ etat: 'illisible' }), 'indeterminee');
+	assert.equal(v({ etat: 'non conforme' }), 'refusee');
+	assert.equal(v({ etat: 'inscrit' }, { ok: false }), 'refusee');
+	assert.equal(verdictDuRecu({ id: 'r', recu, ligne: null }).verification, 'refusee');
+});
