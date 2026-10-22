@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { baseDeTest } from './d1.mjs';
-import { deposer, fichierDuJour, resoudreParDoH, temoigner } from '../src/service.mjs';
+import { deposer, fichierDuJour, inserer, resoudreParDoH, temoigner } from '../src/service.mjs';
 import { idDuRecu, lireFichierDuJour } from '../src/depot.mjs';
 import { onRequestPost, onRequestOptions } from '../functions/api/depots.js';
 import { onRequestGet } from '../functions/depots/[fichier].js';
@@ -147,4 +147,14 @@ test('le bilan garde depots et deposants distincts par jour, en agregat seulemen
 	assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM compte WHERE jour = '2026-10-11'").get().n, 0);
 	const vide = await (await onRequestGet({ env: { DEPOTS: baseDeTest() } })).json();
 	assert.deepEqual(vide, { jours: [], deposantsAuMoins: 0 });
+});
+
+test("un depot s'ecrit avec ce qui l'accompagne, tout ou rien", async () => {
+	const db = baseDeTest();
+	const compte = ['INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1)', '2026-10-12', 'cle'];
+	await assert.rejects(inserer(db, { jour: '2026-10-12', empreinte: 'a'.repeat(64), recu: 'r1' }, [compte, ['INSERT INTO absente VALUES (1)']]));
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 0, 'pas de ligne publique sans le reste');
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM compte').get().n, 0);
+	assert.equal(await inserer(db, { jour: '2026-10-12', empreinte: 'a'.repeat(64), recu: 'r1' }, [compte]), 1);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
 });
