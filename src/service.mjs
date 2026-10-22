@@ -9,6 +9,7 @@ import { CLE_DE_LA_FLOTTE, cleDAdresse, estUnRecu, idDuRecu, jourDe, ligneDe, li
 import { PORTEE_DU_RECU, PREFIXE_CLIENT, cleDuClient, verdictDuRecu } from './client.mjs';
 import { PREFIXE_PRODUIT, cleDuProduit } from './produit.mjs';
 import { verifierSignatureDuDeposant } from './origine.mjs';
+import { EcheanceDepassee, sousEcheance } from './echeance.mjs';
 import { AGENT, DELAI_MS, cleDeLecture, contenuAdmis, estUneIp, ipsDoH, lireBorne, resolutionAdmise, sautSuivant, urlAdmise } from './temoin.mjs';
 
 /** Le schema de la base `empreintes-depots` ; rejouable. */
@@ -59,9 +60,9 @@ async function selDuJour(db, jour) {
 }
 
 /** Les adresses IP d'un hote, en A et AAAA, par un resolveur DoH au format JSON. */
-export async function resoudreParDoH(hote, { fetch: f = fetch, resolveur = 'https://cloudflare-dns.com/dns-query' } = {}) {
+export async function resoudreParDoH(hote, { fetch: f = fetch, resolveur = 'https://cloudflare-dns.com/dns-query', signal } = {}) {
 	const lire = async (type) => {
-		const r = await f(`${resolveur}?name=${encodeURIComponent(hote)}&type=${type}`, { headers: { accept: 'application/dns-json' } });
+		const r = await f(`${resolveur}?name=${encodeURIComponent(hote)}&type=${type}`, { headers: { accept: 'application/dns-json' }, signal });
 		if (!r.ok) throw new Error(`resolution ${type} : ${r.status}`);
 		return ipsDoH(await r.json());
 	};
@@ -91,15 +92,30 @@ async function lireReponse(r, { url, demandee, debut, maintenant, garder, juger 
  * `juger` refuse aussi ce qui n'est pas le document (`contenuAdmis`) : pour un
  * depot, pas pour un flux suivi, dont les pages portent souvent une connexion.
  */
-export async function temoigner(admise, { fetch: f = fetch, resoudre = (h) => resoudreParDoH(h), maintenant = () => Date.now(), garder = false, juger = false } = {}) {
+export async function temoigner(admise, { delaiMs = DELAI_MS, ...options } = {}) {
+	try {
+		return await sousEcheance(delaiMs, 'du temoin', (arret) => lireSous(admise, arret, options));
+	} catch (erreur) {
+		// Le meme motif que la borne de lecture : la glane le classe en `422-delai`, a redemander.
+		if (erreur instanceof EcheanceDepassee) throw new Error(`lecture au-dela de ${delaiMs / 1000} s`);
+		throw erreur;
+	}
+}
+
+/**
+ * UNE echeance pour toute la lecture, resolutions, sauts et corps compris : un
+ * delai par `fetch` repartait a chaque redirection, la resolution DoH n'en avait
+ * aucun, et un `read()` bloque n'etait juge qu'une fois revenu.
+ */
+async function lireSous(admise, arret, { fetch: f = fetch, resoudre = (h, signal) => resoudreParDoH(h, { signal }), maintenant = () => Date.now(), garder = false, juger = false }) {
 	const debut = maintenant();
 	let courante = admise;
 	for (let sauts = 0; ; sauts++) {
 		if (!estUneIp(courante.hote)) {
-			const verdict = resolutionAdmise(await resoudre(courante.hote));
+			const verdict = resolutionAdmise(await resoudre(courante.hote, arret));
 			if (verdict.refus) throw new Error(verdict.refus);
 		}
-		const r = await f(courante.url, { redirect: 'manual', headers: { 'user-agent': AGENT, accept: '*/*' }, signal: AbortSignal.timeout(DELAI_MS) });
+		const r = await f(courante.url, { redirect: 'manual', headers: { 'user-agent': AGENT, accept: '*/*' }, signal: arret });
 		if (r.status >= 300 && r.status < 400) {
 			await r.body?.cancel();
 			const suite = sautSuivant({ courante: courante.url, statut: r.status, location: r.headers.get('location'), sauts });
