@@ -9,6 +9,7 @@ import { CLE_DE_LA_FLOTTE, cleDAdresse, estUnRecu, idDuRecu, jourDe, ligneDe, li
 import { PORTEE_DU_RECU, PREFIXE_CLIENT, cleDuClient, verdictDuRecu } from './client.mjs';
 import { PREFIXE_PRODUIT, cleDuProduit } from './produit.mjs';
 import { verifierSignatureDuDeposant } from './origine.mjs';
+import { EcheanceDepassee, sousEcheance } from './echeance.mjs';
 import { AGENT, DELAI_MS, cleDeLecture, contenuAdmis, estUneIp, ipsDoH, lireBorne, resolutionAdmise, sautSuivant, urlAdmise } from './temoin.mjs';
 
 /** Le schema de la base `empreintes-depots` ; rejouable. */
@@ -59,9 +60,9 @@ async function selDuJour(db, jour) {
 }
 
 /** Les adresses IP d'un hote, en A et AAAA, par un resolveur DoH au format JSON. */
-export async function resoudreParDoH(hote, { fetch: f = fetch, resolveur = 'https://cloudflare-dns.com/dns-query' } = {}) {
+export async function resoudreParDoH(hote, { fetch: f = fetch, resolveur = 'https://cloudflare-dns.com/dns-query', signal } = {}) {
 	const lire = async (type) => {
-		const r = await f(`${resolveur}?name=${encodeURIComponent(hote)}&type=${type}`, { headers: { accept: 'application/dns-json' } });
+		const r = await f(`${resolveur}?name=${encodeURIComponent(hote)}&type=${type}`, { headers: { accept: 'application/dns-json' }, signal });
 		if (!r.ok) throw new Error(`resolution ${type} : ${r.status}`);
 		return ipsDoH(await r.json());
 	};
@@ -91,15 +92,30 @@ async function lireReponse(r, { url, demandee, debut, maintenant, garder, juger 
  * `juger` refuse aussi ce qui n'est pas le document (`contenuAdmis`) : pour un
  * depot, pas pour un flux suivi, dont les pages portent souvent une connexion.
  */
-export async function temoigner(admise, { fetch: f = fetch, resoudre = (h) => resoudreParDoH(h), maintenant = () => Date.now(), garder = false, juger = false } = {}) {
+export async function temoigner(admise, { delaiMs = DELAI_MS, ...options } = {}) {
+	try {
+		return await sousEcheance(delaiMs, 'du temoin', (arret) => lireSous(admise, arret, options));
+	} catch (erreur) {
+		// Le meme motif que la borne de lecture : la glane le classe en `422-delai`, a redemander.
+		if (erreur instanceof EcheanceDepassee) throw new Error(`lecture au-dela de ${delaiMs / 1000} s`);
+		throw erreur;
+	}
+}
+
+/**
+ * UNE echeance pour toute la lecture, resolutions, sauts et corps compris : un
+ * delai par `fetch` repartait a chaque redirection, la resolution DoH n'en avait
+ * aucun, et un `read()` bloque n'etait juge qu'une fois revenu.
+ */
+async function lireSous(admise, arret, { fetch: f = fetch, resoudre = (h, signal) => resoudreParDoH(h, { signal }), maintenant = () => Date.now(), garder = false, juger = false }) {
 	const debut = maintenant();
 	let courante = admise;
 	for (let sauts = 0; ; sauts++) {
 		if (!estUneIp(courante.hote)) {
-			const verdict = resolutionAdmise(await resoudre(courante.hote));
+			const verdict = resolutionAdmise(await resoudre(courante.hote, arret));
 			if (verdict.refus) throw new Error(verdict.refus);
 		}
-		const r = await f(courante.url, { redirect: 'manual', headers: { 'user-agent': AGENT, accept: '*/*' }, signal: AbortSignal.timeout(DELAI_MS) });
+		const r = await f(courante.url, { redirect: 'manual', headers: { 'user-agent': AGENT, accept: '*/*' }, signal: arret });
 		if (r.status >= 300 && r.status < 400) {
 			await r.body?.cancel();
 			const suite = sautSuivant({ courante: courante.url, statut: r.status, location: r.headers.get('location'), sauts });
@@ -111,14 +127,24 @@ export async function temoigner(admise, { fetch: f = fetch, resoudre = (h) => re
 	}
 }
 
-/** Prend la place suivante du jour, dans la meme instruction que l'insertion. */
-export async function inserer(db, { jour, empreinte, recu }) {
-	const sql =
-		'INSERT INTO depot (jour, place, sha256, recu) SELECT ?, COALESCE(MAX(place), 0) + 1, ?, ? FROM depot WHERE jour = ? RETURNING place';
+const SQL_DU_DEPOT = 'INSERT INTO depot (jour, place, sha256, recu) SELECT ?, COALESCE(MAX(place), 0) + 1, ?, ? FROM depot WHERE jour = ? RETURNING place';
+
+/**
+ * Prend la place suivante du jour, dans la meme instruction que l'insertion, et
+ * ecrit `suites` (`[sql, ...args]`) dans la MEME transaction (`batch` de D1) :
+ * une panne entre deux ecritures laissait une ligne publique sans son acte,
+ * son produit, sa version ou son compte. Tout ou rien ; une collision de place
+ * avec un depot simultane rejoue le tout une fois.
+ */
+export async function inserer(db, { jour, empreinte, recu }, suites = []) {
+	const ecrire = async () => {
+		const [depot] = await db.batch([db.prepare(SQL_DU_DEPOT).bind(jour, empreinte, recu, jour), ...suites.map(([sql, ...args]) => db.prepare(sql).bind(...args))]);
+		return depot.results[0].place;
+	};
 	try {
-		return (await un(db, sql, jour, empreinte, recu, jour)).place;
+		return await ecrire();
 	} catch {
-		return (await un(db, sql, jour, empreinte, recu, jour)).place;
+		return await ecrire();
 	}
 }
 
@@ -227,13 +253,13 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	}
 	const recu = recuDe({ sha256: empreinte, instant, libelle: demande.libelle, url: demande.url, temoin: lu, acte, affichage: demande.affichage ?? null, produit: demande.produit ?? null, signature: signature && { valeur: demande.signature, certificat: signature.certificat.empreinte, sujet: signature.certificat.sujet, emetteur: signature.certificat.emetteur, autorite: signature.certificat.autorite } });
 	const id = await idDuRecu(recu);
-	const place = await inserer(db, { jour, empreinte, recu: id });
+	const suites = [['INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle]];
 	// La serie d'une collectivite ne tient que les actes lus sur son site officiel ; un acte declare reste dans son recu.
 	if (acte?.rattachement === 'site-officiel')
-		await faire(db, 'INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)', id, acte.collectivite, acte.nature, demande.libelle ?? null, adressePublique(lu.url));
+		suites.push(['INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)', id, acte.collectivite, acte.nature, demande.libelle ?? null, adressePublique(lu.url)]);
 	// Le recu d'un produit (D-167) : sa page nomme le produit et mene au recu que celui-ci sert.
-	if (demande.produit) await faire(db, 'INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url);
-	await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
+	if (demande.produit) suites.push(['INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url]);
+	const place = await inserer(db, { jour, empreinte, recu: id }, suites);
 	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
 }
 

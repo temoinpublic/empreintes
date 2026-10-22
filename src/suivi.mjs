@@ -106,12 +106,15 @@ async function lireArticle({ db, flux, entree, connu, instant, jour, temoin }) {
 	} catch {
 		return 'echec';
 	}
-	await faire(db, 'UPDATE article SET empreinte = ?, octets = ?, lu = ? WHERE flux = ? AND id = ?', entree.empreinte, lu.sha256, jour, flux, entree.id);
-	if (connu?.octets === lu.sha256) return 'inchangee';
+	const etat = ['UPDATE article SET empreinte = ?, octets = ?, lu = ? WHERE flux = ? AND id = ?', entree.empreinte, lu.sha256, jour, flux, entree.id];
+	if (connu?.octets === lu.sha256) {
+		await faire(db, ...etat);
+		return 'inchangee';
+	}
+	// L'article ne se dit lu qu'avec sa version : ecrit avant elle, une panne la perdait pour de bon.
 	const recu = recuDe({ sha256: lu.sha256, instant, url: entree.lien, temoin: lu });
 	const id = await idDuRecu(recu);
-	await inserer(db, { jour, empreinte: lu.sha256, recu: id });
-	await faire(db, 'INSERT INTO version (recu, flux, article, jour, contenu) VALUES (?, ?, ?, ?, ?)', id, flux, entree.id, jour, JSON.stringify(recu));
+	await inserer(db, { jour, empreinte: lu.sha256, recu: id }, [['INSERT INTO version (recu, flux, article, jour, contenu) VALUES (?, ?, ?, ?, ?)', id, flux, entree.id, jour, JSON.stringify(recu)], etat]);
 	return 'version';
 }
 

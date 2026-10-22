@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { baseDeTest } from './d1.mjs';
-import { deposer, fichierDuJour, resoudreParDoH, temoigner } from '../src/service.mjs';
+import { deposer, fichierDuJour, inserer, resoudreParDoH, temoigner } from '../src/service.mjs';
 import { idDuRecu, lireFichierDuJour } from '../src/depot.mjs';
 import { onRequestPost, onRequestOptions } from '../functions/api/depots.js';
 import { onRequestGet } from '../functions/depots/[fichier].js';
@@ -147,4 +147,45 @@ test('le bilan garde depots et deposants distincts par jour, en agregat seulemen
 	assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM compte WHERE jour = '2026-10-11'").get().n, 0);
 	const vide = await (await onRequestGet({ env: { DEPOTS: baseDeTest() } })).json();
 	assert.deepEqual(vide, { jours: [], deposantsAuMoins: 0 });
+});
+
+test("un depot s'ecrit avec ce qui l'accompagne, tout ou rien", async () => {
+	const db = baseDeTest();
+	const compte = ['INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1)', '2026-10-12', 'cle'];
+	await assert.rejects(inserer(db, { jour: '2026-10-12', empreinte: 'a'.repeat(64), recu: 'r1' }, [compte, ['INSERT INTO absente VALUES (1)']]));
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 0, 'pas de ligne publique sans le reste');
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM compte').get().n, 0);
+	assert.equal(await inserer(db, { jour: '2026-10-12', empreinte: 'a'.repeat(64), recu: 'r1' }, [compte]), 1);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
+});
+
+test('une seule echeance borne la lecture du temoin : resolution, sauts et corps compris', async () => {
+	const admise = { url: 'https://x.fr/a', hote: 'x.fr' };
+	const publique = async () => ['93.184.216.34'];
+	const jamais = () => new Promise(() => {});
+	const motif = /lecture au-dela de 0\.05 s$/;
+	await assert.rejects(temoigner(admise, { delaiMs: 50, resoudre: jamais, fetch: jamais }), motif, 'resolution sans reponse');
+	await assert.rejects(temoigner(admise, { delaiMs: 50, resoudre: publique, fetch: jamais }), motif, 'source sans reponse');
+	const muet = async () => new Response(new ReadableStream({ pull: jamais }), { status: 200 });
+	await assert.rejects(temoigner(admise, { delaiMs: 50, resoudre: publique, fetch: muet }), motif, 'corps qui ne vient pas');
+	let sauts = 0;
+	const lent = async (url, { signal }) => {
+		sauts += 1;
+		await new Promise((ok) => setTimeout(ok, 20));
+		signal.throwIfAborted();
+		return new Response(null, { status: 302, headers: { location: `${url}x` } });
+	};
+	await assert.rejects(temoigner(admise, { delaiMs: 50, resoudre: publique, fetch: lent }), motif, 'des redirections qui relancent chacune leur delai');
+	assert.ok(sauts <= 4, `${sauts} sauts`);
+});
+
+test('la resolution DoH porte le signal de l echeance', async () => {
+	const signal = AbortSignal.abort();
+	let recu;
+	const f = async (_url, options) => {
+		recu = options.signal;
+		return new Response(JSON.stringify({ Answer: [] }), { status: 200 });
+	};
+	await resoudreParDoH('x.fr', { fetch: f, signal });
+	assert.equal(recu, signal);
 });

@@ -94,6 +94,22 @@ test('la tournee depose une version par article nouveau ; la ligne publique rest
 	assert.equal(corps(d).place, 3);
 });
 
+test("un article ne se dit lu qu'avec sa version : une panne a l'ecriture laisse la version a redeposer", async () => {
+	const w = web({ [FLUX]: rss([[A, 'Un']]), [A]: 'v1' });
+	const { db } = await inscrit(w);
+	const batch = db.batch;
+	db.batch = async () => {
+		throw new Error('D1 indisponible');
+	};
+	await assert.rejects(tourneeDesFlux({ db, maintenant: jour(12), temoin: w.temoin }), /D1 indisponible/);
+	assert.equal(db.sqlite.prepare('SELECT octets FROM article').get().octets, null, 'pas d empreinte sans version');
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 0);
+	db.batch = batch;
+	await tourneeDesFlux({ db, maintenant: jour(13), temoin: w.temoin });
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM version').get().n, 1);
+	assert.equal(db.sqlite.prepare('SELECT octets FROM article').get().octets, sha('v1'));
+});
+
 test("une entree modifiee se relit le jour meme ; des octets inchanges ne font pas de version ; la relecture hebdomadaire voit une correction silencieuse", async () => {
 	const w = web({ [FLUX]: rss([[A, 'Un']]), [A]: 'v1' });
 	const { db } = await inscrit(w);

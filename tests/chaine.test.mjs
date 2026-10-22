@@ -6,8 +6,20 @@ import path from 'node:path';
 import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, estUnDelta, lecteurDeReleves, placeDuFichier, racineDepuisChemin, reconstruireReleve, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
 
 const DONNEES = path.resolve(import.meta.dirname, '..', 'donnees', 'empreintes');
-const ids = fs.readdirSync(DONNEES).filter((f) => /^\d{8}T\d{6}Z\.json$/.test(f)).map((f) => f.slice(0, -5)).sort();
-const lire = (id) => JSON.parse(fs.readFileSync(path.join(DONNEES, `${id}.json`), 'utf8'));
+// Chaque tour publie, plein ou en delta : un releve plein suit le dernier delta de la veille, pas le plein d'avant.
+const ids = [...new Set(fs.readdirSync(DONNEES).flatMap((f) => /^(\d{8}T\d{6}Z)(?:\.delta)?\.json$/.exec(f)?.[1] ?? []))].sort();
+const fichier = (nom) => JSON.parse(fs.readFileSync(path.join(DONNEES, nom), 'utf8'));
+const memoire = new Map();
+const lirePublie = (id) => {
+	if (fs.existsSync(path.join(DONNEES, `${id}.json`))) return fichier(`${id}.json`);
+	const delta = fichier(`${id}.delta.json`);
+	return reconstruireReleve(lire(delta.base), delta);
+};
+// Une copie a chaque lecture : des tests modifient le releve qu'on leur rend.
+const lire = (id) => {
+	if (!memoire.has(id)) memoire.set(id, JSON.stringify(lirePublie(id)));
+	return JSON.parse(memoire.get(id));
+};
 
 // L'arbre tel que l'entrepot l'ecrit, recopie ici avec node:crypto pour tenir la seconde ecriture.
 function arbreDeReference(hexes) {

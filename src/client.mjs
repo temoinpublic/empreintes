@@ -98,6 +98,15 @@ export const PORTEE_DU_RECU = Object.freeze({
 });
 
 /**
+ * Jusqu'ou la verification est allee, a cote du booleen : `authentique` reste
+ * vrai quand le journal n'a pas pu etre lu, et un integrateur ne doit pas
+ * confondre ce cas avec une inscription relue. `complete` : inscrit au journal ;
+ * `attente` : pas encore dans un tour ; `indeterminee` : le journal n'a pas pu
+ * etre lu ; `refusee` : le recu n'est pas authentique.
+ */
+const VERIFICATION_DE_L_INSCRIPTION = { inscrit: 'complete', attente: 'attente' };
+
+/**
  * Le verdict d'une verification de recu, depuis ce que le service a relu :
  * `ligne` la ligne publique (null si le registre ne connait pas l'identifiant),
  * `inscription` l'etat du recu dans le journal publie, `signature` la
@@ -105,9 +114,11 @@ export const PORTEE_DU_RECU = Object.freeze({
  * produit de la flotte relu a son adresse (null sans produit, D-167).
  */
 export function verdictDuRecu({ id, recu, ligne, inscription, signature, produit = null }) {
-	if (!ligne) return { authentique: false, id, raison: 'recu inconnu du registre', portee: PORTEE_DU_RECU };
+	if (!ligne) return { authentique: false, verification: 'refusee', id, raison: 'recu inconnu du registre', portee: PORTEE_DU_RECU };
+	const authentique = (signature?.ok ?? true) && inscription?.etat !== 'non conforme';
 	return {
-		authentique: (signature?.ok ?? true) && inscription?.etat !== 'non conforme',
+		authentique,
+		verification: authentique ? (VERIFICATION_DE_L_INSCRIPTION[inscription?.etat] ?? 'indeterminee') : 'refusee',
 		id,
 		empreinte: ligne.sha256,
 		jour: ligne.jour,

@@ -14,9 +14,22 @@ export function baseDeTest() {
 				bind: (...a) => ((args = a), lie),
 				first: async () => instruction.get(...args) ?? null,
 				all: async () => ({ results: instruction.all(...args) }),
-				run: async () => ({ meta: { changes: Number(instruction.run(...args).changes) } })
+				run: async () => ({ meta: { changes: Number(instruction.run(...args).changes) } }),
+				executer: () => ({ results: instruction.all(...args) })
 			};
 			return lie;
+		},
+		// Comme D1 : les instructions dans l'ordre, en une transaction, tout ou rien.
+		async batch(instructions) {
+			sqlite.exec('BEGIN');
+			try {
+				const resultats = instructions.map((i) => i.executer());
+				sqlite.exec('COMMIT');
+				return resultats;
+			} catch (erreur) {
+				sqlite.exec('ROLLBACK');
+				throw erreur;
+			}
 		}
 	};
 }
