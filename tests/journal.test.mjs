@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { FICHIER_PUBLIE, LIMITE_FICHIER_PAGES, PREUVE_PUBLIEE, SEUIL_RELEVE_ATTENTION, SEUIL_RELEVE_ROUGE, constatDeTaille, indexDesEmpreintes, instantDe, resumeDe, verdict } from '../src/journal.mjs';
+import { FICHIER_PUBLIE, avecLaBase, LIMITE_FICHIER_PAGES, PREUVE_PUBLIEE, SEUIL_RELEVE_ATTENTION, SEUIL_RELEVE_ROUGE, constatDeTaille, indexDesEmpreintes, instantDe, resumeDe, verdict } from '../src/journal.mjs';
 
 const r1 = { id: '20261011T041935Z', precedente: '0', arbre: 'a', racine: 'r1', feuilles: [{ cle: 'src/x', sha256: 'aa11', jour: '2026-10-10' }, { cle: 'manifeste:2026-10-11', sha256: 'bb22', jour: '2026-10-11' }] };
 const r2 = { id: '20261012T101314Z', precedente: 'r1', arbre: 'b', racine: 'r2', feuilles: [{ cle: 'src/x', sha256: 'aa11', jour: '2026-10-10' }, { cle: 'src/y', sha256: 'aa11', jour: '2026-10-12' }, { cle: 'liste:z', sha256: 'cc33', jour: '2026-10-12' }] };
@@ -56,8 +56,29 @@ test('la sonde passe attention au-dela de 12 h sans tour, rouge au-dela de 36 h,
 test("une preuve restee aux calendriers plus de 48 h est un constat ; une recente ne l'est pas", () => {
 	const v = verdict([tour('2026-10-09T10:00:00Z', 'calendrier'), tour('2026-10-12T10:00:00Z', 'calendrier')], maintenant);
 	assert.equal(v.alerte, 'attention');
-	assert.equal(v.constats.length, 1);
+	assert.equal(v.constats.filter((c) => c.includes('preuve')).length, 1);
 	assert.equal(verdict([tour('2026-10-09T10:00:00Z', null), tour('2026-10-10T10:00:00Z')], maintenant).alerte, 'rouge');
+});
+
+test('un ancrage en erreur est couvert par le tour suivant ancre dans Bitcoin ; sans lui, il reste un constat', () => {
+	const horodate = (t) => ({ ...t, fichiers: [`${t.id}.racine.tsr`] });
+	const erreur = tour('2026-10-09T10:00:00Z', 'erreur');
+	assert.deepEqual(verdict([erreur, horodate(tour('2026-10-12T10:00:00Z'))], maintenant), { alerte: 'ok', constats: [] });
+	assert.deepEqual(verdict([horodate(tour('2026-10-09T08:00:00Z')), erreur, horodate(tour('2026-10-12T10:00:00Z', 'calendrier'))], maintenant).constats, ['20261009T100000Z : preuve erreur depuis plus de 48 h']);
+	assert.deepEqual(verdict([tour('2026-10-09T10:00:00Z', null), horodate(tour('2026-10-12T10:00:00Z'))], maintenant).alerte, 'ok');
+	const calendrier = verdict([tour('2026-10-09T10:00:00Z', 'calendrier'), horodate(tour('2026-10-12T10:00:00Z'))], maintenant);
+	assert.deepEqual(calendrier.constats, ['20261009T100000Z : preuve calendrier depuis plus de 48 h'], "une preuve aux calendriers doit monter d'elle-meme");
+});
+
+test("aucun horodatage qualifie du tout se compte depuis le premier tour, au lieu d'un age nul", () => {
+	assert.deepEqual(verdict([tour('2026-10-10T10:00:00Z'), tour('2026-10-12T10:00:00Z')], maintenant), { alerte: 'attention', constats: ['aucun horodatage qualifie publie en 50 h'] });
+	assert.deepEqual(verdict([tour('2026-10-11T10:00:00Z'), tour('2026-10-12T10:00:00Z')], maintenant), { alerte: 'ok', constats: [] });
+});
+
+test('une base des depots muette se dit dans le verdict, sans adoucir un rouge', () => {
+	assert.deepEqual(avecLaBase({ alerte: 'ok', constats: [] }, true), { alerte: 'ok', constats: [] });
+	assert.deepEqual(avecLaBase({ alerte: 'ok', constats: [] }, false), { alerte: 'attention', constats: ['base des depots illisible'] });
+	assert.equal(avecLaBase({ alerte: 'rouge', constats: ['x'] }, false).alerte, 'rouge');
 });
 
 test('une copie suspendue dit attention et la nomme, sans passer rouge sur un journal vieux', () => {

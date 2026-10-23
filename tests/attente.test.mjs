@@ -166,7 +166,10 @@ test('la sonde compte les adresses en attente, et reste a 200 sans base ou quand
 			throw new Error('D1');
 		}
 	};
-	assert.equal((await lire({ ASSETS: assets, DEPOTS: { prepare: () => lie } })).attente, null);
+	const muette = await lire({ ASSETS: assets, DEPOTS: { prepare: () => lie } });
+	assert.equal(muette.attente, null);
+	assert.ok(muette.constats.includes('base des depots illisible'));
+	assert.ok(!(await lire({ ASSETS: assets })).constats.includes('base des depots illisible'), 'sans base liee, rien a dire');
 });
 
 test("la page de l'offre des editeurs ne dit aucun prix, porte le formulaire et les gestes du jour", async () => {
