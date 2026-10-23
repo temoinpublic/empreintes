@@ -1,4 +1,7 @@
-# A chaque push sur main (le code, ou le journal pousse par l'entrepot dans donnees/) : gate puis deploiement.
+# A chaque push sur main (le code, ou le journal pousse par l'entrepot dans donnees/) : la gate.
+# Le site est servi par vps5 (OVH, D-265) : `empreintes-suivre.timer` y tire la tete de main
+# toutes les 2 min, la construit et la met en prod sans coupure. Plus de deploiement Pages ni
+# de Worker : le projet Pages reste en secours, sans domaine, et ne doit plus recevoir de version.
 name: publier
 on:
   push:
@@ -20,31 +23,3 @@ jobs:
           node-version: 22
       - name: Gate
         run: npm run gate
-      # La table des sites officiels des collectivites (D-165) : un export muet ou tronque publie sans elle, et un acte reste declare.
-      - name: Annuaire des collectivites
-        continue-on-error: true
-        run: node scripts/annuaire.mjs
-      # Les autorites des listes de confiance europeennes (D-164) : une lecture muette publie sans elles, et l'emetteur d'une signature n'est pas juge.
-      - name: Autorites des listes de confiance
-        continue-on-error: true
-        run: node scripts/confiance.mjs
-      # wrangler s'installe une fois, sans scripts d'installation, a sa version epinglee.
-      - name: Installer wrangler
-        run: npm install --no-save --ignore-scripts wrangler@4.121.0
-      - name: Deployer
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: 25a77d08906ce212984a4563a7ff7d9c
-        run: ./node_modules/.bin/wrangler pages deploy dist --project-name empreintes --branch main --commit-dirty=true
-      # La voie de controle de l'edition allemande, de.empreintes.pages.dev : le meme dist, aussi sous la branche `de`.
-      - name: Deployer la voie de controle allemande
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: 25a77d08906ce212984a4563a7ff7d9c
-        run: ./node_modules/.bin/wrangler pages deploy dist --project-name empreintes --branch de --commit-dirty=true
-      # Le Worker horaire du suivi des flux (D-170) : Pages n'a pas de declencheur horaire.
-      - name: Deployer le suivi des flux
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: 25a77d08906ce212984a4563a7ff7d9c
-        run: ./node_modules/.bin/wrangler deploy -c flux.wrangler.toml

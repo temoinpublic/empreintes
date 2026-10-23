@@ -167,7 +167,8 @@ test('le plan du site date l accueil et le registre au dernier tour, ce qui a di
 
 test("les mentions legales nomment l'editeur, l'hebergeur et ce qui est garde", () => {
 	const html = pageMentions();
-	assert.match(html, /Cloudflare, Inc\./);
+	assert.match(html, /<h2>Hébergeur<\/h2>\n<p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, France\.<\/p>/);
+	assert.doesNotMatch(html, /Cloudflare|San Francisco|États-Unis/);
 	assert.match(html, /mailto:contact@florianmousseau.com/);
 	assert.match(html, /Aucun cookie/);
 });
