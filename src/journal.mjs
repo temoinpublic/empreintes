@@ -47,27 +47,40 @@ export function resumeDe(releve, ancrage, fichiers, octets = null, base = null) 
 }
 
 /**
- * L'index des empreintes, tour par tour dans l'ordre : pour chaque sha256,
- * chaque cle qui l'a porte, son jour et le premier et le dernier tour qui
- * l'ont vu. Partage par les deux premiers caracteres hexadecimaux.
+ * L'index des empreintes, nourri tour par tour dans l'ordre : pour chaque
+ * sha256, chaque cle qui l'a porte, son jour et le premier et le dernier tour
+ * qui l'ont vu. `ajouter` ne garde rien du releve : la construction lit les
+ * tours l'un apres l'autre et laisse partir chacun, au lieu de tous les tenir.
  */
-export function indexDesEmpreintes(releves) {
+export function creerLIndex() {
 	const parSha = new Map();
-	for (const releve of releves) {
-		for (const f of releve.feuilles) {
-			if (!estUnObjet(f)) continue;
-			const parCle = parSha.get(f.sha256) ?? new Map();
-			const vu = parCle.get(f.cle) ?? { cle: f.cle, jour: f.jour, premier: releve.id };
-			vu.dernier = releve.id;
-			parCle.set(f.cle, vu);
-			parSha.set(f.sha256, parCle);
+	return {
+		ajouter(releve) {
+			for (const f of releve.feuilles) {
+				if (!estUnObjet(f)) continue;
+				const parCle = parSha.get(f.sha256) ?? new Map();
+				const vu = parCle.get(f.cle) ?? { cle: f.cle, jour: f.jour, premier: releve.id };
+				vu.dernier = releve.id;
+				parCle.set(f.cle, vu);
+				parSha.set(f.sha256, parCle);
+			}
+		},
+		/** Partage par les deux premiers caracteres hexadecimaux. */
+		parts() {
+			const parts = {};
+			for (const [sha, parCle] of [...parSha].sort(([a], [b]) => (a < b ? -1 : 1))) {
+				(parts[sha.slice(0, 2)] ??= {})[sha] = [...parCle.values()];
+			}
+			return parts;
 		}
-	}
-	const parts = {};
-	for (const [sha, parCle] of [...parSha].sort(([a], [b]) => (a < b ? -1 : 1))) {
-		(parts[sha.slice(0, 2)] ??= {})[sha] = [...parCle.values()];
-	}
-	return parts;
+	};
+}
+
+/** L'index de releves deja lus, dans l'ordre des tours. */
+export function indexDesEmpreintes(releves) {
+	const index = creerLIndex();
+	for (const releve of releves) index.ajouter(releve);
+	return index.parts();
 }
 
 const HEURE = 3600 * 1000;

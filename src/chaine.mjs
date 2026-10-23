@@ -55,9 +55,11 @@ export function reconstruireReleve(base, delta) {
  * delta : `lireFichier(nom)` rend le JSON d'un fichier du journal, ou null
  * quand il n'est pas publie. `tours` (les resumes de `/tours.json`) epargne
  * l'essai du fichier plein a un tour dont le resume dit la base. Une base est
- * lue une fois par lecteur.
+ * lue une fois par lecteur ; `bases` borne celles qu'il garde, les plus
+ * recentes : une lecture de tous les tours dans l'ordre n'a besoin que de la
+ * derniere, et les garder toutes faisait grossir la construction avec le journal.
  */
-export function lecteurDeReleves(lireFichier, tours = null) {
+export function lecteurDeReleves(lireFichier, tours = null, { bases: garder = Infinity } = {}) {
 	const bases = new Map();
 	const nomDe = (id) => (tours?.find((t) => t.id === id)?.base ? `${id}.delta.json` : `${id}.json`);
 	async function lire(id, profondeur = 0) {
@@ -67,7 +69,10 @@ export function lecteurDeReleves(lireFichier, tours = null) {
 		if (!releve) throw new Error(`${id} : aucun releve publie`);
 		if (!estUnDelta(releve)) return releve;
 		if (!(releve.base < id)) throw new Error(`${id} : la base ${releve.base} ne precede pas le tour`);
-		if (!bases.has(releve.base)) bases.set(releve.base, lire(releve.base, profondeur + 1));
+		if (!bases.has(releve.base)) {
+			bases.set(releve.base, lire(releve.base, profondeur + 1));
+			for (const vieille of [...bases.keys()].slice(0, Math.max(0, bases.size - garder))) bases.delete(vieille);
+		}
 		return reconstruireReleve(await bases.get(releve.base), releve);
 	}
 	return (id) => lire(id);
