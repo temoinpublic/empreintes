@@ -207,6 +207,33 @@ test('le lecteur rend chaque tour plein, lit une base une seule fois, et nomme c
 	await assert.rejects(sansFin('99999999'), /aucun releve publie|ne finit pas|ne precede pas/);
 });
 
+test('un lecteur borne a une base ne garde que la plus recente, et relit une base laissee partir', async () => {
+	const base = { id: '20261010T000000Z', precedente: '0', arbre: 'a', racine: 'r', feuilles: [{ cle: 'x', sha256: 'aa', jour: '2026-10-10' }] };
+	const autre = { ...base, id: '20261011T000000Z' };
+	const publies = {
+		[`${base.id}.json`]: base,
+		[`${autre.id}.json`]: autre,
+		'20261010T010000Z.delta.json': { id: '20261010T010000Z', base: base.id },
+		'20261011T010000Z.delta.json': { id: '20261011T010000Z', base: autre.id },
+		'20261011T020000Z.delta.json': { id: '20261011T020000Z', base: autre.id }
+	};
+	const lus = [];
+	const lire = lecteurDeReleves(
+		async (nom) => {
+			lus.push(nom);
+			return publies[nom] ?? null;
+		},
+		null,
+		{ bases: 1 }
+	);
+	for (const id of ['20261010T010000Z', '20261011T010000Z', '20261011T020000Z', '20261010T010000Z']) assert.equal((await lire(id)).feuilles.length, 1);
+	assert.deepEqual(
+		lus.filter((n) => n === `${base.id}.json` || n === `${autre.id}.json`),
+		[`${base.id}.json`, `${autre.id}.json`, `${base.id}.json`],
+		'la base du 10 est relue une fois partie, celle du 11 lue une seule fois'
+	);
+});
+
 test("la chaine entiere se verifie quand le dernier tour n'est publie qu'en delta", async () => {
 	const [base, suivant] = ids.slice(-2).map(lire);
 	const delta = deltaEntre(base, suivant);

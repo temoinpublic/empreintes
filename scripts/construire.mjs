@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, indexDesEmpreintes, resumeDe } from '../src/journal.mjs';
+import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, creerLIndex, resumeDe } from '../src/journal.mjs';
 import { lecteurDeReleves } from '../src/chaine.mjs';
 import { BESOINS } from '../src/besoins.mjs';
 import { entreesDe, sitesDe } from '../src/disparus.mjs';
@@ -43,13 +43,19 @@ const fichierDuTour = (f) => /^\d{8}T\d{6}Z(\.delta)?\.json$/.exec(f)?.[0];
 const ids = [...new Set(fichiers.filter(fichierDuTour).map((f) => f.slice(0, 16)).filter((id) => ID_DE_TOUR.test(id)))].sort();
 const ancrages = fs.existsSync(path.join(DONNEES, 'ancrages.json')) ? lireJson(path.join(DONNEES, 'ancrages.json')) : { tours: {} };
 const fichierPublie = (id) => (fichiers.includes(`${id}.json`) ? `${id}.json` : `${id}.delta.json`);
-const lireReleve = lecteurDeReleves((nom) => (fichiers.includes(nom) ? lireJson(path.join(DONNEES, nom)) : null));
-const releves = await Promise.all(ids.map(lireReleve));
-const tours = releves.map((r) => resumeDe(r, ancrages.tours?.[r.id], fichiers, fs.statSync(path.join(DONNEES, fichierPublie(r.id))).size, fichiers.includes(`${r.id}.json`) ? null : lireJson(path.join(DONNEES, `${r.id}.delta.json`)).base));
+// Un tour a la fois, et seule la derniere base gardee : tenir tous les releves pleins ensemble faisait croitre la memoire avec le journal.
+const lireReleve = lecteurDeReleves((nom) => (fichiers.includes(nom) ? lireJson(path.join(DONNEES, nom)) : null), null, { bases: 1 });
+const tours = [];
+const indexEnCours = creerLIndex();
+for (const id of ids) {
+	const r = await lireReleve(id);
+	tours.push(resumeDe(r, ancrages.tours?.[id], fichiers, fs.statSync(path.join(DONNEES, fichierPublie(id))).size, fichiers.includes(`${id}.json`) ? null : lireJson(path.join(DONNEES, `${id}.delta.json`)).base));
+	indexEnCours.ajouter(r);
+}
 
 fs.rmSync(DIST, { recursive: true, force: true });
 for (const f of fichiers) ecrire(path.join('empreintes', f), fs.readFileSync(path.join(DONNEES, f)));
-const index = indexDesEmpreintes(releves);
+const index = indexEnCours.parts();
 for (const [prefixe, part] of Object.entries(index)) ecrire(`index/${prefixe}.json`, JSON.stringify(part));
 // Ce qui a disparu (D-193), pousse filtre par l'entrepot et refiltre ici ; une entree sans preuve servie ne parait pas.
 const DISPARUS = path.join(RACINE, 'donnees', 'disparus');
