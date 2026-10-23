@@ -94,6 +94,24 @@ export function constatDeTaille(tour) {
 }
 
 /**
+ * Un tour dont l'ancrage a echoue (`erreur`) ou manque est prouve par le
+ * premier tour ancre dans Bitcoin qui le suit : chaque releve porte la racine du
+ * precedent (`precedente`), donc l'ancre du suivant date aussi celui-ci. Sans
+ * cela, un seul echec des calendriers laissait la sonde en `attention` pour
+ * toujours. Un tour encore `calendrier` ne l'est pas : sa preuve doit monter.
+ */
+const couvertParLaChaine = (tour, dernierAncre) => (tour.ots === 'erreur' || tour.ots == null) && tour.id < dernierAncre;
+
+/**
+ * La base des depots se tait (`attente` illisible) : les depots ne s'ecrivent
+ * plus, la sonde le dit au lieu d'un `null` muet.
+ */
+export function avecLaBase(v, baseLue) {
+	if (baseLue) return v;
+	return { alerte: v.alerte === 'rouge' ? 'rouge' : 'attention', constats: [...v.constats, 'base des depots illisible'] };
+}
+
+/**
  * Le verdict de la sonde : `ok`, `attention` ou `rouge`, avec ses constats.
  * Une copie SUSPENDUE de propos delibere ne lit plus l'age ni les ancrages, qui
  * ne bougent plus par construction : un seul constat, `attention`, qui la nomme.
@@ -113,18 +131,20 @@ export function verdict(tours, maintenant = new Date(), copie = null, clesSlh = 
 	if (age > SEUIL_ROUGE_H) monter('rouge');
 	else if (age > SEUIL_ATTENTION_H) monter('attention');
 	if (age > SEUIL_ATTENTION_H) constats.push(`dernier tour ${dernier.id}, il y a ${Math.round(age)} h`);
+	const dernierAncre = tours.findLast((t) => t.ots === 'bitcoin')?.id ?? '';
 	for (const t of tours) {
-		const enAttente = t.ots !== 'bitcoin' && (maintenant - new Date(t.instant)) / HEURE > SEUIL_CALENDRIER_H;
+		const enAttente = t.ots !== 'bitcoin' && !couvertParLaChaine(t, dernierAncre) && (maintenant - new Date(t.instant)) / HEURE > SEUIL_CALENDRIER_H;
 		if (enAttente) {
 			monter('attention');
 			constats.push(`${t.id} : preuve ${t.ots ?? 'absente'} depuis plus de ${SEUIL_CALENDRIER_H} h`);
 		}
 	}
 	const horodate = tours.findLast((t) => t.fichiers?.includes(`${t.id}.racine.tsr`));
-	const ageHorodatage = horodate ? (maintenant - new Date(horodate.instant)) / HEURE : 0;
+	// Aucun horodatage du tout se mesure depuis le premier tour : un age nul taisait l'absence entiere.
+	const ageHorodatage = (maintenant - new Date((horodate ?? tours[0]).instant)) / HEURE;
 	if (ageHorodatage > SEUIL_HORODATAGE_H) {
 		monter('attention');
-		constats.push(`dernier horodatage qualifie ${horodate.id}, il y a ${Math.round(ageHorodatage)} h`);
+		constats.push(horodate ? `dernier horodatage qualifie ${horodate.id}, il y a ${Math.round(ageHorodatage)} h` : `aucun horodatage qualifie publie en ${Math.round(ageHorodatage)} h`);
 	}
 	// Le mur de Pages se mesure sur le dernier releve PLEIN : un delta est petit par construction.
 	const taille = constatDeTaille(tours.findLast((t) => !t.base) ?? dernier);
