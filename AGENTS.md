@@ -4,8 +4,11 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
 
 - `npm run gate` avant tout commit : `node --check`, construction, tests avec
   plancher de couverture (95 %). Il ne baisse jamais.
-- Deploiement : `publier.yml`, a chaque push sur `main` (Cloudflare Pages,
-  projet `empreintes`). Le journal `donnees/empreintes/` est POUSSE par
+- Deploiement : vps5 (OVH, Varsovie, D-265) tire la tete de `main` toutes les
+  2 min (`empreintes-suivre.timer`), la construit et la sert sans coupure par
+  `wrangler pages dev` (workerd) derriere Caddy et le tunnel Cloudflare `vps5` ;
+  D1 y est un SQLite local. `publier.yml` ne joue plus que la gate. Les scripts
+  de la machine vivent dans le depot `assistant` (`setup/vps/vps5/`). Le journal `donnees/empreintes/` est POUSSE par
   l'entrepot depuis le VPS (cle de deploiement de ce seul depot) : c'est la
   seule ecriture directe admise sur `main`. Ce depot public ne detient aucun
   identifiant de la Box, jamais. Tant que la poussee n'existe pas,

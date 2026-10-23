@@ -72,7 +72,8 @@ test('les dates et les nombres sont allemands, et la typographie francaise ne s 
 test("l'Impressum nomme l'anbieter en lien, l'hebergeur et le code ; aucune autre page ne nomme Florian", () => {
 	const impressum = pageMentions('de');
 	assert.match(impressum, /<h1>Impressum<\/h1>\n<h2>Anbieter<\/h2>\n<p><a href="https:\/\/florianmousseau.com">Florian Mousseau<\/a>\. Kontakt: <a href="mailto:contact@florianmousseau.com">contact@florianmousseau.com<\/a><\/p>/);
-	assert.match(impressum, /<h2>Hosting<\/h2>\n<p>Cloudflare, Inc\./);
+	assert.match(impressum, /<h2>Hosting<\/h2>\n<p>OVH SAS, 2 rue Kellermann, 59100 Roubaix, Frankreich\.<\/p>/);
+	assert.doesNotMatch(impressum, /Cloudflare|San Francisco|USA/);
 	assert.match(impressum, /Keine Cookies\./);
 	assert.match(impressum, /<h2>Quellcode<\/h2>/);
 	assert.match(impressum, /<link rel="canonical" href="https:\/\/datumszeuge.de\/impressum">\n<meta/);

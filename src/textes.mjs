@@ -373,7 +373,7 @@ export const TEXTES = {
 		sections: {
 			fr: [
 				['Éditeur', `<a href="https://florianmousseau.com">Florian Mousseau</a>, directeur de la publication. Contact${NBSP}: <a href="mailto:contact@florianmousseau.com">contact@florianmousseau.com</a>`],
-				['Hébergeur', 'Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis.'],
+				['Hébergeur', 'OVH SAS, 2 rue Kellermann, 59100 Roubaix, France.'],
 				[
 					'Données',
 					`Aucun document n’est reçu ni conservé, seulement son empreinte. Le libellé et l’adresse d’un dépôt restent dans le reçu. L’adresse IP d’un déposant n’est jamais écrite${NBSP}: seul son haché salé du jour sert au plafond, et le sel est effacé le lendemain. Une adresse électronique laissée sur une liste d’attente ne sert qu’au message d’ouverture de l’offre et s’efface sur demande. Aucun cookie.`
@@ -381,7 +381,7 @@ export const TEXTES = {
 			],
 			de: [
 				['Anbieter', '<a href="https://florianmousseau.com">Florian Mousseau</a>. Kontakt: <a href="mailto:contact@florianmousseau.com">contact@florianmousseau.com</a>'],
-				['Hosting', 'Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA.'],
+				['Hosting', 'OVH SAS, 2 rue Kellermann, 59100 Roubaix, Frankreich.'],
 				[
 					'Datenschutz',
 					'Es wird kein Dokument empfangen oder gespeichert, nur seine Prüfsumme. Name und Adresse einer Datierung bleiben im Beleg. Die IP-Adresse eines Einreichers wird nie gespeichert: nur ihr gesalzener Tageshash dient der Tagesgrenze, und das Salz wird am nächsten Tag gelöscht. Eine auf einer Warteliste hinterlassene E-Mail-Adresse dient nur der Nachricht zur Eröffnung des Angebots und wird auf Anfrage gelöscht. Keine Cookies.'
