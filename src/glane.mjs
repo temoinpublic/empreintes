@@ -521,12 +521,20 @@ export class Disjoncteur {
 		return this.reprise !== null;
 	}
 
-	/** Un appel peut-il partir ? Ouvert, un seul par pause : l'accord repousse la reprise suivante. */
+	/** Un appel pourrait-il partir ? Ne consomme pas l'essai : a demander avant les attentes. */
+	pourrait() {
+		return !this.ouvert || this.maintenant() >= this.reprise;
+	}
+
+	/**
+	 * Un appel part-il ? Ouvert, un seul par pause : l'accord repousse la reprise
+	 * suivante. A demander juste avant l'envoi, sans attente entre les deux, pour
+	 * qu'un appel engage avant l'ouverture ne parte pas apres elle.
+	 */
 	permet() {
 		if (!this.ouvert) return true;
-		const t = this.maintenant();
-		if (t < this.reprise) return false;
-		this.reprise = t + this.pauseMs;
+		if (!this.pourrait()) return false;
+		this.reprise = this.maintenant() + this.pauseMs;
 		return true;
 	}
 
