@@ -109,7 +109,25 @@ function telecharger(recu, id) {
 	URL.revokeObjectURL(lien.href);
 }
 
+// La copie des octets lus par le temoin : rendue une fois, jamais gardee en base.
+const EXTENSIONS = { 'text/html': 'html', 'application/pdf': 'pdf', 'application/json': 'json', 'application/xml': 'xml', 'text/xml': 'xml', 'text/plain': 'txt', 'image/jpeg': 'jpg', 'image/png': 'png' };
+function telechargerLaCopie(copie, sha) {
+	const type = String(copie.type ?? '').split(';')[0].trim().toLowerCase();
+	const octets = Uint8Array.from(atob(copie.base64), (c) => c.charCodeAt(0));
+	const lien = document.createElement('a');
+	lien.href = URL.createObjectURL(new Blob([octets], { type: type || 'application/octet-stream' }));
+	lien.download = `${t.copieFichier}-${sha.slice(0, 16)}.${EXTENSIONS[type] ?? 'bin'}`;
+	lien.click();
+	URL.revokeObjectURL(lien.href);
+}
+
 const ligneDuRecu = (titre, valeur) => `<div><dt>${titre}</dt><dd>${valeur}</dd></div>`;
+
+// Un acte reste en ligne a sa source ; un lien lu se garde avec sa copie ; un fichier, avec lui-meme.
+const garde = (r) => {
+	if (r.recu.acte) return t.enLigne;
+	return r.copie ? t.gardezLaCopie : t.gardez;
+};
 
 // Le meme recu que sa page `/recu/<id>` : tout est visible, l'adresse entiere, rien sous un depliant.
 function afficher(r) {
@@ -130,10 +148,11 @@ function afficher(r) {
 <dl>
 ${lignes.join('')}
 </dl>
-<p class="garde">${acte ? t.enLigne : t.gardez}</p>
-<p class="gestes"><button type="button" id="imprimer" class="principal">${t.imprimer}</button> <button type="button" id="recu">${t.telecharger}</button></p>
+<p class="garde">${garde(r)}</p>
+<p class="gestes"><button type="button" id="imprimer" class="principal">${t.imprimer}</button> <button type="button" id="recu">${t.telecharger}</button>${r.copie ? ` <button type="button" id="copie">${t.telechargerLaCopie}</button>` : ''}</p>
 </article>`;
 	$('recu').addEventListener('click', () => telecharger(r.recu, r.id));
+	if (r.copie) $('copie').addEventListener('click', () => telechargerLaCopie(r.copie, r.recu.sha256));
 	$('imprimer').addEventListener('click', () => window.print());
 	$('formulaire').reset();
 	$fichier()?.dispatchEvent(new Event('change'));

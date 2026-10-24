@@ -20,7 +20,7 @@ export async function onRequestPost({ request, env }) {
 	} catch {
 		corps = null;
 	}
-	const r = await deposer({ db: env.DEPOTS, corps, adresse: request.headers.get('cf-connecting-ip'), annuaire: annuaireDesActifs(env, request.url), autorites: autoritesDesActifs(env, request.url), flotte, client });
+	const r = await deposer({ db: env.DEPOTS, corps, adresse: request.headers.get('cf-connecting-ip'), annuaire: annuaireDesActifs(env, request.url), autorites: autoritesDesActifs(env, request.url), flotte, client, copie: true });
 	return new Response(r.corps, { status: r.statut, headers: r.entetes });
 }
 

@@ -34,7 +34,7 @@
      }
     },
     "responses": {
-     "201": { "description": "Reçu : jour, place, ligne publique, identifiant, reçu complet" },
+     "201": { "description": "Reçu : jour, place, ligne publique, identifiant, reçu complet ; pour une adresse lue, copie (type, base64) : les octets lus, jusqu'à 8 Mo, rendus une fois et jamais gardés" },
      "400": { "description": "Demande illisible, adresse ou signature refusée" },
      "409": { "description": "Adresse déjà lue aujourd'hui" },
      "422": { "description": "Lecture impossible" },
