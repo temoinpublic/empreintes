@@ -282,6 +282,20 @@ test('le disjoncteur s ouvre apres N echecs de suite, laisse un essai par pause 
 	assert.equal(d.permet(), true);
 });
 
+test('le disjoncteur se demande sans consommer l essai : pourrait avant les attentes, permet a l envoi', () => {
+	let t = 0;
+	const d = new Disjoncteur({ seuil: 1, pauseMs: 1000, maintenant: () => t });
+	assert.equal(d.pourrait(), true, 'ferme, tout peut partir');
+	d.noter(502);
+	assert.equal(d.pourrait(), false, 'ouvert, rien pendant la pause');
+	t = 1000;
+	assert.equal(d.pourrait(), true, 'la pause finie, un essai pourrait partir');
+	assert.equal(d.pourrait(), true, 'le demander ne le consomme pas : une URL interdite ne gaspille rien');
+	assert.equal(d.permet(), true, 'l essai se prend a l envoi');
+	assert.equal(d.pourrait(), false, 'un appel engage pendant la pause est retenu a l envoi');
+	assert.equal(d.permet(), false, 'une seule sonde par pause, meme en parallele');
+});
+
 test('le disjoncteur par defaut : 20 echecs, 5 min, l horloge du systeme', () => {
 	const d = new Disjoncteur();
 	for (let i = 0; i < 19; i++) d.noter(502);

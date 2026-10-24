@@ -265,9 +265,11 @@ async function deposer(code, acte) {
 	const deja = etat.pdfs[acte.url];
 	// Un refus de lecture transitoire (delai, reseau, 5xx, motif inconnu) se redemande a un autre passage, ESSAIS_MAX fois.
 	if (deja && (deja.id || deja.essais >= ESSAIS_MAX || (deja.statut === 422 && refusDeDepot(422, { erreur: deja.erreur, details: deja.detail ? [deja.detail] : [] }).definitif))) return 'connu';
-	if (options.sec || plafondAtteint || !disjoncteur.permet()) return 'a-deposer';
+	if (options.sec || plafondAtteint || !disjoncteur.pourrait()) return 'a-deposer';
 	if (!(await permis(acte.url))) return 'robots';
 	await tourDe(new URL(acte.url).hostname);
+	// L'essai se prend ici, apres les attentes : une URL interdite ne le gaspille pas, un appel engage avant l'ouverture ne part pas.
+	if (!disjoncteur.permet()) return 'a-deposer';
 	let r;
 	try {
 		r = await poster('/api/depots', { type: 'acte', url: acte.url, collectivite: code, nature: acte.nature, libelle: acte.libelle });
@@ -406,9 +408,10 @@ async function glanerCommune(code, [hote, prefixe], arret) {
 async function relire(url, e) {
 	const hote = new URL(url).hostname;
 	if (refuses.has(hote)) return 'refuse';
-	if (!disjoncteur.permet()) return 'a-relire';
+	if (!disjoncteur.pourrait()) return 'a-relire';
 	if (!(await permis(url))) return 'robots';
 	await tourDe(hote);
+	if (!disjoncteur.permet()) return 'a-relire';
 	let r;
 	try {
 		r = await poster('/api/depots', { type: 'acte', url, collectivite: e.code, nature: e.nature, ...(e.libelle ? { libelle: e.libelle } : {}) });
