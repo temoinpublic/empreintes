@@ -34,7 +34,7 @@ import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -259,11 +259,13 @@ function poster(chemin, corps) {
 }
 
 let plafondAtteint = false;
+// Un service absent (502 a la chaine) ne se martele pas : le disjoncteur suspend depots et relectures.
+const disjoncteur = new Disjoncteur({ dire: (ligne) => console.error(JSON.stringify(ligne)) });
 async function deposer(code, acte) {
 	const deja = etat.pdfs[acte.url];
 	// Un refus de lecture transitoire (delai, reseau, 5xx, motif inconnu) se redemande a un autre passage, ESSAIS_MAX fois.
 	if (deja && (deja.id || deja.essais >= ESSAIS_MAX || (deja.statut === 422 && refusDeDepot(422, { erreur: deja.erreur, details: deja.detail ? [deja.detail] : [] }).definitif))) return 'connu';
-	if (options.sec || plafondAtteint) return 'a-deposer';
+	if (options.sec || plafondAtteint || !disjoncteur.permet()) return 'a-deposer';
 	if (!(await permis(acte.url))) return 'robots';
 	await tourDe(new URL(acte.url).hostname);
 	let r;
@@ -271,11 +273,16 @@ async function deposer(code, acte) {
 		r = await poster('/api/depots', { type: 'acte', url: acte.url, collectivite: code, nature: acte.nature, libelle: acte.libelle });
 	} catch (e) {
 		// Sans reponse, rien ne s'ecrit : le meme acte se redemande au passage suivant (200 s'il a ete date entre-temps).
-		return e instanceof EcheanceDepassee ? 'echeance' : 'reseau';
+		const issue = e instanceof EcheanceDepassee ? 'echeance' : 'reseau';
+		disjoncteur.noter(issue);
+		return issue;
 	}
+	disjoncteur.noter(r.status);
 	const corps = r.corps;
 	if (r.status === 401) throw new Error('jeton refuse');
 	if (r.status === 429) plafondAtteint = true;
+	// La passerelle dit le service absent, pas l'acte en cause : rien ne s'ecrit, aucun essai ne se consomme.
+	if (estUnePasserelle(r.status)) return String(r.status);
 	// La nature et le libelle restent pour redemander la datation a la relecture ; le jour est celui de la datation.
 	if (r.status === 201 || r.status === 200) etat.pdfs[acte.url] = { jour: corps.jour ?? jour, id: corps.id, code, nature: acte.nature, ...(acte.libelle ? { libelle: acte.libelle } : {}) };
 	else if (r.status !== 409 && r.status !== 429) etat.pdfs[acte.url] = { jour, statut: r.status, essais: (deja?.essais ?? 0) + 1, erreur: corps.erreur, ...(corps.details?.[0] ? { detail: String(corps.details[0]).slice(0, 200) } : {}) };
@@ -399,14 +406,17 @@ async function glanerCommune(code, [hote, prefixe], arret) {
 async function relire(url, e) {
 	const hote = new URL(url).hostname;
 	if (refuses.has(hote)) return 'refuse';
+	if (!disjoncteur.permet()) return 'a-relire';
 	if (!(await permis(url))) return 'robots';
 	await tourDe(hote);
 	let r;
 	try {
 		r = await poster('/api/depots', { type: 'acte', url, collectivite: e.code, nature: e.nature, ...(e.libelle ? { libelle: e.libelle } : {}) });
-	} catch {
+	} catch (err) {
+		disjoncteur.noter(err instanceof EcheanceDepassee ? 'echeance' : 'reseau');
 		return 'reseau';
 	}
+	disjoncteur.noter(r.status);
 	const corps = r.corps;
 	if (r.status === 401) throw new Error('jeton refuse');
 	const issue = issueDeRelecture(r.status, corps);
