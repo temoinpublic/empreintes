@@ -493,3 +493,56 @@ export function ecrireAtomique(fs, chemin, texte) {
 	fs.writeFileSync(voisin, texte);
 	fs.renameSync(voisin, chemin);
 }
+
+/**
+ * Une reponse de la passerelle (502, 503, 504) dit que le service est absent, pas
+ * que l'acte est en cause : elle ne s'inscrit pas a l'etat de l'acte et ne
+ * consomme aucun essai, comme une absence de reponse.
+ */
+export const estUnePasserelle = (statut) => statut === 502 || statut === 503 || statut === 504;
+
+/** Un echec du service : un 5xx, ou aucune reponse (reseau, echeance). */
+const echecDuService = (statut) => typeof statut !== 'number' || statut >= 500;
+
+/**
+ * Le disjoncteur des appels au service : apres `seuil` echecs de suite, il
+ * s'ouvre et refuse tout appel pendant `pauseMs`, puis laisse passer un seul
+ * essai par pause ; la premiere reponse sous 500 le referme. `dire` recoit
+ * l'ouverture et la fermeture ; `maintenant` est l'horloge.
+ */
+export class Disjoncteur {
+	constructor({ seuil = 20, pauseMs = 5 * 60000, maintenant = Date.now, dire = () => {} } = {}) {
+		Object.assign(this, { seuil, pauseMs, maintenant, dire });
+		this.echecs = 0;
+		this.reprise = null;
+	}
+
+	get ouvert() {
+		return this.reprise !== null;
+	}
+
+	/** Un appel peut-il partir ? Ouvert, un seul par pause : l'accord repousse la reprise suivante. */
+	permet() {
+		if (!this.ouvert) return true;
+		const t = this.maintenant();
+		if (t < this.reprise) return false;
+		this.reprise = t + this.pauseMs;
+		return true;
+	}
+
+	/** Note l'issue d'un appel : un statut HTTP, ou un mot (`reseau`, `echeance`) sans reponse. */
+	noter(statut) {
+		if (!echecDuService(statut)) {
+			this.echecs = 0;
+			if (this.ouvert) {
+				this.reprise = null;
+				this.dire({ disjoncteur: 'ferme', statut });
+			}
+			return;
+		}
+		this.echecs++;
+		if (this.ouvert || this.echecs < this.seuil) return;
+		this.reprise = this.maintenant() + this.pauseMs;
+		this.dire({ disjoncteur: 'ouvert', echecs: this.echecs, statut, pauseMs: this.pauseMs });
+	}
+}

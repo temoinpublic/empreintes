@@ -243,3 +243,51 @@ test('une page coupee a la borne d octets ne compte pas comme lue en entier', ()
 	assert.equal(statutLu({ statut: 200, tronque: true }), 'tronque');
 	assert.equal(statutLu({ statut: 404 }), 404);
 });
+
+import { Disjoncteur, estUnePasserelle } from '../src/glane.mjs';
+
+test('une reponse de la passerelle ne met pas l acte en cause, un 500 si', () => {
+	for (const s of [502, 503, 504]) assert.equal(estUnePasserelle(s), true);
+	for (const s of [500, 501, 422, 200, 'reseau']) assert.equal(estUnePasserelle(s), false);
+});
+
+test('le disjoncteur s ouvre apres N echecs de suite, laisse un essai par pause et se referme sur une reponse', () => {
+	let t = 0;
+	const dits = [];
+	const d = new Disjoncteur({ seuil: 3, pauseMs: 1000, maintenant: () => t, dire: (l) => dits.push(l) });
+	d.noter(502);
+	d.noter('reseau');
+	d.noter(404);
+	assert.equal(d.echecs, 0, 'une reponse sous 500 remet le compte a zero');
+	d.noter(500);
+	d.noter(503);
+	assert.equal(d.permet(), true);
+	d.noter('echeance');
+	assert.equal(d.ouvert, true);
+	assert.deepEqual(dits, [{ disjoncteur: 'ouvert', echecs: 3, statut: 'echeance', pauseMs: 1000 }]);
+	assert.equal(d.permet(), false, 'aucun appel pendant la pause');
+	d.noter(502);
+	assert.equal(dits.length, 1, 'un echec en vol ne redit pas l ouverture');
+	t = 1000;
+	assert.equal(d.permet(), true, 'un essai a la fin de la pause');
+	assert.equal(d.permet(), false, 'un seul');
+	d.noter(504);
+	t = 1999;
+	assert.equal(d.permet(), false, 'l essai rate, nouvelle pause');
+	t = 2000;
+	assert.equal(d.permet(), true);
+	d.noter(422);
+	assert.equal(d.ouvert, false);
+	assert.deepEqual(dits.at(-1), { disjoncteur: 'ferme', statut: 422 });
+	assert.equal(d.permet(), true);
+});
+
+test('le disjoncteur par defaut : 20 echecs, 5 min, l horloge du systeme', () => {
+	const d = new Disjoncteur();
+	for (let i = 0; i < 19; i++) d.noter(502);
+	assert.equal(d.ouvert, false);
+	d.noter(502);
+	assert.equal(d.ouvert, true);
+	assert.ok(d.reprise - Date.now() > 4 * 60000);
+	assert.equal(d.permet(), false);
+});
