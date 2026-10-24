@@ -1,0 +1,17 @@
+{
+ "jour": "2026-10-24",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/08/Statuts-%E2%80%93-Coeur-de-Ville.pdf",
+   "date": "2026-10-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "6dfc4854708b97ff2c8d6d0e9b373de3f5b88d7755205c7d00f92d7b9afb12dd"
+   },
+   "apres": null
+  }
+ ]
+}
