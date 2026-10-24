@@ -62,8 +62,14 @@ const TEXTES = {
 			fr: `Gardez ce reçu avec le document${NBSP}: ensemble, ils prouvent qu’il existait ce jour-là, sans modification.`,
 			de: 'Bewahren Sie diesen Beleg zusammen mit dem Dokument auf: Gemeinsam beweisen sie, dass es an diesem Tag unverändert existiert hat.'
 		},
+		gardezLaCopie: {
+			fr: `Téléchargez la copie lue et gardez-la avec ce reçu${NBSP}: ensemble, ils prouvent que ce fichier était en ligne à cette adresse à cet instant, sans modification.`,
+			de: 'Laden Sie die gelesene Kopie herunter und bewahren Sie sie mit diesem Beleg auf: Gemeinsam beweisen sie, dass diese Datei in diesem Moment unverändert unter dieser Adresse online war.'
+		},
 		imprimer: { fr: 'Imprimer le reçu', de: 'Beleg drucken' },
 		telecharger: { fr: 'Télécharger le reçu', de: 'Beleg herunterladen' },
+		telechargerLaCopie: { fr: 'Télécharger la copie lue', de: 'Gelesene Kopie herunterladen' },
+		copieFichier: { fr: 'copie', de: 'kopie' },
 		nom: { fr: 'Nom', de: 'Name' },
 		empreinte: { fr: 'Empreinte', de: 'Prüfsumme' },
 		ligne: { fr: 'Entrée publique', de: 'Öffentlicher Eintrag' },

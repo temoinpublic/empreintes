@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { baseDeTest } from './d1.mjs';
-import { deposer, fichierDuJour, inserer, resoudreParDoH, temoigner } from '../src/service.mjs';
+import { COPIE_MAX, deposer, fichierDuJour, inserer, resoudreParDoH, temoigner } from '../src/service.mjs';
 import { idDuRecu, lireFichierDuJour } from '../src/depot.mjs';
 import { onRequestPost, onRequestOptions } from '../functions/api/depots.js';
 import { onRequestGet } from '../functions/depots/[fichier].js';
@@ -79,6 +79,40 @@ test('le temoin depose l empreinte des octets lus, une seule lecture par url et 
 	const echec = await deposer({ db, corps: { url: 'https://y.fr/' }, adresse: 'a', maintenant: midi, temoin: async () => { throw new Error('la source a repondu 404'); } });
 	assert.equal(echec.statut, 422);
 	assert.match(corpsDe(echec).details[0], /404/);
+});
+
+test('le deposant d un lien recoit la copie des octets lus, que le service ne garde pas', async () => {
+	const db = baseDeTest();
+	const page = new TextEncoder().encode('<html><body>Avis du 12 octobre</body></html>');
+	const options = [];
+	const temoin = async (admise, o) => {
+		options.push(o);
+		return { url: admise.url, taille: page.byteLength, type: 'text/html; charset=utf-8', lu: midi.toISOString(), sha256: sha(page), ...(o.garder ? { octets: page } : {}) };
+	};
+	const r = corpsDe(await deposer({ db, corps: { url: 'https://x.fr/avis' }, adresse: 'a', maintenant: midi, temoin, copie: true }));
+	assert.equal(options[0].garder, true);
+	assert.deepEqual(r.copie, { type: 'text/html; charset=utf-8', base64: Buffer.from(page).toString('base64') });
+	assert.equal(sha(Buffer.from(r.copie.base64, 'base64')), r.recu.sha256, 'la copie se rapproche de l empreinte du recu');
+	assert.equal(r.recu.temoin.octets, undefined);
+	const base = JSON.stringify(['depot', 'lecture', 'compte'].flatMap((t) => db.sqlite.prepare(`SELECT * FROM ${t}`).all()));
+	assert.ok(!base.includes('Avis du 12') && !base.includes(r.copie.base64), 'la copie n est jamais ecrite en base');
+	const sans = corpsDe(await deposer({ db, corps: { url: 'https://x.fr/autre' }, adresse: 'a', maintenant: midi, temoin }));
+	assert.equal(options[1].garder, false);
+	assert.equal(sans.copie, undefined, 'sans la demande de la Function, pas de copie');
+});
+
+test('pas de copie pour la glane, ni au-dela de sa borne', async () => {
+	const db = baseDeTest();
+	const options = [];
+	const grand = new Uint8Array(COPIE_MAX + 1);
+	const temoin = async (admise, o) => (options.push(o), { url: admise.url, taille: grand.byteLength, type: 'application/pdf', lu: midi.toISOString(), sha256: sha(grand), octets: grand });
+	const r = corpsDe(await deposer({ db, corps: { url: 'https://x.fr/gros.pdf' }, adresse: 'a', maintenant: midi, temoin, copie: true }));
+	assert.equal(r.copie, undefined);
+	const annuaire = async () => [['cravans.fr', '']];
+	const acte = { type: 'acte', url: 'https://www.cravans.fr/actes/deliberation-1.pdf', collectivite: '17133', nature: 'deliberation', libelle: 'Deliberation 1' };
+	const g = corpsDe(await deposer({ db, corps: acte, adresse: 'b', maintenant: midi, temoin, annuaire, flotte: true, copie: true }));
+	assert.equal(options[1].garder, false);
+	assert.equal(g.copie, undefined);
 });
 
 const reponseDe = (statut, corps = '', entetes = {}) => new Response(statut >= 300 && statut < 400 ? null : corps, { status: statut, headers: entetes });

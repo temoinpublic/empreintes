@@ -196,7 +196,7 @@ async function lireAutorites(autorites) {
  * `client` : un client des offres (D-195, `src/client.mjs`), sous son propre
  * plafond, hors du plafond public et du bilan ; sa reponse porte `portee`.
  */
-export async function deposer({ db, corps, adresse, maintenant = new Date(), temoin = temoigner, annuaire = async () => null, autorites = async () => null, flotte = false, client = null }) {
+export async function deposer({ db, corps, adresse, maintenant = new Date(), temoin = temoigner, annuaire = async () => null, autorites = async () => null, flotte = false, client = null, copie = false }) {
 	const { demande, erreurs } = lireDemande(corps);
 	if (erreurs) return refus(400, 'demande illisible', erreurs);
 	if (demande.produit && !flotte) return refus(403, 'jeton de la flotte requis', ['un recu de produit se depose sous le jeton de la flotte']);
@@ -228,7 +228,7 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 		const nouvelle = await faire(db, 'INSERT INTO lecture (cle, jour) VALUES (?, ?) ON CONFLICT (cle) DO NOTHING', cleLue, jour);
 		if (nouvelle.meta.changes === 0) return refus(409, 'url deja lue aujourd hui', [], { 'retry-after': String(secondesAvantDemain(instant)) });
 		try {
-			lu = await temoin(admise, { juger: true });
+			lu = await temoin(admise, { juger: true, garder: copie && !flotte });
 		} catch (erreur) {
 			// Une source qui ne sert plus un acte deja date pour sa commune : la relecture le note, la reponse reste un refus.
 			if (glane && SOURCE_DISPARUE.includes(erreur?.statut))
@@ -260,7 +260,25 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	// Le recu d'un produit (D-167) : sa page nomme le produit et mene au recu que celui-ci sert.
 	if (demande.produit) suites.push(['INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url]);
 	const place = await inserer(db, { jour, empreinte, recu: id }, suites);
-	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
+	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...copieDe(lu), ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
+}
+
+/** Au-dela, la reponse ne porte pas la copie : le deposant lit le fichier a sa source. */
+export const COPIE_MAX = 8 * 1024 * 1024;
+
+/**
+ * La copie des octets que le temoin a lus, rendue au deposant et jamais gardee :
+ * sans elle, une page qui change ou disparait ne se rapproche plus de son empreinte.
+ */
+function copieDe(lu) {
+	if (!lu?.octets || lu.octets.byteLength > COPIE_MAX) return {};
+	return { copie: { type: lu.type ?? null, base64: enBase64(lu.octets) } };
+}
+
+function enBase64(octets) {
+	let binaire = '';
+	for (let i = 0; i < octets.byteLength; i += 0x8000) binaire += String.fromCharCode(...octets.subarray(i, i + 0x8000));
+	return btoa(binaire);
 }
 
 /** La cle de compte d'un produit, de la glane ou d'un client ; null pour un deposant sans jeton, compte par son adresse. */

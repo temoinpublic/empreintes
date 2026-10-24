@@ -350,7 +350,7 @@ const formulaireDuLien = (e) => `<form id="formulaire" class="carte">
 <input type="text" id="libelle" maxlength="200" autocomplete="off">
 </details>
 <button type="submit" class="principal large-bouton">Dater cette page</button>
-<p class="recoit">Vous recevez un reçu à imprimer ou à télécharger. Il atteste que cette page était en ligne à cette adresse à cet instant.</p>
+<p class="recoit">Vous recevez un reçu et la copie de la page lue, à garder ensemble. Ils attestent que cette page était en ligne à cette adresse à cet instant.</p>
 </form>
 <div id="resultat" aria-live="polite"></div>`;
 
