@@ -242,7 +242,8 @@ test('le plan des communes porte l index, les departements et chaque commune dat
 	assert.match(plan, /<loc>https:\/\/temoinpublic.fr\/collectivite\/departement\/37<\/loc><\/url>/);
 	const r = await reponsePlanDesCommunes({ db, commune });
 	assert.equal(r.entetes['content-type'], 'application/xml; charset=utf-8');
-	assert.match(robots(), /Sitemap: https:\/\/temoinpublic.fr\/sitemap-communes.xml\nSitemap: https:\/\/temoinpublic.fr\/sitemap-actes.xml\n$/);
+	assert.match(robots(), /Sitemap: https:\/\/temoinpublic.fr\/sitemap-communes.xml\n$/);
+	assert.doesNotMatch(robots(), /sitemap-actes/, 'le plan des actes ne se declare pas aux robots (D-174)');
 	assert.doesNotMatch(robots('de'), /communes/);
 	assert.equal(decider('https://datumszeuge.de/collectivite').action, 'redirection');
 	assert.equal(decider('https://datumszeuge.de/sitemap-communes.xml').action, 'redirection');

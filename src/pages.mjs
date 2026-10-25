@@ -43,13 +43,16 @@ export function datesDuPlan(tours, entrees = [], langue = 'fr') {
 	return dates;
 }
 
-/** Les consignes aux robots d'une edition : tout, sauf l'index des empreintes, et ses plans (les communes et les actes, en francais). */
+/**
+ * Les consignes aux robots d'une edition : tout, sauf l'index des empreintes, et son plan des communes (en francais).
+ * Le plan des actes n'y figure pas : la famille `/actes/` nait `noindex` (D-174, `docs/referencement.md`).
+ */
 export const robots = (langue = 'fr') => `User-agent: *
 Allow: /
 Disallow: /index/
 
 Sitemap: ${EDITIONS[langue].adresse}/sitemap.xml
-${EDITIONS[langue].actes.communes ? `Sitemap: ${EDITIONS[langue].adresse}/sitemap-communes.xml\nSitemap: ${EDITIONS[langue].adresse}/sitemap-actes.xml\n` : ''}`;
+${EDITIONS[langue].actes.communes ? `Sitemap: ${EDITIONS[langue].adresse}/sitemap-communes.xml\n` : ''}`;
 
 /** Le service decrit pour les moteurs : gratuit, sans compte, dans la langue de l'edition. */
 export const donneesStructurees = (langue = 'fr') => {
@@ -620,7 +623,8 @@ function ligneDeLaRelecture(relecture) {
  * La page d'un acte a son adresse perenne (D-205) : la preuve, la date lue, la
  * source et son etat au dernier passage de la glane, les versions vues a la
  * meme source. `acte.objet` et `acte.url` arrivent deja gardes (null quand ils
- * pourraient nommer une personne).
+ * pourraient nommer une personne). La page nait `noindex` (D-174) : l'adresse
+ * se cite, elle ne se cherche pas.
  */
 export function pageAdresse({ acte, commune = null, versions = [], passage = null, relecture = null, date = null }) {
 	const e = EDITIONS.fr;
@@ -634,6 +638,7 @@ export function pageAdresse({ acte, commune = null, versions = [], passage = nul
 		titre: `${nature} en ligne le ${jour}, ${nom}`,
 		description: `${nature} de ${nom}, en ligne le ${jour}${NBSP}: empreinte SHA-256, entrée du registre public, adresse de la source.`,
 		chemin,
+		indexer: false,
 		structure: structureDeLActe(acte, adresse, commune),
 		script: '<script type="module" src="/recu.js"></script>\n',
 		corps: `<h1>${nature}, ${nom}</h1>

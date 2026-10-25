@@ -175,10 +175,15 @@ function sourceMontrable(acte) {
 
 const garde = (acte) => ({ ...acte, objet: objetMontrable(acte), url: sourceMontrable(acte) });
 
+/** L'en-tete qui tient la famille `/actes/` hors de l'index, HTML comme JSON (D-174). */
+const SANS_INDEX = { 'x-robots-tag': 'noindex' };
+
 /**
  * La reponse a `/actes/<code>/<jour>/<nature>-<hex>` (D-205) : la page de l'acte
  * a sa forme canonique, 301 vers elle depuis un prefixe ou une ecriture voisine,
- * la liste des adresses pour un prefixe ambigu, 404 sinon.
+ * la liste des adresses pour un prefixe ambigu, 404 sinon. Tout ce qui se sert
+ * porte `x-robots-tag: noindex` (D-174) : l'adresse perenne se cite, la
+ * recherche ne la porte pas.
  */
 export async function reponseAdresse({ db, segments, commune, json = false }) {
 	const lu = lireAdresse(segments);
@@ -186,14 +191,14 @@ export async function reponseAdresse({ db, segments, commune, json = false }) {
 	if (r.statut === 301) return renvoi(r.vers);
 	const forme = json ? FORME_JSON : FORME_HTML;
 	if (r.statut === 404) return forme.introuvable();
-	if (r.statut === 300) return { statut: 300, corps: forme.liste(r.actes), entetes: { ...forme.entetes, 'cache-control': 'public, max-age=60' } };
+	if (r.statut === 300) return { statut: 300, corps: forme.liste(r.actes), entetes: { ...forme.entetes, ...SANS_INDEX, 'cache-control': 'public, max-age=60' } };
 	const versions = await versionsDeLaSource({ db, collectivite: r.acte.collectivite, url: r.acte.url });
 	const passage = await passageDeLActe({ db, recu: r.acte.recu });
 	const acte = garde(r.acte);
 	const corps = json
 		? enJson(ficheDeLActe({ adresse: `${EDITIONS.fr.adresse}${cheminDeLActe(acte)}`, acte, versions, passage, date: dateLue(acte), cheminDe: cheminDeLActe }))
 		: pageAdresse({ acte, commune: await commune(r.acte.collectivite), versions, passage, relecture: await relectureDeLActe({ db, recu: r.acte.recu }), date: dateLue(acte) });
-	return { statut: 200, corps, entetes: { ...forme.entetes, 'cache-control': 'public, max-age=300' } };
+	return { statut: 200, corps, entetes: { ...forme.entetes, ...SANS_INDEX, 'cache-control': 'public, max-age=300' } };
 }
 
 const enJson = (valeur) => `${JSON.stringify(valeur, null, 1)}\n`;

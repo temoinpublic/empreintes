@@ -21,3 +21,14 @@ Un changement en vol par famille de pages ; chacun porte sa date de jugement.
 - Mesure de depart : 0 impression et 0 clic sur tout le domaine (Search Console, 11 au 13/10/2026, releve du 16/10) ; `/health` `attente` a 0 pour chaque offre au 16/10.
 - Critere de jugement, chiffre et date : au 2026-12-15, au moins deux des six pages ont des impressions dans Search Console, et au moins une adresse attend sur une liste (`/health`). Sinon : la phrase de l'accueil cede la place a un lien depuis la page du geste voisin (`/besoin/prouver-une-page-web` vers `/date-de-publication`, `/acte` vers `/publicite-des-actes`).
 - Comment il se leve (le fichier) : `OFFRES_DE_L_ACCUEIL` dans `src/offre.mjs` (vide, la phrase disparait de l'accueil) ; les pages restent au plan.
+
+| Famille | Changement | Mis en ligne | Jugement | Mesure |
+| --- | --- | --- | --- | --- |
+| `/actes/<INSEE>/<jour>/<nature>-<hex>` (adresses perennes des actes, D-205) | D-174 : la masse nait `noindex` (balise et en-tete `x-robots-tag` sur la page, la fiche JSON et la liste d'un prefixe ambigu), `sitemap-actes.xml` reste servi mais sort de `robots.txt` ; l'adresse se cite, elle ne se cherche pas | 2026-10-25 | **2026-12-15** | Search Console : les familles ecrites de temoinpublic (`/collectivite/`, `/besoin/`, offres) passent J+45 (le 2026-11-25) sans chute d'impressions ; `/actes/` a 0 impression, par construction |
+
+## Pari 2026-10-25 - la masse des actes hors de l'index a la naissance
+
+- Ce qui change : 46 490 pages `/actes/` etaient indexables a J+14 sur un domaine ne le 2026-10-11 (aucun `noindex`, aucun `x-robots-tag`, plan declare dans `robots.txt`). C'est la configuration qui a retire aucadastre (34 933 pages), lesbancs (124 786), edifiable et auregistre de l'index entre J+14 et J+29 (1 a 2 % du pic a J+21, sans remontee, D-174), et pas celle des survivants (murparmur 3 513, everytownland 2 124). La regle du 2026-10-17 (« la masse se garde `noindex` jusqu'a ce que les pages ecrites aient passe leur reevaluation ») s'applique ici ; la famille `/collectivite/` (1 591 pages) garde son pari tel quel.
+- Mesure de depart : 0 impression sur toute adresse `/actes/` du 11 au 16/10 (D-205, releve du 17/10) ; 29 impressions sur le domaine le 21/10, toutes hors `/actes/`.
+- Critere de jugement, chiffre et date : au 2026-12-15, si les familles ecrites ont passe le 2026-11-25 (J+45) sans tomber sous la moitie de leur pic de 28 jours, la famille `/actes/` rouvre a l'index par lots (un departement, puis jugement a J+28). Sinon elle reste `noindex`, et D-205 vit de la citation (llms.txt, schema, API), jamais de la recherche.
+- Comment il se leve (le fichier) : `indexer: false` dans `pageAdresse` et `SANS_INDEX` dans `reponseAdresse` (`src/collectivite.mjs`), puis la ligne `Sitemap: .../sitemap-actes.xml` dans `robots` (`src/pages.mjs`).
