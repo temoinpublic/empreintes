@@ -78,7 +78,8 @@ test('la forme canonique sert la preuve, la source et les versions vues a la mem
 	assert.match(r.corps, /<h2>2 versions à cette source<\/h2>/);
 	assert.match(r.corps, /<td>Cette page<\/td>/);
 	assert.match(r.corps, /<a href="\/actes\/17133\/2026-10-12\/deliberation-abcdef012366">/);
-	assert.doesNotMatch(r.corps, /noindex/);
+	assert.match(r.corps, /<meta name="robots" content="noindex">/, 'la famille /actes/ nait noindex (D-174)');
+	assert.equal(r.entetes['x-robots-tag'], 'noindex');
 	const autre = await repondre(db, '/actes/17133/2026-10-11/arrete-abcdef01ff55');
 	assert.equal(autre.statut, 200);
 	assert.match(autre.corps, /<h2>1 version à cette source<\/h2>/);
@@ -103,6 +104,7 @@ test("un prefixe ambigu rend la liste des adresses, l'inconnu rend 404", async (
 	assert.match(r.corps, /<li><a href="\/actes\/17133\/2026-10-11\/deliberation-abcdef012344">/);
 	assert.match(r.corps, /<li><a href="\/actes\/17133\/2026-10-11\/arrete-abcdef01ff55">/);
 	assert.match(r.corps, /noindex/);
+	assert.equal(r.entetes['x-robots-tag'], 'noindex');
 	for (const chemin of ['/actes/17133/2026-10-11/abcdef0', '/actes/17133/2026-10-11/deadbeef00', '/actes/17133/2026-10-13/abcdef0123', '/actes/17134/2026-10-11/abcdef0123', '/actes/17133/2026-10-11/avis-abcdef0123', '/actes/17133'])
 		assert.equal((await repondre(db, chemin)).statut, 404, chemin);
 	assert.match(pageAdresses([]), /<h1>0 actes à cette adresse<\/h1>/);
