@@ -69,6 +69,13 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   des commits (`src/deploiement.mjs`, sans jeton) : un commit de `main` non servi
   20 min apres son arrivee passe `attention` (le suivi de vps5 est arrete) ; une
   tete illisible passe `attention` et sa raison va dans `echecs_des_sondes`.
+  Les parcours du visiteur (`src/parcours.mjs`, D-128) sont joues et juges sur
+  leur resultat : le verificateur (une empreinte du dernier tour cherchee dans
+  l'index, sa place relue jusqu'a la racine, la signature du journal) et le
+  depot (le dernier recu retrouve par son identifiant et par son empreinte,
+  le journal ne couvre pas plus de lignes que la base). Un parcours casse est
+  `rouge` avec sa raison ; une erreur en chemin, `attention`, la raison dans
+  `echecs_des_sondes` ; le verificateur reussi se garde 5 min sur le meme tour.
 - Le depot d'une empreinte par un tiers (D-163) : le FORMAT de la ligne
   publique `/depots/<jour>.jsonl` et du recu est ecrit en tete de
   `src/depot.mjs`, et l'entrepot le relit (feuille `depots:<n>`) : il ne
