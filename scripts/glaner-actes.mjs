@@ -14,7 +14,8 @@
 // actes deja dates y sont encore lies et lesquels ont disparu (D-205).
 // Elle releve aussi, sans les deposer, les documents budgetaires (D-185) des pages
 // d'actes et des pages « budget / finances » : genre, exercice, budget, couche
-// texte, dans `glane-<jour>-budgets.jsonl` ; chaque document n'est lu qu'une fois.
+// texte, page de garde (SIRET, exercice, libelle du budget), dans `glane-<jour>-budgets.jsonl` ;
+// chaque document n'est lu qu'une fois.
 // Avant les communes, elle redemande la datation des actes deja dates les plus
 // anciennement lus (D-193, `--relectures` par passage, tous les `--relecture-jours`) :
 // le temoin du service relit la source, note les memes octets ou une adresse en
@@ -34,7 +35,7 @@ import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -229,7 +230,15 @@ async function recevoirDocument(url, hote, signal) {
 	} catch (e) {
 		return { statut: String(e.cause?.code ?? e.name ?? 'reseau') };
 	}
-	return { statut: r.status, octets: taille, ...coucheTexte(Buffer.concat(morceaux), { tronque, inflate: inflateSync }) };
+	const lus = Buffer.concat(morceaux);
+	const couche = coucheTexte(lus, { tronque, inflate: inflateSync });
+	// La page de garde ne se cherche que dans un PDF qui porte du texte (D-185).
+	const garde = couche.couche === 'oui' ? identiteDuPdf(lus, { inflate: inflateSync }) : {};
+	return { statut: r.status, octets: taille, ...couche, ...sansLesNuls(garde) };
+}
+
+function sansLesNuls(objet) {
+	return Object.fromEntries(Object.entries(objet).filter(([, v]) => v !== null));
 }
 
 /** Le releve d'un document budgetaire : lu une fois, puis rendu tel que l'etat le garde. */
@@ -240,7 +249,7 @@ async function releverBudget(code, doc, nouveaux) {
 	if (!(await permis(doc.url))) return { ...doc, code, issue: 'robots' };
 	nouveaux.n++;
 	const lu = await aSonTour(() => lireDocument(doc.url));
-	etat.budgets[doc.url] = { jour, code, statut: lu.statut, format: lu.format, couche: lu.couche, octets: lu.octets };
+	etat.budgets[doc.url] = { jour, code, statut: lu.statut, format: lu.format, couche: lu.couche, octets: lu.octets, siret: lu.siret, exerciceImprime: lu.exerciceImprime, budgetImprime: lu.budgetImprime };
 	return { ...doc, ...etat.budgets[doc.url], issue: 'lu' };
 }
 
