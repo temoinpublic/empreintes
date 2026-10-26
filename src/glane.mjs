@@ -352,6 +352,25 @@ const FLUX_CLAIR_MAX = 4 * 1024 * 1024;
 const Z_SYNC_FLUSH = 2;
 const TEXTE_PDF = /\/Font\b|\/ToUnicode\b|\bBT\b[\s\S]{0,400}?\bT[jJ]\b/;
 
+/** Les flux d'un PDF en clair : tels quels sans filtre, decompresses un a un pour FlateDecode (debut seulement, borne en clair) ; un flux illisible ou d'un autre filtre est saute. */
+function* fluxClairs(brut, inflate) {
+	for (const m of brut.matchAll(/stream\r?\n/g)) {
+		const debut = m.index + m[0].length;
+		const fin = brut.indexOf('endstream', debut);
+		if (fin < 0) return;
+		const objet = brut.slice(Math.max(0, m.index - 300), m.index);
+		if (!OBJET_FLATE.test(objet)) {
+			if (!/\/Filter\b/.test(objet)) yield brut.slice(debut, fin);
+			continue;
+		}
+		try {
+			yield inflate(Buffer.from(brut.slice(debut, Math.min(fin, debut + FLUX_LU_OCTETS)), 'latin1'), { finishFlush: Z_SYNC_FLUSH, maxOutputLength: FLUX_CLAIR_MAX }).toString('latin1');
+		} catch {
+			continue;
+		}
+	}
+}
+
 /**
  * Le format d'un fichier lu et, pour un PDF, s'il porte une couche texte : une
  * police ou un operateur de texte, dans les octets ou dans un flux decompresse
@@ -362,20 +381,83 @@ export function coucheTexte(octets, { tronque = false, inflate } = {}) {
 	const brut = Buffer.from(octets).toString('latin1');
 	if (!brut.startsWith('%PDF')) return { format: formatDe(brut), couche: 'non' };
 	if (TEXTE_PDF.test(brut)) return { format: 'pdf', couche: 'oui' };
-	for (const m of brut.matchAll(/stream\r?\n/g)) {
-		const debut = m.index + m[0].length;
-		const fin = brut.indexOf('endstream', debut);
-		if (fin < 0) break;
-		if (!OBJET_FLATE.test(brut.slice(Math.max(0, m.index - 300), m.index))) continue;
-		let clair;
-		try {
-			clair = inflate(Buffer.from(brut.slice(debut, Math.min(fin, debut + FLUX_LU_OCTETS)), 'latin1'), { finishFlush: Z_SYNC_FLUSH, maxOutputLength: FLUX_CLAIR_MAX }).toString('latin1');
-		} catch {
-			continue;
-		}
+	for (const clair of fluxClairs(brut, inflate)) {
 		if (TEXTE_PDF.test(clair)) return { format: 'pdf', couche: 'oui' };
 	}
 	return { format: 'pdf', couche: tronque ? 'inconnue' : 'non' };
+}
+
+// La page de garde d'une maquette M14, M57 ou M4 (D-185) : les memes lignes que lit le corpus.
+const SIRET_IMPRIME = /SIRET\s*:?\s*(\d[\d ]{12,20}\d)/;
+const ANNEE_IMPRIMEE = /^\s*ANNEE\s+(20\d\d)\s*$/m;
+const LIBELLE_IMPRIME = /^\s*BUDGET\s*:\s*(.+?)\s*(?:\(\d\))?\s*$/m;
+// Les chaines des operateurs de texte, et les operateurs qui changent de ligne.
+const OPERATEURS_TEXTE = /\((?:[^()\\]|\\.)*\)|<[0-9A-Fa-f\s]*>|\bT(?:[dDm]\b|\*)|\bET\b|'|"/g;
+const ECHAPPEMENTS = { n: '\n', r: '\r', t: '\t', b: '\b', f: '\f' };
+// Les pages d'une maquette ne sont pas dans l'ordre du fichier : la garde se cherche jusqu'ici.
+const TEXTE_LU_MAX = 24 * 1024 * 1024;
+
+function chaineLitterale(s) {
+	return s.replace(/\\([0-7]{1,3}|.)/g, (_, e) => (/^[0-7]+$/.test(e) ? String.fromCharCode(parseInt(e, 8)) : (ECHAPPEMENTS[e] ?? e)));
+}
+
+function chaineHexadecimale(h) {
+	return h.replace(/../g, (o) => String.fromCharCode(parseInt(o, 16)));
+}
+
+/** Le texte imprime par un flux de contenu : une ligne par bloc positionne, les chaines concatenees ; `'` et `"` montrent leur chaine sur la ligne SUIVANTE. */
+function texteDuFlux(clair) {
+	const lignes = [];
+	let ligne = '';
+	let derniere = '';
+	for (const [t] of clair.matchAll(OPERATEURS_TEXTE)) {
+		if (t.startsWith('(') || t.startsWith('<')) {
+			derniere = t.startsWith('(') ? chaineLitterale(t.slice(1, -1)) : chaineHexadecimale(t.slice(1, -1).replace(/\s/g, ''));
+			ligne += derniere;
+		} else if (t === "'" || t === '"') {
+			lignes.push(ligne.slice(0, ligne.length - derniere.length));
+			ligne = derniere;
+		} else {
+			lignes.push(ligne);
+			ligne = '';
+		}
+	}
+	lignes.push(ligne);
+	return lignes.join('\n');
+}
+
+/**
+ * Ce que la page de garde d'une maquette imprime (D-185) : le SIRET du budget
+ * (l'identifiant de sa balance DGFiP, propre a chaque budget principal ou
+ * annexe), le libelle de la ligne « BUDGET : » et l'exercice de la ligne
+ * « ANNEE N », qui date le compte mieux que son lien ou sa publication. Null
+ * pour ce que le texte ne porte pas.
+ */
+export function identiteImprimee(texte) {
+	const siret = texte.match(SIRET_IMPRIME)?.[1].replace(/ /g, '') ?? null;
+	return { siret: siret?.length === 14 ? siret : null, budgetImprime: texte.match(LIBELLE_IMPRIME)?.[1].trim() ?? null, exerciceImprime: texte.match(ANNEE_IMPRIMEE)?.[1] ?? null };
+}
+
+/**
+ * L'identite imprimee d'un PDF lu : la page de garde est le flux qui porte le
+ * SIRET ET la ligne « ANNEE N » ensemble (les annexes d'un compte impriment le
+ * SIRET d'autres budgets, une ligne « ANNEE N » seule date un emprunt, et la
+ * garde d'un CFU n'a pas de ligne « BUDGET : »). Les pages ne sont pas dans
+ * l'ordre du fichier : les flux se lisent jusqu'a la garde, ou `texteMax`
+ * octets en clair. Tout null sans garde.
+ */
+export function identiteDuPdf(octets, { inflate, texteMax = TEXTE_LU_MAX }) {
+	const brut = Buffer.from(octets).toString('latin1');
+	let lus = 0;
+	for (const clair of fluxClairs(brut, inflate)) {
+		lus += clair.length;
+		if (/\bBT\b/.test(clair)) {
+			const lue = identiteImprimee(texteDuFlux(clair));
+			if (lue.siret && lue.exerciceImprime) return lue;
+		}
+		if (lus > texteMax) break;
+	}
+	return identiteImprimee('');
 }
 
 function formatDe(debut) {

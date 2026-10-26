@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { deflateSync, inflateSync } from 'node:zlib';
-import { acteDuLien, coucheTexte, documentBudgetaireDe, estUnTelechargement, estUnePageBudget, pagesBudget, telechargementsDe } from '../src/glane.mjs';
+import { acteDuLien, coucheTexte, documentBudgetaireDe, estUnTelechargement, estUnePageBudget, identiteDuPdf, identiteImprimee, pagesBudget, telechargementsDe } from '../src/glane.mjs';
 
 const ICI = 'https://bourgueil.fr/';
 const sites = [['bourgueil.fr', '']];
@@ -119,4 +119,26 @@ test('un flux se decompresse borne : une image de page scannee ne remplit pas le
 	const bruit = Array.from({ length: 2e6 }, () => String.fromCharCode((graine = (Math.imul(graine, 1103515245) + 12345) >>> 0) >>> 24)).join('');
 	assert.ok(deflateSync(Buffer.from(bruit, 'latin1')).length > 256 * 1024, 'le flux de texte depasse le debut lu');
 	assert.deepEqual(coucheTexte(pdf(flux(`BT /F1 12 Tf (Budget) Tj ET ${bruit}`)), { inflate }), { format: 'pdf', couche: 'oui' }, 'son debut suffit');
+});
+
+test('la page de garde d une maquette se lit dans ses flux : SIRET, libelle du budget, exercice (D-185)', () => {
+	const lire = (...objets) => identiteDuPdf(pdf(...objets), { inflate: inflateSync });
+	const rien = { siret: null, budgetImprime: null, exerciceImprime: null };
+	const garde = flux('BT /F1 12 Tf 1 0 0 1 300 700 Tm (Num\\351ro SIRET : 217 202 647 00012) Tj ET BT 36 650 Td (BUDGET : VILLE DE SABLE SUR SARTHE \\(3\\)) Tj T* [(ANN) -10 (EE) -250 (\\0402024)] TJ ET');
+	const annexe = flux('BT (BUDGET ZAC DE GASTINES/ N\\260SIRET : 21720264700202) Tj ET');
+	const emprunt = flux('BT (ANNEE 2010) Tj ET');
+	const attendu = { siret: '21720264700012', budgetImprime: 'VILLE DE SABLE SUR SARTHE', exerciceImprime: '2024' };
+	assert.deepEqual(lire(garde), attendu);
+	assert.deepEqual(lire(annexe, emprunt, garde), attendu, 'les pages ne sont pas dans l ordre du fichier : la garde est le flux qui porte SIRET et ANNEE ensemble');
+	assert.deepEqual(lire(annexe, emprunt), rien, 'un SIRET d annexe et une annee d emprunt ne se melangent pas');
+	assert.deepEqual(lire(flux('BT (Num\\351ro SIRET : 21310403700014) Tj T* (BUDGET PRINCIPAL) Tj T* (ANNEE 2025) Tj ET')), { siret: '21310403700014', budgetImprime: null, exerciceImprime: '2025' }, 'la garde d un CFU n a pas de ligne « BUDGET : »');
+	assert.deepEqual(lire(flux('BT <53495245 54203a20 32313331 30343033 37303030 3134> Tj 0 -14 TD (ANNEE 2025) Tj ET')), { siret: '21310403700014', budgetImprime: null, exerciceImprime: '2025' }, 'une chaine hexadecimale se lit octet par octet');
+	assert.deepEqual(lire(flux(`BT (SIRET : 21310403700014) ' T* (BUDGET : E\\bAU\\r\\n) Tj (ANNEE\\t2025\\f) " ET`)), { siret: '21310403700014', budgetImprime: 'E\bAU', exerciceImprime: '2025' }, 'les operateurs apostrophe et guillemet montrent leur chaine sur la ligne suivante, les echappements se lisent');
+	assert.deepEqual(lire(flux('BT (SIRET : 123) Tj T* (ANNEE 2025) Tj ET')), rien, 'un SIRET qui n a pas 14 chiffres ne vaut rien');
+	assert.deepEqual(lire(flux('BT (SIRET : 21310403700014) Tj T* (ANNEE 2025) Tj ET', '')), { siret: '21310403700014', budgetImprime: null, exerciceImprime: '2025' }, 'un flux sans filtre se lit tel quel');
+	assert.deepEqual(lire(flux('BT (SIRET : 21310403700014) Tj T* (ANNEE 2025) Tj ET', '/Filter /LZWDecode')), rien, 'un autre filtre est saute');
+	assert.deepEqual(lire(flux('q /Im0 Do Q'), '1 0 obj << /Filter /FlateDecode >>\nstream\npas du zlib\nendstream', garde), attendu, 'une image et un flux illisible se sautent');
+	assert.deepEqual(lire('1 0 obj << >>\nstream\njamais ferme'), rien);
+	assert.deepEqual(identiteDuPdf(pdf(flux('BT (x) Tj ET'), garde), { inflate: inflateSync, texteMax: 4 }), rien, 'la lecture s arrete a la borne d octets en clair');
+	assert.deepEqual(identiteImprimee('Numéro SIRET : 21310403700014\nBUDGET : COMMUNE (1)\nANNEE 2024\n'), { siret: '21310403700014', budgetImprime: 'COMMUNE', exerciceImprime: '2024' }, 'le texte d un pdftotext se lit avec les memes lignes');
 });

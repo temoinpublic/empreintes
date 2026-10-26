@@ -229,6 +229,16 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   (`estUnTelechargement`). Chaque document est lu UNE fois (etat `budgets`, 15
   par commune et par nuit, quatre lectures a la fois, 15 Mo au plus) pour
   `coucheTexte` (police ou operateur de texte, flux FlateDecode decompresses).
+  Quand la couche texte est la, la page de garde se lit (`identiteDuPdf`, pur) :
+  `siret` (l'identifiant de la balance DGFiP du budget), `exerciceImprime`
+  (ligne « ANNEE N », qui date le compte mieux que son lien ou sa publication :
+  deux CA 2022 publies en 2023 etaient dates 2023, D-185 du 24/10),
+  `budgetImprime` (ligne « BUDGET : », absente d'un CFU). La garde est le flux
+  qui porte SIRET et ANNEE ensemble : les pages ne sont pas dans l'ordre du
+  fichier, les annexes impriment les SIRET d'autres budgets, un emprunt a sa
+  ligne « ANNEE ». Mesure du 2026-10-26 sur 105 maquettes CA et CFU : 65 SIRET
+  sur 65 et 69 exercices sur 69 lus par pdftotext, 4 SIRET de plus, 10 ms par
+  fichier. Rien n'est ecrit quand la garde manque (`null` omis).
   Releve : `glane-<jour>-budgets.jsonl` et les colonnes `budgets`, `genres`,
   `page_budget` du TSV. `--communes` restreint un passage a une liste INSEE.
 - La glane ne depose pas un acte qui POURRAIT nommer une personne (`pourraitNommer`,
