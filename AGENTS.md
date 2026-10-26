@@ -65,6 +65,10 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
 - Sonde : `/health` (Pages Function), 200 toujours, `alerte` sur l'age du
   dernier tour (12 h, 36 h) et les preuves restees aux calendriers (48 h) ;
   copie suspendue : `attention`, un seul constat qui la nomme.
+  Le commit servi est juge contre la tete de `main`, lue dans le flux Atom public
+  des commits (`src/deploiement.mjs`, sans jeton) : un commit de `main` non servi
+  20 min apres son arrivee passe `attention` (le suivi de vps5 est arrete) ; une
+  tete illisible passe `attention` et sa raison va dans `echecs_des_sondes`.
 - Le depot d'une empreinte par un tiers (D-163) : le FORMAT de la ligne
   publique `/depots/<jour>.jsonl` et du recu est ecrit en tete de
   `src/depot.mjs`, et l'entrepot le relit (feuille `depots:<n>`) : il ne
