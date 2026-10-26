@@ -71,7 +71,9 @@ test("un document d'un tour signe porte la signature du journal relue ; la chain
 });
 
 test('la sonde repond 200 en JSON, sans cache, avec le commit servi', async () => {
-	const env = { ASSETS: { fetch: async (url) => new Response(fs.readFileSync(path.join(DIST, new URL(url).pathname))) } };
+	const servi = JSON.parse(fs.readFileSync(path.join(DIST, 'version.json'), 'utf8')).commit;
+	const LIRE_TETE = async () => [{ sha: servi, date: '2026-10-25T00:00:00Z' }];
+	const env = { LIRE_TETE, ASSETS: { fetch: async (url) => new Response(fs.readFileSync(path.join(DIST, new URL(url).pathname))) } };
 	const r = await onRequestGet({ request: new Request('https://empreintes.florianmousseau.com/health'), env });
 	assert.equal(r.status, 200);
 	assert.equal(r.headers.get('cache-control'), 'no-store');
@@ -79,6 +81,7 @@ test('la sonde repond 200 en JSON, sans cache, avec le commit servi', async () =
 	assert.ok(['ok', 'attention', 'rouge'].includes(corps.alerte));
 	assert.equal(corps.service, 'empreintes');
 	assert.ok(corps.deploye.commit);
+	assert.deepEqual(corps.deploye.retard, { mesure: true, main: servi, depuis: null });
 	const vide = await onRequestGet({ request: new Request('https://x/health'), env: { ASSETS: { fetch: async () => new Response('', { status: 404 }) } } });
 	assert.equal((await vide.json()).alerte, 'rouge');
 });
