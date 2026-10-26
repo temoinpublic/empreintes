@@ -3,6 +3,7 @@ import { avecLaBase, verdict } from '../src/journal.mjs';
 import { comptesDAttente } from '../src/attente.mjs';
 import { etatDeLApi } from '../src/client.mjs';
 import { juger, lireLaTete, sansTete } from '../src/deploiement.mjs';
+import { jouerLesParcours } from '../src/parcours.mjs';
 
 async function lireAsset(env, url, chemin) {
 	const r = await env.ASSETS.fetch(new URL(chemin, url));
@@ -31,12 +32,15 @@ export async function onRequestGet({ request, env }) {
 	// null sans base liee ; undefined quand la base liee ne repond pas, et la sonde le dit.
 	const attente = env.DEPOTS ? await comptesDAttente(env.DEPOTS).catch(() => undefined) : null;
 	const journal = avecLaBase(verdict(tours, new Date(), liste?.copie ?? null), attente !== undefined);
-	const deploiement = await jugerLeDeploiement(env, version);
+	const lire = (chemin) => env.ASSETS.fetch(new URL(chemin, request.url));
+	const [deploiement, parcours] = await Promise.all([jugerLeDeploiement(env, version), jouerLesParcours({ lire, tours, db: env.DEPOTS })]);
 	const corps = {
 		service: 'empreintes',
-		alerte: pire(journal.alerte, deploiement.niveau),
-		constats: deploiement.constat ? [...journal.constats, deploiement.constat] : journal.constats,
-		echecs_des_sondes: deploiement.echec ? [deploiement.echec] : [],
+		alerte: pire(pire(journal.alerte, deploiement.niveau), parcours.niveau),
+		constats: [...journal.constats, ...(deploiement.constat ? [deploiement.constat] : []), ...parcours.constats],
+		echecs_des_sondes: [...(deploiement.echec ? [deploiement.echec] : []), ...parcours.echecs],
+		// Les parcours du visiteur (D-128, P1), juges sur leur resultat : le verificateur et le depot.
+		parcours: parcours.parcours,
 		copie: liste?.copie ?? null,
 		dernierTour: dernier && { id: dernier.id, racine: dernier.racine, objets: dernier.objets, ots: dernier.ots, bloc: dernier.bloc },
 		tours: tours.length,
