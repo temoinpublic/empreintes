@@ -1,8 +1,9 @@
 // Memento (RFC 7089) sur les sources temoin : les versions tirees des releves, les trois routes, la Function.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CHEMIN, INDEX_MEMENTO, LINK_FORMAT, SOURCES_TEMOIN, adresseDe, choisirLaVersion, copieDuTemoin, creerLesVersions, dateHttp, lireLaDemande, reponse, timeMap, trouverLaSource } from '../src/memento.mjs';
+import { CHEMIN, INDEX_MEMENTO, LINK_FORMAT, SOURCES_TEMOIN, adresseDe, cheminMementoRetabli, choisirLaVersion, copieDuTemoin, creerLesVersions, dateHttp, lireLaDemande, reponse, timeMap, trouverLaSource } from '../src/memento.mjs';
 import { onRequestGet } from '../functions/memento/[[chemin]].js';
+import { onRequest } from '../functions/_middleware.js';
 
 const SITE = 'https://temoinpublic.fr';
 const QUALIOPI = 'https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv';
@@ -155,4 +156,23 @@ test('la Function lit l index construit et repond ; sans index, rien n est une s
 	assert.equal(await tg.text(), '');
 	const sans = await onRequestGet({ request: new Request(`${SITE}/memento/timegate/${CASPS}`), env: { ASSETS: { fetch: async () => new Response('', { status: 404 }) } } });
 	assert.equal(sans.status, 404);
+});
+
+test('le middleware reduit le // du schema dans une adresse Memento, et laisse tout le reste passer tel quel', async () => {
+	assert.equal(cheminMementoRetabli(`${SITE}/memento/timegate/https://a.b/c?d=e`), `${SITE}/memento/timegate/https:/a.b/c?d=e`);
+	assert.equal(cheminMementoRetabli(`${SITE}/memento/timemap/link/http://a.b/`), `${SITE}/memento/timemap/link/http:/a.b/`);
+	assert.equal(cheminMementoRetabli(`${SITE}/memento/20261003T040000Z/https://a.b/c//d`), `${SITE}/memento/20261003T040000Z/https:/a.b/c//d`);
+	for (const u of [`${SITE}/memento/timegate/https:/a.b/c`, `${SITE}/memento/x`, `${SITE}/verifier`, `${SITE}/memento/truc/https://a.b`]) assert.equal(cheminMementoRetabli(u), null, u);
+	const next = async (vers) => new Response(vers ?? 'tel quel');
+	const env = { ASSETS: { fetch: async () => new Response('', { status: 404 }) } };
+	const reecrit = await onRequest({ request: new Request(`${SITE}/memento/timegate/https://a.b/c`), env, next });
+	assert.equal(await reecrit.text(), `${SITE}/memento/timegate/https:/a.b/c`);
+	const direct = await onRequest({ request: new Request(`${SITE}/memento/timegate/https:/a.b/c`), env, next });
+	assert.equal(await direct.text(), 'tel quel');
+	const ailleurs = await onRequest({ request: new Request(`${SITE}/verifier`), env, next });
+	assert.equal(await ailleurs.text(), 'tel quel');
+	const index = indexDeTest();
+	const rep = reponse(index, cheminMementoRetabli(`${SITE}/memento/timegate/${CASPS}`));
+	assert.equal(rep.statut, 302);
+	assert.equal(rep.entetes.location, `${SITE}/memento/20261002T040000Z/${CASPS}`);
 });
