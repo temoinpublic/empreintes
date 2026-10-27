@@ -57,8 +57,8 @@ export function creerLesVersions(sources) {
 /**
  * L'adresse de la requete avec le `//` du schema reduit a `/` dans le chemin :
  * le routeur des Functions ne sert pas un chemin a segment vide, le middleware
- * reecrit la requete ainsi et `adresseDe` retablit l'adresse. Null s'il n'y a
- * rien a reduire.
+ * joue alors la Function lui-meme sur cette adresse et `adresseDe` retablit
+ * l'originale. Null s'il n'y a rien a reduire.
  */
 export function cheminMementoRetabli(url) {
 	const u = new URL(url);
