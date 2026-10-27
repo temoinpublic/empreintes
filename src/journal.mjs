@@ -7,7 +7,7 @@ import { CLES_SLH_DU_JOURNAL, toursSansSignatureSlh } from './slh.mjs';
 export const ID_DE_TOUR = /^\d{8}T\d{6}Z$/;
 
 /** Les fichiers du journal qui se publient ; tout le reste (cache, .bak) reste chez l'entrepot. */
-export const FICHIER_PUBLIE = /^(\d{8}T\d{6}Z\.(json|delta\.json|racine|racine\.ots|racine\.tsr|racine\.jws|racine\.slh)|cle-slh-dsa(-\d+)?\.pub|ancrages\.json|depots\.jsonl)$/;
+export const FICHIER_PUBLIE = /^(\d{8}T\d{6}Z\.(json|delta\.json|racine|racine\.ots|racine\.tsr|racine\.jws|racine\.slh)|cle-slh-dsa(-\d+)?\.pub|ancrages\.json|sources-temoin\.json|depots\.jsonl)$/;
 
 /** Une preuve d'objet publiee par l'entrepot : `preuves/<sha256>.json`. */
 export const PREUVE_PUBLIEE = /^[0-9a-f]{64}\.json$/;

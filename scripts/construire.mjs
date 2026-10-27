@@ -10,6 +10,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, creerLIndex, resumeDe } from '../src/journal.mjs';
 import { lecteurDeReleves } from '../src/chaine.mjs';
+import { INDEX_MEMENTO, SOURCES_TEMOIN, creerLesVersions } from '../src/memento.mjs';
 import { BESOINS } from '../src/besoins.mjs';
 import { entreesDe, sitesDe } from '../src/disparus.mjs';
 import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, datesDuPlan, robots } from '../src/pages.mjs';
@@ -47,16 +48,20 @@ const fichierPublie = (id) => (fichiers.includes(`${id}.json`) ? `${id}.json` : 
 const lireReleve = lecteurDeReleves((nom) => (fichiers.includes(nom) ? lireJson(path.join(DONNEES, nom)) : null), null, { bases: 1 });
 const tours = [];
 const indexEnCours = creerLIndex();
+// Les versions des sources temoin (Memento, D-205), depuis la liste que l'entrepot publie avec le journal.
+const versionsTemoin = creerLesVersions(fs.existsSync(path.join(DONNEES, SOURCES_TEMOIN)) ? lireJson(path.join(DONNEES, SOURCES_TEMOIN)) : []);
 for (const id of ids) {
 	const r = await lireReleve(id);
 	tours.push(resumeDe(r, ancrages.tours?.[id], fichiers, fs.statSync(path.join(DONNEES, fichierPublie(id))).size, fichiers.includes(`${id}.json`) ? null : lireJson(path.join(DONNEES, `${id}.delta.json`)).base));
 	indexEnCours.ajouter(r);
+	versionsTemoin.ajouter(r);
 }
 
 fs.rmSync(DIST, { recursive: true, force: true });
 for (const f of fichiers) ecrire(path.join('empreintes', f), fs.readFileSync(path.join(DONNEES, f)));
 const index = indexEnCours.parts();
 for (const [prefixe, part] of Object.entries(index)) ecrire(`index/${prefixe}.json`, JSON.stringify(part));
+ecrire(INDEX_MEMENTO, `${JSON.stringify(versionsTemoin.index())}\n`);
 // Ce qui a disparu (D-193), pousse filtre par l'entrepot et refiltre ici ; une entree sans preuve servie ne parait pas.
 const DISPARUS = path.join(RACINE, 'donnees', 'disparus');
 const jours = fs.existsSync(DISPARUS) ? fs.readdirSync(DISPARUS).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).map((f) => lireJson(path.join(DISPARUS, f))) : [];
