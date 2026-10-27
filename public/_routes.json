@@ -26,6 +26,7 @@
 		"/openapi.json",
 		"/BingSiteAuth.xml",
 		"/empreintes/*",
+		"/memento/index.json",
 		"/index/*",
 		"/annuaire/*",
 		"/confiance/*",

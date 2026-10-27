@@ -11,6 +11,9 @@ empreintes.florianmousseau.com redirige ses pages, son API reste servie).
 - `donnees/empreintes/` : le miroir du journal (releves, racines, preuves
   `.ots`, horodatages `.tsr`, `ancrages.json`), pousse par l'entrepot.
 - `/verifier` : un fichier ou une empreinte, et la chaine des racines.
+- `/memento/timemap/link/<adresse>`, `/memento/timegate/<adresse>`,
+  `/memento/<tour>/<adresse>` : les versions datees des sources temoin de
+  l'entrepot, au protocole Memento (RFC 7089), empreintes seulement.
 
 ```sh
 node scripts/verifier.mjs <fichier|sha256>   # servi tel quel, et quand

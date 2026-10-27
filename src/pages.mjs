@@ -1286,3 +1286,27 @@ export function pageAttente(issue, offre = 'marches-publics') {
 <p><a class="bouton" href="${CHEMINS_DES_OFFRES[offre]}">Revenir à l’offre</a></p>`
 	});
 }
+
+/** Une version d'une source temoin (Memento, D-205) : l'empreinte datee, le tour, et la copie du temoin tiers. Francais seulement. */
+export function pageMemento({ nom, url, version, position, total, temoin }) {
+	const e = EDITIONS.fr;
+	const quand = dateHeure(version.instant);
+	const adresse = echapper(url);
+	return gabarit(e, {
+		titre: `${echapper(nom)}, version du ${quand}`,
+		description: `L’empreinte de ${adresse} au ${quand}, dans le journal de ${e.marque}.`,
+		chemin: `/memento/${version.tour}/${adresse}`,
+		indexer: false,
+		corps: `<h1>${echapper(nom)}</h1>
+<p>Version ${position} sur ${total}${NBSP}: ${quand}</p>
+<table class="doc">
+<tr><th>Adresse</th><td><a href="${adresse}" rel="nofollow">${adresse}</a></td></tr>
+<tr><th>Empreinte SHA-256</th><td><code>${version.sha256}</code></td></tr>
+<tr><th>Tour du journal</th><td><a href="/empreintes/${version.tour}.json">${version.tour}</a></td></tr>
+<tr><th>Jour de lecture</th><td>${version.jour ?? '-'}</td></tr>
+<tr><th>Copie du témoin</th><td><a href="${echapper(temoin)}" rel="nofollow">Internet Archive, au plus près de cet instant</a></td></tr>
+</table>
+<p>${e.marque} ne garde pas le contenu, seulement son empreinte datée${NBSP}: le fichier se relit chez son éditeur ou chez le témoin, et son SHA-256 doit être celui-ci.</p>
+<p><a class="bouton" href="/verifier?empreinte=${version.sha256}">Vérifier cette empreinte</a> <a class="bouton" href="/memento/timemap/link/${adresse}">Toutes les versions</a></p>`
+	});
+}
