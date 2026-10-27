@@ -141,4 +141,8 @@ test('la page de garde d une maquette se lit dans ses flux : SIRET, libelle du b
 	assert.deepEqual(lire('1 0 obj << >>\nstream\njamais ferme'), rien);
 	assert.deepEqual(identiteDuPdf(pdf(flux('BT (x) Tj ET'), garde), { inflate: inflateSync, texteMax: 4 }), rien, 'la lecture s arrete a la borne d octets en clair');
 	assert.deepEqual(identiteImprimee('Numéro SIRET : 21310403700014\nBUDGET : COMMUNE (1)\nANNEE 2024\n'), { siret: '21310403700014', budgetImprime: 'COMMUNE', exerciceImprime: '2024' }, 'le texte d un pdftotext se lit avec les memes lignes');
+	const m57de2026 = flux('BT (Num\\351ro SIRET : 21330165800018) Tj ET BT (Budget primitif) Tj ET BT (relatif \\340 l\\222exercice ) Tj ET BT (2026) Tj ET BT (vot\\351 par Nature) Tj ET BT (Budget principal) Tj ET');
+	assert.deepEqual(lire(m57de2026), { siret: '21330165800018', budgetImprime: null, exerciceImprime: '2026' }, 'la maquette M57 de 2026 ecrit « relatif a l exercice N », l annee dans le bloc suivant, et n a pas de ligne « BUDGET : »');
+	assert.deepEqual(lire(flux('BT (SIRET : 21330165800018) Tj ET BT (relatif \\340 l\\222exercice pr\\351c\\351dent) Tj ET BT (2025) Tj ET')), rien, 'un rappel de l exercice precedent ne date pas la garde');
+	assert.deepEqual(identiteImprimee('Numéro SIRET : 21330165800018\nBudget primitif\nrelatif à l’exercice 2026\nBudget principal\n'), { siret: '21330165800018', budgetImprime: null, exerciceImprime: '2026' }, 'le texte d un pdftotext de la maquette 2026 se lit aussi');
 });

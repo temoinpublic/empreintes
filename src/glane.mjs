@@ -390,6 +390,9 @@ export function coucheTexte(octets, { tronque = false, inflate } = {}) {
 // La page de garde d'une maquette M14, M57 ou M4 (D-185) : les memes lignes que lit le corpus.
 const SIRET_IMPRIME = /SIRET\s*:?\s*(\d[\d ]{12,20}\d)/;
 const ANNEE_IMPRIMEE = /^\s*ANNEE\s+(20\d\d)\s*$/m;
+// La maquette M57 des budgets 2026 n'imprime plus « ANNEE N » mais « relatif a l'exercice N »,
+// l'annee souvent dans le bloc de texte suivant (4 BP 2026 sur 4 lus le 2026-10-27).
+const EXERCICE_IMPRIME = /relatif\s+[a\u00e0]\s+l\W{0,3}exercice\s+(20\d\d)\b/i;
 const LIBELLE_IMPRIME = /^\s*BUDGET\s*:\s*(.+?)\s*(?:\(\d\))?\s*$/m;
 // Les chaines des operateurs de texte, et les operateurs qui changent de ligne.
 const OPERATEURS_TEXTE = /\((?:[^()\\]|\\.)*\)|<[0-9A-Fa-f\s]*>|\bT(?:[dDm]\b|\*)|\bET\b|'|"/g;
@@ -430,12 +433,13 @@ function texteDuFlux(clair) {
  * Ce que la page de garde d'une maquette imprime (D-185) : le SIRET du budget
  * (l'identifiant de sa balance DGFiP, propre a chaque budget principal ou
  * annexe), le libelle de la ligne « BUDGET : » et l'exercice de la ligne
- * « ANNEE N », qui date le compte mieux que son lien ou sa publication. Null
- * pour ce que le texte ne porte pas.
+ * « ANNEE N » (ou « relatif a l'exercice N » sur la maquette M57 de 2026), qui
+ * date le compte mieux que son lien ou sa publication. Null pour ce que le texte
+ * ne porte pas.
  */
 export function identiteImprimee(texte) {
 	const siret = texte.match(SIRET_IMPRIME)?.[1].replace(/ /g, '') ?? null;
-	return { siret: siret?.length === 14 ? siret : null, budgetImprime: texte.match(LIBELLE_IMPRIME)?.[1].trim() ?? null, exerciceImprime: texte.match(ANNEE_IMPRIMEE)?.[1] ?? null };
+	return { siret: siret?.length === 14 ? siret : null, budgetImprime: texte.match(LIBELLE_IMPRIME)?.[1].trim() ?? null, exerciceImprime: texte.match(ANNEE_IMPRIMEE)?.[1] ?? texte.match(EXERCICE_IMPRIME)?.[1] ?? null };
 }
 
 /**
