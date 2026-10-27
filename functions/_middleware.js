@@ -2,6 +2,7 @@
 // l'edition. Le francais suit son cours ; l'allemand se lit dans `dist/de/`.
 import { decider, horsIndex } from '../src/hote.mjs';
 import { cheminMementoRetabli } from '../src/memento.mjs';
+import { onRequestGet as memento } from './memento/[[chemin]].js';
 
 /** Un fichier de `dist/` par la liaison `ASSETS`, au statut voulu ; le `.html` en second quand le chemin propre ne repond pas. */
 async function actif(env, url, chemin, statut) {
@@ -24,9 +25,10 @@ export async function onRequest({ request, env, next }) {
 	else if (d.action === 'statique') r = await actif(env, request.url, d.chemin, 200);
 	else if (d.action === 'introuvable') r = await actif(env, request.url, d.langue === 'de' ? '/de/404' : '/404', 404);
 	else {
-		// Une adresse Memento porte `https://` dans son chemin : le routeur des Functions ne la sert pas telle quelle.
-		const retabli = cheminMementoRetabli(request.url);
-		r = await (retabli ? next(retabli) : next());
+		// Une adresse Memento porte `https://` dans son chemin : le routeur des Functions ne sert pas un segment vide,
+		// et `next()` ne reecrit pas la requete sous workerd. La Function se joue ici, sur le chemin reduit.
+		const retabli = ['GET', 'HEAD'].includes(request.method) ? cheminMementoRetabli(request.url) : null;
+		r = retabli ? await memento({ request: new Request(retabli, request), env }) : await next();
 	}
 	return horsIndex(request.url) && r.status !== 301 ? sansIndex(r) : r;
 }
