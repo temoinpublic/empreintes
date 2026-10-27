@@ -54,6 +54,20 @@ export function creerLesVersions(sources) {
 	};
 }
 
+/**
+ * L'adresse de la requete avec le `//` du schema reduit a `/` dans le chemin :
+ * le routeur des Functions ne sert pas un chemin a segment vide, le middleware
+ * reecrit la requete ainsi et `adresseDe` retablit l'adresse. Null s'il n'y a
+ * rien a reduire.
+ */
+export function cheminMementoRetabli(url) {
+	const u = new URL(url);
+	const m = /^(\/memento\/(?:timemap\/link|timegate|\d{8}T\d{6}Z)\/https?:)\/\/(.*)$/s.exec(u.pathname);
+	if (!m) return null;
+	u.pathname = `${m[1]}/${m[2]}`;
+	return u.toString();
+}
+
 /** L'adresse d'origine telle qu'elle est ecrite dans le chemin ; un `//` reduit a `/` par le chemin se retablit. */
 export function adresseDe(brut) {
 	const adresse = String(brut ?? '').replace(/^(https?:)\/(?!\/)/, '$1//');
