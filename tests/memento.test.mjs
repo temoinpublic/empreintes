@@ -99,6 +99,14 @@ test('dateHttp, copieDuTemoin et la TimeMap au format link', () => {
 	assert.doesNotMatch(aucune[1], /from=/);
 });
 
+test('le middleware recopie les en-tetes de la requete : Accept rend le JSON a travers le chemin //', async () => {
+	const index = indexDeTest();
+	const env = { ASSETS: { fetch: async (url) => (new URL(url).pathname === `/${INDEX_MEMENTO}` ? Response.json(index) : new Response('', { status: 404 })) } };
+	const r = await onRequest({ request: new Request(`${SITE}/memento/20261003T040000Z/${QUALIOPI}`, { headers: { accept: 'application/json' } }), env, next: async () => new Response('tel quel') });
+	assert.match(r.headers.get('content-type'), /^application\/json/);
+	assert.equal((await r.json()).sha256, B);
+});
+
 test('reponse : TimeMap, TimeGate et version, en HTML ou en JSON, et les refus', () => {
 	const index = indexDeTest();
 	const tm = reponse(index, `${SITE}/memento/timemap/link/${QUALIOPI}`);
