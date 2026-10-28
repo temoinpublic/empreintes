@@ -1,0 +1,17 @@
+{
+ "jour": "2026-10-28",
+ "evenements": [
+  {
+   "classe": "disparu",
+   "source": "choisir-service-public-offres",
+   "url": "https://static.data.gouv.fr/resources/les-offres-diffusees-sur-choisir-le-service-public/20261019-060100/offres-datagouv-20260927.csv",
+   "date": "2026-10-28",
+   "http": 404,
+   "avant": {
+    "jour": "2026-10-19",
+    "sha256": "cc588ce1d88dc7b43b4129c0a70bbf1d155ebacfeabd94207dc99bcafd77cb0e"
+   },
+   "apres": null
+  }
+ ]
+}
