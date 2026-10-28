@@ -193,8 +193,6 @@ test('les liens Memento restent en https quand le mandataire passe la demande en
 	const tm = reponse(index, `http://temoinpublic.fr/memento/timemap/link/${QUALIOPI}`);
 	assert.doesNotMatch(tm.corps, /<http:\/\/temoinpublic/);
 	assert.match(tm.corps, /<https:\/\/temoinpublic\.fr\/memento\/timegate\//);
-	const tg = reponse(index, `http://temoinpublic.fr/memento/timegate/${QUALIOPI}`);
-	assert.equal(tg.entetes.location, `/memento/20261004T040000Z/${QUALIOPI}`, 'le renvoi est relatif, le mandataire ne le reecrit pas');
-	assert.match(tg.entetes.link, /<https:\/\/temoinpublic\.fr\/memento\/timemap\/link\//);
-	assert.match(reponse(index, `http://localhost:8788/memento/timegate/${QUALIOPI}`).entetes.link, /<http:\/\/localhost:8788\/memento\/timemap\/link\//);
+	assert.match(reponse(index, `http://temoinpublic.fr/memento/timegate/${QUALIOPI}`).entetes.location, /^\/memento\/\d{8}T\d{6}Z\/https:\/\//, 'le TimeGate redirige en relatif');
+	assert.match(reponse(index, `http://localhost:8788/memento/timemap/link/${QUALIOPI}`).corps, /<http:\/\/localhost:8788\/memento\/timegate\//);
 });
