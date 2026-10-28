@@ -180,7 +180,7 @@ test('le bilan garde depots et deposants distincts par jour, en agregat seulemen
 	assert.equal(b.deposantsAuMoins, 2);
 	assert.equal(db.sqlite.prepare("SELECT COUNT(*) AS n FROM compte WHERE jour = '2026-10-11'").get().n, 0);
 	const vide = await (await onRequestGet({ env: { DEPOTS: baseDeTest() } })).json();
-	assert.deepEqual(vide, { jours: [], deposantsAuMoins: 0 });
+	assert.deepEqual(vide, { jours: [], deposantsAuMoins: 0, recusDesProduits: [] });
 });
 
 test("un depot s'ecrit avec ce qui l'accompagne, tout ou rien", async () => {

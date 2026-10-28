@@ -80,6 +80,17 @@ test('les recus des produits ne prennent ni le plafond du jour ni le bilan publi
 	assert.deepEqual((await bilanPublic({ db })).jours[0], { jour: '2026-10-20', depots: 1, deposants: 1 }, 'le jour clos garde le bilan hors produits');
 });
 
+test('le bilan public compte les recus des produits par jour et par produit, sans leur adresse', async () => {
+	const db = baseDeTest();
+	assert.deepEqual((await bilanPublic({ db })).recusDesProduits, []);
+	await deposerPourLaFlotte(db, produit());
+	await deposerPourLaFlotte(db, produit({ sha256: 'c'.repeat(64) }));
+	await deposer({ db, corps: { sha256: 'd'.repeat(64) }, adresse: '198.51.100.1', maintenant: midi });
+	const bilan = await bilanPublic({ db });
+	assert.deepEqual(bilan.recusDesProduits, [{ jour: '2026-10-20', nom: 'auregistre', recus: 2 }]);
+	assert.ok(!JSON.stringify(bilan).includes(URL_RECU), 'l adresse du recu reste sur sa page');
+});
+
 test('la page du recu d un produit nomme le produit et mene au recu qu il sert, en francais et en allemand', async () => {
 	const env = { DEPOTS: baseDeTest() };
 	const r = corpsDe(await deposerPourLaFlotte(env.DEPOTS, produit()));
