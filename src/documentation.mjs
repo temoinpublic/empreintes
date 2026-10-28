@@ -69,7 +69,9 @@ export const FORMULES = {
  * L'index que `GET /api` rend : chaque point d'entree de la description OpenAPI, dans son ordre,
  * et les adresses ou lire la suite. Construit depuis `openapi.json` pour ne jamais s'en ecarter.
  */
-export function indexDeLApi(openapi, origine) {
+export function indexDeLApi(openapi) {
+	// L'origine est celle de la description, jamais celle de la requete : derriere le tunnel, elle se lit en http.
+	const origine = openapi.servers[0].url;
 	const points = Object.entries(openapi.paths).flatMap(([chemin, methodes]) =>
 		Object.entries(methodes).map(([methode, operation]) => ({ methode: methode.toUpperCase(), chemin, resume: operation.summary }))
 	);
