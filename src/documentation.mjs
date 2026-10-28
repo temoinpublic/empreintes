@@ -20,7 +20,8 @@ export const ADRESSES = {
 	],
 	agents: [
 		['mcp', 'POST /mcp'],
-		['openapi', 'GET /openapi.json']
+		['openapi', 'GET /openapi.json'],
+		['index', 'GET /api']
 	],
 	lire: [
 		['jour', 'GET /depots/&lt;jour&gt;.jsonl'],
@@ -63,3 +64,14 @@ export const FORMULES = {
 	horodatage: '<code>openssl ts -verify -data &lt;tour&gt;.racine -in &lt;tour&gt;.racine.tsr</code>',
 	script: '<a href="https://github.com/temoinpublic/empreintes/blob/main/scripts/verifier.mjs">node scripts/verifier.mjs &lt;document | --chaine&gt;</a>'
 };
+
+/**
+ * L'index que `GET /api` rend : chaque point d'entree de la description OpenAPI, dans son ordre,
+ * et les adresses ou lire la suite. Construit depuis `openapi.json` pour ne jamais s'en ecarter.
+ */
+export function indexDeLApi(openapi, origine) {
+	const points = Object.entries(openapi.paths).flatMap(([chemin, methodes]) =>
+		Object.entries(methodes).map(([methode, operation]) => ({ methode: methode.toUpperCase(), chemin, resume: operation.summary }))
+	);
+	return { service: openapi.info.title, documentation: `${origine}/documentation`, openapi: `${origine}/openapi.json`, mcp: `${origine}/mcp`, points };
+}

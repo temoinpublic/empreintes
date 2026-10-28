@@ -3,14 +3,19 @@
  "info": {
   "title": "Témoin public",
   "version": "1.0.0",
-  "description": "Dater un document ou une page en ligne dans un registre public chaîné, ancré dans Bitcoin. Gratuit, sans compte : 20 dépôts par jour et par adresse IP, 2 000 par jour.",
-  "contact": { "url": "https://temoinpublic.fr/documentation" }
+  "description": "Dater un document ou une page en ligne dans un registre public chaîné, ancré dans Bitcoin et horodaté eIDAS. Quatre tours par jour. Gratuit, sans compte : 20 dépôts par jour et par adresse IP, 2 000 par jour.",
+  "contact": { "name": "Témoin public", "url": "https://temoinpublic.fr/documentation", "email": "contact@temoinpublic.fr" },
+  "license": { "name": "Licence Ouverte 2.0 (données), AGPL-3.0-or-later (code)", "url": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/" }
  },
+ "externalDocs": { "description": "Documentation, formules de vérification et code source", "url": "https://temoinpublic.fr/documentation" },
  "servers": [{ "url": "https://temoinpublic.fr" }],
+ "tags": [{ "name": "Dater" }, { "name": "Lire" }, { "name": "Registre" }],
+ "components": { "securitySchemes": { "jetonDuFlux": { "type": "http", "scheme": "bearer", "description": "Le jeton rendu à l’inscription du flux" } } },
  "paths": {
   "/api/depots": {
    "post": {
     "operationId": "dater",
+    "tags": ["Dater"],
     "summary": "Dater une empreinte SHA-256, ou une adresse publique lue par le service",
     "requestBody": {
      "required": true,
@@ -45,6 +50,7 @@
   "/api/depots/{sha256}": {
    "get": {
     "operationId": "chercherEmpreinte",
+    "tags": ["Lire"],
     "summary": "Les dépôts d'une empreinte",
     "parameters": [{ "name": "sha256", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }],
     "responses": { "200": { "description": "Lignes publiques : sha256, jour, place, recu" }, "404": { "description": "Empreinte illisible" } }
@@ -53,19 +59,77 @@
   "/api/recus/{id}": {
    "get": {
     "operationId": "lireRecu",
+    "tags": ["Lire"],
     "summary": "La ligne publique d'un reçu",
     "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[0-9a-f]{64}$" } }],
     "responses": { "200": { "description": "sha256, jour, place, recu ; acte, l'adresse pérenne d'un acte de collectivité ; produit (nom, url), le produit de la flotte et l'adresse du reçu qu'il sert" }, "404": { "description": "Reçu inconnu" } }
    }
   },
+  "/depots/{jour}.jsonl": {
+   "get": {
+    "operationId": "depotsDuJour", "tags": ["Lire"],
+    "summary": "Les lignes publiques des dépôts d’un jour, une par ligne",
+    "parameters": [{ "name": "jour", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" } }],
+    "responses": { "200": { "description": "application/x-ndjson : sha256, jour, place, recu ; vide quand aucun dépôt ce jour" } }
+   }
+  },
+  "/api/flux": {
+   "post": {
+    "operationId": "suivreFlux", "tags": ["Dater"],
+    "summary": "Suivre un flux RSS ou Atom : chaque heure, chaque article nouveau ou modifié est lu et daté",
+    "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "additionalProperties": false, "required": ["url"], "properties": { "url": { "type": "string", "maxLength": 2048, "description": "Adresse https du flux, seule" } } } } } },
+    "responses": {
+     "201": { "description": "id, jeton (rendu une seule fois), format, entrees, registre (la page publique), prive (la page du déposant)" },
+     "400": { "description": "Demande illisible, adresse refusée" },
+     "409": { "description": "Flux déjà suivi" },
+     "422": { "description": "Flux illisible" },
+     "429": { "description": "Plafond des flux atteint" }
+    }
+   }
+  },
+  "/api/flux/{id}": {
+   "get": {
+    "operationId": "registreDuFlux", "tags": ["Dater"],
+    "summary": "Le registre privé d’un flux suivi",
+    "security": [{ "jetonDuFlux": [] }],
+    "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[0-9a-f]{16}$" } }],
+    "responses": { "200": { "description": "Le flux et chaque version datée de ses articles" }, "403": { "description": "Jeton refusé" }, "404": { "description": "Flux inconnu" } }
+   },
+   "delete": {
+    "operationId": "retirerFlux", "tags": ["Dater"],
+    "summary": "Retirer un flux ; les versions déjà datées restent",
+    "security": [{ "jetonDuFlux": [] }],
+    "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^[0-9a-f]{16}$" } }],
+    "responses": { "200": { "description": "id, retire" }, "403": { "description": "Jeton refusé" }, "404": { "description": "Flux inconnu" } }
+   }
+  },
+  "/mcp": {
+   "post": {
+    "operationId": "mcp", "tags": ["Dater"],
+    "summary": "Serveur MCP, JSON-RPC 2.0 sur HTTP sans session : dater_url, dater_empreinte, chercher_empreinte, lire_recu",
+    "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+    "responses": { "200": { "description": "Réponse JSON-RPC" }, "202": { "description": "Notification reçue" }, "400": { "description": "JSON illisible" } }
+   }
+  },
   "/api/communes": {
-   "get": { "operationId": "communes", "summary": "Communes qui ont un acte daté, par département", "responses": { "200": { "description": "communes, actes, departements" } } }
+   "get": { "operationId": "communes", "tags": ["Lire"], "summary": "Communes qui ont un acte daté, par département", "responses": { "200": { "description": "communes, actes, departements" } } }
   },
   "/api/bilan": {
-   "get": { "operationId": "bilan", "summary": "Dépôts et déposants distincts, jour par jour", "responses": { "200": { "description": "jours, deposantsAuMoins, recusDesProduits" } } }
+   "get": { "operationId": "bilan", "tags": ["Lire"], "summary": "Dépôts et déposants distincts, jour par jour", "responses": { "200": { "description": "jours, deposantsAuMoins, recusDesProduits" } } }
   },
   "/tours.json": {
-   "get": { "operationId": "tours", "summary": "Les tours du registre : racine chaînée, nombre de documents, ancrage", "responses": { "200": { "description": "copie, tours" } } }
+   "get": { "operationId": "tours", "tags": ["Registre"], "summary": "Les tours du registre : racine chaînée, nombre de documents, ancrage", "responses": { "200": { "description": "copie, tours ; base dit si un tour est publié plein (null) ou en delta" } } }
+  },
+  "/empreintes/{tour}.json": {
+   "get": {
+    "operationId": "releveDuTour", "tags": ["Registre"],
+    "summary": "Le relevé plein d’un tour : feuilles, arbre, racine ; à côté, .racine.ots, .racine.tsr, .racine.jws, .racine.slh",
+    "parameters": [{ "name": "tour", "in": "path", "required": true, "schema": { "type": "string", "pattern": "^\\d{8}T\\d{6}Z$" } }],
+    "responses": { "200": { "description": "Relevé plein" }, "404": { "description": "Tour inconnu, ou publié en delta : lire <tour>.delta.json" } }
+   }
+  },
+  "/health": {
+   "get": { "operationId": "sante", "tags": ["Registre"], "summary": "La sonde du service : âge du dernier tour, preuves, parcours du visiteur", "responses": { "200": { "description": "etat (ok, attention, rouge) et constats ; 200 toujours" } } }
   }
  }
 }

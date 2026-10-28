@@ -231,7 +231,8 @@ export const TEXTES = {
 				fr: 'serveur MCP, HTTP sans session\u00A0: <code>dater_url</code>, <code>dater_empreinte</code>, <code>chercher_empreinte</code>, <code>lire_recu</code>\u00A0; mêmes limites',
 				de: 'MCP-Server, HTTP ohne Sitzung: <code>dater_url</code>, <code>dater_empreinte</code>, <code>chercher_empreinte</code>, <code>lire_recu</code>; dieselben Grenzen'
 			},
-			openapi: { fr: 'la description OpenAPI de l’API', de: 'die OpenAPI-Beschreibung der API' }
+			openapi: { fr: 'la description OpenAPI de l’API', de: 'die OpenAPI-Beschreibung der API' },
+			index: { fr: 'l’index de l’API en JSON, chaque point d’entrée et son résumé', de: 'der Index der API als JSON, jeder Einstiegspunkt mit Kurzbeschreibung' }
 		},
 		lire: {
 			jour: { fr: 'les dépôts du jour, une ligne <code>{"sha256","jour","place","recu"}</code> par dépôt', de: 'die Datierungen des Tages, eine Zeile <code>{"sha256","jour","place","recu"}</code> je Datierung' },
