@@ -17,6 +17,7 @@ export const SOURCES_TEMOIN = 'sources-temoin.json';
 /** L'index des versions, ecrit par la construction. */
 export const INDEX_MEMENTO = 'memento/index.json';
 export const LINK_FORMAT = 'application/link-format';
+const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/;
 const ID_DE_TOUR = /^\d{8}T\d{6}Z$/;
 
 const listeDe = (sources) => (Array.isArray(sources) ? sources : (sources?.sources ?? []));
@@ -143,7 +144,8 @@ export function reponse(index, url, { acceptDatetime = null, accept = '' } = {})
 	const source = trouverLaSource(index, demande.uri);
 	if (!source) return texte(404, `Cette adresse n'est pas une source temoin de l'entrepot : ${demande.uri}`);
 	const u = new URL(url);
-	const base = `${u.protocol}//${u.host}`;
+	// Derriere le mandataire de vps5, la Function voit `http:` ; le site ne se sert qu'en https.
+	const base = `${LOCAL.test(u.hostname) ? u.protocol : 'https:'}//${u.host}`;
 	const a = adresses(base, source.url);
 	const liens = [lienFormat(source.url, [`rel="original"`]), lienFormat(a.timemap, [`rel="timemap"`, `type="${LINK_FORMAT}"`])];
 	if (demande.genre === 'timemap') {
