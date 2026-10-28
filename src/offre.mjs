@@ -22,8 +22,11 @@ export const CHEMIN_OFFRE_NOTAIRES = '/versions-d-un-acte';
 /** L'offre des DRH (D-195) : chaque version d'un document du personnel datee le jour de sa diffusion. */
 export const CHEMIN_OFFRE_DRH = '/documents-du-personnel';
 
+/** L'offre de la conformite (D-195, D-237) : l'etat date d'un registre financier au jour d'un controle. */
+export const CHEMIN_OFFRE_CONFORMITE = '/historique-des-registres';
+
 /** La page de chaque offre qui tient une liste d'attente (`src/attente.mjs`). */
-export const CHEMINS_DES_OFFRES = { 'marches-publics': CHEMIN_OFFRE_MARCHES, communes: CHEMIN_OFFRE_COMMUNES, editeurs: CHEMIN_OFFRE_EDITEURS, assureurs: CHEMIN_OFFRE_ASSUREURS, notaires: CHEMIN_OFFRE_NOTAIRES, drh: CHEMIN_OFFRE_DRH };
+export const CHEMINS_DES_OFFRES = { 'marches-publics': CHEMIN_OFFRE_MARCHES, communes: CHEMIN_OFFRE_COMMUNES, editeurs: CHEMIN_OFFRE_EDITEURS, assureurs: CHEMIN_OFFRE_ASSUREURS, notaires: CHEMIN_OFFRE_NOTAIRES, drh: CHEMIN_OFFRE_DRH, conformite: CHEMIN_OFFRE_CONFORMITE };
 
 /** Ce que le registre tenait au jour de la page (accueil de temoinpublic.fr, 16/10/2026). */
 export const COUVERTURE_DU_REGISTRE = { au: '2026-10-16', dates: 5999, depuis: '2026-10-11' };
@@ -35,8 +38,20 @@ export const OFFRES_DE_L_ACCUEIL = [
 	{ chemin: CHEMIN_OFFRE_EDITEURS, nom: 'les éditeurs' },
 	{ chemin: CHEMIN_OFFRE_ASSUREURS, nom: 'les assureurs' },
 	{ chemin: CHEMIN_OFFRE_NOTAIRES, nom: 'les notaires' },
-	{ chemin: CHEMIN_OFFRE_DRH, nom: 'les services du personnel' }
+	{ chemin: CHEMIN_OFFRE_DRH, nom: 'les services du personnel' },
+	{ chemin: CHEMIN_OFFRE_CONFORMITE, nom: 'la conformité' }
 ];
+
+/** Les registres financiers que l'entrepot relit avec un temoin tiers (`sources-temoin.json`, 28/10/2026), par autorite. */
+export const REGISTRES_DE_CONFORMITE = [
+	{ autorite: 'ESMA', registres: ['prestataires de services sur crypto-actifs agréés (MiCA)', 'prestataires non conformes (MiCA)', 'livres blancs des autres crypto-actifs (MiCA)', 'émetteurs de jetons se référant à des actifs (MiCA)', 'émetteurs de jetons de monnaie électronique (MiCA)', 'entreprises d’investissement et sociétés de gestion agréées', 'administrateurs d’indices de référence', 'actions exemptées des règles de vente à découvert'] },
+	{ autorite: 'AMF', registres: ['prestataires sur actifs numériques enregistrés (PSAN)', 'sociétés de gestion de portefeuille agréées', 'décisions de la Commission des sanctions'] },
+	{ autorite: 'ACPR', registres: ['décisions de la Commission des sanctions'] },
+	{ autorite: 'HATVP', registres: ['répertoire des représentants d’intérêts'] }
+];
+
+/** La piece de demonstration : le registre MiCA des prestataires agrees sur 30 jours (fiche d'acheteur de l'entrepot, 21/10/2026). */
+export const PIECE_MICA = { du: '2026-09-21', au: '2026-10-21', versions: 5, lignesAvant: 352, lignesApres: 379, datesReecrites: 11, absentJours: 3 };
 
 /** Un flux suivi, montre en exemple : son registre public (ni adresse ni titre), lu en prod le 16/10/2026. */
 export const EXEMPLE_DE_REGISTRE = { id: '90bfb8a65ae28b58', depuis: '2026-10-12', articles: 13 };
