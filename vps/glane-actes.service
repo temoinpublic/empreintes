@@ -11,6 +11,8 @@ Wants=network-online.target
 Type=oneshot
 User=debian
 EnvironmentFile=/etc/glane-actes.env
+# Une ligne au journal toutes les 12 min au plus (7 jours au 2026-10-28) : muette 1 h, la glane est bloquee (D-229).
+Environment=PASSAGES_MUET=1h
 WorkingDirectory=/var/lib/glane-actes/empreintes
 ExecStartPre=/usr/bin/git -C /var/lib/glane-actes/empreintes pull --ff-only --quiet
 ExecStart=/opt/node22/bin/node --max-old-space-size=384 scripts/glaner-actes.mjs --departements tous --etat /var/lib/glane-actes/etat --paralleles 30 --par-commune 15
