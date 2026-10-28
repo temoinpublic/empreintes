@@ -9,6 +9,7 @@ import {
 	estUnRecu,
 	cleDAdresse,
 	idDuRecu,
+	empreinteDeLAdresse,
 	jourDe,
 	ligneDe,
 	ligneDuRecu,
@@ -124,4 +125,15 @@ test('un recu de chaque version emise se reconnait, et rien d autre', async () =
 	assert.ok(!estUnRecu(null));
 	const verifier = fs.readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
 	assert.match(verifier, /estUnRecu\(r\)/, 'la page de verification lit la forme du recu au meme endroit');
+});
+
+test('l adresse de depot ne pre-remplit qu une empreinte SHA-256 bien formee', () => {
+	const e = 'ab'.repeat(32);
+	assert.equal(empreinteDeLAdresse(`?empreinte=${e}`), e);
+	assert.equal(empreinteDeLAdresse(`?empreinte=${e.toUpperCase()}`), e);
+	assert.equal(empreinteDeLAdresse(`?x=1&empreinte=${e}`), e);
+	assert.equal(empreinteDeLAdresse(''), null);
+	assert.equal(empreinteDeLAdresse('?empreinte='), null);
+	assert.equal(empreinteDeLAdresse(`?empreinte=${e.slice(1)}`), null);
+	assert.equal(empreinteDeLAdresse('?empreinte=<script>'), null);
 });

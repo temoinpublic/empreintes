@@ -2,6 +2,7 @@ import { sha256 } from '/chaine.mjs';
 import { montrer, suivreLeChoix } from '/fichier.js';
 import { communeDe, communeDeLAdresse } from '/annuaire.mjs';
 import { T } from '/textes.js';
+import { empreinteDeLAdresse } from '/depot.mjs';
 
 const $ = (id) => document.getElementById(id);
 const $fichier = () => $('fichier');
@@ -157,6 +158,13 @@ ${lignes.join('')}
 	$('formulaire').reset();
 	$fichier()?.dispatchEvent(new Event('change'));
 	$('url')?.dispatchEvent(new Event('input'));
+}
+
+// `/deposer?empreinte=<sha256>` : le lien d'un produit qui a calcule l'empreinte ; le depot reste le geste du deposant.
+const annoncee = empreinteDeLAdresse(location.search);
+if (annoncee && $('empreinte')) {
+	$('empreinte').value = annoncee;
+	$('empreinte').closest('details')?.setAttribute('open', '');
 }
 
 const valeur = (id) => $(id)?.value.trim() ?? '';

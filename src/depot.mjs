@@ -50,6 +50,12 @@ const JOUR = /^\d{4}-\d{2}-\d{2}$/;
 // Les caracteres de controle, et les deux separateurs qui coupent une ligne JSON lue en JavaScript.
 const CONTROLE = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/;
 
+/** L'empreinte que porte `?empreinte=` d'une adresse, en minuscules, ou `null`. */
+export function empreinteDeLAdresse(recherche) {
+	const empreinte = new URLSearchParams(recherche).get('empreinte')?.trim().toLowerCase();
+	return empreinte && HEX64.test(empreinte) ? empreinte : null;
+}
+
 /** Le jour UTC d'un instant. */
 export const jourDe = (instant) => new Date(instant).toISOString().slice(0, 10);
 
