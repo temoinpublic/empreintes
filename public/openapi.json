@@ -62,7 +62,7 @@
    "get": { "operationId": "communes", "summary": "Communes qui ont un acte daté, par département", "responses": { "200": { "description": "communes, actes, departements" } } }
   },
   "/api/bilan": {
-   "get": { "operationId": "bilan", "summary": "Dépôts et déposants distincts, jour par jour", "responses": { "200": { "description": "jours, deposantsAuMoins" } } }
+   "get": { "operationId": "bilan", "summary": "Dépôts et déposants distincts, jour par jour", "responses": { "200": { "description": "jours, deposantsAuMoins, recusDesProduits" } } }
   },
   "/tours.json": {
    "get": { "operationId": "tours", "summary": "Les tours du registre : racine chaînée, nombre de documents, ancrage", "responses": { "200": { "description": "copie, tours" } } }

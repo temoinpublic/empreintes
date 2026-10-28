@@ -369,7 +369,13 @@ export async function bilanPublic({ db }) {
 		.bind(CLE_DE_LA_FLOTTE, `${PREFIXE_CLIENT}%`, `${PREFIXE_PRODUIT}%`)
 		.all();
 	const jours = results.map((r) => ({ jour: r.jour, depots: Number(r.depots), deposants: Number(r.deposants) }));
-	return { jours, deposantsAuMoins: Math.max(0, ...jours.map((j) => j.deposants)) };
+	return { jours, deposantsAuMoins: Math.max(0, ...jours.map((j) => j.deposants)), recusDesProduits: await recusDesProduits({ db }) };
+}
+
+/** Les recus des produits de la flotte (D-167), jour par jour et par produit : le nom en clair, jamais une adresse. */
+async function recusDesProduits({ db }) {
+	const { results } = await db.prepare('SELECT d.jour, p.nom, COUNT(*) AS recus FROM produit p JOIN depot d ON d.recu = p.recu GROUP BY d.jour, p.nom ORDER BY d.jour, p.nom').all();
+	return results.map((r) => ({ jour: r.jour, nom: r.nom, recus: Number(r.recus) }));
 }
 
 /** Au plus tant d'actes sur la page d'une collectivite ; le compte dit les autres. */
