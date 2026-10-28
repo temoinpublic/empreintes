@@ -154,7 +154,8 @@ export function reponse(index, url, { acceptDatetime = null, accept = '' } = {})
 	if (demande.genre === 'timegate') {
 		const v = choisirLaVersion(source.versions, acceptDatetime);
 		if (!v) return texte(404, `Aucune version encore pour ${source.url}`);
-		return { statut: 302, entetes: { location: a.memento(v.tour), vary: 'accept-datetime', link: liens.join(', '), 'cache-control': 'no-store' }, corps: '' };
+		// Relatif : `wrangler pages dev` reecrit en http un Location absolu.
+		return { statut: 302, entetes: { location: adresses('', source.url).memento(v.tour), vary: 'accept-datetime', link: liens.join(', '), 'cache-control': 'no-store' }, corps: '' };
 	}
 	const position = source.versions.findIndex((v) => v.tour === demande.tour);
 	if (position < 0) return texte(404, `Aucune version de ${source.url} au tour ${demande.tour}`);
