@@ -8,7 +8,7 @@ import { nomDuDepartement } from './departements.mjs';
 import { BESOINS } from './besoins.mjs';
 import { EDITIONS, cheminsDe, planDe } from './edition.mjs';
 import { ADRESSES, FORMULES } from './documentation.mjs';
-import { CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_NOTAIRES, CHEMINS_DES_OFFRES, COUVERTURE, COUVERTURE_COMMUNES, COUVERTURE_DU_REGISTRE, ECHANTILLON, EXEMPLE_D_ACTE, EXEMPLE_DE_REGISTRE, OFFRES_DE_L_ACCUEIL, lienDeLAvis } from './offre.mjs';
+import { CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_CONFORMITE, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_NOTAIRES, CHEMINS_DES_OFFRES, COUVERTURE, COUVERTURE_COMMUNES, COUVERTURE_DU_REGISTRE, ECHANTILLON, EXEMPLE_D_ACTE, EXEMPLE_DE_REGISTRE, OFFRES_DE_L_ACCUEIL, PIECE_MICA, REGISTRES_DE_CONFORMITE, lienDeLAvis } from './offre.mjs';
 import { PROFILS_DES_OFFRES } from './attente.mjs';
 
 const NBSP = '\u00A0';
@@ -1262,6 +1262,41 @@ ${formulaireDAttente('drh')}
 <p><a class="bouton principal" href="${ACTES.dater.chemin}">Dater une version</a> <a class="bouton" href="${ACTES.verifier.chemin}">Vérifier une version</a></p>
 <h2>Ce que la date ne dit pas</h2>
 <p>Le reçu prouve qu’une version existait telle quelle à cette date. Il ne prouve pas qu’un salarié l’a reçue${NBSP}: la remise se prouve par une décharge signée ou un recommandé.</p>`
+	});
+}
+
+/* ------------------------------------------------------------ l'offre de la conformite (D-195, D-237) */
+
+const ligneDeRegistres = ({ autorite, registres }) => `<li><strong>${autorite}</strong>${NBSP}: ${registres.join(', ')}.</li>`;
+
+/** L'etat d'un registre financier a la date d'un controle : l'offre, les registres suivis, la piece MiCA, la liste d'attente. Sans prix. */
+export function pageOffreConformite(registres = REGISTRES_DE_CONFORMITE, piece = PIECE_MICA) {
+	const titre = 'Ce que disait un registre financier, le jour de votre contrôle';
+	const nombreDeRegistres = registres.reduce((n, r) => n + r.registres.length, 0);
+	return gabarit(EDITIONS.fr, {
+		titre,
+		description: `Chaque version de ${nombreDeRegistres} registres de l’ESMA, de l’AMF, de l’ACPR et de la HATVP, gardée avec sa date et un témoin tiers, pour retrouver l’état d’un registre au jour d’une entrée en relation. Liste d’attente ouverte.`,
+		chemin: CHEMIN_OFFRE_CONFORMITE,
+		corps: `<section class="une une-page"><h1>${titre}</h1>
+<p class="chapeau">Les registres de l’ESMA, de l’AMF et de la HATVP sont réécrits en place et ne gardent aucune version passée. Témoin public date chaque version lue au registre public, avec l’empreinte du fichier et la copie d’un témoin tiers, l’Internet Archive.</p></section>
+${formulaireDAttente('conformite')}
+<h2>Ce que l’offre ajoutera</h2>
+<ul>
+<li>La version d’un registre à la date de votre choix, avec sa preuve, à classer au dossier de vigilance.</li>
+<li>Ce qui a changé pour une contrepartie entre deux dates${NBSP}: entrée, sortie, services, pays.</li>
+<li>Vous êtes averti quand une contrepartie suivie quitte un registre ou change de ligne.</li>
+<li>Vous recevez le relevé de vos contreparties suivies, mois par mois.</li>
+</ul>
+<h2>Les ${nombreDeRegistres} registres suivis</h2>
+<ul>
+${registres.map(ligneDeRegistres).join('\n')}
+</ul>
+<h2>Déjà en ligne, sans compte</h2>
+<p>Du ${jourFr(piece.du)} au ${jourFr(piece.au)}, le registre MiCA des prestataires agréés a connu ${piece.versions} versions${NBSP}: ${nombre(piece.lignesAvant)} lignes puis ${nombre(piece.lignesApres)}, ${piece.datesReecrites} dates d’agrément réécrites, un prestataire absent ${piece.absentJours} jours puis revenu. Le registre du jour n’en montre aucune trace.</p>
+<p>Chaque version est inscrite le jour même au registre des dates, chaînée aux précédentes et ancrée dans Bitcoin.</p>
+<p><a class="bouton principal" href="${ACTES.journal.chemin}">Voir le registre des dates</a> <a class="bouton" href="${ACTES.verifier.chemin}">Vérifier un fichier</a></p>
+<h2>Ce que la date ne dit pas</h2>
+<p>La date prouve qu’un registre servait ce fichier à cette date. Il ne dit pas si son contenu est exact${NBSP}: les registres des autorités nationales restent la référence.</p>`
 	});
 }
 

@@ -179,3 +179,12 @@ test('le middleware reduit le // du schema dans une adresse Memento, et laisse t
 	assert.equal(await ailleurs.text(), 'tel quel');
 	assert.equal(suivants, 3);
 });
+
+test('les liens Memento restent en https quand le mandataire passe la demande en http, sauf en local', () => {
+	const index = indexDeTest();
+	const tm = reponse(index, `http://temoinpublic.fr/memento/timemap/link/${QUALIOPI}`);
+	assert.doesNotMatch(tm.corps, /<http:\/\/temoinpublic/);
+	assert.match(tm.corps, /<https:\/\/temoinpublic\.fr\/memento\/timegate\//);
+	assert.match(reponse(index, `http://temoinpublic.fr/memento/timegate/${QUALIOPI}`).entetes.location, /^https:\/\/temoinpublic\.fr\/memento\//);
+	assert.match(reponse(index, `http://localhost:8788/memento/timegate/${QUALIOPI}`).entetes.location, /^http:\/\/localhost:8788\/memento\//);
+});

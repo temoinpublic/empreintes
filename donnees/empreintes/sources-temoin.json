@@ -1,0 +1,98 @@
+[
+ {
+  "nom": "amf-psan",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/e03f8899-2499-4826-aaae-6842f520bdac",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Le regime PSAN s'eteint avec MiCA : la liste va disparaitre.",
+  "extension": "csv"
+ },
+ {
+  "nom": "amf-sgp-agreees",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/2220f808-8908-4afc-98e3-cf74a25678e2",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Une seule ressource renommee a chaque export : retraits d'agrement des SGP.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-entites-agreees",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B{v}0000%20TO%20{v}9999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Le registre ESMA des entreprises d'investissement, gestionnaires de fonds et societes de gestion agreees dans l'EEE (1 633 francaises) : noms, adresses, statut et services de chaque entite sont reecrits en place, aucune archive ne garde ses reponses (D-210).",
+  "extension": "json"
+ },
+ {
+  "nom": "esma-indices-references",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_bench_entities/select?q=*:*&fl=id,_root_,type_s,entity_type,en_*,bm_*&rows=50000&sort=id%20asc&wt=json",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Le registre ESMA des administrateurs d'indices de reference et de leurs indices (BMR) est reindexe chaque nuit sans millesime : un indice retire ou un administrateur qui perd son agrement en sort sans trace (D-210).",
+  "extension": "json"
+ },
+ {
+  "nom": "esma-mica-artzz",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Registre interimaire MiCA reecrit en place, aucune capture d'archive.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-mica-casps",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Registre interimaire MiCA reecrit en place, aucune capture d'archive.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-mica-emtwp",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Registre interimaire MiCA reecrit en place, aucune capture d'archive.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-mica-ncasp",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Registre interimaire MiCA reecrit en place, aucune capture d'archive.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-mica-other",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "Registre interimaire MiCA reecrit en place, aucune capture d'archive.",
+  "extension": "csv"
+ },
+ {
+  "nom": "esma-ventes-decouvert-exemptions",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:{v}&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "La liste ESMA des actions exemptees du reglement sur les ventes a decouvert, par autorite (1 654 notifiees par l'AMF) : le statut de chaque ligne est reecrit chaque jour, seule la derniere version est servie (D-210).",
+  "extension": "json"
+ },
+ {
+  "nom": "hatvp-repertoire",
+  "url": "https://www.hatvp.fr/agora/opendata/agora_repertoire_opendata.json",
+  "famille": "reecrit",
+  "theme": "registres",
+  "pourquoi": "Dirigeants, clients et affiliations des lobbyistes ne sont qu'a la version courante.",
+  "extension": "json"
+ },
+ {
+  "nom": "qualiopi-organismes-formation",
+  "url": "https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv",
+  "famille": "reecrit",
+  "theme": "registres",
+  "pourquoi": "Liste reecrite chaque jour : qui perd sa certification Qualiopi et quand.",
+  "extension": "csv"
+ }
+]

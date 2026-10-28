@@ -13,9 +13,9 @@ import { lecteurDeReleves } from '../src/chaine.mjs';
 import { INDEX_MEMENTO, SOURCES_TEMOIN, creerLesVersions } from '../src/memento.mjs';
 import { BESOINS } from '../src/besoins.mjs';
 import { entreesDe, sitesDe } from '../src/disparus.mjs';
-import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, datesDuPlan, robots } from '../src/pages.mjs';
+import { CHEMIN_DISPARUS, cheminDuSite, fluxDisparus, pageDisparus, pageDisparusDuSite, pageAccueil, pageActe, pageBesoin, pageDeposer, pageDocumentation, pageIntrouvable, pageJournal, pageMentions, pageOffreAssureurs, pageOffreCommunes, pageOffreConformite, pageOffreDrh, pageOffreEditeurs, pageOffreMarches, pageOffreNotaires, pagePreuve, pageRoles, pageSections, pageSchemaAdresse, pageVerifier, TEXTES_DE_L_ARCHIVAGE, planDuSite, datesDuPlan, robots } from '../src/pages.mjs';
 import { EDITIONS, dossierDe, planDe } from '../src/edition.mjs';
-import { CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_NOTAIRES } from '../src/offre.mjs';
+import { CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_CONFORMITE, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_NOTAIRES } from '../src/offre.mjs';
 import * as SCHEMA from '../src/schemaadresse.mjs';
 
 const RACINE = path.resolve(import.meta.dirname, '..');
@@ -90,7 +90,7 @@ for (const [langue, e] of Object.entries(EDITIONS)) {
 	dans(`${e.actes.conditions.chemin.slice(1)}.html`, pageSections('conditions', langue));
 	dans(`${e.actes.roles.chemin.slice(1)}.html`, pageRoles(langue));
 	for (const acte of TEXTES_DE_L_ARCHIVAGE) dans(`${e.actes[acte].chemin.slice(1)}.html`, pageSections(acte, langue));
-	dans('sitemap.xml', planDuSite(langue === 'fr' ? [...planDe(langue), SCHEMA.CHEMIN_DE_LA_PAGE, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_NOTAIRES, CHEMIN_OFFRE_DRH, ...(entrees.length ? [CHEMIN_DISPARUS] : []), ...sites.map((x) => cheminDuSite(x.site))] : planDe(langue), langue, datesDuPlan(tours, entrees, langue)));
+	dans('sitemap.xml', planDuSite(langue === 'fr' ? [...planDe(langue), SCHEMA.CHEMIN_DE_LA_PAGE, CHEMIN_OFFRE_MARCHES, CHEMIN_OFFRE_COMMUNES, CHEMIN_OFFRE_EDITEURS, CHEMIN_OFFRE_ASSUREURS, CHEMIN_OFFRE_NOTAIRES, CHEMIN_OFFRE_DRH, CHEMIN_OFFRE_CONFORMITE, ...(entrees.length ? [CHEMIN_DISPARUS] : []), ...sites.map((x) => cheminDuSite(x.site))] : planDe(langue), langue, datesDuPlan(tours, entrees, langue)));
 	dans('robots.txt', robots(langue));
 	dans('llms.txt', e.llms);
 }
@@ -113,6 +113,8 @@ ecrire(`${CHEMIN_OFFRE_ASSUREURS.slice(1)}.html`, pageOffreAssureurs());
 ecrire(`${CHEMIN_OFFRE_NOTAIRES.slice(1)}.html`, pageOffreNotaires());
 // L'offre des DRH (D-195), en francais seulement, sans prix.
 ecrire(`${CHEMIN_OFFRE_DRH.slice(1)}.html`, pageOffreDrh());
+// L'offre de la conformite (D-195, D-237), en francais seulement, sans prix.
+ecrire(`${CHEMIN_OFFRE_CONFORMITE.slice(1)}.html`, pageOffreConformite());
 for (const b of BESOINS) ecrire(`${b.chemin.slice(1)}.html`, pageBesoin(b));
 for (const m of ['chaine.mjs', 'horodatage.mjs', 'slh.mjs', 'depot.mjs', 'acte.mjs', 'personne.mjs', 'annuaire.mjs', 'affichage.mjs', 'origine.mjs', 'produit.mjs', 'serie.mjs']) ecrire(m, fs.readFileSync(path.join(RACINE, 'src', m)));
 for (const f of fs.readdirSync(path.join(RACINE, 'public'))) ecrire(f, fs.readFileSync(path.join(RACINE, 'public', f)));
