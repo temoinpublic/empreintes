@@ -99,6 +99,14 @@ test('dateHttp, copieDuTemoin et la TimeMap au format link', () => {
 	assert.doesNotMatch(aucune[1], /from=/);
 });
 
+test('le middleware recopie les en-tetes de la requete : Accept rend le JSON a travers le chemin //', async () => {
+	const index = indexDeTest();
+	const env = { ASSETS: { fetch: async (url) => (new URL(url).pathname === `/${INDEX_MEMENTO}` ? Response.json(index) : new Response('', { status: 404 })) } };
+	const r = await onRequest({ request: new Request(`${SITE}/memento/20261003T040000Z/${QUALIOPI}`, { headers: { accept: 'application/json' } }), env, next: async () => new Response('tel quel') });
+	assert.match(r.headers.get('content-type'), /^application\/json/);
+	assert.equal((await r.json()).sha256, B);
+});
+
 test('reponse : TimeMap, TimeGate et version, en HTML ou en JSON, et les refus', () => {
 	const index = indexDeTest();
 	const tm = reponse(index, `${SITE}/memento/timemap/link/${QUALIOPI}`);
@@ -107,10 +115,10 @@ test('reponse : TimeMap, TimeGate et version, en HTML ou en JSON, et les refus',
 	assert.match(tm.corps, /rel="first memento"/);
 	const tg = reponse(index, `${SITE}/memento/timegate/${QUALIOPI}`);
 	assert.equal(tg.statut, 302);
-	assert.equal(tg.entetes.location, `${SITE}/memento/20261004T040000Z/${QUALIOPI}`);
+	assert.equal(tg.entetes.location, `/memento/20261004T040000Z/${QUALIOPI}`);
 	assert.equal(tg.entetes.vary, 'accept-datetime');
 	assert.match(tg.entetes.link, /rel="original", <[^>]+timemap\/link[^>]+>; rel="timemap"; type="application\/link-format"$/);
-	assert.equal(reponse(index, `${SITE}/memento/timegate/${QUALIOPI}`, { acceptDatetime: 'Fri, 02 Oct 2026 12:00:00 GMT' }).entetes.location, `${SITE}/memento/20261001T040000Z/${QUALIOPI}`);
+	assert.equal(reponse(index, `${SITE}/memento/timegate/${QUALIOPI}`, { acceptDatetime: 'Fri, 02 Oct 2026 12:00:00 GMT' }).entetes.location, `/memento/20261001T040000Z/${QUALIOPI}`);
 	const page = reponse(index, `${SITE}/memento/20261003T040000Z/${QUALIOPI}`);
 	assert.equal(page.statut, 200);
 	assert.equal(page.entetes['memento-datetime'], 'Sat, 03 Oct 2026 04:00:00 GMT');
@@ -152,7 +160,7 @@ test('la Function lit l index construit et repond ; sans index, rien n est une s
 	assert.match(await tm.text(), /rel="last memento"/);
 	const tg = await onRequestGet({ request: new Request(`${SITE}/memento/timegate/${CASPS}`, { headers: { 'accept-datetime': 'Thu, 01 Oct 2026 12:00:00 GMT' } }), env });
 	assert.equal(tg.status, 302);
-	assert.equal(tg.headers.get('location'), `${SITE}/memento/20261001T040000Z/${CASPS}`);
+	assert.equal(tg.headers.get('location'), `/memento/20261001T040000Z/${CASPS}`);
 	assert.equal(await tg.text(), '');
 	const sans = await onRequestGet({ request: new Request(`${SITE}/memento/timegate/${CASPS}`), env: { ASSETS: { fetch: async () => new Response('', { status: 404 }) } } });
 	assert.equal(sans.status, 404);
@@ -169,7 +177,7 @@ test('le middleware reduit le // du schema dans une adresse Memento, et laisse t
 	const env = { ASSETS: { fetch: async (url) => (new URL(url).pathname === `/${INDEX_MEMENTO}` ? Response.json(index) : new Response('', { status: 404 })) } };
 	const reecrit = await onRequest({ request: new Request(`${SITE}/memento/timegate/${CASPS}`, { headers: { 'accept-datetime': 'Fri, 02 Oct 2026 12:00:00 GMT' } }), env, next });
 	assert.equal(reecrit.status, 302, 'la Function est jouee par le middleware, sans le routeur');
-	assert.equal(reecrit.headers.get('location'), `${SITE}/memento/20261002T040000Z/${CASPS}`);
+	assert.equal(reecrit.headers.get('location'), `/memento/20261002T040000Z/${CASPS}`);
 	assert.equal(suivants, 0);
 	const direct = await onRequest({ request: new Request(`${SITE}/memento/timegate/https:/a.b/c`), env, next });
 	assert.equal(await direct.text(), 'tel quel', 'un chemin deja reduit suit le routeur');
@@ -185,6 +193,8 @@ test('les liens Memento restent en https quand le mandataire passe la demande en
 	const tm = reponse(index, `http://temoinpublic.fr/memento/timemap/link/${QUALIOPI}`);
 	assert.doesNotMatch(tm.corps, /<http:\/\/temoinpublic/);
 	assert.match(tm.corps, /<https:\/\/temoinpublic\.fr\/memento\/timegate\//);
-	assert.match(reponse(index, `http://temoinpublic.fr/memento/timegate/${QUALIOPI}`).entetes.location, /^https:\/\/temoinpublic\.fr\/memento\//);
-	assert.match(reponse(index, `http://localhost:8788/memento/timegate/${QUALIOPI}`).entetes.location, /^http:\/\/localhost:8788\/memento\//);
+	const tg = reponse(index, `http://temoinpublic.fr/memento/timegate/${QUALIOPI}`);
+	assert.equal(tg.entetes.location, `/memento/20261004T040000Z/${QUALIOPI}`, 'le renvoi est relatif, le mandataire ne le reecrit pas');
+	assert.match(tg.entetes.link, /<https:\/\/temoinpublic\.fr\/memento\/timemap\/link\//);
+	assert.match(reponse(index, `http://localhost:8788/memento/timegate/${QUALIOPI}`).entetes.link, /<http:\/\/localhost:8788\/memento\/timemap\/link\//);
 });

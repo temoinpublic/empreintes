@@ -28,7 +28,8 @@ export async function onRequest({ request, env, next }) {
 		// Une adresse Memento porte `https://` dans son chemin : le routeur des Functions ne sert pas un segment vide,
 		// et `next()` ne reecrit pas la requete sous workerd. La Function se joue ici, sur le chemin reduit.
 		const retabli = ['GET', 'HEAD'].includes(request.method) ? cheminMementoRetabli(request.url) : null;
-		r = retabli ? await memento({ request: new Request(retabli, request), env }) : await next();
+		// Les en-tetes se recopient explicitement : sous workerd, `new Request(url, request)` ne les garde pas.
+		r = retabli ? await memento({ request: new Request(retabli, { method: request.method, headers: request.headers }), env }) : await next();
 	}
 	return horsIndex(request.url) && r.status !== 301 ? sansIndex(r) : r;
 }
