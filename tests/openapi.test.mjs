@@ -29,14 +29,16 @@ test('chaque Function publique de functions/api/ est decrite, avec un contact et
 
 test('GET /api rend l index de la description, point par point, avec ou lire la suite', async () => {
 	const ASSETS = { fetch: (url) => Promise.resolve(new Response(String(url).endsWith('/openapi.json') ? JSON.stringify(openapi) : null, { status: 200 })) };
-	const r = await index({ request: new Request('https://temoinpublic.fr/api'), env: { ASSETS } });
+	// Derriere le tunnel, la requete se lit en http : l'index donne tout de meme l'adresse publique en https.
+	const r = await index({ request: new Request('http://temoinpublic.fr/api'), env: { ASSETS } });
 	assert.equal(r.status, 200);
 	assert.equal(r.headers.get('content-type'), 'application/json; charset=utf-8');
 	assert.equal(r.headers.get('access-control-allow-origin'), '*');
 	const corps = await r.json();
-	assert.deepEqual(corps, indexDeLApi(openapi, 'https://temoinpublic.fr'));
+	assert.deepEqual(corps, indexDeLApi(openapi));
 	assert.equal(corps.service, 'Témoin public');
 	assert.equal(corps.documentation, 'https://temoinpublic.fr/documentation');
+	assert.equal(corps.mcp, 'https://temoinpublic.fr/mcp');
 	assert.equal(corps.openapi, 'https://temoinpublic.fr/openapi.json');
 	const attendus = Object.entries(openapi.paths).flatMap(([c, ms]) => Object.keys(ms).map((m) => `${m.toUpperCase()} ${c}`));
 	assert.deepEqual(
