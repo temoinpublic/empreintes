@@ -1,0 +1,77 @@
+{
+ "jour": "2026-10-29",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-dEurope-Bulletin-de-souscription-Mes-options.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "179d247b29b9e4b4d4a6e90bd056798ad8b979fe108a6b768fa420c6e04de5aa"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-dEurope-Dossier-de-souscription.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "082971bc541f934df3d8f85ed43b4deef27ace1bbfec016abe671490e1ba198a"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-de-Regions-Bulletin-de-souscription-Mes-options-.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "850eebb3daea0708b534c8374bb041ae1b3d62eab33502c9d5b1d06938d60b9a"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-de-Regions-Dossier-de-souscription-.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "8817abb4704a7e1d286bb132d1deeae62f96d06fb07ab408b178f37787708b33"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-de-Ville-Bulletin-de-souscription-Mes-options.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "79eda05cec714de7958f372e1b43b1b6a4be4d0ed0b08f410847c1a0213f9886"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-de-Ville-Dossier-de-souscription.pdf",
+   "date": "2026-10-29",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "a3c022a58c43fbd7a6c00bdde5b75503b5a53de584c409ecd80ebdc3b70fe917"
+   },
+   "apres": null
+  }
+ ]
+}
