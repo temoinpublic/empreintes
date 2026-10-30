@@ -1,0 +1,63 @@
+name: Outage drill
+
+# THE OUTAGE DRILL, ON PRODUCTION (D-128).
+#
+# Each probe of `/health` is cut in turn by `POST /health/exercice`, for that
+# single response: no visitor sees the cut, nothing is written. The job fails
+# when the served probe does not turn red on a cut, or turns red without
+# saying which journey broke and why (`exercice.verdicts`, judged by
+# `jugerLesCoupures` in `src/exercice.mjs`). The baseline call (nothing cut) lists the
+# probes to cut and must carry no cut. GitHub's OIDC token authenticates the
+# job: no secret. Once a month, and by hand after any change to the probe.
+#
+# Copy to `.github/workflows/exercice-de-panne.yml` and replace https://temoinpublic.fr
+# with the production origin, e.g. https://example.fr (the token audience too).
+# Reference: lesbancs#105, 2026-10-09.
+
+on:
+  schedule:
+    - cron: '17 6 1 * *'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: outage-drill
+  cancel-in-progress: false
+
+jobs:
+  drill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Cut each probe, one at a time
+        run: |
+          set -u
+          exercer() {
+            jeton=$(curl -fsS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+              "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https://temoinpublic.fr" | jq -r '.value')
+            curl -sS --max-time 60 -X POST -H "Authorization: Bearer $jeton" \
+              -H "content-type: application/json" -d "$1" \
+              https://temoinpublic.fr/health/exercice
+          }
+          rate=0
+          temoin=$(exercer '{"couper":[]}')
+          if echo "$temoin" | jq -e '.exercice.coupe == [] and ((.echecs_des_sondes | map(test("\\(exercice\\)")) | any) | not)' > /dev/null; then
+            echo "baseline: $(echo "$temoin" | jq -r '.alerte'), nothing cut" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "baseline unreadable or cut: $temoin" | tee -a "$GITHUB_STEP_SUMMARY"; exit 1
+          fi
+          # Probe names may hold a space ("script /page.js"): read them as JSON lines.
+          while IFS= read -r nom; do
+            lu=$(exercer "$(jq -cn --argjson n "$nom" '{couper: [$n]}')")
+            if echo "$lu" | jq -e --argjson s "$nom" '
+                .exercice.coupe == [$s]
+                and .exercice.verdicts[$s].vu == true' > /dev/null; then
+              echo "$nom cut: $(echo "$lu" | jq -r --argjson s "$nom" '.alerte + ", " + .exercice.verdicts[$s].raison')" | tee -a "$GITHUB_STEP_SUMMARY"
+            else
+              echo "$nom cut: the probe did NOT see it: $lu" | tee -a "$GITHUB_STEP_SUMMARY"; rate=1
+            fi
+          done < <(echo "$temoin" | jq -c '.exercice.connues[]')
+          exit $rate

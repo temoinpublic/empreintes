@@ -17,10 +17,21 @@ const lignesDeLaFeuille = (cle) => Number(/^depots:(\d+)$/.exec(cle)?.[1] ?? 0);
 async function verificateur(lire, tours) {
 	const tour = tours.at(-1);
 	if (!tour) return { ok: false, raison: 'aucun tour publie' };
-	const releve = await lecteurDeReleves(async (nom) => {
+	// Un releve que la surface ne sert pas casse le parcours (rouge) ; une lecture qui leve reste une erreur en chemin.
+	let absent = null;
+	const lireLeReleve = lecteurDeReleves(async (nom) => {
 		const r = await lire(`/empreintes/${nom}`);
-		return r.ok ? r.json() : null;
-	}, tours)(tour.id);
+		if (r.ok) return r.json();
+		absent ??= `${nom} : HTTP ${r.status}`;
+		return null;
+	}, tours);
+	let releve;
+	try {
+		releve = await lireLeReleve(tour.id);
+	} catch (e) {
+		if (absent) return { ok: false, tour: tour.id, raison: `le releve du tour ne se lit pas (${absent})` };
+		throw e;
+	}
 	const feuille = releve.feuilles.find(estUnObjet);
 	if (!feuille) return { ok: false, tour: tour.id, raison: 'le dernier releve ne porte aucun objet' };
 	const index = await lire(`/index/${feuille.sha256.slice(0, 2)}.json`);
@@ -38,9 +49,9 @@ async function verificateur(lire, tours) {
 	return { ok: true, tour: tour.id, empreinte: feuille.sha256, etapes: place.chemin.length, signature };
 }
 
-/** Le verificateur, joue sur le dernier tour ; `lire(chemin)` rend une reponse fetch de la surface. */
-export async function jouerLeVerificateur({ lire, tours, maintenant = Date.now() }) {
-	const cle = tours.at(-1) ? `${tours.at(-1).id}:${tours.at(-1).racine}` : null;
+/** Le verificateur, joue sur le dernier tour ; `lire(chemin)` rend une reponse fetch de la surface. `garder: false` ne lit ni n'ecrit la memoire (exercice de panne). */
+export async function jouerLeVerificateur({ lire, tours, maintenant = Date.now(), garder = true }) {
+	const cle = garder && tours.at(-1) ? `${tours.at(-1).id}:${tours.at(-1).racine}` : null;
 	const garde = cle && cache.get(cle);
 	if (garde && maintenant - garde.a < CACHE_MS) return garde.resultat;
 	const resultat = await verificateur(lire, tours);
@@ -69,7 +80,7 @@ export const depotsCouverts = (tours) => tours.findLast((t) => !t.base)?.depots 
  * pourquoi ; une erreur en chemin passe `attention` et sa raison voyage.
  * `db` absente : le depot est sans objet.
  */
-export async function jouerLesParcours({ lire, tours, db, maintenant }) {
+export async function jouerLesParcours({ lire, tours, db, maintenant, garder }) {
 	const jouer = async (nom, f) => {
 		try {
 			return { nom, ...(await f()) };
@@ -77,7 +88,7 @@ export async function jouerLesParcours({ lire, tours, db, maintenant }) {
 			return { nom, ok: null, echec: `parcours ${nom} : ${e.message}` };
 		}
 	};
-	const joues = await Promise.all([jouer('verificateur', () => jouerLeVerificateur({ lire, tours, maintenant })), db ? jouer('depot', () => jouerLeDepot({ db, couverts: depotsCouverts(tours) })) : null]);
+	const joues = await Promise.all([jouer('verificateur', () => jouerLeVerificateur({ lire, tours, maintenant, garder })), db ? jouer('depot', () => jouerLeDepot({ db, couverts: depotsCouverts(tours) })) : null]);
 	const resultats = joues.filter(Boolean);
 	const casses = resultats.filter((r) => r.ok === false);
 	const echecs = resultats.filter((r) => r.echec).map((r) => r.echec);
