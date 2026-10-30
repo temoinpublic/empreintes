@@ -76,6 +76,13 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   le journal ne couvre pas plus de lignes que la base). Un parcours casse est
   `rouge` avec sa raison ; une erreur en chemin, `attention`, la raison dans
   `echecs_des_sondes` ; le verificateur reussi se garde 5 min sur le meme tour.
+  L'exercice de panne EN PROD : `POST /health/exercice` (`functions/health/exercice.js`,
+  jeton OIDC d'un job de `main` de ce depot, 401 sinon) rejoue la sonde avec une
+  source coupee pour cette seule reponse (`COUPURES` dans `src/exercice.mjs` :
+  verificateur et `tours.json` `rouge`, base D1 et tete de `main` `attention`) et
+  juge chaque coupure contre la sonde intacte relue juste avant ; une source
+  nouvelle de la sonde s'y ajoute. `exercice-de-panne.yml` les coupe toutes, le
+  1er du mois et a la main.
 - Le depot d'une empreinte par un tiers (D-163) : le FORMAT de la ligne
   publique `/depots/<jour>.jsonl` et du recu est ecrit en tete de
   `src/depot.mjs`, et l'entrepot le relit (feuille `depots:<n>`) : il ne
