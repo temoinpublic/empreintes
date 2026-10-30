@@ -74,8 +74,27 @@ test('la glane s arrete a son plafond du jour', async () => {
 });
 
 import { relectureDeLActe } from '../src/service.mjs';
+import { sha256 } from '../src/chaine.mjs';
 
 const jourDe = (j) => new Date(`2026-10-${j}T12:00:00Z`);
+const pdfQuiImprime = (texte) => new Uint8Array(Buffer.from(`%PDF-1.4\n4 0 obj\n<< /Length 20 >>\nstream\nBT (${texte}) Tj ET\nendstream\nendobj\n`, 'latin1'));
+const temoinQuiGarde = (texte) => async (admise) => ({ ...(await parUrl(admise)), octets: pdfQuiImprime(texte) });
+
+test("l'empreinte du texte d'un acte se pose a sa datation, et a la relecture d'un acte date avant elle (D-193)", async () => {
+	const db = baseDeTest();
+	const texteDe = (recu) => db.sqlite.prepare('SELECT sha256 FROM texte WHERE recu = ?').get(recu)?.sha256 ?? null;
+	const r = await glaner(db, acte(7), { temoin: temoinQuiGarde('Budget primitif 2026') });
+	assert.equal(r.statut, 201);
+	assert.equal('copie' in corpsDe(r), false, 'les octets gardes pour le texte ne sortent pas');
+	assert.equal(texteDe(corpsDe(r).id), await sha256('Budget primitif 2026'));
+	const { id: ancien } = corpsDe(await glaner(db, acte(8)));
+	assert.equal(texteDe(ancien), null, 'date par un temoin sans octets');
+	assert.equal((await glaner(db, acte(8), { maintenant: jourDe(20), temoin: temoinQuiGarde('Travaux de voirie') })).statut, 200);
+	assert.equal(texteDe(ancien), await sha256('Travaux de voirie'), 'les memes octets relus posent le texte');
+	await glaner(db, acte(8), { maintenant: jourDe(21), temoin: temoinQuiGarde('Autre') });
+	assert.equal(texteDe(ancien), await sha256('Travaux de voirie'), 'et ne le changent plus');
+	assert.equal(texteDe(corpsDe(await glaner(db, acte(9), { temoin: temoinQuiGarde('') })).id), null, 'un PDF sans texte lisible n a pas d empreinte');
+});
 const disparue = (statut) => async () => {
 	throw Object.assign(new Error(`la source a repondu ${statut}`), { statut });
 };

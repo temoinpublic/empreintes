@@ -13,32 +13,42 @@ import { onRequestGet as fluxGet } from '../functions/disparus.xml.js';
 const hex = (c) => c.repeat(64);
 const SITE = 'https://www.cravans.fr/docs';
 
-/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture]`, `relecture` = [statut, depuis] ou null. */
+/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture, texte]`, `relecture` = [statut, depuis] ou null, `texte` la lettre de son empreinte de texte ou rien. */
 function base(actes) {
 	const db = baseDeTest();
-	actes.forEach(([lettre, jour, url, objet, relecture], place) => {
+	actes.forEach(([lettre, jour, url, objet, relecture, texte], place) => {
 		const recu = `f${hex(lettre).slice(1)}`;
 		db.sqlite.prepare('INSERT INTO depot (jour, place, sha256, recu) VALUES (?, ?, ?, ?)').run(jour, place, hex(lettre), recu);
 		db.sqlite.prepare('INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)').run(recu, '17133', 'deliberation', objet, url);
 		if (relecture) db.sqlite.prepare('INSERT INTO relecture (recu, jour, depuis, statut) VALUES (?, ?, ?, ?)').run(recu, '2026-10-23', relecture[1], relecture[0]);
+		if (texte) db.sqlite.prepare('INSERT INTO texte (recu, sha256) VALUES (?, ?)').run(recu, hex(texte));
 	});
 	return db;
 }
 
 const ACTES = [
 	['a', '2026-10-15', `${SITE}/budget-2026.pdf`, 'Budget primitif 2026', [404, '2026-10-22']],
-	['b', '2026-10-15', `${SITE}/voirie.pdf`, 'Travaux de voirie', null],
-	['c', '2026-10-22', `${SITE}/voirie.pdf`, 'Travaux de voirie, version corrigee', null],
+	['b', '2026-10-15', `${SITE}/voirie.pdf`, 'Travaux de voirie', null, '5'],
+	['c', '2026-10-22', `${SITE}/voirie.pdf`, 'Travaux de voirie, version corrigee', null, '6'],
 	['d', '2026-10-15', `${SITE}/delegation-signature-maingot.pdf`, 'Delegation', [410, '2026-10-22']],
 	['e', '2026-10-15', null, 'Sans objet', [404, '2026-10-22']],
 	['1', '2026-10-15', `${SITE}/eclairage.pdf`, 'Occupation du domaine public SIMON', [410, '2026-10-21']],
-	['2', '2026-10-15', `${SITE}/cantine.pdf`, 'Tarifs de la cantine', [200, '2026-10-22']]
+	['2', '2026-10-15', `${SITE}/cantine.pdf`, 'Tarifs de la cantine', [200, '2026-10-22']],
+	// Les memes octets recompresses (le meme texte) : dates, jamais « remplaces ».
+	['3', '2026-10-15', `${SITE}/tarifs.pdf`, 'Tarifs 2026', null, '7'],
+	['4', '2026-10-22', `${SITE}/tarifs.pdf`, 'Tarifs 2026', null, '7'],
+	// Sans empreinte de texte d'un cote ou de l'autre, rien n'est prouve.
+	['5', '2026-10-15', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null],
+	['6', '2026-10-22', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null, '8'],
+	['7', '2026-10-15', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null, '9'],
+	['8', '2026-10-22', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null]
 ];
 
 test('les actes disparus et remplaces : version d avant, preuve, aucune personne', async () => {
 	const lu = await actesDisparus({ db: base(ACTES) });
 	assert.equal(lu.disparus.length, 3, 'une adresse retiree en base ne se relit pas, un 200 non plus');
-	assert.equal(lu.remplaces.length, 1);
+	assert.equal(lu.remplaces.length, 1, 'le meme texte recompresse et une version sans empreinte de texte ne sont pas des remplacements');
+	assert.equal(lu.remplaces[0].apres, hex('c'));
 	const entrees = await entreesDesActes(lu);
 	assert.deepEqual(
 		entrees.map((e) => [e.classe, e.date, e.http, e.url.slice(SITE.length + 1)]),

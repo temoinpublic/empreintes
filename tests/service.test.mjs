@@ -111,8 +111,8 @@ test('pas de copie pour la glane, ni au-dela de sa borne', async () => {
 	const annuaire = async () => [['cravans.fr', '']];
 	const acte = { type: 'acte', url: 'https://www.cravans.fr/actes/deliberation-1.pdf', collectivite: '17133', nature: 'deliberation', libelle: 'Deliberation 1' };
 	const g = corpsDe(await deposer({ db, corps: acte, adresse: 'b', maintenant: midi, temoin, annuaire, flotte: true, copie: true }));
-	assert.equal(options[1].garder, false);
-	assert.equal(g.copie, undefined);
+	assert.equal(options[1].garder, true, 'les octets d un acte servent a son empreinte de texte (D-193)');
+	assert.equal(g.copie, undefined, 'et ne sortent jamais pour la glane');
 });
 
 const reponseDe = (statut, corps = '', entetes = {}) => new Response(statut >= 300 && statut < 400 ? null : corps, { status: statut, headers: entetes });
