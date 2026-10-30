@@ -230,6 +230,15 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   `ESSAIS_MAX` fois). L'etat garde le motif (`detail`). Mesure du 2026-10-17 : sur 186
   refus de la nuit, 57 liens morts, 3 fichiers de plus de 20 Mo, 1 DNS en `fe80::`, et
   ~125 PDF lisibles depuis un poste que le service n'a pas lus (14 hotes refuses en entier).
+- L'empreinte du TEXTE d'un acte (D-193, `src/textepdf.mjs`, pur, `DecompressionStream`
+  et jamais `node:zlib`) : le sha256 des chaines imprimees par les flux de contenu, hors
+  mise en page, polices, images et metadonnees. Le service la pose dans la table D1
+  `texte` a la datation d'un acte, et sur un acte date avant elle quand la glane relit
+  les memes octets. `/disparus` ne dit « remplace a la meme adresse » que si le texte
+  des deux versions est connu ET change : une recompression (857 PDF de 60 sites de
+  l'Aveyron en octobre 2026, `Producer: Stirling-PDF`, memes textes) reste une version
+  datee, pas un remplacement. Mesure : qpdf (recompression, objets en flux, mise a plat)
+  garde l'empreinte, Ghostscript la change (polices re-sous-ensemblees), limite connue.
 - Les documents budgetaires (D-185) : la glane les RELEVE, elle ne les depose pas
   (un compte administratif n'est pas un acte du registre). `documentBudgetaireDe`
   (`src/glane.mjs`, pur) lit dans le libelle puis le nom du fichier le genre (CA,
