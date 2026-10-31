@@ -32,3 +32,7 @@ Un changement en vol par famille de pages ; chacun porte sa date de jugement.
 - Mesure de depart : 0 impression sur toute adresse `/actes/` du 11 au 16/10 (D-205, releve du 17/10) ; 29 impressions sur le domaine le 21/10, toutes hors `/actes/`.
 - Critere de jugement, chiffre et date : au 2026-12-15, si les familles ecrites ont passe le 2026-11-25 (J+45) sans tomber sous la moitie de leur pic de 28 jours, la famille `/actes/` rouvre a l'index par lots (un departement, puis jugement a J+28). Sinon elle reste `noindex`, et D-205 vit de la citation (llms.txt, schema, API), jamais de la recherche.
 - Comment il se leve (le fichier) : `indexer: false` dans `pageAdresse` et `SANS_INDEX` dans `reponseAdresse` (`src/collectivite.mjs`), puis la ligne `Sitemap: .../sitemap-actes.xml` dans `robots` (`src/pages.mjs`).
+
+| Famille | Changement | Mis en ligne | Jugement | Mesure |
+| --- | --- | --- | --- | --- |
+| `/promesses/<INSEE>` (promesses municipales 2026, D-202) | famille nee le 2026-10-31 : une page par commune relue, les phrases de promesse des sites de campagne des municipales de mars 2026 avec leur source et leur date de lecture ; index `/promesses`, au plan du site, indexable des la naissance (quelques dizaines de pages pleines, pas une masse) | 2026-10-31 | **2026-12-15** | Search Console : impressions sur au moins 10 pages de commune distinctes ; requetes « promesses <commune> municipales 2026 », « programme <liste> » ; sinon la famille passe `noindex` et vit de la citation |
