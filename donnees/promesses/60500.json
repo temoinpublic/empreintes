@@ -1,0 +1,18 @@
+{
+ "insee": "60500",
+ "commune": "Le Plessis-Belleville",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "leplessisbelleville2026.fr",
+   "phrases": [
+    {
+     "texte": "Dans cette dynamique nous garantirons le maintien d’une ATSEM par classe, ainsi que le niveau de participation de la commune aux sorties scolaires (47%).",
+     "source": "https://leplessisbelleville2026.fr/programme.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

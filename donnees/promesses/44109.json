@@ -1,0 +1,18 @@
+{
+ "insee": "44109",
+ "commune": "Nantes",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "nouvellenantes.fr",
+   "phrases": [
+    {
+     "texte": "Nous mènerons un bilan urbain quartier par quartier : logements vacants, équipements manquants, mobilités, usages du foncier.",
+     "source": "https://nouvellenantes.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

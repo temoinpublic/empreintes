@@ -1,0 +1,358 @@
+{
+ "insee": "35360",
+ "commune": "Vitré",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "agirpourvitre.fr",
+   "phrases": [
+    {
+     "texte": "Nous ouvrirons une Maison de Santé Pluridisciplinaire rue de Beauvais réunissant 40 professionnels pour attirer de nouveaux médecins.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons la prévention en santé mentale, proposerons une mutuelle communale et poursuivrons avec détermination nos actions payantes en faveur la rénovation de l’hôpital.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons des logements adaptés ou intergénérationnels pour favoriser le maintien à domicile des aînés, soutiendrons la création d’un tiers-lieu multigénérationnel dans l’ancien cinéma, les associations contre l’isolement, et poursuivrons la démarche participative « Ville amie des aînés ».",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous identifierons un lieu destiné aux Vitréens, véritable guichet unique informant sur les services existants et favorisant les rencontres entre les acteurs du territoire que nous continuerons par ailleurs de soutenir.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des squares, y compris en centre-ville, pour renforcer le lien social.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rénoverons l’école de la Hodeyère et végétaliserons la cour pour améliorer le confort des usagers.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous augmenterons la part des produits locaux, de saison, bio, équitables et durables dans la restauration collective, dépassant ainsi l’objectif légal tout en soutenant nos agriculteurs.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons les actions en place et créerons 2 nouveaux espaces de rencontres : l’un au Nord et l’autre dans le quartier Debussy.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous dédierons un budget participatif pour permettre aux habitants de contribuer à l’action municipale à travers les dispositifs « Quartiers mobilisés », « Jeunesse mobilisée » ou dans le cadre du Conseil Municipal des Enfants.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous installerons dès 2026 un Conseil des Sages pour accompagner les élus sur des sujets stratégiques.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous préserverons notre patrimoine historique pour accompagner l’activité touristique croissante du château et rénoverons le Centre Culturel.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons les événements associatifs, associerons les habitants à la programmation de la saison culturelle et créerons un festival de musique pour enfants.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons de nouvelles infrastructures homologuées (piste d’athlétisme, complexe multisport), des aménagements favorisant l’activité physique ludique et des événements fédérateurs (marathon, Jeux Vitréens).",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous reconstruirons la ville sur elle-même et nous conserverons son harmonie par des réhabilitions et des nouveaux quartiers à Beauvais et Debussy.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous piloterons un plan des mobilités douces et remettrons aux élèves vitréens une carte des différents chemins d’accès à leur école.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons un plan de sobriété eau et énergie, rénoverons thermiquement notre patrimoine et créerons un parc photovoltaïque en autoconsommation afin de réduire durablement nos coûts et nos émissions.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour nos entreprises, nous soutiendrons l’implantation d’un campus étudiant et d’un pôle d’innovation et favoriserons les coopérations interentreprises et l’attractivité.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Sur le territoire, nous développerons le réseau de chaleur urbain et porterons une attention particulière à la qualité de l’eau.",
+     "source": "https://www.agirpourvitre.fr/programme-municipales-vitre-2026/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "vitreencommun.fr",
+   "phrases": [
+    {
+     "texte": "Nous créerons un centre de santé municipal, avec des soignants salariés par la collectivité, pour renforcer l’offre de soins et améliorer l’accès aux soins pour toutes et tous.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Initié lors de ce mandat, nous finaliserons le projet de maison de santé, accueillant des professionnels libéraux, rue de beauvais.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons à l’agglomération d’expérimenter un “médicobus” itinérant, capable d’assurer des consultations médicales, des soins infirmiers et des actions de prévention auprès des habitants de Vitré Communauté.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous faciliterons l’accès aux soins en mettant en place une mutuelle municipale, portée par le CCAS.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous viserons une alimentation 100% bio et/ou locale pour notre restauration collective en créant, notamment, une ferme municipale",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons aux femmes enceintes, sur prescription médicale ou orientation d’une infirmière PMI, un panier bio et local gratuit pour protéger les nouveaux-nés des effets des pesticides.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous réaliserons un diagnostic des îlots de chaleur urbains, installerons des fontaines publiques accessibles et créerons de véritables îlots de fraîcheur en cœur de ville, avec une réflexion pour développer un espace vert supplémentaire en coeur de ville.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Concrètement, nous adopterons une charte de l’arbre et lancerons un grand plan de plantations : au moins 1 000 arbres par mandat, en priorité autour des écoles, des équipements publics et dans les quartiers.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous viserons l’objectif du 3–30–300 : voir au moins 3 arbres depuis son habitation, disposer d’au moins 30 % de surfaces végétalisées dans son quartier, être à moins de 300 mètres d’un jardin public",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous opterons donc pour l’achat et l’utilisation de produits garantis sans perturbateurs endocriniens.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous encadrerons et régulerons l’affichage public (Règlement Local de Publicité) en interdisant les publicités pour l’alcool, la malbouffe et la fast fashion",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un chèque sport municipal pour aider les familles à payer une licence ou une adhésion sportive.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons le service prévention du CCAS en le rattachant aux services de la ville",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un appel à volontaires pour expérimenter un hameau léger, composé de logements simples, démontables et sans emprise durable au sol, qui ne bétonnent pas les terrains.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En complément des dispositifs nationaux existants, nous mettrons en place une plateforme municipale de signalement des logements insalubres permettant aux habitants de signaler rapidement des situations préoccupantes.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous respecterons les objectifs de production de logements fixés par le Programme Local de l’Habitat (PLH) de Vitré Communauté, ainsi que les obligations en matière de logement social.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous conforterons les effectifs et les missions de la police municipale",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans un souci de transparence et d’information, nous présenterons chaque année un bilan public de l’activité de la police municipale (interventions, types de missions, prévention, médiation), afin de permettre à chacune et chacun de mieux comprendre la réalité de la situation et l’action menée par la Ville.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons une assemblée citoyenne dédiée à la tranquillité publique et à la prévention des incivilités",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous formerons l’ensemble des agents municipaux à la prévention et au repérage des violences sexistes et sexuelles",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous adopterons un plan de circulation favorisant les mobilités actives,avec des aménagements continus, lisibles et réellement sécurisés, y compris en lien avec les communes limitrophes.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous améliorerons les cheminements piétons et expérimenterons des rues plus apaisées, notamment aux abords des écoles avec le dispositif des « rues scolaires », en associant étroitement les habitants et les usagers à la conception des aménagements.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons des courts séjours et des activités à tarifs accessibles, pour les familles qui n’ont pas la possibilité d’offrir des vacances à leurs enfants.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un service intergénérationnel solidaire",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous construirons une nouvelle école publique au nord de la ville",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous reprendrons la crèche municipale La Malabizou en régie directe",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Avec les acteurs de la petite enfance, nous créerons un lieu ressources de soutien à la parentalité",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour une meilleure coordination de la vie associative, nous créerons une maison des associations",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons le dispositif “heure civique”",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Sur le modèle du Monastère St Nicolas, nous souhaitons développer un tiers lieu culturel en proximité du centre ville",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un véritable plan de communication en faveur du sport et de la culture",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons finaliser le projet d’une salle multisport",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons financièrement les clubs sportifs désirant s’investir dans le sport santé",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous intégrerons le changement climatique dans toutes les réflexions et tous les projets, et plus globalement nous porterons un second “Plan Climat” plus ambitieux pour le territoire de Vitré Communauté.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous conditionnerons les aides publiques et les marchés publics à des engagements écologiques et sociaux progressifs et réalistes",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en œuvre un véritable plan de protection de la faune et de la flore locales",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mènerons un plan ambitieux de végétalisation de la ville",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mènerons des campagnes de sensibilisation contre l’abandon des animaux domestiques",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un programme de capture, stérilisation et relâche des chats errants",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons re-construire des Halles place Notre-Dame, là où elles ont historiquement existé.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous gèlerons toute nouvelle implantation ou extension de grandes surfaces afin de limiter l’étalement commercial périphérique et de protéger durablement le commerce de proximité.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous achèterons le local commercial actuellement vacant, situé place Jean Rozé.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons la salle du Mille-Club en concertation avec les habitants du quartier, en tenant compte de la création d’une nouvelle salle polyvalente au sein de l’espace Debussy.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place des conseils de quartier",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous réserverons une enveloppe budgétaire à des projets portés et choisis par les habitants.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Au-delà des commissions municipales, nous créerons des espaces de concertation, associant acteurs locaux et habitants pour co-construire des solutions concrètes du quotidien.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un Conseil municipal des adolescents, avec un budget dédié.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons également le rôle du Conseil municipal des enfants (CME), dont l’avis sera sollicité sur les délibérations et projets ayant un impact sur l’enfance.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ouvrirons les instances municipales aux habitants en instaurant un temps de questions publiques avant chaque Conseil municipal.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous expérimenterons des assemblées citoyennes thématiques, réunissant élus, habitants, agents municipaux et partenaires, pour travailler sur des sujets structurants ou sensibles pour la commune.",
+     "source": "https://vitreencommun.fr/des-projets-realistes-un-programme-ambitieux",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

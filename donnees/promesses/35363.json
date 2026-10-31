@@ -1,0 +1,18 @@
+{
+ "insee": "35363",
+ "commune": "Pont-Péan",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "aimerpontpean.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposerons une mutuelle de santé communale",
+     "source": "https://aimerpontpean.fr/wp-content/uploads/2026/03/vd-programme-aimer-pont-pean-_-municipales-2026.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+ "insee": "65440",
+ "commune": "Tarbes",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "tarbespourtous.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons la création d'une seconde maison médicale à Tarbes, implantée dans un quartier périphérique.",
+     "source": "https://tarbespourtous.fr/projets/tarbes-sante.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons la création d'une maison dentaire située en centre-ville, sur le modèle des maisons médicales qui ont fait leurs preuves.",
+     "source": "https://tarbespourtous.fr/projets/tarbes-sante.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La Police Municipale sera le seul service dont nous augmenterons les effectifs.",
+     "source": "https://tarbespourtous.fr/projets/tarbes-securite.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Grande nouveauté : nous créerons un poste de Police Municipale mobile (véhicule aménagé) pour renforcer la présence dans tous les quartiers, marchés, événements.",
+     "source": "https://tarbespourtous.fr/projets/tarbes-securite.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Avant sanction, nous offrirons un contact aux personnes interpellées avec suivi social, soins, accompagnement éducatif ou professionnel.",
+     "source": "https://tarbespourtous.fr/projets/tarbes-securite.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Un \"répertoire anti-canicule \" sera mis en place, sur inscription volontaire, pour identifier et accompagner les personnes les plus vulnérables.",
+     "source": "https://tarbespourtous.fr/assets/files/20250707_PP_TpT_Chaleur.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En complément, des toiles d'ombrage seront installées dans les cours d'école pour protéger les enfants et le personnel.",
+     "source": "https://tarbespourtous.fr/assets/files/20250707_PP_TpT_Chaleur.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous instaurerons la gratuité des musées tarbais.",
+     "source": "https://tarbespourtous.fr/assets/files/20250903_PP_TpT_Culture.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons les actions déjà existantes comme les ateliers « seniors en forme », la téléalarme, les goûters dansants (vœux du nouvel an, carnaval, fête des mères), la livraison des repas à domicile...",
+     "source": "https://tarbespourtous.fr/assets/files/programme-tarbes-pour-tous-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous recruterons deux personnes spécialisées dans le marketing territorial pour attirer des entreprises.",
+     "source": "https://tarbespourtous.fr/assets/files/programme-tarbes-pour-tous-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons un service de conciergerie apportant des services tels que l’aide à la recherche d’un logement, à l’inscription dans les écoles et aux diverses formalités administratives.",
+     "source": "https://tarbespourtous.fr/assets/files/programme-tarbes-pour-tous-2026.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

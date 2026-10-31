@@ -1,0 +1,243 @@
+{
+ "insee": "92046",
+ "commune": "Malakoff",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "malakoff2026.fr",
+   "phrases": [
+    {
+     "texte": "Dès notre arrivée, nous lancerons un audit complet, indépendant et public des finances de la Ville.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons de nouveaux espaces de dialogue, avec le déploiement d’une Agora citoyenne, espace de rencontres et de débats ouverts en ligne et en présentiel.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons une convention citoyenne accessible dès 16 ans, composée d’habitant·es tiré·es au sort et indemnisé·es sur les grands projets municipaux.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous créerons un Conseil des seniors, garant de la transmission intergénérationnelle et de la valorisation de l’expérience.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons développer une application municipale participative, permettant d’accéder aux informations de la ville, de signaler des dysfonctionnements et de suivre les projets municipaux.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des outils numériques partagés pour faciliter la communication entre enseignants, animateurs, familles et associations.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous engageons à étendre le nécessaire lutte contre la fracture numérique par la création d'un poste supplémentaire de formateur·trice, par une offre plus importante d'ateliers et de formations, qui interviendra au sein de l'espace de vie sociale Pierre-Valette mais aussi au sein des maisons de quartiers.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons faire participer le service des archives municipales au portail Open Data proposé par le département des Hauts-de-Seine (opendata.hauts-de-seine.fr) afin de valoriser et de rendre accessibles au plus grand nombre les archives de la ville",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons rapidement une convention citoyenne sur les enjeux relatifs aux IA génératives, leurs opportunités techniques, les risques potentiels et éthiques qu’elles posent, afin de déterminer quels usages la municipalité pourrait avoir de cet outil, à quel coût et avec quelles solutions.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une bourse municipale d’études médicales sera mise en place, conditionnée à un engagement d’installation à Malakoff pour une durée déterminée.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une mutuelle municipale à tarifs progressifs sera proposée afin de réduire le renoncement aux soins et favoriser l’accès à la santé pour toutes et tous.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons instaurer un Contrat local de santé global : Il s’agit d’une démarche portée conjointement entre l’Agence régionale de santé et une collectivité territoriale, visant à réduire les inégalités territoriales et sociales de santé.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, la distribution gratuite de protections périodiques et de préservatifs dans les lieux municipaux sera mise en place pour lutter contre la précarité sanitaire.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une compétence de délégation “coéducation” à la mairie, chargée de coordonner les actions transversales entre écoles, structures périscolaires et partenaires associatifs.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons des temps de bénévolat aux seniors de la ville sur les temps périscolaires pour favoriser les liens intergénérationnels, lutter contre l’isolement de nos anciens et offrir une offre plus large d’activité aux enfants.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Afin d’assurer la continuité éducative entre les étapes clés de la scolarité (crèche → petite section, grande section → CP, CM2 → 6e, 3e → Lycée), nous déploierons des projets de liaison et des journées passerelles.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous élargirons le champ d’action du Conseil éducatif local (CEL) en y associant les associations de quartier, des animateurs périscolaires et, ponctuellement, des “experts invités” dans les domaines de la santé mentale, du numérique et de la culture.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-gestion-efficace-et-transparent/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le respect des équilibres budgétaires, nous viserons un rapprochement progressif du montant de la taxe foncière avec la moyenne départementale.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des zones à 20 km/h seront instaurées dans les secteurs sensibles, notamment à proximité des écoles.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons encourager la concertation avec les artistes et un meilleur accès à la culture, via un annuaire en ligne des artistes de Malakoff pour valoriser les talents du territoire et des portes ouvertes des ateliers d’artistes.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des ateliers d’artistes seront ouverts dans des espaces municipaux inoccupés .",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une scène ouverte au parc Salagnac, organisée de manière régulière, ainsi qu’un festival du documentaire et du film.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rendrons le sport plus accessible via des groupes de loisirs intergénérationnels mêlant enfants, adolescents, adultes et seniors avec des cours thématiques ponctuels au cours de l’année.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des tournois sportifs inter-quartiers et familiaux seront créés, promouvant la convivialité à travers une “ Coupe du monde ou CAN de Malakoff” (Coupe africaine des nations locale) et une “NBA Malakoff” (tournoi de basket de quartier).",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous conduirons une analyse des besoins sociaux spécifiques à destination des familles monoparentales et des seniors pour adapter les dispositifs existants.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une régie coopérative de conciergerie et de services de proximité sera créée pour faciliter l’entraide locale et créer des emplois utiles.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Les Maisons de Quartier seront rénovées et modernisées afin d’améliorer leur accessibilité et leur attractivité, notamment grâce à la participation des habitant·es sur le choix de la programmation culturelle et des événements qui y ont lieu.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des formations citoyennes aux premiers secours seront proposées pour renforcer la résilience collective.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons la politique déjà engagée (rues, écoles et lieux publics renommés en l’honneur de femmes) en fixant un objectif chiffré de féminisation des noms de lieux sur la durée du mandat.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des campagnes régulières de sensibilisation contre le sexisme, les violences faites aux femmes et les LGBTQIA+phobies, dans les écoles, les maisons de quartier, les clubs sportifs et les lieux culturels.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Un service d’aide aux petits travaux à domicile sera mis en place pour les personnes âgées sous conditions de ressources et une conciergerie en lien avec les EHPAD et les entreprises locales pourra être expérimentée pour faciliter les démarches administratives et les services du quotidien.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour accompagner et valoriser le statut des aidant·es, nous ouvrirons une \"maison du répit\" au sein de la Maison des Solidarités, afin qu'ils et elles puissent se reposer, échanger avec des professionnels, trouver des aides et des ressources.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons des actions intergénérationnelles dans les quartiers : ateliers numériques animés par des jeunes pour les seniors, ateliers mémoire et transmission de savoir-faire animés par des aîné·es pour les plus jeunes, binômes de lecture, jardinage ou cuisine partagée.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un système de mentorat ou de parrainage dédié à l’accompagnement dans l’orientation scolaire et professionnelle, notamment grâce aux temps d’aides aux devoirs proposés dans les maisons de quartiers.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des ateliers découvertes dans les maisons de quartier, animés par les associations locales : théâtre, musique, arts visuels, découverte des métiers ou des savoir-faire.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons « des créneaux jeunesse » dans les espaces sportifs de la ville, temps autonomes durant lesquels les jeunes disposent d’infrastructures pour rendre plus accessible l’activité physique",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-malakoff-dynamique-et-inclusive/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Malakoff accorde une part importante de son parc au logement social : Nous maintiendrons 40 % de logements sociaux dans la ville.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la transparence des attributions HLM, avec une publication claire des critères d’attribution et une amélioration de la lisibilité des procédures.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une agence immobilière sociale et solidaire municipale sera créée pour mobiliser le parc privé à loyers maîtrisés, lutter contre la vacance et accompagner les propriétaires dans la rénovation thermique de leur logement.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un axe vert structurant de Barbusse à Gagarine, avec suppression et réaménagement du rond-point Gagarine.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons remodeler la place du 11-Novembre, en favorisant sa désimperméabilisation et déminéralisation, tout en garantissant un usage pérenne pour les commerçants du marché et de la place, les riverains et les familles.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une annexe de la mairie dans les locaux de la Maison de quartier Barbusse, ou dans les bâtiments du collège Wallon, afin de rapprocher les services municipaux des habitants du Sud.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Plus généralement, le Parc Salagnac fera l’objet d’une attention particulière : aujourd’hui en désuétude, nous planifierons la réfection du parc ainsi que du bassin dans lequel l’eau ne s’écoule pas.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En lieu et place du complexe Christiane-Prajet (en particulier le stade Marcel Cerdan), nous créerons une destination estivale avec sports, zones de fraîcheur et animations festives accessibles à toutes et tous.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une Sécurité sociale alimentaire locale expérimentale sera mise en place sous forme de dispositifs favorisant l’accès à des produits frais selon les revenus.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des paniers solidaires seront proposés aux ménages en difficulté, notamment aux femmes enceintes et jeunes parents, avec distribution de légumes biologiques.",
+     "source": "https://www.malakoff2026.fr/index.php/programme-election-municipale-malakoff-3/programme-prendre-soin-du-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "insee": "67067",
+ "commune": "Brumath",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "brumathencommun.fr",
+   "phrases": [
+    {
+     "texte": "Nous lancerons également des enquêtes de terrain et des études publiques, avec des restitutions adressées à tous·tes les habitant·es de la ville, qui vulgariseront les sujets techniques et scientifiques pour les rendre compréhensibles de toutes et tous.",
+     "source": "https://brumathencommun.fr/notre-programme",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "ensemblepourbrumath.fr",
+   "phrases": [
+    {
+     "texte": "Nous créerons une Maison de la Jeunesse réfléchie avec et pour les jeunes.",
+     "source": "https://ensemblepourbrumath.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour chaque naissance, nous planterons un arbre.",
+     "source": "https://ensemblepourbrumath.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un budget participatif, concret et accessible.",
+     "source": "https://ensemblepourbrumath.fr/programme",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

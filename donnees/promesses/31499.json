@@ -1,0 +1,158 @@
+{
+ "insee": "31499",
+ "commune": "Saint-Lys",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "saint-lys-ensemble.fr",
+   "phrases": [
+    {
+     "texte": "Nous mettrons en œuvre le projet « Cœur de bastide » en rénovant et redynamisant le centre‑ville dans le cadre du projet bourg‑centre, en valorisant le patrimoine historique et en répondant aux défis environnementaux actuels.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons le Grand Café de France pour créer au cœur du bourg un lieu de convivialité : restaurant, commerce, boutique éphémère, et espace de coworking / tiers lieu pour les indépendants et télétravailleurs.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en accessibilité l’ensemble de l’espace public (trottoirs, traversées, cheminements, abords des équipements) pour constituer une « chaîne de déplacement » inclusive, et apaiser les circulations au bénéfice des piétons, cyclistes et personnes à mobilité réduite.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous enrichirons le réseau cyclable et les cheminements doux de manière sécurisée, lisible et continue en étendant l’existant entre quartiers, écoles, équipements et espaces de loisirs, afin de créer un véritable réseau cyclable et piétonnier reliant les principaux pôles de la commune.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons la coulée verte pour relier les équipements par un espace naturel continu, ombragé et accueillant, lieu de promenade et de rencontre, propice à la biodiversité et au rafraîchissement urbain.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous remettrons la nature au cœur des espaces publics pour réduire les ilôts de chaleur, en plantant des arbres, végétalisant les rues et places, en intégrant systématiquement les mobilités douces dans les aménagements.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous stimulerons la mise en place d’éco mobilités en mettant en place pédibus et vélobus pour les trajets scolaires du quotidien et encourager les mobilités actives.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des espaces cultivables, en cœur de ville et en bordure de quartiers.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons une démarche ambitieuse de réduction et de valorisation des déchets : compostage, tri, ateliers citoyens, accompagnement des commerçants, ateliers dans les écoles, « Défi Familles » et temps forts lors de la Semaine européenne de réduction des déchets.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la police municipale en passant à 6 policiers municipaux, moderniserons les équipements, poursuivrons le déploiement de la vidéoprotection et mettrons en place un Conseil Local de Sécurité et de Prévention de la Délinquance opérationnel.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous actualiserons le Plan Communal de Sauvegarde, et relancerons la « vigilance citoyenne » en partenariat avec la gendarmerie",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons le plan de propreté urbaine (équipements, actions pédagogiques, interventions dans les écoles), généraliserons le tri et la réduction des déchets lors de toutes les manifestations (suppression progressive des contenants jetables, collecte ciblée).​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous intégrerons systématiquement des clauses d’insertion dans les marchés publics, afin que des heures de travail soient données aux personnes éloignées du marché de l’emploi.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous serons un relais de l’Économie Locale en créant un guichet unique pour les entrepreneurs, commerçants et porteurs de projets : informations, conseils, accompagnement, formations, espaces de coworking, en lien étroit avec la CCI et les partenaires économiques.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons des zones d’activités adaptées aux besoins du territoire, en partenariat avec le Muretain Agglo, proches des axes structurants, pour accueillir artisans, PME et entreprises innovantes.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons la rénovation complète des écoles pour des bâtiments plus confortables, mieux isolés, sobres en énergie, et créerons un city stade mutualisé à proximité de l’école Tabarly.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un plan bien‑être jeunesse (avec MJCCS, CCAS, Police municipale) : dispositifs d’écoute, prévention santé (addictions, santé mentale, nutrition, écrans), accompagnement à la scolarité (CLAS), orientation, et insertion des 15‑25 ans.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons l’ancien collège en pôle intergénérationnel regroupant activités 12‑25 ans, ateliers numériques, salle de musique, espace créatif, « café des parents », afin de renforcer les actions entre générations.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ferons du #58 un espace jeunesse 2.0, rénové et modernisé, lieu ressource pour loisirs, vie associative, aide aux devoirs, accompagnement numérique, pratique musicale et parentalité.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous étudierons et mettrons en place un « Pass Saint‑Lys Jeunesse » pour faciliter l’accès à la culture, au sport, aux loisirs et à la mobilité, en levant les freins financiers et pratiques.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons un Fablab éducatif en lien avec les établissements scolaires, pour initier les jeunes au numérique, à la fabrication 3D, au prototypage, à la robotique, en lien avec les entreprises locales.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un budget participatif des jeunes et des ateliers de travail pour que les jeunes proposent, débattent et priorisent les projets qui les concernent.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une Plaine sportive (terrain synthétique de foot, espace de pratique libre et encadrée, salles de réception, parkings), aménagerons de nouveaux espaces éducatifs et sportifs accessibles à tous, et lancerons un projet de création d’un espace aquatique couvert avec le Muretain Agglo.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rénoverons La Gravette pour maintenir au cœur du village une activité culturelle & artistique.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous structurerons un pôle culturel autour de L’Escalys, de la MJCCS, du théâtre de verdure, de la médiathèque, du musée, et de la salle d’exposition.",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons des campagnes de prévention en santé publique, en poursuivant la création d’un pôle de santé face aux anciens locaux techniques, et lancerons la restructuration de l’EHPAD Maréchal Leclerc en partenariat avec l’AJH.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rassemblerons les services municipaux autour de la mairie pour créer un pôle de services publics moderne et fonctionnel avec guichet unique, horaires adaptés au plus grand nombre et démarches simplifiées.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous diffuserons en direct et en différé les réunions publiques et principaux conseils, rendrons les projets lisibles et accessibles, et construirons une relation de confiance durable avec la population.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la communication (magazine, site, réseaux sociaux, outils d’alerte) et installerons des panneaux d’information numériques dans les lieux stratégiques.​",
+     "source": "https://saint-lys-ensemble.fr/le-programme/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

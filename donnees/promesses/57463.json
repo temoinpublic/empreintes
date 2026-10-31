@@ -1,0 +1,143 @@
+{
+ "insee": "57463",
+ "commune": "Metz",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "maintenant-metz2026.fr",
+   "phrases": [
+    {
+     "texte": "En complément, une légumerie sera créée pour transformer nos fruits et légumes locaux.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous instaurerons progressivement la gratuité des transports en commun, en visant pour commencer les plus jeunes et les plus précaires.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la tarification solidaire tout en investissant pour moderniser le réseau.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons un plan de rénovation du bâti scolaire afin de l’adapter au changement climatique.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Avec notre entreprise locale d’énergie, nous déploierons des panneaux solaires sur les toitures des bâtiments et les parkings publics.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons la Fournirue et la rue des Allemands pour que la piétonnisation y soit réelle.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons un programme ambitieux de réhabilitation thermique du logement social, qui améliorera le confort des locataires tout en réduisant leur facture.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place une tarification sociale avec gratuité des premiers mètres cubes.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place la gratuité des cantines scolaires pour les enfants des familles les plus modestes.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La vulnérabilité face aux grosses chaleurs ne touche pas seulement les personnes âgées : nous étendrons le plan canicule aux personnes en situation de handicap.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons une solution de téléassistance partiellement prise en charge en fonction des revenus, à l’image de ce qui existe déjà à Paris, Nancy ou Marseille.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une maison de l’accessibilité et de la citoyenneté qui facilitera les démarches des personnes en situation de handicap.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous multiplierons les jumelages entre les écoles primaires et les maisons de retraite.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons des rues scolaires en fermant l’accès aux voitures aux heures d’entrée et de sortie des classes.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous augmenterons de manière significative le nombre de places dans les structures collectives municipales, notamment au Sablon où une ludothèque sera créée.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous réaménagerons les espaces dans les écoles pour favoriser le travail en équipe des enseignants et la participation des parents.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons de nouveaux lieux d’accueil pour les activités périscolaires et réaménagerons les espaces existants.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons de nouvelles cantines et améliorerons la pause méridienne dont l’animation sera encadrée par du personnel en nombre suffisant et formé.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous donnerons à l’ancienne caserne des pompiers, sur le site de Ranconval, une nouvelle vocation : trois forums – des sports, des solidarités et des associations – pour donner un toit et des moyens à l’engagement.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Les commissions municipales seront ouvertes à la population.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons les comités de quartier en assemblées citoyennes actives, dotées de vrais moyens d’action comme le budget participatif.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un service municipal pour l’engagement citoyen et bénévole, afin de faciliter et valoriser l’implication du plus grand nombre dans la vie de la cité.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons un dispositif d’alerte 24h/24 à l’aide de bornes d’appel et créerons des points refuges avec des établissements partenaires",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous opposerons à toute nouvelle création de grande surface en périphérie.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous encouragerons la création de points de vente permanents pour les producteurs locaux, à Devant-les-Ponts et au Sablon, en complément des marchés hebdomadaires.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous introduirons les capteurs de présence et nous maintiendrons la lumière la nuit.",
+     "source": "https://maintenant-metz2026.fr/programme/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}
