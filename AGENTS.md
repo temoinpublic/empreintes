@@ -127,6 +127,14 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   un SIREN compte a la commune que l'annuaire lui donne. `lecteurDeCommunes`
   (`src/annuaire.mjs`) n'analyse chaque fragment qu'une fois par requete. Date de
   jugement de la famille dans `docs/referencement.md`.
+- Les promesses municipales 2026 (D-202) : `src/promesses.mjs` (pur) decide ce
+  qui se publie de `donnees/promesses/<insee>.json`, une fiche par commune,
+  servie en `/promesses/<insee>` et listee en `/promesses` SEULEMENT relue
+  (`relue_le`) et a cinq phrases et plus ; une phrase ou un site qui nommerait une
+  personne (`nommeUnePersonne`, les mots de l'hote en capitales) ne parait jamais,
+  la page dit la phrase, sa source et son jour de lecture, jamais un jugement.
+  `scripts/promesses.mjs` tire les fiches A RELIRE de la mesure de l'entrepot
+  (son `promesses.json`, prive) et ne recouvre jamais une fiche relue.
 - Les besoins (D-177) : `src/besoins.mjs`, une page statique par besoin cherche sous
   `/besoin/`, francais seulement, le geste de dater sur la page (`lien` : l'adresse
   seule ; `fichier` : le formulaire de Dater) ; au plan du site, lies de l'accueil.

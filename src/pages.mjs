@@ -4,6 +4,7 @@
 
 import { NATURES } from './acte.mjs';
 import { cheminDeLActe } from './adresse.mjs';
+import { CHEMIN_PROMESSES, cheminDeLaCommune, nombreDePhrases } from './promesses.mjs';
 import { nomDuDepartement } from './departements.mjs';
 import { BESOINS } from './besoins.mjs';
 import { EDITIONS, cheminsDe, planDe } from './edition.mjs';
@@ -1343,5 +1344,57 @@ export function pageMemento({ nom, url, version, position, total, temoin }) {
 </table>
 <p>${e.marque} ne garde pas le contenu, seulement son empreinte datée${NBSP}: le fichier se relit chez son éditeur ou chez le témoin, et son SHA-256 doit être celui-ci.</p>
 <p><a class="bouton" href="/verifier?empreinte=${version.sha256}">Vérifier cette empreinte</a> <a class="bouton" href="/memento/timemap/link/${adresse}">Toutes les versions</a></p>`
+	});
+}
+
+/* ------------------------------------------------------------ les promesses municipales (D-202) */
+
+/** Une phrase lue a l'ecran : le signe double se soude au mot qui le precede. */
+const souder = (texte) => String(texte).replace(/ ([:;?!»])/g, `${NBSP}$1`).replace(/« /g, `«${NBSP}`);
+
+const lignePhrase = (p) => `<li>«${NBSP}${souder(echapper(p.texte))}${NBSP}» <a href="${echapper(p.source)}">Source</a>, lu le ${jourFr(p.lue_le)}</li>`;
+
+const sectionDeLaListe = (l) => `<h2>${echapper(l.site)}</h2>
+<ol>
+${l.phrases.map(lignePhrase).join('\n')}
+</ol>`;
+
+const titreDesPhrases = (n) => `${nombre(n)} phrase${marqueDuPluriel(n)} de promesse`;
+
+/** Les promesses d'une commune : chaque liste, chaque phrase, sa source, sa date de lecture. */
+export function pagePromessesDeLaCommune(fiche) {
+	const n = nombreDePhrases(fiche);
+	return gabarit(EDITIONS.fr, {
+		titre: `${fiche.commune}, promesses municipales 2026`,
+		description: `${fiche.commune}, municipales 2026${NBSP}: ${titreDesPhrases(n)} lue${marqueDuPluriel(n)} sur ${nombre(fiche.listes.length)} site${marqueDuPluriel(fiche.listes.length)} de campagne, chacune avec sa source et sa date de lecture.`,
+		chemin: cheminDeLaCommune(fiche.insee),
+		corps: `<h1>${echapper(fiche.commune)}</h1>
+<p class="compte">Municipales 2026, ${titreDesPhrases(n)}, ${nombre(fiche.listes.length)} liste${marqueDuPluriel(fiche.listes.length)}, relues le ${jourFr(fiche.relue_le)}.</p>
+${fiche.listes.map(sectionDeLaListe).join('\n')}
+<p><a href="${CHEMIN_PROMESSES}">Toutes les communes</a></p>`
+	});
+}
+
+/** L'index des communes qui ont leurs promesses relues. */
+export function pagePromesses(fiches) {
+	const lignes = fiches.map((f) => `<tr><td><a href="${cheminDeLaCommune(f.insee)}">${echapper(f.commune)}</a></td><td class="n">${nombre(f.listes.length)}</td><td class="n">${nombre(nombreDePhrases(f))}</td></tr>`).join('\n');
+	const phrases = fiches.reduce((t, f) => t + nombreDePhrases(f), 0);
+	return gabarit(EDITIONS.fr, {
+		titre: 'Promesses municipales 2026',
+		description: `Ce que les listes des municipales de mars 2026 ont écrit sur leur site de campagne, commune par commune${NBSP}: ${nombre(phrases)} phrases, ${nombre(fiches.length)} commune${marqueDuPluriel(fiches.length)}, chaque phrase avec sa source et sa date de lecture.`,
+		chemin: CHEMIN_PROMESSES,
+		indexer: fiches.length > 0,
+		corps: `<h1>Promesses municipales 2026</h1>
+<h2>${fiches.length ? `${nombre(fiches.length)} commune${marqueDuPluriel(fiches.length)}, ${titreDesPhrases(phrases)}` : 'Aucune commune relue'}</h2>
+${
+	fiches.length
+		? `<table>
+<thead><tr><th>Commune</th><th class="n">Listes</th><th class="n">Phrases</th></tr></thead>
+<tbody>
+${lignes}
+</tbody>
+</table>`
+		: ''
+}`
 	});
 }
