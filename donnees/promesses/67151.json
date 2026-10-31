@@ -1,0 +1,138 @@
+{
+ "insee": "67151",
+ "commune": "Gambsheim",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "ensemble-gambsheim.fr",
+   "phrases": [
+    {
+     "texte": "Nous créerons une maison des associations ; lieu d’échanges, de partage d’outils et de coordination pour les initiatives locales.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous pérenniserons l’exploitation de la buvette estivale du Massed, afin d’offrir un service de proximité convivial tout en soutenant les associations locales.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour faciliter l’organisation d’événements nécessitant des moyens logistiques et humains, nous mettrons en place une banque de matériel mutualisé et un vivier de bénévoles.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous construirons une piste de Pump Track pour offrir un espace ludique et sportif pour les enfants et adolescents (à vélo, roller, trottinette, skate)",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous moderniserons nos aires de jeux afin de garantir des installations sécurisées et attrayantes, adaptées aux besoins des enfants de tout âge.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une commission de jeunes pour un partage d’idées et d’attentes.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous donnerons la possibilité aux jeunes de se retrouver dans un local, afin de favoriser l’Animation Jeunesse du Pays Rhénan.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous publierons un bulletin périodique d’informations comprenant un planning des événements.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des îlots de fraîcheur et développerons des itinéraires de mobilité douce pour favoriser les déplacements à pied et à vélo en toute sécurité.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous engagerons également un programme d’embellissement du cimetière, avec l’amélioration des allées principales, la plantation d’arbustes et l’installation de bancs, afin d’en faire un lieu apaisant.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des journées citoyennes pour favoriser des actions environnementales et des rencontres régulières entre élus et habitants pour établir un dialogue ouvert et transparent sur les préoccupations locales.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous instaurerons un budget participatif permettant aux citoyens de proposer des projets qui correspondent à leurs besoins.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons une mutuelle santé communale pour justement mutualiser les demandes et faire baisser les coûts sans faire baisser les prestations.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renouvèlerons les panneaux directionnels d’indication des commerces pour améliorer leur visibilité et faciliter l’orientation des clients.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des rencontres avec les acteurs du monde économique afin de créer un réseau solide entre commerçants, artisans, industriels et institutions.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous initierons la création d’une pépinière d’entreprises avec un espace coworking.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons la vidéoprotection pour prévenir et dissuader les actes de malveillance grâce à un réseau de caméras stratégiquement positionnées.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une synergie entre les acteurs locaux et les forces de l’ordre pour une sécurité proactive et partagée avec un dispositif « Voisins vigilants », des réunions de sensibilisation et une coordination renforcée par un référent municipal dédié à la sécurité pour faciliter les échanges.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rénoverons les agrès et l’aire de jeux du parcours de santé de la forêt du Steinwald et nous créerons un itinéraire éco-pédagogique.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous relancerons une action de reboisement du Steinwald suite à la maladie de la chalarose qui décime les frênes.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des rencontres régulières avec nos agriculteurs afin de créer du dialogue, de valoriser leur travail et de construire ensemble des solutions durables.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous engagerons une renaturation partielle du Giessen pour favoriser la biodiversité et redonner vie à ce cours d’eau.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons des prairies fleuries, des micro-forêts urbaines et planterons des arbres fruitiers pour enrichir notre patrimoine naturel.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous planterons un arbre pour chaque naissance : un geste symbolique et durable pour relier les générations et inscrire chaque enfant dans l’histoire vivante de notre commune.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous améliorerons l’espace baignade du Massed pour garantir sécurité et confort aux familles et aux activités nautiques.",
+     "source": "https://www.ensemble-gambsheim.fr/programme",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

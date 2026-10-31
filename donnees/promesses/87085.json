@@ -1,0 +1,138 @@
+{
+ "insee": "87085",
+ "commune": "Limoges",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "limoges-nouveau-printemps.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons également de sécuriser les parcs et jardins, en les clôturant totalement ou partiellement lorsque c’est nécessaire, afin de préserver ces lieux de détente et d’en garantir un usage paisible.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-la-securite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons également les associations engagées dans la prévention des violences, ainsi que celles qui proposent des cours de self-défense, pour donner à chacun des moyens concrets d’agir.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-la-securite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, une aide de 50 euros sera instaurée pour faciliter l’installation de dispositifs de sécurité à domicile, comme la téléassistance ou les alarmes.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-la-securite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous remettrons dans les quartiers des correspondants de soirée, des médiateurs et des éducateurs de rue, issus du secteur, pour renforcer le dialogue et prévenir les tensions.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-la-securite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des maisons de la tranquillité publique seront ouvertes dans chaque secteur de la ville, pour offrir un point d’accueil et d’écoute accessible à tous, à l’exemple de ce que propose la ville de Nantes",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-la-securite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous voulons rendre les bus vraiment accessibles à tous les arrêts, pour que chacun puisse se déplacer en toute autonomie.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-les-mobilites-en-ville-1-3-laccessibilite-aux-personnes-a-mobilite-reduite/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons aussi déployer des bus roulant au méthane, produit localement, afin de réduire l’impact environnemental des transports et de favoriser une énergie plus durable.",
+     "source": "https://limoges-nouveau-printemps.fr/2026/02/municipales-nos-propositions-sur-les-mobilites-en-ville-2-3-des-transports-en-commun-adaptes-aux-besoins-reels/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "pourlimoges.fr",
+   "phrases": [
+    {
+     "texte": "Nous faciliterons l’accès à la santé grâce à un plan d’attractivité et à la création de centres de santé pluridisciplinaires.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ouvrirons un lieu dédié à la prévention et la lutte contre les violences faites aux femmes (et à leurs enfants), intégrant un accueil d’urgence pour que personne ne reste à la rue.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous doublerons le budget de fonctionnement des écoles dès la rentrée 2026 en priorisant les plus défavorisées.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une Coopérative du pouvoir d'achat : grâce à des achats groupés, permettant de négocier des tarifs avantageux, nous ferons baisser vos factures de gaz et d’électricité ou encore votre complémentaire santé.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour soutenir les associations, nous réinstaurerons la gratuité des salles municipales",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons les conseils de quartier en Assemblées des quartiers, avec un budget dédié pour financer des mesures concrètes, partagées, contribuant à l’apaisement et au bien vivre ensemble.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons une garderie du matin et du soir gratuite dans toutes les écoles.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Un plan de soutien scolaire public, laïque et gratuit, qui implique les parents, sera mis en place.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons un prêt à taux zéro pour faciliter la rénovation des logements.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous constituerons une police municipale de proximité intégrant des antennes locales, une brigade de tranquillité publique et de soirée, ainsi qu’une brigade équestre dédiée aux jardins publics et aux bords de Vienne.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous financerons un poste mobile de sécurité, véhicule spécialement équipé pour une intervention dans les quartiers où un problème spécifique de sécurité est identifié.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mobiliserons davantage et étendrons les travaux d’intérêt général (TIG) à des actions utiles à la ville.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lutterons contre les déchets sauvage, l’affichage illégal, les tags et les graffitis ; des espaces encadrés seront réservés à la création graphique urbaine et à l’expression citoyenne.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous travaillerons sur un véritable plan global des transports à Limoges intégrant les pistes cyclables, des cheminements piétons sécurisés, en s’appuyant sur une grande étude sur les infrastructures de transport.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une agence d’urbanisme pour penser global.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous retrouverons Limoges au fil de l’eau, avec la création de fontaines urbaines, fontaines à boire, rigoles plantées et jeux d’eau pour contribuer aux îlots de fraîcheur.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une société publique locale pour préempter des locaux commerciaux vacants et les fonds de commerce en cession et lutter contre la vacance commerciale.",
+     "source": "https://www.pourlimoges.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "insee": "38185",
+ "commune": "Grenoble",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "grenoblealpescollectif.fr",
+   "phrases": [
+    {
+     "texte": "Nous nous engageons à ne créer aucun nouvel événement culturel, afin de soutenir les initiatives portées par les habitants et la société civile.",
+     "source": "https://www.grenoblealpescollectif.fr/wp-content/uploads/2026/02/Programme-du-Grenoble-Alpes-Collectif-pour-les-Municipales-de-2026-a-Grenoble-2.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons permettre aux petites structures / collectif d’habitants des quartiers de demander des aides jusqu’à 3 000 € pour mener à bien leur événement à destination des habitants.",
+     "source": "https://www.grenoblealpescollectif.fr/wp-content/uploads/2026/02/Programme-du-Grenoble-Alpes-Collectif-pour-les-Municipales-de-2026-a-Grenoble-2.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous prendrons en compte les revenus récents en cas de séparation (par exemple demander de fournir un justificatif de ressources datant du mois dernier plutôt que de l’année précédente).",
+     "source": "https://www.grenoblealpescollectif.fr/wp-content/uploads/2026/02/Programme-du-Grenoble-Alpes-Collectif-pour-les-Municipales-de-2026-a-Grenoble-2.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

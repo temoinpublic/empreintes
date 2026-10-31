@@ -1,0 +1,363 @@
+{
+ "insee": "11262",
+ "commune": "Narbonne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "noussommesnarbonne.fr",
+   "phrases": [
+    {
+     "texte": "Diviser les marchés : Nous généraliserons l'allotissement systématique.",
+     "source": "https://noussommesnarbonne.fr/ressources/AGRICULTURE,%20ALIMENTATION%20&%20SANTE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Critère de proximité : Nous intégrerons des clauses de \"bilan carbone\" sur le transport des matériaux et des personnels.",
+     "source": "https://noussommesnarbonne.fr/ressources/AGRICULTURE,%20ALIMENTATION%20&%20SANTE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Coût réduit : En séparant le bâti du terrain (via le BRS), nous proposons aux soignants des logements 30% à 40% moins chers que le privé, créant un avantage compétitif majeur pour Narbonne.",
+     "source": "https://noussommesnarbonne.fr/ressources/AGRICULTURE,%20ALIMENTATION%20&%20SANTE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Epandage de matière sèche : A travers l'entreprise à but d'emploi, nous proposons un service d'épandage de matière sèche (broyat) sur les terres agricoles.",
+     "source": "https://noussommesnarbonne.fr/ressources/AGRICULTURE,%20ALIMENTATION%20&%20SANTE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons une lutte intégrée : maintenir les traitements biologiques de l'EID tout en déployant une armée de proximité (EBE) pour traiter chaque foyer larvaire urbain, là où les camions ne passent pas.",
+     "source": "https://noussommesnarbonne.fr/ressources/AGRICULTURE,%20ALIMENTATION%20&%20SANTE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Ouverture au Public : En période de canicule, les cours \"Oasis\" seront ouvertes aux habitants du quartier (familles, personnes âgées) les week-ends et pendant les vacances scolaires, sous la surveillance d'agents de médiation.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Plan de Formation Massif : Nous engagerons un plan de formation continue pour tous les ATSEM et animateurs municipaux sur l'accueil des enfants à besoins particuliers.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Espaces \"Refuge\" : Dans chaque nouvelle école (et lors des rénovations \"Oasis\"), nous créerons des zones de calme (bulles de retrait) permettant aux enfants en surcharge sensorielle de s'isoler sans être exclus.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Coordination PIAL : Nous intégrerons systématiquement les coordonnateurs de PIAL (Pôles Inclusifs) dans les comités de pilotage des projets éducatifs de territoire (PEDT).",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Précarité Menstruelle : En partenariat avec l'association Règles Élémentaires , nous installerons des distributeurs de protections périodiques gratuites dans tous les collèges, lycées, équipements sportifs et bâtiments communaux.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "L'Élu Référent : nous désignerons un Adjoint délégué au Plan Vélo qui soit lui-même pratiquant quotidien.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Création de l'Institut d'Archéologie de Narbonne (IAN) : En synergie avec le musée Narbo Via , nous structurerons un pôle de recherche et d'enseignement de rang international sur l'Antiquité romaine et la gestion du patrimoine.",
+     "source": "https://noussommesnarbonne.fr/ressources/ENFANCE%20&%20JEUNESSE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La Règle de la Réfection à l'Identique : Nous imposerons contractuellement à tout concessionnaire ou service intervenant sur le domaine public l'obligation de refaire le sol avec les matériaux d'origine .",
+     "source": "https://noussommesnarbonne.fr/ressources/LOGEMENT%20%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La Règle des 5 Mètres (Loi LOM) : Nous appliquerons strictement la suppression du stationnement 5 mètres avant les passages piétons pour améliorer la visibilité.",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La Levée de l'Interdiction : nous lèverons l'interdiction de circulation en hypercentre uniquement sur les axes où nous aurons aménagé une voie dédiée ou apaisée.",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Site Propre : sur les boulevards, nous sanctuariserons des couloirs de bus, et mettrons en place un système de feux de circulation qui priorise les transports en commun au niveau des carrefours.",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Amplitude 5h30 - 22h30 : nous adapterons les horaires de la Citadine 2 pour couvrir les prises de poste (6h-14h-22h), permettant aux soignants de venir et repartir sans voiture.",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Réserves PLU : Nous inscrirons des Emplacements Réservés dans le Plan Local d'Urbanisme pour toutes les futures haltes (Bize, Croix-Sud, Razimbaud).",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Le Diagnostic des Habitantes : Nous organiserons avec les médiateurs des \"marches exploratoires\" non-mixtes ou ciblées (seniors, parents).",
+     "source": "https://noussommesnarbonne.fr/ressources/MOBILIT%C3%89S%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En installant nos propres réseaux de partage d’électricité nous ferons baisser la facture dès le début du mandat.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rachèterons les locaux commerciaux vides pour les louer à des tarifs raisonnables à travers un Office Foncier Solidaire.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin nous lancerons le Bonus Narbonnais.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous installerons une unité spécialisée dans le tri et la purification des métaux.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous utiliserons le dispositif Territoire Zéro Chômeur de Longue Durée que l’État subventionne à soixante-dix pourcent pour créer les services qui font défaut sur notre territoire.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous produirons de l’électricité sur les toits des bâtiments publics et des maisons volontaires pour la consommer directement dans le quartier.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons fin à l’amnésie technique de la mairie en recréant une cellule d’expertise capable de contrôler chaque ligne de facturation.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En parallèle nous créerons une Entreprise à But d’Emploi dont la mission est de réparer les objets pour leur donner une seconde vie.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un inventaire participatif pour repérer les jardins privés et les terrains non bâtis qui rafraîchissent nos rues.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En plantant des haies brise-vent et en aménageant des dortoirs adaptés nous attirerons les étourneaux loin des habitations.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un plan systématique de suppression des obstacles sur les trottoirs pour garantir la circulation fluide des fauteuils roulants et des poussettes.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons une signalétique lisible adaptée à tous les types de handicap.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En parallèle nous donnerons à l’hôpital les moyens de respirer en lui cédant les terrains de l’école Arago.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En neutralisant le coût du foncier nous proposerons des logements à l’achat quarante pour cent moins chers que le marché.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un plan massif de construction de logements publics et intermédiaires.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous déploierons une aide technique et financière pour accompagner les propriétaires dans la rénovation thermique de leurs biens.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous conventionnerons avec les structures spécialisées et l’Entreprise à But d’Emploi pour assurer des missions de présence et de dialogue en soirée.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous étendrons les lignes progressivement pour relier les zones périphériques au cœur de ville sans que l’usager ait à sortir son portefeuille.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons la création d’un Institut International d’Archéologie pour faire rayonner notre patrimoine.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons l’église de Lamourguier en une \"Nef des Musiques\".",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rénoverons le Palais du Travail pour en faire un grand centre dédié à la formation et à la vie étudiante.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons aussi les cours de récréation bitumées en îlots de verdure pour que les enfants puissent jouer au frais.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons servir des repas bio et locaux à tous les enfants en nous fournissant chez les agriculteurs du territoire.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Grâce aux économies réalisées sur l’électricité de la ville nous financerons progressivement la gratuité de la cantine.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un organe indépendant nommé l’Agora.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un Référendum d’Initiative Citoyenne local.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous doterons aussi chaque quartier d’un budget participatif propre.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous donnerons la majorité des sièges du conseil d’administration aux représentants des locataires.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous pousserons également à la fusion de l’office municipal et de l’office départemental avec comme seule condition un transfert effectif du pouvoir aux locataires dans un cadre assurant la croissance de l’offre de logements sociaux.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous injecterons cent trente-six millions d’euros dans l’économie locale sur la durée du mandat.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Le Crédit Municipal et la Monnaie Locale : Nous relancerons une Caisse de Crédit Municipal (le \"Mont-de-Piété\" moderne) adossée à notre monnaie locale (le Cers).",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous construirons un grand pôle \"Sports Indoor\" dédié, ce qui libérera le gymnase pour sa nouvelle vocation.",
+     "source": "https://noussommesnarbonne.fr/ressources/PROJET%20MUNICIPAL%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous construirons un Pôle Indoor pour le Volley et le Hand, et un stade d'athlétisme neuf .",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Au-delà des murs, nous mettrons en place une politique de détection des jeunes potentiels dans les écoles et aiderons les clubs à former leur staff technique pour les garder sur notre territoire.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La ville regorge de talents : nous lancerons un grand plan de Street Art pour embellir le mobilier urbain délaissé et mettrons en lumière nos artistes visuels.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour la proximité, nous installerons des Maisons de Quartier partagées dans les locaux commerciaux vacants.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons une séparation stratégique : un stade d'athlétisme neuf dans la plaine inondable du Veyret, et un Parc des Sports 100% rugby, repensé pour attirer le mécénat privé.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "La détection scolaire : En lien avec l'Éducation Nationale, nous déploierons des éducateurs pour chercher dans les écoles les enfants à fort potentiel physique et moteur.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Le \"Savoir Naviguer\" : Au même titre que le \"Savoir Rouler\" à vélo, nous généraliserons, avec l'Éducation Nationale et les clubs locaux, des cycles d'initiation à la voile (Optimist, dériveur) pour les écoles primaires.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous financerons des modélisations 3D de l'ancien système portuaire, accessibles via les \"Lunettes temporelles\" prévues dans notre plan Patrimoine.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Notre engagement est le suivant : la Mairie fixera une enveloppe budgétaire transparente, mais c'est la communauté sportive elle-même qui choisira les priorités d'investissement .",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dès le début du mandat, nous réunirons tous les présidents de clubs, les bénévoles et les usagers.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons également le \"secrétariat partagé\" pour aider les petits clubs à monter leurs dossiers de demande de subventions.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Conditionnalité et Parité : Nous appliquerons la règle stricte du \"1€ pour les garçons = 1€ pour les filles\" .",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "L'Action Immédiate : Nous signerons une CPO avec l'Entresort pour reconnaître son rôle de service public culturel de proximité.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Ouvrir la Salle Bleue : Nous exigerons dans les conventions que les espaces de la Scène Nationale (comme la Salle Bleue) soient ouverts et mis à la disposition de nos troupes historiques locales (comme le Théâtre des 4 Saisons ) pour leur offrir la vitrine qu'elles méritent.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous commanderons une adaptation théâtrale épique de la Prise de Narbonne pour les places de la ville.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enseignement bilingue : nous soutiendrons le développement de l'offre d'enseignement de l'occitan dans les écoles publiques.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons Lamourguier en une salle de spectacle polyvalente et modulable, au cœur de la ville et accessible à tous.",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Subventions régionales : nous solliciterons la Région Occitanie, très active sur le soutien aux musiques actuelles et à la jeunesse, pour financer l'équipement technique (sono, lumières, isolation acoustique réversible).",
+     "source": "https://noussommesnarbonne.fr/ressources/SPORT,%20CULTURE%20&%20VIE%20ASSOCIATIVE%20-%20PROGRAMME%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mobiliserons le patrimoine public (Médiathèque, Palais du Travail) pour développer les formations supérieures au cœur de la vie narbonnaise.",
+     "source": "https://noussommesnarbonne.fr/ressources/Tract%204%20-%20Centre%20Ville%20-%20NOUS%20SOMMES%20NARBONNE.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

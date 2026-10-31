@@ -1,0 +1,53 @@
+{
+ "insee": "60612",
+ "commune": "Senlis",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "poursenlisenconfiance.fr",
+   "phrases": [
+    {
+     "texte": "Lutter contre l'isolement : face au constat qu'un certain nombre d'habitants dans le besoin ne viennent pas au CCAS, nous nous engageons à développer les démarches à domicile",
+     "source": "https://poursenlisenconfiance.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des fontaines à eau potable seront installées dans le centre-ville",
+     "source": "https://poursenlisenconfiance.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Chaque année, nous publierons des indicateurs clairs (épargne, dette, investissements réalisés, subventions obtenues) afin que chaque Senlisien puisse suivre concrètement notre action",
+     "source": "https://poursenlisenconfiance.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un guichet unique d'accueil des habitants, véritable porte d'entrée de la mairie.",
+     "source": "https://poursenlisenconfiance.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Le futur centre aquatique sera construit à Senlis, à l’emplacement de la piscine actuelle.",
+     "source": "https://poursenlisenconfiance.fr/documents/centre-aquatique.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Lutter contre l’isolement : Face au constat qu’un certain nombre d’habitants dans le besoin ne viennent pas au Centre Communal d’Action Sociale (CCAS), nous nous engageons à développer les démarches à domicile.",
+     "source": "https://poursenlisenconfiance.fr/documents/programme-senlis-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous engageons à développer une restauration scolaire 100 % locale et de saison, avec une part croissante de produits biologiques, soutenue par la création d’un maraîcher garantissant un approvisionnement local et durable.",
+     "source": "https://poursenlisenconfiance.fr/documents/programme-senlis-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des fontaines à eau potable seront installées dans le centre-ville.",
+     "source": "https://poursenlisenconfiance.fr/documents/programme-senlis-2026.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

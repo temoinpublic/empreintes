@@ -1,0 +1,63 @@
+{
+ "insee": "22113",
+ "commune": "Lannion",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "osonslannion.fr",
+   "phrases": [
+    {
+     "texte": "Nous renforcerons la police municipale en augmentant ses effectifs et en améliorant ses moyens d’intervention, y compris avec un armement et un équipement adapté, afin de garantir leur sécurité et celle des habitants et d’assurer une présence dissuasive dans l’espace public.",
+     "source": "https://osonslannion.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rouvrirons de nouvelles places de stationnement sur le parking du quai d’aiguillon hors période touristique.",
+     "source": "https://osonslannion.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un audit complet des finances de la ville afin de mettre fin aux gabegies budgétaires et de rétablir une gestion claire, responsable et transparente.",
+     "source": "https://osonslannion.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous engageons à ne pas augmenter les impôts locaux.",
+     "source": "https://osonslannion.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons les conditions d’implantation d’une nouvelle maison de santé pluridisciplinaire pour recruter et accueillir des futurs médecins généralistes qui manquent à Lannion en mettant à disposition des locaux adaptés, facilitant l’installation de soignants compétents qui exerceront dans un cadre libéral.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous opposerons à tout projet de déménagement du Carré Magique, dont l’emplacement actuel est structurant pour le centreville.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous arrêterons de financer des œuvres plastiques éphémères, et nous réserverons nos financements à l’entretien et à la valorisation du patrimoine culturel existant.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous enrichirons l’offre culturelle en breton dans la médiathèque et dans la programmation du Carré Magique.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous maintiendrons les subventions municipales aux associations sportives, tout en veillant à ce que le sport reste apolitique.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous refuserons l’emploi de l’écriture inclusive dans les correspondances officielles de la ville et dans l’affichage public.",
+     "source": "https://osonslannion.fr/wp-content/uploads/2026/03/PROGRAMME-LANNION-mise-en-forme.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

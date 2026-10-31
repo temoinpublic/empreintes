@@ -1,0 +1,448 @@
+{
+ "insee": "34172",
+ "commune": "Montpellier",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "montpellier-municipales.fr",
+   "phrases": [
+    {
+     "texte": "Nous lancerons un audit sur la vidéosurveillance.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la Maison des femmes pour en faire un centre municipal féministe, lieu identifié et accessible, dédié à la prévention, à l’autonomie et à la protection des femmes.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons fin à la vidéoverbalisation, au harcèlement répressif, à l’armement létal des policiers municipaux et donnerons la priorité aux patrouilles à pied dans une logique d’îlotage, à l’écoute et à la résolution non violente des conflits.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous viserons la réduction de 50 % la consommation de produits d’origine animale d’ici 2032.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Permettre la mise en place de commissions d’enquête communales et intercommunales : nous garantirons la création de commissions d’enquête (mission d’information et d’évaluation) dotées de moyens réels, pour renforcer le contrôle démocratique de l’action publique locale.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons des bains-douches municipaux gratuits ainsi que des lieux d’accueil de jour dans chaque quartier.",
+     "source": "https://montpellier-municipales.fr/listes/la-france-insoumise/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer une Cité des femmes — À la suite d’une série d’études menée dès 2023, nous proposons la création d’une Cité des femmes, lieu central et ouvert sur la ville, fédérant les acteurs engagés pour les droits des femmes, notamment le CIDFF et le Planning familial.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour protéger chaque citoyen dans sa diversité, nous créerons un centre LGBTQIA+ dans le quartier Clemenceau.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous recruterons 50 gardiens au sein des résidences sociales pour assurer une présence quotidienne engagée auprès des habitants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Démolir Font del Rey à la Mosson pour faire un symbole du combat contre les marchands de sommeil — Nous poursuivrons la transformation de la Mosson en démolissant Font del Rey, devenu l’emblème des dérives des marchands de sommeil.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Étendre le « permis de louer » — Nous étendrons le dispositif du permis de louer dans l’Écusson ainsi que dans les quartiers Saint-Martin, Mosson et Cévennes, à l’image de ce qui est déjà en place à Celleneuve, afin d’empêcher tout logement indigne d’être mis en location.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Poursuivre la résorption de l’ensemble des bidonvilles — Nous allons continuer à mettre en œuvre le plan « Zéro bidonville » contractualisé avec l’État et la Fondation pour le logement des défavorisés.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer de nouvelles pensions de famille — Nous créerons de nouvelles pensions de famille en partenariat avec les associations de solidarité afin d’accompagner les personnes sans domicile vers une insertion durable.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Accompagner la mixité sociale de tous les quartiers — Nous continuerons de garantir la mixité sociale dans l’ensemble des quartiers en imposant, dans tous les programmes immobiliers, une part de logements sociaux et de logements abordables en Bail Réel Solidaire.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer des résidences intergénérationnelles et 4 résidences sociales seniors — Nous développerons des résidences intergénérationnelles et créerons quatre résidences sociales seniors : à la Pompignane et à la Cité créative, déjà engagées, ainsi qu’à la Mosson et à Paul-Valéry.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le prochain mandat, nous créerons une brigade dédiée aux meublés de tourisme pour garantir l’application effective de ces règles et rendre des logements aux habitants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dépasser les 30 % de matériaux biosourcés dans la rénovation des logements — Dans le prochain mandat, nous obligerons dans les importantes opérations de rénovation l’objectif de 30 % de matériaux biosourcés, dans l’esprit de la charte de la ville désirable.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Ouvrir les terrains de sport du lycée Joffre au public en soirée et le week-end — Dans le cadre de notre engagement pour un sport de proximité accessible à tous, nous franchirons une nouvelle étape en ouvrant les terrains de sport du lycée Joffre au public.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons l’espace Lavalette en un véritable lieu de respiration, grâce à un parcours piéton reliant l’arrêt de la ligne 5 Agropolis à la base de canoë-kayak et en créant un espace de baignade pensé pour les familles, avec une plage ouverte quand cela est possible et des espaces favorisant la convivialité.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour les Montpelliéraines et Montpelliérains qui travaillent mais ne parviennent pas à devenir propriétaires à Montpellier ou dans la Métropole, nous lancerons la construction de 4 000 logements neufs en Bail Réel Solidaire (30 % moins chers).",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "À l’image de la mutuelle communale où nous avons mobilisé la force du collectif, nous créerons un Office du pouvoir d’achat pour permettre aux Montpelliéraines et Montpelliérains de réduire leurs dépenses du quotidien avec un objectif minimal de moins 20 % sur chacune des dépenses ciblées.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer un comité de la biodiversité animale pour préserver la faune dans les projets d’urbanisme — Un comité de la biodiversité animale sera mis en place, sur le modèle — ou en articulation avec — le Comité de l’arbre, afin d’intégrer pleinement la préservation de la faune dans les projets d’aménagement.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons près de 2 km de coulée verte le long du Verdanson, une promenade ombragée et végétalisée du stade Philippidès au CHU Lapeyronie, pour créer un îlot de fraîcheur, un lieu de promenade et de rencontres, réconciliant les habitants avec ce cours d’eau au coeur de la ville.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer un guichet unique rassemblant toutes les aides pour les femmes seules avec enfants — Dans le prochain mandat, nous créerons un guichet unique rassemblant l’ensemble des aides destinées aux femmes seules avec enfants, afin de simplifier au maximum leurs démarches.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer et poursuivre les week-ends de répit — Nous poursuivrons et développerons les week-ends de répit afin de permettre aux femmes seules de bénéficier d’un temps pour elles, avec ou sans leurs enfants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Renforcer les tarifs réduits pour les femmes seules avec enfant — Dans le prochain mandat, nous renforcerons les tarifs réduits pour les femmes seules avec enfants, notamment pour la cantine et les centres de loisirs.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Point d’orgue de cette dynamique, nous programmerons une grande Semaine occitane, très attendue par les acteurs culturels et associatifs, pensée comme un rendez-vous populaire et fédérateur.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le même esprit, une Maison pour tous sera ouverte aux Grisettes pour renforcer la présence d’équipements de proximité favorisant l’engagement, la convivialité et les initiatives locales.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Poursuivre les conventions citoyennes — Comme sur l’intelligence artificielle au cours du mandat précédent, nous mettrons en place plusieurs conventions citoyennes afin d’associer directement les habitants à la réflexion et à la décision sur des sujets structurants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Lancement d’une concertation des seniors en début de mandat — Dès le début du prochain mandat, nous lancerons une concertation dédiée aux seniors afin de recueillir leurs attentes, leurs besoins et leurs propositions.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Démolir Font del Rey à la Mosson pour faire un symbole du combat contre les marchands de sommeil — Nous poursuivrons la transformation profonde de la Mosson en démolissant la résidence Font del Rey, véritable emblème des dérives des marchands de sommeil.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En soutien aux professeurs, nous ferons du droit aux loisirs, de l’éducation dehors et de l’ouverture sur le monde des priorités éducatives à part entière, en offrant à chaque enfant des espaces d’apprentissage en plein air, accessibles dans tous les quartiers avec la création d’amphithéâtres de plein air.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En partenariat avec les communes du littoral, nous réaliserons une handiplage afin de garantir un accès digne et inclusif à la mer et aux loisirs nautiques.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Renforcer notre partenariat avec France Travail — Dans le prochain mandat, nous renforcerons notre partenariat avec France Travail en créant des halles de l’emploi, lieux de proximité dédiés à l’orientation, à l’accompagnement et à la mise en relation avec les entreprises.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Augmenter le cadencement de l’offre de transport en commun en heures de pointe et en soirée — Pour continuer d’améliorer l’offre de transport et favoriser l’usage des mobilités décarbonées, nous renforcerons la fréquence des passages aux heures de pointe et en soirée.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Recruter 50 gardiens dans certaines résidences sociales — Afin d’assurer un lien direct et engagé avec les habitants, nous réinstaurerons des postes de concierges dans le parc social et soutiendrons financièrement leur déploiement dans les copropriétés dégradées.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer les stations de réparation vélo sur les principaux axes des pistes cyclables — Des stations de réparation en libre-service seront installées le long des principaux itinéraires cyclables afin de faciliter l’entretien courant et les petites réparations.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous transformerons l’avenue de Toulouse en une entrée de ville plus verte et plus agréable, ouverte sur le parc Montcalm.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer un guichet unique pour traiter toutes les demandes — Un guichet unique sera mis en place afin de centraliser et simplifier l’ensemble des demandes des commerçant liées aux terrasses, aux travaux, aux façades ou aux animations commerciales.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Mettre en place des chèques cadeaux exclusivement valables dans les commerces montpelliérains — Des chèques cadeaux uniquement valables dans les commerces locaux seront créés afin de soutenir l’économie de proximité et encourager la consommation locale.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Former 10.000 Montpelliérains aux gestes de premier secours — Dans le prochain mandat, nous formerons 10 000 Montpelliérains aux gestes de premiers secours, renforcerons le déploiement des défibrillateurs dans l’espace public et diffuserons l’application Le Bon Samaritain.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Notre engagement repose sur une promesse de proximité : garantir un espace de nature, de rencontre et de fraîcheur à moins de 15 minutes à pied de chaque foyer.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le prochain mandat, nous poursuivrons la transformation profonde de la Mosson et des Cévennes, tout en engageant la rénovation de la cité Paul-Valéry.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Renforcer les activités (sorties, voyages) et créer des parcours sportifs santé pour les seniors — Nous renforcerons les activités proposées aux seniors, notamment les sorties et les voyages, et développerons des parcours sportifs santé adaptés.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le prochain mandat, nous poursuivrons cet engagement en soutenant ces clubs et en ouvrant un 18ᵉ club à Malbosc, afin de proposer partout dans la ville des activités sportives, culturelles et de loisirs, accessibles grâce à une tarification solidaire.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Expérimenter le portage de repas à domicile pour les seniors — Une expérimentation de portage de repas à domicile sera lancée pour les seniors dès que la Cité de l’alimentation aura atteint sa pleine capacité de production.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Déployer des toilettes publiques dans la ville — Dans le prochain mandat, nous déploierons des toilettes publiques dans l’ensemble de la ville afin d’améliorer le confort, l’accessibilité et la propreté de l’espace public pour tous.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Demain, nous amplifierons cette dynamique d’« aller-vers » avec comme engagement majeur du prochain mandat, l'implantation d'une antenne du CHU à la Mosson, sur le site de l'ancienne tour d'Assas, afin de ramener le service public hospitalier au cœur des quartiers.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour lutter contre toute forme de désert médical, nous créerons également de nouveaux centres de santé dans les quartiers prioritaires en partenariat avec la Région.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Forts de notre label Or « Ville amie des aînés » obtenu en 2024 et de la réussite de notre démocratie participative (déjà 1 889 réunions et ateliers organisés), nous franchirons une nouvelle étape dès 2026 en lançant une concertation dédiée aux seniors.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Expérimenter un restaurant solidaire dans un EHPAD — Dans le prochain mandat, nous expérimenterons un restaurant solidaire au sein d’un EHPAD afin de lutter contre l’isolement, favoriser les rencontres intergénérationnelles et proposer une alimentation de qualité à tarif accessible.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer la production d’électricité photovoltaïque en autoconsommation — Nous mettrons en place un fonds de garantie à taux 0 % pour soutenir les projets d’autoconsommation collective, associant habitants, acteurs économiques et collectivités.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Réhabiliter les résidences et les abords de 2 000 logements sociaux — Nous engagerons la réhabilitation de 2 000 logements sociaux ainsi que l’amélioration de leurs abords afin d’offrir un cadre de vie plus digne, plus confortable et plus apaisé aux habitants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Déployer un plan contre les « bouilloires thermiques » des logements sociaux — Nous mettrons en œuvre un plan spécifique pour traiter les logements les plus vulnérables aux fortes chaleurs, afin de faire baisser la facture énergétique des locataires et d’améliorer le confort d’été.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer des amphithéâtres en plein air pour faire école dehors — Nous développerons des amphithéâtres en plein air dans chaque quartier afin de favoriser l’apprentissage en extérieur.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer l’apprentissage de l’anglais dès le primaire — Nous développerons l’apprentissage de l’anglais dès le primaire en proposant des activités périscolaires en anglais.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer un « fonds Voltaire » pour financer des séjours à l’étranger — Nous créerons un « fonds Voltaire », doté de 200 000 euros, afin de financer des séjours à l’étranger pour les jeunes Montpelliérains.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Poursuivre le Plan École à l’horizon 2032 — Pour faire de Montpellier la véritable « Ville à hauteur d’enfants », nous poursuivrons et amplifierons le Plan École à l’horizon 2032.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Déployer les cours aventure pour végétaliser et désimperméabiliser — Pour faire de Montpellier une véritable « Ville à hauteur d’enfants », nous poursuivrons le déploiement des cours aventure afin de transformer radicalement le cadre de vie scolaire.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Développer les parvis et rues aux écoliers pour sécuriser le chemin des enfants — Nous poursuivrons le développement des parvis et des rues aux écoliers afin de sécuriser les trajets quotidiens des enfants tout en maintenant la présence des agents de protection des écoles.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Offrir un livre chaque année à chaque enfant scolarisé — Nous offrirons un livre chaque année à chaque enfant scolarisé et renforcerons notre partenariat avec l’Éducation nationale, notamment autour du programme Les Mystères de Montpellier, dans lequel les enfants deviennent eux-mêmes auteurs.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons et généraliserons les arrêts de bus à la demande le soir pour limiter les trajets à pied isolés.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En parallèle, nous ferons évoluer le bouton « SOS » de l’application M’Ticket en y intégrant une fonction vidéo pour permettre un signalement en temps réel et une intervention immédiate de la police.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Depuis 2019, le volume annuel a été multiplié par dix, passant de 450 à 5 000 heures ; nous porterons cet effort à 8 000 heures par an, au service de la prévention de la récidive et de l’utilité sociale.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Renforcer la surveillance des parcs en confirmant l’expérimentation de la brigade équestre — Dans le prochain mandat, nous renforcerons la surveillance des parcs et espaces verts en confirmant et en pérennisant l’expérimentation de la brigade équestre.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Poursuivre le soutien de l’offre de loisirs pour les jeunes — Nous poursuivrons le soutien à l’offre de loisirs proposée aux jeunes dans les Maisons pour tous en ouvrant de nouveaux centres ados, notamment à Marcel-Pagnol et Albert-Dubout.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une Académie du climat : un lieu coopératif d'éducation, de formation et d'engagement citoyen ouvert à tous : jeunes, associations, chercheurs, habitants.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Lorsque la cohabitation avec les nouveaux modes de déplacement devient accidentogène, nous choisissons la régulation ferme : nous étendrons le périmètre d’interdiction des trottinettes électriques, notamment vers le secteur d'Antigone, pour protéger les cheminements piétons.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons près de 5 km de parcours continu, végétalisé et balisé le long de l’Aqueduc Saint-Clément, des Arceaux à Alco, afin de permettre à toutes et tous de se réapproprier cet espace emblématique de leur patrimoine et d’en faire un itinéraire de promenade, de découverte et de respiration.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le prochain mandat, nous créerons, à l’instar de la ville de Saint-Denis, un numéro de téléphone simple et facilement mémorisable pour contacter la police municipale.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des bornes d’appel d’urgence dans l’Ecusson et à Port Marianne — Nous installerons des bornes d’appel d’urgence dans l’Écusson et à Port Marianne afin de sécuriser l’espace public et d’améliorer la réactivité des services en cas de besoin.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Expulser des logements sociaux les trafiquants de drogue condamnés — Nous poursuivrons l’expulsion des logements sociaux des trafiquants de drogue condamnés, comme cela a déjà été mis en œuvre durant ce mandat.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Agir contre les nuisances sonores — Pour faire de Montpellier une ville engagée contre la pollution sonore, nous déploierons un plan global de lutte contre le bruit fondé sur des innovations technologiques et une régulation ferme des comportements.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Limiter le prix de vente des logements pour les primo-accédants (baisse de 10 à 25 %) dans les nouveaux quartiers — Nous limiterons le prix de vente des logements destinés aux primo-accédants, avec une baisse de 10 à 25 %, dans les nouveaux quartiers.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Permettre à 200 ménages d’acquérir des logements rénovés à moins de 3 000 €/m² dans les copropriétés du quartier de la Mosson et des Cévennes — Dans le prochain mandat, nous permettrons à 200 ménages d’acquérir des logements rénovés à moins de 3 000 € / m² dans les copropriétés de la Mosson et des Cévennes.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour le prochain mandat, nous déploierons un réseau de huit Maisons de l’alimentation solidaire (MAS) réparties dans tous les quartiers de la ville.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Continuer à développer un plan selfs pour réduire le gaspillage alimentaire — Nous poursuivrons et amplifierons le déploiement des selfs dans les écoles afin de responsabiliser les élèves et de lutter concrètement contre le gaspillage alimentaire.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Réaliser chaque année une campagne de sensibilisation sur la lutte contre les addictions — Nous mènerons chaque année des campagnes de sensibilisation et de prévention ciblées sur les addictions, en lien étroit avec les professionnels de santé.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Parce que ce sujet complexe nécessite l'implication de tous, nous organiserons une convention citoyenne dédiée à la toxicomanie afin de co-construire des solutions alliant santé, solidarité et sécurité.",
+     "source": "https://montpellier-municipales.fr/listes/michael-delafosse/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "union-montpellieraine.fr",
+   "phrases": [
+    {
+     "texte": "Nous construirons en périphérie, sur un axe de tramway, un campus dédié, en commençant par 2 000 logements pour atteindre 15 000 places.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, sept maisons de santé seront créées, une par quartier, pour faciliter l’accès aux soins.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "D’abord, nous créerons un Pass Culture municipal pour les jeunes et les familles modestes, avec des places à tarifs réellement accessibles.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Ensuite, nous garantirons la transparence totale des subventions culturelles.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un Pass Sport municipal pour aider les familles modestes à financer les licences des enfants.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un plan de modernisation des équipements de proximité : gymnases, terrains de quartier, éclairage, sécurité.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rééquilibrerons les subventions entre sport professionnel et sport amateur, car ce sont les clubs de quartier qui créent du lien social.",
+     "source": "https://union-montpellieraine.fr/pages/programme",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

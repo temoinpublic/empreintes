@@ -1,0 +1,183 @@
+{
+ "insee": "33318",
+ "commune": "Pessac",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "ecologiepourpessac.fr",
+   "phrases": [
+    {
+     "texte": "Nous lancerons un plan « Écoles du XXIe siècle » adapté aux enjeux du réchauffement climatique.",
+     "source": "https://ecologiepourpessac.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons le rôle des syndicats et conseils de quartiers avec une maison dans chaque quartier, un droit de saisine du conseil municipal pour inscrire des projets à l’ordre du jour, un budget d’investissement décentralisé pour répondre aux besoins du quartier.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous permettrons aux habitant·e·s de plus de 16 ans, français ou étrangers, d’inscrire des propositions ou des questions en conseil municipal (pétition de 1 000 voix minimum, ce seuil restant à définir).",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous veillerons à débattre du budget municipal et de ses priorités en amont de son vote en conseil.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous communiquerons en transparence sur les activités professionnelles des élus, pour prévenir les conflits d’intérêt, et sur leurs indemnités.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous respecterons les 30 propositions d’Anticor.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En début de mandat, nous lancerons des Assises citoyennes pour mettre en débat le choix des outils de démocratie et la question de renforcer ou créer des instances de participation.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons donc de rendre attractifs les déplacements à vélo, à pied ou en EDPM en réalisant dans le mandat le Plaidoyer « La métropole à vélo » de Vélo-Cité.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons les aides à l’achat de vélos électriques et cargos pour les familles, artisans.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons à disposition des parents d’élèves des moyens pour développer des pédibus et des vélobus.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans chaque école, nous adapterons à la demande le nombre de places sécurisées de stationnement vélo (et remorque vélo).",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rétablirons la subvention à Vélo-Cité et nous organiserons des réunions au moins trimestrielles avec l’association et les usagers.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous supprimerons le passage des voitures sur la place de la Ve république.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place des jalonnements pour piétons et cyclistes.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la végétalisation, installerons plus de bancs, fontaines et toilettes publiques.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons à la concertation un plan de circulation et de stationnement pour dissuader le trafic de transit, généraliser la limitation de la vitesse à 30 km/h (Ville 30), rééquilibrer le partage de l’espace public.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons à la métropole la gratuité des transports en commun pour les enfants et les jeunes de moins de 18 ans.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons donc un stationnement sécurisé des vélos au pôle multimodal de Pessac centre.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous inciterons à l’auto-partage et au covoiturage, en créant plus de places de stationnement pour l’auto-partage et le covoiturage, et un dispositif d’auto stop de proximité",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "A la Métropole, nous voterons contre les mesures favorisant la course en avant de l’aérien (low cost en particulier), et demanderons à négocier les plages horaires de survol et la fréquence des passages sur la piste 2.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous demanderons aussi l’interdiction des vols de nuit.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Notamment, nous arrêterons le projet de démolition-rénovation de Saige pour co-construire un nouveau projet avec les habitants du quartier et les Pessacais.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons modifier les documents d’urbanisme de la Métropole pour arriver à zéro artificialisation nette sur le territoire pessacais.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons renforcer le permis de végétaliser, introduire un coefficient de biotope pour végétaliser au maximum les parcelles, ce qui permettra de lutter contre les îlots de chaleur urbains.",
+     "source": "https://ecologiepourpessac.fr/engagements-syndicats-de-quartiers-pessac/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous le rappelons fermement : dès notre élection, nous déciderons de retirer ce projet de démolition–rénovation.",
+     "source": "https://ecologiepourpessac.fr/projet-demolition-saige/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons les dispositifs de Bordeaux métropole pour la précarité énergétique en augmentant fortement le nombre de ménages accompagnés et en créant un fonds d’aide complémentaire.",
+     "source": "https://ecologiepourpessac.fr/projet-demolition-saige/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "pessacensemble.fr",
+   "phrases": [
+    {
+     "texte": "Notre engagement est simple : ne pas augmenter les taux,et surtout réorienter les moyens vers l’utile et l’efficace :la remise à niveau du patrimoine, la proximité, la prévention, la qualité des services, avec des choix plus lisibles et cohérents.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ferons du budget vert un véritable outil de pilotage des politiques municipales et de transparence, et nous débattrons de la programmation pluriannuelle d’investissement avec les habitants.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un programme “Arbres et sols vivants” pour accélérer la végétalisation des espaces publics et les désimperméabiliser, redonner vie aux sols, faire de Pessac une «ville éponge».",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous donnerons la priorité au rafraîchissement et à la rénovation des crèches et écoles : plan de rénovation globale des bâtiments en ciblant le confort d’été (isolation, ventilation, protections solaires, brasseurs d’air) et les écoles et crèches.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des communautés d’énergie locales, associant les habitants, les entreprises et la Ville autour de projets d’autoconsommation collective photovoltaïque.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons les démarches d’accès aux droits notamment pour la tarification solidaire dans les transports en commun et nous défendrons la gratuité pour les enfants de moins de 10 ans.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En nous inspirant des approches rennaises autour de solutions de garde “sociales / mobiles” et d’une politique rendue lisible, nous proposerons le développement de bourses municipales de garde : pet-sitters, pensions, associations, familles relais, tarifs indicatifs, disponibilités.",
+     "source": "https://pessacensemble.fr/wp-content/uploads/2026/02/24-PAGES-PROJET-WEB.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}
