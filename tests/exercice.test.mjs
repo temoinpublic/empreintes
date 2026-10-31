@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { RACINE_NULLE, arbre, chainer, empreinteDeFeuille } from '../src/chaine.mjs';
 import { indexDesEmpreintes } from '../src/journal.mjs';
 import { COUPURES, MARQUE, jugerLesCoupures, lireLesCoupures } from '../src/exercice.mjs';
-import { ATTENDU, EMETTEUR_GITHUB, lireLesClesDeGithub, refusDuJeton } from '../src/oidc.mjs';
+import { ATTENDU, CLES_GARDEES_MS, EMETTEUR_GITHUB, RELECTURE_MIN_MS, gardeDesCles, lireLesClesDeGithub, refusDuJeton } from '../src/oidc.mjs';
 import { jouerLeVerificateur } from '../src/parcours.mjs';
 import { onRequestPost as exercice } from '../functions/health/exercice.js';
 import { baseDeTest } from './d1.mjs';
@@ -32,7 +32,7 @@ test('le jeton OIDC d un job de main de ce depot passe, tout autre est refuse av
 	assert.equal(await ouvrir(await jeton({}, { alg: 'HS256' })), 'signature invalide');
 	assert.equal(await ouvrir(await jeton({}, { kid: 'autre' })), 'signature invalide');
 	const [t, , s] = (await jeton()).split('.');
-	assert.equal(await ouvrir(`${t}.${b64({ iss: EMETTEUR_GITHUB })}.${s}`), 'signature invalide');
+	assert.equal(await ouvrir(`${t}.${b64({ iss: EMETTEUR_GITHUB })}.${s}`), 'audience inattendue');
 	assert.equal(await ouvrir('pas.du.json'), 'jeton illisible');
 	assert.equal(await ouvrir(await jeton({ iss: 'https://ailleurs' })), 'emetteur inattendu');
 	assert.equal(await ouvrir(await jeton({ aud: 'https://datumszeuge.de' })), 'audience inattendue');
@@ -53,6 +53,56 @@ test('les cles de GitHub se lisent sur son JWKS, et un refus le dit', async () =
 	} finally {
 		globalThis.fetch = fetchReel;
 	}
+});
+
+const forge = (revendications, kid = 'inconnue') =>
+	avec(`${b64({ alg: 'RS256', kid })}.${b64({ iss: EMETTEUR_GITHUB, aud: ATTENDU.audience, repository: ATTENDU.depot, ref: ATTENDU.branche, exp: 2e9, ...revendications })}.c2ln`);
+
+function compteur() {
+	let n = 0;
+	return { lire: async () => { n += 1; return { keys: [{ kid: 'k1' }] }; }, lectures: () => n };
+}
+
+test('LA SONDE DE RAFALE : 10 000 jetons forges en une heure lisent GitHub au plus une fois par minute', async () => {
+	const { lire, lectures } = compteur();
+	let t = 1e12;
+	const gardees = gardeDesCles(lire, () => t);
+	for (let i = 0; i < 10_000; i += 1) {
+		t = 1e12 + i * 360;
+		assert.equal(await refusDuJeton(forge({}), { lireLesCles: gardees, maintenant: t }), 'signature invalide');
+	}
+	assert.ok(lectures() <= 60, `${lectures()} lectures`);
+	assert.ok(lectures() >= 59, 'un kid inconnu relit bien chaque minute');
+});
+
+test('un jeton qui ne vise pas ce site est refuse sans lire GitHub', async () => {
+	const { lire, lectures } = compteur();
+	const gardees = gardeDesCles(lire, () => 1e12);
+	for (const autre of [{ aud: 'https://x' }, { repository: 'x/y' }, { exp: 1 }, { iss: 'x' }]) {
+		assert.notEqual(await refusDuJeton(forge(autre), { lireLesCles: gardees, maintenant: 1e12 }), null);
+	}
+	assert.equal(lectures(), 0);
+});
+
+test('une cle connue sert dix minutes sans relire, puis se relit ; une lecture ratee attend une minute', async () => {
+	const { lire, lectures } = compteur();
+	let t = 1e12;
+	const gardees = gardeDesCles(lire, () => t);
+	await gardees('k1');
+	t += CLES_GARDEES_MS - 1;
+	await gardees('k1');
+	await gardees();
+	assert.equal(lectures(), 1);
+	t += 1;
+	await gardees('k1');
+	assert.equal(lectures(), 2);
+	let n = 0;
+	const enPanne = gardeDesCles(async () => { n += 1; throw new Error('cles de GitHub : HTTP 503'); }, () => t);
+	await assert.rejects(enPanne('k1'), /HTTP 503/);
+	await assert.rejects(enPanne('k1'), /relecture trop proche/);
+	t += RELECTURE_MIN_MS;
+	await assert.rejects(enPanne('k1'), /HTTP 503/);
+	assert.equal(n, 2);
 });
 
 test('les coupures demandees se lisent, une coupure inconnue ou une demande illisible est refusee', () => {
