@@ -1,5 +1,21 @@
 [
  {
+  "nom": "abeis-liste-noire",
+  "url": "https://www.abe-infoservice.fr/fr/abeis-liste-noire.csv",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "La liste noire commune de l'ACPR et de l'AMF (11 531 adresses depuis 2010, 750 inscrites en 2026), reecrite en place par ABEIS, sans millesime : une adresse retiree n'est plus datable (D-277, point 3).",
+  "extension": "csv"
+ },
+ {
+  "nom": "amf-listes-noires",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/d2d9df6d-1cd2-41a8-96f5-684cb3057ecb",
+  "famille": "reecrit",
+  "theme": "finance",
+  "pourquoi": "La liste noire de l'AMF seule sur data.gouv (3 499 adresses), publiee a part de la liste commune ABEIS et sans denomination : la seconde origine de la meme liste.",
+  "extension": "csv"
+ },
+ {
   "nom": "amf-psan",
   "url": "https://www.data.gouv.fr/api/1/datasets/r/e03f8899-2499-4826-aaae-6842f520bdac",
   "famille": "reecrit",
