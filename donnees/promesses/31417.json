@@ -1,0 +1,23 @@
+{
+ "insee": "31417",
+ "commune": "Pibrac",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "demainpibrac.fr",
+   "phrases": [
+    {
+     "texte": "Nous renégocierons les contrats comme les redevances d'occupation du domaine public (antennes relais, opérateurs télécoms, affichage publicitaire) pour les aligner sur les prix du marché.",
+     "source": "https://www.demainpibrac.fr/fs/Root/gjq91-2026-PROGRAMME-DEMAIN-PIBRAC-vweb.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Sur certains secteurs à fort enjeu, nous mettrons en œuvre une Taxe d'Aménagement Majorée pour financer les infrastructures.",
+     "source": "https://www.demainpibrac.fr/fs/Root/gjq91-2026-PROGRAMME-DEMAIN-PIBRAC-vweb.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

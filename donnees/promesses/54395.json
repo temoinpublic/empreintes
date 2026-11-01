@@ -1,0 +1,38 @@
+{
+ "insee": "54395",
+ "commune": "Nancy",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "nousnancy2026.fr",
+   "phrases": [
+    {
+     "texte": "Nous consulterons les habitants de la ville par referendum",
+     "source": "https://nousnancy2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous demanderons leur avis aux Nancéiennes et aux Nancéiens et nous en tiendrons compte pour tous les grands projets qui engagent une part importante de l'investissement de la collectivité.",
+     "source": "https://nousnancy2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous doterons la collectivité d'un réseau social territorial.",
+     "source": "https://nousnancy2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un \"réseau social territorial\".",
+     "source": "https://nousnancy2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous candidaterons au label Villes amies des enfants de l'UNICEF pour le mandat 2026-2032.",
+     "source": "https://nousnancy2026.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

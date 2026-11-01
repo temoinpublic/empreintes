@@ -1,0 +1,23 @@
+{
+ "insee": "95607",
+ "commune": "Taverny",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "tavernydemain.fr",
+   "phrases": [
+    {
+     "texte": "Élus, nous renforcerons le réseau de bus de Taverny",
+     "source": "https://www.tavernydemain.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons un plan d’urgence pour le commerce local.",
+     "source": "https://www.tavernydemain.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

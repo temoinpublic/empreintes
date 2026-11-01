@@ -1,0 +1,23 @@
+{
+ "insee": "52353",
+ "commune": "Nogent",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "nogent2026.fr",
+   "phrases": [
+    {
+     "texte": "Pour protéger tous les Nogentais, enfants, aînés, personnes fragiles, nous lancerons dès 2026 un grand plan de végétalisation : création de véritables parcours de fraîcheur pour faire baisser la température en ville.",
+     "source": "https://www.nogent2026.fr/wp-content/uploads/go-x/u/ad57656d-41a7-480a-adb7-daa93538ad9e/AMVAN-Gilles-Hagege-Tract-Vegetalisation.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Tous les mercredis après-midi, des activités seront proposées aux enfants âgés de 3 à 6 ans et animées par des associations locales et des bénévoles passionnés : initiation aux arts, aux sports, à la science.",
+     "source": "https://www.nogent2026.fr/wp-content/uploads/go-x/u/bec8fce5-d32a-40b5-93e3-c9a9ccda6747/AMVAN-Gilles-Hagege-Village-de-la-famille-et-des-generations.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

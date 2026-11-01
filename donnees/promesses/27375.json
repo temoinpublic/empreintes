@@ -1,0 +1,33 @@
+{
+ "insee": "27375",
+ "commune": "Louviers",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "fiersdelouviers.fr",
+   "phrases": [
+    {
+     "texte": "Révéler le potentiel du parc de la Villa Caldéron en faisant de ce site un véritable lieu de vie, à proximité du théâtre et du cinéma, autour d’un café associatif et de l’association Créart’danse à qui nous proposerons d’utiliser le bâtiment principal pour les cours de danse.",
+     "source": "https://fiersdelouviers.fr/notre-projet/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Créer la « Team Louviers », formée des talents lovériens que nous mettrons en valeur l’occasion de leurs performances sportives.",
+     "source": "https://fiersdelouviers.fr/notre-projet/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous donnerons la priorité au renforcement des effectifs de police sur le terrain grâce à la construction, Place de la République, d’un poste de police mutualisé entre police municipale et nationale.",
+     "source": "https://fiersdelouviers.fr/wp-content/uploads/2026/03/FDL_FlyerFlash_6_Web.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons plusieurs parkings végétalisés et amplifierons les efforts pour l’amélioration de la circulation et de la sécurité routière.",
+     "source": "https://fiersdelouviers.fr/wp-content/uploads/2026/03/FDL_FlyerFlash_6_Web.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

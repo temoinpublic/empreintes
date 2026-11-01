@@ -1,0 +1,58 @@
+{
+ "insee": "34244",
+ "commune": "Saint-Brès",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "ensemblepoursaintbres.fr",
+   "phrases": [
+    {
+     "texte": "Nous agrandirons la bibliothèque Rose Salmeron pour permettre un accueil plus confortable.",
+     "source": "https://ensemblepoursaintbres.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons de nouveaux espaces culturels dédiés à la jeunesse, propices aux ateliers numériques et multimédia.",
+     "source": "https://ensemblepoursaintbres.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons la sécurité sur l'ensemble de la commune en poursuivant le déploiement d'un réseau cohérent et efficace de caméras de surveillance.",
+     "source": "https://ensemblepoursaintbres.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposerons des ateliers de self-défense ouverts à tous, organisés par une personne habilitée, afin que chacun puisse apprendre des techniques simples de protection, se sentir plus en sécurité et bénéficier d'un espace d'apprentissage au sein de la commune.",
+     "source": "https://ensemblepoursaintbres.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons lancer un projet de requalification complète du cœur historique du village afin de mettre en valeur le patrimoine architectural communal.",
+     "source": "https://ensemblepoursaintbres.fr/Programme_RVB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous allons mettre en place une boutique solidaire qui combinera utilité sociale et engagement environnemental, en offrant aux habitants un espace pour le réemploi, le partage et le soutien aux actions locales.",
+     "source": "https://ensemblepoursaintbres.fr/Programme_RVB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons créer un dispositif de référendum d’initiative citoyenne, afin de permettre aux habitants de proposer et de voter sur certaines décisions locales, renforçant ainsi la participation et l’implication de chacun dans la vie de la commune.",
+     "source": "https://ensemblepoursaintbres.fr/Programme_RVB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons un jardin du souvenir au cimetière Saint-Martin qui offrira un espace réfléchi et harmonieux, destiné à offrir aux familles un lieu de mémoire et de recueillement dans un cadre paisible.",
+     "source": "https://ensemblepoursaintbres.fr/Programme_RVB.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous investirons également dans des dispositifs de vidéoprotection spécialisés pour lutter contre les dépôts sauvages et autres incivilités, notamment dans le quartier de Cantaussel.",
+     "source": "https://ensemblepoursaintbres.fr/Programme_RVB.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

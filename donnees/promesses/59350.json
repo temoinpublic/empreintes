@@ -1,0 +1,23 @@
+{
+ "insee": "59350",
+ "commune": "Lille",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "lilledemain.fr",
+   "phrases": [
+    {
+     "texte": "Nous transformerons les abords des écoles en véritables « rues aux écoles »: des rues définitivement piétonnes, apaisées et végétalisées, pensées pour la sécurité et l’épanouissement des enfants.",
+     "source": "https://lilledemain.fr/wp-content/uploads/2026/01/LILLE26_programe-1.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous introduirons un pass visiteurs donnant droit à 52 jours par an de stationnement au tarif «résident» par foyer pour accueillir ses proches.",
+     "source": "https://lilledemain.fr/wp-content/uploads/2026/01/LILLE26_programe-1.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

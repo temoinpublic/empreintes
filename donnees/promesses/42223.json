@@ -1,0 +1,23 @@
+{
+ "insee": "42223",
+ "commune": "Saint-Genest-Lerpt",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "elan-lerptien.fr",
+   "phrases": [
+    {
+     "texte": "Oui, nous renforcerons les moyens humains en maternelle dès la rentrée, conformément à nos engagements.",
+     "source": "https://www.elan-lerptien.fr/wp-content/uploads/go-x/u/73a1db99-a72c-48f7-87fa-331df5c36080/Reponses-ELAN-LERPTIEN-courrier-FCPE-SGL-1.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous engageons donc à augmenter le nombre d’ATSEM à la rentrée, mais selon une approche concertée et mesurée.",
+     "source": "https://www.elan-lerptien.fr/wp-content/uploads/go-x/u/73a1db99-a72c-48f7-87fa-331df5c36080/Reponses-ELAN-LERPTIEN-courrier-FCPE-SGL-1.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

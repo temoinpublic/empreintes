@@ -1,0 +1,23 @@
+{
+ "insee": "37027",
+ "commune": "Bléré",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "blere-agir-pour-l-avenir.fr",
+   "phrases": [
+    {
+     "texte": "Nous engagerons un programme ambitieux de réhabilitation des logements dans les cœurs de villes, pour redonner vie à nos centres-bourgs et soutenir le commerce de proximité.",
+     "source": "https://blere-agir-pour-l-avenir.fr/engagements/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons l’accompagnement de nos jeunes, développerons largement les activités sportives, et proposerons une saison culturelle itinérante, capable de faire rayonner notre territoire bien au-delà de ses frontières.",
+     "source": "https://blere-agir-pour-l-avenir.fr/engagements/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

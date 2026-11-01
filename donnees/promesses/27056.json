@@ -1,0 +1,33 @@
+{
+ "insee": "27056",
+ "commune": "Bernay",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "bernaylalternative.fr",
+   "phrases": [
+    {
+     "texte": "Nous créerons un fonds de soutien municipal dédié aux artisans d’art et aux futurs commerçants souhaitant s’installer à Bernay.",
+     "source": "https://bernaylalternative.fr/programme/economie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place des week-ends estivaux de piétonisation, avec gratuité de l’occupation du domaine public pour les commerçants, dans le prolongement du marché.",
+     "source": "https://bernaylalternative.fr/programme/economie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des rencontres régulières entre employeurs et demandeurs d’emploi, en partenariat avec les entreprises bernayennes, les agences d’intérim et les acteurs de l’insertion, afin de rapprocher l’offre et la demande et de lutter efficacement contre le chômage.",
+     "source": "https://bernaylalternative.fr/programme/economie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place des solutions concrètes pour soutenir les artisans : mise à disposition d’entrepôts légers en zone artisanale pour réceptionner les livraisons, assurer un stockage temporaire sécurisé et préparer les commandes par chantier.",
+     "source": "https://bernaylalternative.fr/programme/economie/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

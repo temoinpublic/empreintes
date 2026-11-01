@@ -1,0 +1,23 @@
+{
+ "insee": "91661",
+ "commune": "Villebon-sur-Yvette",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "villebon-partageons-demain.fr",
+   "phrases": [
+    {
+     "texte": "Nous souhaitons étendre la ligne 4618 depuis la gare de Palaiseau-Villebon vers le plateau de Saclay, en passant par la rue de Denfert-Rochereau, un itinéraire déjà emprunté par la ligne 4614.",
+     "source": "https://villebon-partageons-demain.fr/programme/repenser-loffre-de-transport-a-villebon-sur-yvette/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons également de prolonger la ligne 4619 depuis Villebon 2 jusqu’à la gare de Massy-Palaiseau.",
+     "source": "https://villebon-partageons-demain.fr/programme/repenser-loffre-de-transport-a-villebon-sur-yvette/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

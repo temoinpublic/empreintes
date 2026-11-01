@@ -1,0 +1,38 @@
+{
+ "insee": "24520",
+ "commune": "Sarlat-la-Canéda",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "sarlat2026lareleve.fr",
+   "phrases": [
+    {
+     "texte": "Nous réorganiserons de manière structurelle la restauration collective pour éliminer le plastique et le remplacer par des contenants réutilisables avec lavage pris en charge par une plateforme créée en partenariat avec les entreprises d’insertion.",
+     "source": "https://sarlat2026lareleve.fr/programme-complet/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une « Maison de la tranquillité » sera créée abritant des acteurs de la sécurité et de la prévention, notamment en direction des jeunes.",
+     "source": "https://sarlat2026lareleve.fr/programme-complet/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous instaurerons la gratuité pour les familles les plus modestes via un « chèque cantine », avec l’objectif final d’une gratuité universelle.",
+     "source": "https://sarlat2026lareleve.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En période de canicule, nous instaurerons la gratuité de la piscine et l’accès libre au centre culturel climatisé.",
+     "source": "https://sarlat2026lareleve.fr/programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous engagerons la reconquête d’une régie publique de l’eau pour garantir la gratuité des premiers m³ et une tarification adaptée aux usages.",
+     "source": "https://sarlat2026lareleve.fr/programme/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "insee": "75056",
+ "commune": "Paris",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "aureliepourparis17.fr",
+   "phrases": [
+    {
+     "texte": "Nous diminuerons de moitié la taxe foncière et la taxe d’enlèvement des ordures ménagères.",
+     "source": "https://aureliepourparis17.fr/5-priorites-cles-pour-le-17e/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "sophiapourparis.fr",
+   "phrases": [
+    {
+     "texte": "Nous déploierons une politique ambitieuse pour que les victimes de violences soient mieux accompagnées et nous consacrons 10 millions d’euros d’efforts supplémentaires à un grand plan de lutte contre les violences sexistes et sexuelles.",
+     "source": "https://sophiapourparis.fr/notre-plan-pour-paris-capitale-feministe/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

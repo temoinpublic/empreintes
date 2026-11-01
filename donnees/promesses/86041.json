@@ -1,0 +1,23 @@
+{
+ "insee": "86041",
+ "commune": "Buxerolles",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "buxerollesavecvous.fr",
+   "phrases": [
+    {
+     "texte": "Nous favoriserons le partage et la solidarité en organisant des temps d'échange de fruits, de légumes et de végétaux pour favoriser les circuits de proximité entre les habitants.",
+     "source": "https://buxerollesavecvous.fr/wp-content/uploads/2026/02/Projet-municipal.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons notre offre culturelle tels que Fête de la musique, bal du 14 juillet, concerts gratuits, guinguettes estivales...",
+     "source": "https://buxerollesavecvous.fr/wp-content/uploads/2026/02/Projet-municipal.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

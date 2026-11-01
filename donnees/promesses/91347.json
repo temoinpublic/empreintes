@@ -1,0 +1,23 @@
+{
+ "insee": "91347",
+ "commune": "Longpont-sur-Orge",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unis-pour-longpont.fr",
+   "phrases": [
+    {
+     "texte": "Nous nous engageons à une maîtrise stricte des dépenses publiques pour investir là où c’est nécessaire, tout en baissant la pression fiscale.",
+     "source": "https://www.unis-pour-longpont.fr/2026/02/14/preservons-notre-village-notre-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous renforcerons les moyens de notre police municipale et la vidéo protection pour que chaque habitant se sente en sécurité.",
+     "source": "https://www.unis-pour-longpont.fr/2026/02/14/preservons-notre-village-notre-cadre-de-vie/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

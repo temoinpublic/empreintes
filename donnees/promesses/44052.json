@@ -1,0 +1,23 @@
+{
+ "insee": "44052",
+ "commune": "Donges",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "rassemblerdonges.fr",
+   "phrases": [
+    {
+     "texte": "Nous développerons donc les partenariats entre commerçants et producteurs du territoire.",
+     "source": "https://rassemblerdonges.fr/projet/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Et nous favoriserons les entreprises et commerces dongeois dans l’accès à la commande publique.",
+     "source": "https://rassemblerdonges.fr/projet/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

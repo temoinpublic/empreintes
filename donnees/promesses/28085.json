@@ -1,0 +1,38 @@
+{
+ "insee": "28085",
+ "commune": "Chartres",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "chartresencommun.fr",
+   "phrases": [
+    {
+     "texte": "Pour que personne ne soit oublié, nous expérimenterons la sécurité sociale de l’alimentation.",
+     "source": "https://chartresencommun.fr/programme/alimentation_et_eau",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous bannirons les contenants en plastique.",
+     "source": "https://chartresencommun.fr/programme/alimentation_et_eau",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Sur le plateau nord-est, nous créerons une ferme urbaine bio en régie municipale.",
+     "source": "https://chartresencommun.fr/programme/alimentation_et_eau",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une cité jardin associant logements, artisanat et commerces sera créée en s’appuyant sur les structures végétales et bâties existantes.",
+     "source": "https://chartresencommun.fr/programme/ancienne_base",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une étude sera lancée pour remplacer le parking Sainte-Foy par un jardin associé à des stationnements PMR le long des rues adjacentes.",
+     "source": "https://chartresencommun.fr/programme/centreville",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

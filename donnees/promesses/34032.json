@@ -1,0 +1,23 @@
+{
+ "insee": "34032",
+ "commune": "Béziers",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "rassembler-beziers.fr",
+   "phrases": [
+    {
+     "texte": "Nous ouvrirons 100 nouvelles places en crèche",
+     "source": "https://rassembler-beziers.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En créant un Parc de l’Industrie à Mazeran Sud, nous offrirons des conditions d’accueil attractives avec des tarifs fonciers abordables, un accompagnement personnalisé et des impôts locaux réduits.",
+     "source": "https://rassembler-beziers.fr/les-231-engagements-pour-beziers/economie/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "insee": "94046",
+ "commune": "Maisons-Alfort",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "maisonsalfort-passionnement.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons d’ouvrir le chantier d’une rénovation totale du plan de déplacement et de stationnement à Maisons-Alfort, qui sera concerté avec les habitants quartier par quartier :",
+     "source": "https://maisonsalfort-passionnement.fr/wp-content/uploads/2026/03/WEBProgrammeT.MaubertEXE.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

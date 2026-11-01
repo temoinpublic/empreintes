@@ -1,0 +1,18 @@
+{
+ "insee": "66136",
+ "commune": "Perpignan",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "plusfortspourperpignan.fr",
+   "phrases": [
+    {
+     "texte": "Nous nommerons un adjoint à la nuit , chargé de coordonner une véritable politique municipale dédiée.",
+     "source": "https://plusfortspourperpignan.fr/wp-content/uploads/2026/03/TRACT_NUIT.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

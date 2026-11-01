@@ -1,0 +1,33 @@
+{
+ "insee": "38517",
+ "commune": "Tullins",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "tullins-fures-pour-tous.fr",
+   "phrases": [
+    {
+     "texte": "Nous engagerons un travail d’embellissement des entrées de ville, notamment au sud, avec des aménagements sécurisés sur la route de Saint-Quentin et la route de Grenoble, afin d’améliorer la sécurité et la qualité des parcours.",
+     "source": "https://tullins-fures-pour-tous.fr/httpstullins-fures-pour-tousfrville-attractive-et-dynamique",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous poursuivrons la valorisation des commerces de proximité en faisant mieux connaître l’offre existante et en continuant l’embellissement de la rue Général de Gaulle et du boulevard Michel Perret.",
+     "source": "https://tullins-fures-pour-tous.fr/httpstullins-fures-pour-tousfrville-attractive-et-dynamique",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous accompagnerons l’installation de nouveaux commerces, notamment place du Docteur Valois, place de l’Église, place Jean Jaurès et sur le boulevard Michel Perret à Fures, afin de renforcer l’attractivité commerciale des centres-bourgs.",
+     "source": "https://tullins-fures-pour-tous.fr/httpstullins-fures-pour-tousfrville-attractive-et-dynamique",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En lien avec les services du Pays Voironnais, nous proposerons un accompagnement individualisé pour aider à la création et au développement des entreprises à Tullins-Fures.",
+     "source": "https://tullins-fures-pour-tous.fr/httpstullins-fures-pour-tousfrville-attractive-et-dynamique",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

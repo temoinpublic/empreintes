@@ -1,0 +1,23 @@
+{
+ "insee": "45302",
+ "commune": "Saran",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unautrefuturpoursaran.fr",
+   "phrases": [
+    {
+     "texte": "Nous augmenterons de façon significative les effectifs de la police municipale et ses moyens d’intervention.",
+     "source": "https://www.unautrefuturpoursaran.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place un système de vidéoprotection.",
+     "source": "https://www.unautrefuturpoursaran.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

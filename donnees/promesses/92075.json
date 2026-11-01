@@ -1,0 +1,53 @@
+{
+ "insee": "92075",
+ "commune": "Vanves",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "vanvesautrement.fr",
+   "phrases": [
+    {
+     "texte": "Nous construirons un centre municipal de santé (CMS) et mettrons en place une mutuelle municipale",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous engagerons la transition de la restauration collective vers une gestion en régie municipale",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous soutiendrons les familles monoparentales au quotidien en créant un statut qui les protégera",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous redonnerons le pouvoir aux habitantes et aux habitants et créerons un poste d’adjoint à la démocratie locale",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous diffuserons en direct les conseils municipaux et les accompagnerons d’explications claires",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous repenserons la politique culturelle de la ville et désignerons un·e élu·e à la culture scientifique",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous repenserons le cœur de ville et son marché en créant un tiers-lieu",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous organiserons des assemblées citoyennes et construirons des solutions ensemble",
+     "source": "https://vanvesautrement.fr/le-programme-vanves-autrement/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

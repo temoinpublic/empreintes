@@ -1,0 +1,18 @@
+{
+ "insee": "69034",
+ "commune": "Caluire-et-Cuire",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "nouvelle-ere-caluire.fr",
+   "phrases": [
+    {
+     "texte": "Des ombrières seront installées dans les allées du cimetière.",
+     "source": "https://nouvelle-ere-caluire.fr/wp-content/uploads/2026/02/programme_NEC.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

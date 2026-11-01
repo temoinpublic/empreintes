@@ -1,0 +1,38 @@
+{
+ "insee": "31107",
+ "commune": "Carbonne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "carbonne-notrepassioncommune.fr",
+   "phrases": [
+    {
+     "texte": "Notre engagement est clair : ne pas augmenter les impôts, tout en gérant la commune avec rigueur, bon sens et efficacité.",
+     "source": "https://carbonne-notrepassioncommune.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "C’est pourquoi nous souhaitons mettre en place un Conseil citoyen, un espace de dialogue permettant aux habitants de s’exprimer, de proposer et de participer aux décisions qui concernent leur cadre de vie.",
+     "source": "https://carbonne-notrepassioncommune.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous définirons un plan de circulation pour les mobilités douces",
+     "source": "https://carbonne-notrepassioncommune.fr/le-programme-carbonne-notre-passion-commune/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous réserverons de nouveaux espaces végétalisés et sportifs comme l’espace Millet",
+     "source": "https://carbonne-notrepassioncommune.fr/le-programme-carbonne-notre-passion-commune/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des zones d’ombrages pour faire face au réchauffement climatique",
+     "source": "https://carbonne-notrepassioncommune.fr/le-programme-carbonne-notre-passion-commune/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

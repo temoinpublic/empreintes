@@ -1,0 +1,18 @@
+{
+ "insee": "83050",
+ "commune": "Draguignan",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "uniespourdraguignan.fr",
+   "phrases": [
+    {
+     "texte": "Référendum d'Initiative Citoyenne : sur demande de 20 % des habitant.e.s un référendum communal sera mis en place sur toute thématique.",
+     "source": "https://uniespourdraguignan.fr/programme.html",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

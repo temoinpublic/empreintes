@@ -1,0 +1,33 @@
+{
+ "insee": "69142",
+ "commune": "La Mulatière",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "reussirlamulatiere.fr",
+   "phrases": [
+    {
+     "texte": "Nous développerons notre marché (avec une halle couverte) mais en préservant le stationnement à proximité.",
+     "source": "https://reussirlamulatiere.fr/une-equipe-de-droite-pour-reussir-la-mulatiere/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous construirons immédiatement une maison de santé mais sans programme immobilier financiarisé ni nouveaux logements sociaux associés.",
+     "source": "https://reussirlamulatiere.fr/une-equipe-de-droite-pour-reussir-la-mulatiere/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en œuvre sans délai un projet de Maison de Santé : nous la construirons dès notre élection sur le terrain de l'ancienne maison du gardien du cimetière, dont la ville est propriétaire.",
+     "source": "https://reussirlamulatiere.fr/une-equipe-de-droite-pour-reussir-la-mulatiere/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Des stationnements complémentaires seront créés rue de Verdun.",
+     "source": "https://reussirlamulatiere.fr/une-equipe-de-droite-pour-reussir-la-mulatiere/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

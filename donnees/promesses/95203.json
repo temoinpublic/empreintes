@@ -1,0 +1,38 @@
+{
+ "insee": "95203",
+ "commune": "Eaubonne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "eaubonnepluspresdevous.fr",
+   "phrases": [
+    {
+     "texte": "1/ Nous proposons de requalifier l'actuel Hôtel de Ville en un Musée de la Nature avec brasserie, un véritable équipement public ouvert à tous, qui fera venir la vie et la curiosité au coeur de ville.",
+     "source": "https://www.eaubonnepluspresdevous.fr/centre-ville-projet-phare-no-1/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "8/ À l'Orangerie, nous créerons un lieu de loisirs pour tous les âges : une salle d'arcade avec billards, flippers et jeux vidéo, un espace intergénérationnel où les jeunes, les familles et les amis pourront se retrouver dans une ambiance détendue et chaleureuse.",
+     "source": "https://www.eaubonnepluspresdevous.fr/centre-ville-projet-phare-no-1/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "4/ Nous détruirons le préfabriqué situé derrière le gymnase du Luat pour aménager des places de stationnement et un parking à vélos.",
+     "source": "https://www.eaubonnepluspresdevous.fr/flammarion-projet-phare-no-2/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  },
+  {
+   "site": "mieuxvivreaeaubonne.fr",
+   "phrases": [
+    {
+     "texte": "Enfin,nous agirons sans hausse d’impôts , en recherchant des mutualisations avec les communes voisines et en modernisant la gestion municipale.",
+     "source": "https://www.mieuxvivreaeaubonne.fr/ressources/mieux-vivre-a-eaubonne-catherine-dragin-projet-municipal-2026.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

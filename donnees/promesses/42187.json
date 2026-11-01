@@ -1,0 +1,23 @@
+{
+ "insee": "42187",
+ "commune": "Roanne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "roanneetnous.fr",
+   "phrases": [
+    {
+     "texte": "Pour ce faire, nous mettrons en place une grille d'évaluation simple pour estimer les impacts économiques, sociaux et climatiques de nos projets.",
+     "source": "https://roanneetnous.fr/wp-content/uploads/2026/03/Programme_Roanne_2026-2032_propre.docx.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous célébrerons la journée internationale du vivre ensemble en paix le 18 mai.",
+     "source": "https://roanneetnous.fr/wp-content/uploads/2026/03/Programme_Roanne_2026-2032_propre.docx.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}
