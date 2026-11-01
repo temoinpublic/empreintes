@@ -1,0 +1,43 @@
+{
+ "insee": "77449",
+ "commune": "Serris",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "serriscestvous.fr",
+   "phrases": [
+    {
+     "texte": "Nous mettrons en place des marchés thématiques pour rythmer l’année et donner envie de revenir : des éditions saisonnières (printemps, été, rentrée, hiver), un marché « découverte d’un pays / d’une culture », avec une mise en avant de spécialités et un esprit de partage.",
+     "source": "https://serriscestvous.fr/11-un-marche-dynamique-et-attractif/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une fois par mois, lorsque cela est possible avec les institutions et partenaires, nous proposerons un stand de prévention : dépistage, nutrition, sécurité routière, gestes qui sauvent, informations utiles du quotidien.",
+     "source": "https://serriscestvous.fr/11-un-marche-dynamique-et-attractif/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour faciliter la vie des exposants, nous simplifierons les demandes de participation et de réservation du marché avec une démarche numérique claire et rapide : un formulaire simple, avec des cases à cocher, et des délais lisibles",
+     "source": "https://serriscestvous.fr/11-un-marche-dynamique-et-attractif/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Chaque trimestre, nous lancerons une consultation des habitués du marché, avec un questionnaire rapide (stands manquants, produits souhaités, animations, horaires, organisation).",
+     "source": "https://serriscestvous.fr/11-un-marche-dynamique-et-attractif/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place des temps forts culinaires dans les cantines scolaires, permettant aux enfants de découvrir différentes cultures à travers la gastronomie.",
+     "source": "https://serriscestvous.fr/6-aimer-et-faire-aimer-notre-ville/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous engagerons la création d’un jumelage fondé sur des échanges scolaires, culturels, sportifs et des correspondances entre jeunes.",
+     "source": "https://serriscestvous.fr/6-aimer-et-faire-aimer-notre-ville/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

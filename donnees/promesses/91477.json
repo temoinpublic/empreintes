@@ -1,0 +1,33 @@
+{
+ "insee": "91477",
+ "commune": "Palaiseau",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "palaiseau-encommun.fr",
+   "phrases": [
+    {
+     "texte": "Nous fournirons également le matériel scolaire de rentrée, grâce à une mutualisation à l’échelle de l’agglomération Paris‑Saclay.",
+     "source": "https://www.palaiseau-encommun.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons de faire de la Ferme des Granges un véritable espace intergénérationnel : parc urbain 🌳, îlot de fraîcheur 🌿, équipements de proximité pensés avec les habitants.",
+     "source": "https://www.palaiseau-encommun.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous lancerons un plan de transition énergétique des flottes municipales (véhicules de service, utilitaires, navettes) et encouragerons les plans de mobilité employeurs multimodaux pour les principaux pôles d’emploi de Palaiseau. 🔌🚐🌍",
+     "source": "https://www.palaiseau-encommun.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous définirons un plan piéton et maintiendrons le plan vélo existant .",
+     "source": "https://www.palaiseau-encommun.fr/wp-content/uploads/2026/03/PALAISEAU_EN_COMMUN_MOBILITES.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

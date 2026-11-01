@@ -1,0 +1,18 @@
+{
+ "insee": "62765",
+ "commune": "Saint-Omer",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "saintomer2026.fr",
+   "phrases": [
+    {
+     "texte": "Sur le sujet de la mobilité, nous proposerons une prise en charge par la commune des tickets et abonnements de bus pour les habitantes et habitants de Saint-Omer.",
+     "source": "https://saintomer2026.fr/programme_saint-omer_vivante_et_solidaire.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

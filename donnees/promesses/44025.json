@@ -1,0 +1,38 @@
+{
+ "insee": "44025",
+ "commune": "Campbon",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "campbon2026.fr",
+   "phrases": [
+    {
+     "texte": "Avec Campbon citoyenne, nous souhaitons créer de nouveaux itinéraires piétons et cyclables et prolonger la voie verte vers Bouvron et Pontchâteau afin d’offrir un itinéraire accessible à tous, qui encouragera les sorties en famille et créera de nouveaux espaces de rencontre au cœur de la nature.",
+     "source": "https://campbon2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons désormais aller plus loin en créant un lieu de pratique artistique, un espace pensé pour permettre à chacun de s’exprimer, d’expérimenter librement et de développer sa créativité dans un cadre accueillant.",
+     "source": "https://campbon2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Avec Campbon citoyenne, nous avons à coeur d’agir pour la santé de nos enfants, c’est pour cela que nous souhaitons mettre en place une cantine bio et locale.",
+     "source": "https://campbon2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons rendre les bâtiments et l’espace public accessibles à toutes et tous, en créant une commission accessibilité composée de citoyens.",
+     "source": "https://campbon2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons à ce titre poursuivre le conseil municipal des enfants et créer un conseil volontaire des ados, des espaces où ils pourront proposer, débattre, imaginer et participer pleinement à la vie de la commune.",
+     "source": "https://campbon2026.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

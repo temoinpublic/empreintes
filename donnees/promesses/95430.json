@@ -1,0 +1,18 @@
+{
+ "insee": "95430",
+ "commune": "Montsoult",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "montsoult2026-epa.fr",
+   "phrases": [
+    {
+     "texte": "Nous souhaitons créer un service municipal téléphonique de garde 24h/24 - 7j/7, pour les urgences afin d’optimiser la réactivité des services nécessaires.",
+     "source": "https://montsoult2026-epa.fr/wp-content/uploads/2026/01/EPA-SECURITE.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

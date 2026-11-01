@@ -1,0 +1,38 @@
+{
+ "insee": "17299",
+ "commune": "Rochefort",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "lavenirautrementrochefort.fr",
+   "phrases": [
+    {
+     "texte": "Pour encourager l’installation de nouveaux commerces, nous proposons la prise en charge des baux commerciaux lors des premiers mois d'activité.",
+     "source": "https://lavenirautrementrochefort.fr/programme/axe-3",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons créer de nouveaux espaces dédiés aux TPE, PME, PMI et clubs d’entreprises.",
+     "source": "https://lavenirautrementrochefort.fr/programme/axe-3",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour accompagner l’essor du vélo, nous souhaitons soutenir la filière locale de réparation et développer de nouveaux parkings dédiés.",
+     "source": "https://lavenirautrementrochefort.fr/programme/axe-3",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous améliorerons la sécurité au croisement de la rue de la République et de la rue Audry de Puyravault afin de ralentir les véhicules motorisés, sécuriser les traversées et rendre les déplacements plus sereins pour tous — piétons, cyclistes et automobilistes.",
+     "source": "https://lavenirautrementrochefort.fr/programme/axe-5",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous redonnerons ses pleines missions au CLSPD (conseil local de sécurité et de prévention de la délinquance) qui réunit élus, acteurs de la justice, de l’éducation et travailleurs sociaux.",
+     "source": "https://lavenirautrementrochefort.fr/programme/axe-5",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

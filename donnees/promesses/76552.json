@@ -1,0 +1,33 @@
+{
+ "insee": "76552",
+ "commune": "Sainte-Adresse",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "sainte-adresse2032.fr",
+   "phrases": [
+    {
+     "texte": "Nous installerons donc un nouveau conseil de sécurité à Sainte-Adresse qui coordonnera l’action de la police nationale, particulièrement les « Stups », les CRS, la police municipale, les services du procureur, ainsi que les gestionnaires de copropriété.",
+     "source": "https://www.sainte-adresse2032.fr/programme-elections-municipales-2026-sainte-adresse-hubert-dejean-de-la-batie",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous proposerons à nos concitoyens qui le souhaitent d’adhérer à des contrats collectifs de surveillance des maisons individuelles ou des immeubles.",
+     "source": "https://www.sainte-adresse2032.fr/programme-elections-municipales-2026-sainte-adresse-hubert-dejean-de-la-batie",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous allons bien sur intensifier les contrôles de vitesse.",
+     "source": "https://www.sainte-adresse2032.fr/programme-elections-municipales-2026-sainte-adresse-hubert-dejean-de-la-batie",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Par ailleurs nous triplerons le nombre d’arceaux vélos pour répondre à vos demandes.",
+     "source": "https://www.sainte-adresse2032.fr/programme-elections-municipales-2026-sainte-adresse-hubert-dejean-de-la-batie",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "insee": "53147",
+ "commune": "Mayenne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "mayennesecritensemble.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons donc de prioriser la location de vélos à assistance électrique pour ceux qu'on appelle les \"vélotafeurs\", c'est-à-dire ceux qui vont au travail à vélo.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/Debat-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "C’est pourquoi nous proposons de mettre en place un transport solidaire.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/Debat-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous porterons le projet de rénovation de l’école Jules Ferry.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/Debat-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Ensuite, nous proposons la mise en œuvre du Pass Civisme.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/Debat-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous voulons déployer des panneaux photovoltaïques au sol sur le site de l’ancienne fonderie de Brive, transformant cet espace en une infrastructure productive et durable pour la ville, tout en participant à la transition énergétique.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/Debat-2026.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Oui, nous engagerons une feuille de route relative au Grand Âge et à l'autonomie, en partenariat étroit avec les partenaires et acteurs locaux.",
+     "source": "https://www.mayennesecritensemble.fr/docs-2026/MSE-AUDACE.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

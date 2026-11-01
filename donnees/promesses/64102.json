@@ -1,0 +1,23 @@
+{
+ "insee": "64102",
+ "commune": "Bayonne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unispourbayonnelalternative.fr",
+   "phrases": [
+    {
+     "texte": "Afin de rendre l’offre culturelle et événementielle plus lisible, une plateforme « Que faire à Bayonne cette semaine ? » sera mise en place et gérée par la Ville.",
+     "source": "https://www.unispourbayonnelalternative.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Le montant des subventions et participations se monte à 10,2 % des dépenses de fonctionnement ; nous voulons atteindre les 9,5 %.",
+     "source": "https://www.unispourbayonnelalternative.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

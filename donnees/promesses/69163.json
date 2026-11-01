@@ -1,0 +1,33 @@
+{
+ "insee": "69163",
+ "commune": "Quincieux",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "100pour100quincieux.fr",
+   "phrases": [
+    {
+     "texte": "Nous voulons créer une halle communale moderne et ouverte à tous, qui serve de lieu de vie pour les marchés, les événements, les rencontres citoyennes et les animations.",
+     "source": "https://100pour100quincieux.fr/nos-priorites/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons de développer un espace culturel polyvalent permettant d’accueillir des spectacles, des expositions, des ateliers et des rencontres.",
+     "source": "https://100pour100quincieux.fr/nos-priorites/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Parce que les enfants et les familles doivent pouvoir jouer, se rencontrer et grandir ensemble, nous voulons aménager une plaine de jeux accessible, sûre et conviviale.",
+     "source": "https://100pour100quincieux.fr/nos-priorites/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons améliorer et sécuriser les cheminements piétonniers entre les hameaux et le centre du village pour que chacun, notamment les enfants et les personnes âgées, puisse se déplacer à pied en toute tranquillité.",
+     "source": "https://100pour100quincieux.fr/nos-priorites/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

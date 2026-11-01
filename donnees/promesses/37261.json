@@ -1,0 +1,38 @@
+{
+ "insee": "37261",
+ "commune": "Tours",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "changeonstours.fr",
+   "phrases": [
+    {
+     "texte": "Dès juin 2026, avec tous les acteurs, les États généraux du sport seront lancés pour élaborer un plan décennal de rénovation des équipements existants et garantir à chacun des conditions de pratique dignes.",
+     "source": "https://www.changeonstours.fr/equipements-et-sports",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Parallèlement, nous renforcerons l’offre de proximité : nouveaux équipements dans les quartiers moins dotés, animations régulières et soutien accru aux clubs et associations promouvant l’insertion par le sport.",
+     "source": "https://www.changeonstours.fr/equipements-et-sports",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous agirons pour réduire le trafic de transit en rendant l’A10 gratuite entre Chambray et Monnaie : le centre-ville sera ainsi plus fluide et plus respirable.",
+     "source": "https://www.changeonstours.fr/le-mot-du-candidat",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous nous engageons à mettre en place un outil de signalement des dégradations du cadre de vie – tags, herbes folles, dépôts sauvages – et à faire intervenir les services de propreté rapidement. »",
+     "source": "https://www.changeonstours.fr/programme/pour-une-ville-partagee",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une gouvernance unifiée du marketing territorial pour porter une marque forte et avoir une stratégie claire.",
+     "source": "https://www.changeonstours.fr/programme/pour-une-ville-plus-attractive-et-plus-commercante",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

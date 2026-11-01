@@ -1,0 +1,23 @@
+{
+ "insee": "27681",
+ "commune": "Vernon",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "vernondemain.fr",
+   "phrases": [
+    {
+     "texte": "Nous mettrons en place le Référendum d’Initiative Citoyenne (RIC), des conseils de quartiers dotés de budgets participatifs.",
+     "source": "https://vernondemain.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons des espaces publics inclusifs, sûrs et accessibles : éclairage intelligent, parcours piétons et cyclables sécurisés, espaces apaisés autour des écoles, crèches et EHPAD.",
+     "source": "https://vernondemain.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

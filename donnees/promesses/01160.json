@@ -1,0 +1,53 @@
+{
+ "insee": "01160",
+ "commune": "Ferney-Voltaire",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "energie-nouvelle-ferney.fr",
+   "phrases": [
+    {
+     "texte": "Dès cet automne, nous mettrons en place un Forum citoyen annuel qui influencera directement le budget municipal.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour nos enfants, nous végétaliserons les cours des écoles, adapterons les bâtiments aux vagues de chaleur et sécuriserons les abords.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous travaillerons avec les cabinets existants, l’Agglomération et le Département de l’Ain pour accueillir médecins, docteurs juniors et infirmiers (dont IPA et Asalée).",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dès avril, nous sécuriserons financièrement l’activité du cinéma pour assurer sa survie.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une Place culturelle modulable accueillant spectacle vivant, musique, cinéma et initiatives associatives.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En parallèle, nous ombragerons les espaces publics (plantations, parois végétales) afin d’adapter la ville au réchauffement climatique.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans le cadre d’un plan global des mobilités, nous rénoverons les trottoirs, sécuriserons les traversées et les cheminements mal éclairés.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Une signalétique en temps et distance sera mise en place.",
+     "source": "https://energie-nouvelle-ferney.fr/elections/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

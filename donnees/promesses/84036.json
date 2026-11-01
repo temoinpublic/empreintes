@@ -1,0 +1,23 @@
+{
+ "insee": "84036",
+ "commune": "Châteauneuf-de-Gadagne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "gadagneautrement.fr",
+   "phrases": [
+    {
+     "texte": "Nous allons revoir l’accès de l’école Goujon",
+     "source": "https://www.gadagneautrement.fr/nos-projets-phares/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Enfin, nous mettrons en œuvre des outils de communication transparents : panneau signalétique numérique en centre-village affichant en temps réel les indicateurs environnementaux (sécheresse, qualité de l'air, consommation énergétique), et publication régulière via l'application INTRAMUROS.",
+     "source": "https://www.gadagneautrement.fr/wp-content/uploads/2026/03/Reponse-Gadagne-Autrement-a-Gadagne-Environnement.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

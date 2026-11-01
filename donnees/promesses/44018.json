@@ -1,0 +1,28 @@
+{
+ "insee": "44018",
+ "commune": "Bouaye",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "nouvelelanbouaye.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons de créer une salle polyvalente moderne et accessible, un lieu de fête, de culture et de vie locale, pour toutes les générations.",
+     "source": "https://www.nouvelelanbouaye.fr/projets",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "En parallèle, nous installerons une guinguette estivale dans le parc dès que possible.",
+     "source": "https://www.nouvelelanbouaye.fr/projets",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Au regard de la baisse de la natalité et des fermetures de classes régulières sur Bouaye, nous souhaitons rénover l’école Maryse Bastié et y accueillir en face l’école Victor Hugo à l’emplacement actuel de la salle Eugène Levèque.",
+     "source": "https://www.nouvelelanbouaye.fr/projets",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

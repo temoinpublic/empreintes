@@ -1,0 +1,28 @@
+{
+ "insee": "93001",
+ "commune": "Aubervilliers",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "ensemblepouraubervilliers.fr",
+   "phrases": [
+    {
+     "texte": "Une annexe municipale de santé sera créée pour lutter contre les déserts médicaux et faciliter l'installation de nouveaux praticiens.",
+     "source": "https://ensemblepouraubervilliers.fr/programme.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "À la Maison de la Réussite, nous proposons un pôle dédié à la recherche de stages, d'alternances et de premiers emplois.",
+     "source": "https://ensemblepouraubervilliers.fr/programme.html",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Vigilance Active et Brigade de Proximité : Nous instaurerons un protocole de \"Vigilance Active\" via la Brigade de proximité, incluant des passages réguliers au domicile des personnes les plus vulnérables pour assurer un lien social et sécurisant.",
+     "source": "https://ensemblepouraubervilliers.fr/documents/Programmes.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

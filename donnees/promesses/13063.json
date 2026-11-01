@@ -1,0 +1,43 @@
+{
+ "insee": "13063",
+ "commune": "Miramas",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "ensemblepourdemain-miramas.fr",
+   "phrases": [
+    {
+     "texte": "Nous faciliterons l’accès au centre-ville sans voiture: accès réglementé, bus navette, location de vélos, voies de circulation douces ;",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons la maison du pouvoir d’achat, qui s’adressera à tou·te·s les habitant·e·s quels que soient leurs revenus, pour les aider à réduire leurs dépenses et augmenter leur reste à vivre ;",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous expérimenterons une carte citoyenne de réductions.",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous aménagerons les parcs du lac Saint-Suspi, de Couvent, des Ruches, de la Cité cheminote et de la Carraire avec du mobilier durable fait de matériaux naturels ;",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous rénoverons la ferme Richard du lac Saint-Suspi ;",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous installerons des tables de pique-nique et des aires de jeux pour les enfants, ombragées par des tonnelles végétales et des brumisateurs.",
+     "source": "https://ensemblepourdemain-miramas.fr/le-projet",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

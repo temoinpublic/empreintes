@@ -1,0 +1,18 @@
+{
+ "insee": "74010",
+ "commune": "Annecy",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unis-par-annecy.fr",
+   "phrases": [
+    {
+     "texte": "Nous mettrons en place le programme « Gare Zéro délinquance » avec la Région AURA pour sécuriser la gare et ses abords, et poursuivre les actions de prévention de la délinquance en partenariat avec les forces de police dans le cadre du CLSPD.",
+     "source": "https://www.unis-par-annecy.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

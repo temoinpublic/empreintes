@@ -1,0 +1,38 @@
+{
+ "insee": "07281",
+ "commune": "Saint-Péray",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "saintperayestavous.fr",
+   "phrases": [
+    {
+     "texte": "En tout début de mandature, nous nous engageons à réaliser et partager une analyse budgétaire des finances de la commune pour une gestion rigoureuse et transparente.",
+     "source": "https://saintperayestavous.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous développerons l’usage des outils numériques pour contribuer à la vie municipale, par exemple, en filmant les séances du conseil municipal pour visionnage à distance.",
+     "source": "https://saintperayestavous.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Pour compléter les nombreuses initiatives sportives, nous encouragerons les pratiques culturelles et artistiques amateurs en mettant à disposition des salles supplémentaires de répétition et de diffusion.",
+     "source": "https://saintperayestavous.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Lorsque les parents sont invités à contribuer à une sortie scolaire, nous veillerons à ce que soient indiquées les modalités pour bénéficier d’une aide financière.",
+     "source": "https://saintperayestavous.fr/notre-programme/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous proposons d’organiser une assemblée citoyenne sur ce sujet (renforcement des transports en commun, aménagements cyclables / projet de déviation).",
+     "source": "https://saintperayestavous.fr/wp-content/uploads/2026/03/SPEAV-PROGRAMME.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

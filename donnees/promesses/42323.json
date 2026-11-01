@@ -1,0 +1,28 @@
+{
+ "insee": "42323",
+ "commune": "Veauche",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "veauche-territoire-d-avenir.fr",
+   "phrases": [
+    {
+     "texte": "Nous souhaitons proposer des découvertes sportives pendant les vacances scolaires, ceci en partenariat avec l’office des sports et les associations de la commune.",
+     "source": "https://www.veauche-territoire-d-avenir.fr/projets/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons que l’office des sports devienne municipal pour qu’il puisse travailler en lien direct avec les élus et les services municipaux.",
+     "source": "https://www.veauche-territoire-d-avenir.fr/projets/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons également la mise en place du conseil municipal des adolescents.",
+     "source": "https://www.veauche-territoire-d-avenir.fr/projets/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

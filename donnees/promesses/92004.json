@@ -1,0 +1,28 @@
+{
+ "insee": "92004",
+ "commune": "Asnières-sur-Seine",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "agirpourasnieres-2026.fr",
+   "phrases": [
+    {
+     "texte": "Nous soutiendrons les commerçants, artisans et entrepreneurs qui font vivre nos quartiers et créent de l’emploi de proximité, en relançant les fêtes commerçantes annuelles pour créer du lien et dynamiser, voire pérenniser, leur activité.",
+     "source": "https://agirpourasnieres-2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous voulons mettre en place un « Chèque Asniérois », subventionné et ciblé, au service du commerce local, contribuant également à un geste pour le pouvoir d’achat.",
+     "source": "https://agirpourasnieres-2026.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous installerons deux douches publiques accessibles toute l’année, destinées aux personnes sans domicile ou en grande précarité.",
+     "source": "https://agirpourasnieres-2026.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

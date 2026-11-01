@@ -1,0 +1,23 @@
+{
+ "insee": "83036",
+ "commune": "Cavalaire-sur-Mer",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "cavalairenotrecommune.fr",
+   "phrases": [
+    {
+     "texte": "Afin d'apporter une réponse immédiate aux problématiques sanitaires et aux besoins des animaux présents sur notre territoire, que ce soit des animaux domestiques ou sauvages, nous créerons un service dédié, comme c'est le cas dans de nombreuses communes, et cela, depuis de nombreuses années.",
+     "source": "https://www.cavalairenotrecommune.fr/nospriorites",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous allons créer des pistes cyclables dans le centre-ville et en direction des écoles, pour limiter les risques, mais aussi pour offrir une alternative à l'automobile et plus d'autonomie à nos jeunes.",
+     "source": "https://www.cavalairenotrecommune.fr/nospriorites",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

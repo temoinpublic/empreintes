@@ -1,0 +1,23 @@
+{
+ "insee": "29039",
+ "commune": "Concarneau",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "engagespourconcarneau.fr",
+   "phrases": [
+    {
+     "texte": "Pour mener nos actions, nous agirons à fiscalité constante.",
+     "source": "https://www.engagespourconcarneau.fr/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Un « pass sport-culture » sera mis en place pour l’intégration des jeunes dans les associations et clubs.",
+     "source": "https://www.engagespourconcarneau.fr/nos-engagements/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

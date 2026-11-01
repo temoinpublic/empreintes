@@ -1,0 +1,23 @@
+{
+ "insee": "67437",
+ "commune": "Saverne",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unispoursaverne.fr",
+   "phrases": [
+    {
+     "texte": "Nous créerons un réseau de forêts comestibles publiques, ouvertes à tous dans un but nourricier et éducatif.",
+     "source": "https://unispoursaverne.fr/wp-content/uploads/2026/02/VERSION_DEF_PROGRAMME_NADINEbdef.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous souhaitons redonner vie à la Fête de la Rose, avec un corso fleuri festif et populaire, associant habitants, écoles, associations et commerçants autour de la beauté florale et du savoir-faire local.",
+     "source": "https://unispoursaverne.fr/wp-content/uploads/2026/02/VERSION_DEF_PROGRAMME_NADINEbdef.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

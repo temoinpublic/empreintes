@@ -1,0 +1,18 @@
+{
+ "insee": "88367",
+ "commune": "Rambervillers",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "rambervillers2026.fr",
+   "phrases": [
+    {
+     "texte": "Nous souhaitons également créer un espace dédié à la jeunesse, un lieu de rencontre, d’échange et d’expression, où les jeunes pourront s’informer, construire des projets et évoluer ensemble.",
+     "source": "https://rambervillers2026.fr/projet/jeunesse/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

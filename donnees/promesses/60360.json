@@ -1,0 +1,43 @@
+{
+ "insee": "60360",
+ "commune": "Liancourt",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "liancourtpourtous.fr",
+   "phrases": [
+    {
+     "texte": "Nous favoriserons l’ installation d’une nouvelle crèche et d’un relais d’assistantes maternelles pour rétablir l’offre dans la commune.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons aussi une vigilance particulière pour les agents pénitentiaires habitant à Liancourt avec des patrouilles spécifiques.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans les premières semaines du nouveau mandat, nous recevrons chaque association pour déterminer les besoins financiers et matériels de chacune.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous favoriserons le Pass permis et Pass BAFA du Conseil départemental dans la commune : la prise en charge du permis de conduire des jeunes Liancourtois de 18 à 25 ans contre des heures de volontariat.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ferons de Liancourt un musée à ciel ouvert dédié à l’histoire des ducs de la Rochefoucauld avec des marches historiques et pédagogiques.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous installerons des poubelles de tri sur l’espace public.",
+     "source": "https://liancourtpourtous.fr/wp-content/uploads/2026/02/PROJET-MUNICIPAL.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

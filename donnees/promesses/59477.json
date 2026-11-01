@@ -1,0 +1,18 @@
+{
+ "insee": "59477",
+ "commune": "Provin",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "agirensembleprovin.fr",
+   "phrases": [
+    {
+     "texte": "Pour vous, nous créerons une véritable police municipale, adaptée aux besoins de notre commune.",
+     "source": "https://agirensembleprovin.fr/pdf/Agir_Ensemble-Numero_04.pdf",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

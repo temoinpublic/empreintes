@@ -1,0 +1,33 @@
+{
+ "insee": "69244",
+ "commune": "Tassin-la-Demi-Lune",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unnouveausoufflepourtassin.fr",
+   "phrases": [
+    {
+     "texte": "Nous rétablirons le double choix au restaurant scolaire, comme cela se fait dans de nombreuses communes voisines.",
+     "source": "https://unnouveausoufflepourtassin.fr/5-premieres-mesures-pour-tassin-la-demi-lune/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous instaurerons un couvre-feu à 22h pour les mineurs de moins de 15 ans sous-conditions et limité dans le temps, sur tout le territoire communal.",
+     "source": "https://unnouveausoufflepourtassin.fr/5-premieres-mesures-pour-tassin-la-demi-lune/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place une mutuelle communale pour tous, ouverte à tous les habitants de Tassin, sans condition d’âge ni de revenu.",
+     "source": "https://unnouveausoufflepourtassin.fr/5-premieres-mesures-pour-tassin-la-demi-lune/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons un Conseil de la Culture Citoyen, composé d’habitants volontaires, d’associations, de commerçants, d’artistes et d’élus.",
+     "source": "https://unnouveausoufflepourtassin.fr/5-premieres-mesures-pour-tassin-la-demi-lune/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

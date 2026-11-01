@@ -1,0 +1,33 @@
+{
+ "insee": "42299",
+ "commune": "Savigneux",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "vousetnouspoursavigneux.fr",
+   "phrases": [
+    {
+     "texte": "Afin d’améliorer les conditions d’accueil de nos tout-petits, nous souhaitons engager des travaux au sein de la crèche communale Les Fripouilles.",
+     "source": "https://www.vousetnouspoursavigneux.fr/le-programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Dans une démarche d’amélioration du cadre de vie, nous souhaitons créer d'autres chemins pédestres afin de permettre à chacun de découvrir Savigneux et ses alentours à pied dans de bonnes conditions.",
+     "source": "https://www.vousetnouspoursavigneux.fr/le-programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Parce que le local est essentiel, nous souhaitons créer un marché hebdomadaire dédié aux producteurs locaux.",
+     "source": "https://www.vousetnouspoursavigneux.fr/le-programme",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous mettrons en place la visioconférence et la retransmission en direct des conseils municipaux, afin que chaque habitant puisse suivre les décisions et les débats de la vie communale.",
+     "source": "https://www.vousetnouspoursavigneux.fr/le-programme",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

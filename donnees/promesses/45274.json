@@ -1,0 +1,18 @@
+{
+ "insee": "45274",
+ "commune": "Saint-Denis-en-Val",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "saintdenisenval-naturellement.fr",
+   "phrases": [
+    {
+     "texte": "Nous renforcerons la participation citoyenne en créant : des comités de pilotage, des groupes d’échanges par quartier, en associant habitants et acteurs locaux pour les projets structurants, des consultations citoyennes, voire des référendums locaux lorsque les enjeux l’exigent.",
+     "source": "https://saintdenisenval-naturellement.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

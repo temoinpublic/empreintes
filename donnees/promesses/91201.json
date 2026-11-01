@@ -1,0 +1,33 @@
+{
+ "insee": "91201",
+ "commune": "Draveil",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "draveil-en-commun.fr",
+   "phrases": [
+    {
+     "texte": "Nous proposons l’implantation d’une maison de santé pluriprofessionnelle regroupant médecins généralistes et spécialistes exerçant en secteur 1, sans dépassement d’honoraires.",
+     "source": "https://www.draveil-en-commun.fr/nos-12-engagements-pour-draveil/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons une cuisine municipale avec une légumerie pour produire des repas bio, locaux et frais, destinés aux écoles et au portage à domicile.",
+     "source": "https://www.draveil-en-commun.fr/nos-12-engagements-pour-draveil/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous créerons des comités de quartiers réellement acteurs, associés aux décisions qui concernent la voirie, la sécurité, la vie scolaire ou le cadre de vie.",
+     "source": "https://www.draveil-en-commun.fr/nos-12-engagements-pour-draveil/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Nous ferons le choix de reprendre en régie la production et la distribution de l’eau afin de garantir un service public transparent, maîtrisé et au juste prix.",
+     "source": "https://www.draveil-en-commun.fr/nos-12-engagements-pour-draveil/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

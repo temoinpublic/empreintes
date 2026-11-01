@@ -1,0 +1,23 @@
+{
+ "insee": "36088",
+ "commune": "Issoudun",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "unnouvelissoudun.fr",
+   "phrases": [
+    {
+     "texte": "Nous nous engageons à rencontrer tous les présidents d'associations afin d'évaluer les besoins à court et long terme et accompagner leur développement.",
+     "source": "https://unnouvelissoudun.fr/programme/attractivite-v2/",
+     "lue_le": "2026-10-31"
+    },
+    {
+     "texte": "Parce que la santé et la solidarité sont au cœur de la qualité de vie, dès notre élection, nous nommerons un adjoint dédié à la santé, à la solidarité, à la famille et au handicap.",
+     "source": "https://unnouvelissoudun.fr/programme/sante-v2/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}

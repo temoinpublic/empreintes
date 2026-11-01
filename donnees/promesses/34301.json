@@ -1,0 +1,18 @@
+{
+ "insee": "34301",
+ "commune": "Sète",
+ "lue_le": "2026-10-31",
+ "relue_le": "2026-11-01",
+ "listes": [
+  {
+   "site": "sete-rassemblee.fr",
+   "phrases": [
+    {
+     "texte": "Avec un Pôle Médical Municipal au Casino et des logements dédiés, nous ferons revenir les praticiens.",
+     "source": "https://sete-rassemblee.fr/",
+     "lue_le": "2026-10-31"
+    }
+   ]
+  }
+ ]
+}
