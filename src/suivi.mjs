@@ -180,8 +180,16 @@ export async function registrePrive({ db, id, jeton }) {
 	const flux = await un(db, 'SELECT id, url, jeton, inscrit, retire, lu, etat FROM flux WHERE id = ?', String(id ?? ''));
 	if (!flux) return refus(404, 'flux inconnu');
 	if (!jeton || (await sha256(jeton)) !== flux.jeton) return refus(403, 'jeton refuse');
-	const articles = await tous(db, 'SELECT id, lien, lu FROM article WHERE flux = ? ORDER BY id', flux.id);
-	const recus = await tous(db, 'SELECT recu, article, contenu FROM version WHERE flux = ? ORDER BY jour, recu', flux.id);
+	// Une reinscription apres un retrait ouvre un registre neuf : son jeton ne lit
+	// que ce qui a ete depose depuis, jamais les recus de l'inscription d'avant.
+	const depuis = jourDe(flux.inscrit);
+	const articles = await tous(
+		db,
+		'SELECT a.id, a.lien, a.lu FROM article a WHERE a.flux = ? AND EXISTS (SELECT 1 FROM version v WHERE v.flux = a.flux AND v.article = a.id AND v.jour >= ?) ORDER BY a.id',
+		flux.id,
+		depuis
+	);
+	const recus = await tous(db, 'SELECT recu, article, contenu FROM version WHERE flux = ? AND jour >= ? ORDER BY jour, recu', flux.id, depuis);
 	const public_ = { id: flux.id, url: flux.url, inscrit: flux.inscrit, retire: flux.retire, lu: flux.lu, etat: flux.etat };
 	return reponse(200, { flux: public_, articles, recus: recus.map((r) => ({ id: r.recu, article: r.article, recu: JSON.parse(r.contenu) })) });
 }
