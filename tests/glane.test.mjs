@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { SANS_OBJET, acteDuLien, communesDuReleve, ecrireAtomique, liensDe, lotsDuPassage, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
+import { SANS_OBJET, acteDuLien, communesDuReleve, communesServies, ecrireAtomique, enLargeurDAbord, liensDe, lotsDuPassage, natureDe, normaliser, objetDe, pagesCandidates, pdfsDe, reglesRobots, robotsPermet, scoreDePage, texteDuHtml } from '../src/glane.mjs';
 
 const ICI = 'https://www.ville-echillais.fr/';
 const sites = [['ville-echillais.fr', '']];
@@ -212,6 +212,24 @@ test('le releve du jour dit les communes deja lues, sans son en-tete ni ligne vi
 	const tsv = 'code\tsite\taccueil\n44150\tsaint-aignan-grandlieu.fr\t200\n2A004\tajaccio.fr\trobots\n\n';
 	assert.deepEqual([...communesDuReleve(tsv)], ['44150', '2A004']);
 	assert.equal(communesDuReleve('code\tsite\n').size, 0);
+});
+
+test('les communes sans aucun acte depose passent d abord, dans l ordre de l annuaire', () => {
+	const communes = [['44150', ['a.fr', '']], ['2A004', ['b.fr', '']], ['10129', ['c.fr', '']], ['10021', ['d.fr', '']]];
+	const pdfs = {
+		'https://a.fr/1.pdf': { jour: '2026-10-16', id: 'ca00', code: '44150', nature: 'deliberation' },
+		'https://a.fr/2.pdf': { jour: '2026-10-19', statut: 422, essais: 3, erreur: 'lecture impossible' },
+		'https://c.fr/1.pdf': { jour: '2026-10-19', statut: 422, essais: 1, erreur: 'lecture impossible' },
+		'https://d.fr/1.pdf': { jour: '2026-10-17', id: '9e67', code: '10021', nature: 'arrete' }
+	};
+	assert.deepEqual(
+		enLargeurDAbord(communes, pdfs).map(([code]) => code),
+		['2A004', '10129', '44150', '10021'],
+		'un refus sans identifiant ne compte pas comme un depot'
+	);
+	assert.deepEqual([...communesServies(pdfs)], ['44150', '10021']);
+	assert.deepEqual(enLargeurDAbord(communes, {}), communes);
+	assert.deepEqual(enLargeurDAbord([], pdfs), []);
 });
 
 test('un passage part en entier, en lots bornes', () => {
