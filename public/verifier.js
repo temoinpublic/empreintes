@@ -251,7 +251,11 @@ $('fichier')?.addEventListener('change', () => $('fichier').files[0] && lancer()
 
 $('chaine')?.addEventListener('click', async () => {
 	const sortie = $('resultat-chaine');
+	// La relecture prend plus d'une minute : sans signe, le lecteur la relancait.
+	const bouton = $('chaine');
+	bouton.disabled = true;
 	try {
+		sortie.innerHTML = `<p>${t.chaineEnCours((await lesTours()).length)}</p>`;
 		// La chaine se lit sur `/tours.json` ; seul le dernier releve se recalcule ici, le script les recalcule tous.
 		const v = await verifierChaineLegere(await lesTours(), lireReleve);
 		const s = await verifierSignatures(await lesTours(), async (chemin) => (await fetch(chemin)).text());
@@ -263,5 +267,7 @@ $('chaine')?.addEventListener('click', async () => {
 			: `<article class="ko"><h2>${t.rompue}</h2><ul>${raisons.map((r) => `<li>${echapper(r)}</li>`).join('')}</ul></article>`;
 	} catch (erreur) {
 		sortie.innerHTML = `<article class="ko"><h2>${T.erreur}</h2><p>${echapper(erreur.message)}</p></article>`;
+	} finally {
+		bouton.disabled = false;
 	}
 });
