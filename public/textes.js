@@ -99,6 +99,7 @@ const TEXTES = {
 			fr: (n, h) => `Le dernier tour, ${h}, est recalculé depuis ses ${n.toLocaleString('fr-FR').replace(/ /g, NBSP)} empreintes.`,
 			de: (n, h) => `Die letzte Runde, ${h}, ist aus ihren ${n.toLocaleString('de-DE')} Prüfsummen neu berechnet.`
 		},
+		chaineEnCours: { fr: (n) => `Vérification des ${n} tours en cours`, de: (n) => `Prüfung der ${n} Runden läuft` },
 		intacte: { fr: (n) => `Chaîne intacte, ${n} tours`, de: (n) => `Kette intakt, ${n} Runden` },
 		derniere: { fr: `Dernière racine${NBSP}:`, de: 'Letzte Wurzel:' },
 		rompue: { fr: 'Chaîne rompue', de: 'Kette unterbrochen' },
