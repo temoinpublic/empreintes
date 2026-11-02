@@ -535,6 +535,28 @@ export function refusDeDepot(statut, corps = {}) {
 	return trouvee ? { classe: trouvee[0], definitif: trouvee[1] } : { classe: 'transitoire', definitif: false };
 }
 
+/** Les communes qui ont deja au moins un acte depose au registre, lues dans `pdfs` de l'etat. */
+export function communesServies(pdfs) {
+	return new Set(
+		Object.values(pdfs)
+			.filter((p) => p.id)
+			.map((p) => p.code)
+	);
+}
+
+/**
+ * L'ordre d'un passage sous le plafond de depots du jour : les communes dont
+ * aucun acte n'est encore depose (`pdfs` de l'etat) passent d'abord, dans
+ * l'ordre de l'annuaire, puis les autres. Sinon les memes communes a gros
+ * stock consomment le plafond chaque jour et le registre ne s'elargit pas.
+ */
+export function enLargeurDAbord(communes, pdfs) {
+	const servies = communesServies(pdfs);
+	const neuves = communes.filter(([code]) => !servies.has(code));
+	const deja = communes.filter(([code]) => servies.has(code));
+	return [...neuves, ...deja];
+}
+
 /**
  * Les communes deja inscrites au releve d'un jour (`glane-<jour>.tsv`, en-tete
  * compris) : un passage relance le meme jour reprend apres elles.

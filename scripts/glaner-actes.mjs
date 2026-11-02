@@ -35,7 +35,7 @@ import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, documentBudgetaireDe, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, communesServies, documentBudgetaireDe, enLargeurDAbord, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -498,9 +498,12 @@ const releve = path.join(options.etat, `glane-${jour}.tsv`);
 // Un passage relance le meme jour reprend apres les communes deja inscrites au releve.
 const dejaLues = fs.existsSync(releve) ? communesDuReleve(fs.readFileSync(releve, 'utf8')) : new Set();
 if (dejaLues.size) console.log(JSON.stringify({ reprise: dejaLues.size }));
-const aLire = communes.filter(([code]) => !dejaLues.has(code));
+// Le plafond de depots du jour va d'abord aux communes qui n'ont encore aucun acte au registre.
+const aLire = enLargeurDAbord(communes.filter(([code]) => !dejaLues.has(code)), etat.pdfs);
 const max = Number(options['communes-max']);
 const file = max > 0 ? aLire.slice(0, max) : aLire;
+const servies = communesServies(etat.pdfs);
+console.log(JSON.stringify({ aLire: aLire.length, sansDepot: aLire.filter(([code]) => !servies.has(code)).length }));
 const detail = path.join(options.etat, `glane-${jour}-actes.jsonl`);
 const detailBudgets = path.join(options.etat, `glane-${jour}-budgets.jsonl`);
 if (!fs.existsSync(releve)) fs.writeFileSync(releve, 'code\tsite\taccueil\tpage\tpdfs\tactes\tdeposes\tautres\tbudgets\tgenres\tpage_budget\n');
