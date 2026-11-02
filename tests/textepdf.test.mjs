@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { deflateSync } from 'node:zlib';
 import { sha256 } from '../src/chaine.mjs';
-import { FLUX_CLAIR_MAX, empreinteDuTexte, gonfler, texteDuPdf, texteImprime } from '../src/textepdf.mjs';
+import { FLUX_CLAIR_MAX, FLUX_PAR_PDF_MAX, TEXTE_CLAIR_TOTAL_MAX, empreinteDuTexte, gonfler, texteDuPdf, texteImprime } from '../src/textepdf.mjs';
 
 const octets = (s) => new Uint8Array(Buffer.from(s, 'latin1'));
 const flate = (clair) => Buffer.from(deflateSync(Buffer.from(clair, 'latin1'))).toString('latin1');
@@ -74,4 +74,14 @@ test('un flux tronque garde ce qui en sort, un flux trop gros en clair ne compte
 test('« endstream » suivi d un retour n ouvre pas un flux', async () => {
 	const o = pdf(`4 0 obj\n<< /Length 25 >>\nstream\n${page('Un')}\nendstream\nendobj\n5 0 obj\n<< /Length 5 >>\nstream\n(Deux)\nendstream\nendobj\n`);
 	assert.equal(await texteDuPdf(o), 'Un');
+});
+
+test('un pdf qui depasse le nombre de flux ou le volume decompresse total n a pas de texte connu', async () => {
+	const nombreux = Array.from({ length: FLUX_PAR_PDF_MAX + 1 }, (_, i) => objet(i + 4, '', page('x')));
+	assert.equal(await texteDuPdf(pdf(...nombreux)), null);
+	const ligne = 'BT (a) Tj ET\n';
+	const gros = flate(ligne.repeat(Math.floor(FLUX_CLAIR_MAX / ligne.length) - 1));
+	const n = Math.ceil(TEXTE_CLAIR_TOTAL_MAX / FLUX_CLAIR_MAX) + 1;
+	const lourd = Array.from({ length: n }, (_, i) => objet(i + 4, '/Filter /FlateDecode', gros));
+	assert.equal(await texteDuPdf(pdf(...lourd)), null);
 });

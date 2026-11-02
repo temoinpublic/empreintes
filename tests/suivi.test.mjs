@@ -70,7 +70,12 @@ test('le retrait demande le jeton, garde les versions, et laisse se reinscrire',
 	assert.equal((await retirerFlux({ db, id, jeton, maintenant: jour(13) })).statut, 200);
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM version').get().n, 1);
 	assert.deepEqual(await tourneeDesFlux({ db, maintenant: jour(14), temoin: w.temoin }), { flux: 0, lectures: 0 });
-	assert.equal((await inscrireFlux({ db, corps: { url: FLUX }, maintenant: jour(14), temoin: w.temoin })).statut, 201);
+	const reprise = await inscrireFlux({ db, corps: { url: FLUX }, maintenant: jour(14), temoin: w.temoin });
+	assert.equal(reprise.statut, 201);
+	const neuf = await registrePrive({ db, id, jeton: JSON.parse(reprise.corps).jeton });
+	assert.equal(neuf.statut, 200);
+	const lu = JSON.parse(neuf.corps);
+	assert.deepEqual([lu.articles, lu.recus], [[], []], 'le jeton neuf ne lit pas les recus d avant');
 });
 
 test('la tournee depose une version par article nouveau ; la ligne publique reste a quatre champs, sans adresse ni titre', async () => {

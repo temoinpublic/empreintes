@@ -11,6 +11,10 @@ import { sha256 } from './chaine.mjs';
 
 // Un flux de contenu depasse rarement quelques centaines de Ko en clair ; au-dela, ce n'est pas du texte.
 export const FLUX_CLAIR_MAX = 16 * 1024 * 1024;
+// Le plafond du PDF ENTIER : un petit fichier de mille flux comprimes a 16 Mo
+// chacun ferait decompresser des gigaoctets au service partage.
+export const TEXTE_CLAIR_TOTAL_MAX = 64 * 1024 * 1024;
+export const FLUX_PAR_PDF_MAX = 5000;
 const DICTIONNAIRE_LU = 400;
 // Ce que le dictionnaire d'un flux dit quand il ne porte pas de texte imprime.
 const SANS_TEXTE = /\/Subtype\s*\/Image\b|\/Length[123]\b|\/Type\s*\/(?:XRef|ObjStm|Metadata|EmbeddedFile|XObject\s*\/Subtype\s*\/Image)\b|\/FontFile/;
@@ -77,9 +81,16 @@ export async function texteDuPdf(octets) {
 	const brut = latin1.decode(octets);
 	if (!brut.startsWith('%PDF')) return null;
 	const morceaux = [];
+	let reste = TEXTE_CLAIR_TOTAL_MAX;
+	let lus = 0;
 	for (const flux of fluxDuPdf(octets, brut)) {
-		const clair = flux.flate ? await gonfler(flux.octets) : flux.octets;
+		// Au-dela d'un plafond, le texte n'est pas connu : null, jamais une partie.
+		if (++lus > FLUX_PAR_PDF_MAX) return null;
+		const max = Math.min(FLUX_CLAIR_MAX, reste);
+		const clair = flux.flate ? await gonfler(flux.octets, max) : flux.octets;
+		if (!clair && max < FLUX_CLAIR_MAX) return null;
 		if (!clair) continue;
+		if (flux.flate) reste -= clair.byteLength;
 		const lisible = latin1.decode(clair);
 		if (!/\bBT\b/.test(lisible)) continue;
 		const texte = texteImprime(lisible);
