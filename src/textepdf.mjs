@@ -24,10 +24,13 @@ export const FLUX_CLAIR_MAX = 16 * 1024 * 1024;
 export const TEXTE_CLAIR_TOTAL_MAX = 64 * 1024 * 1024;
 export const FLUX_PAR_PDF_MAX = 5000;
 export const ETENDUE = Object.freeze({ complete: 'complete', partielle: 'partielle', inconnue: 'inconnue' });
-// La methode de l'empreinte, rangee avec elle : 1 = toutes les chaines des flux (jusqu'au 2026-11-03), 2 = les chaines montrees.
+// La methode de l'empreinte, rangee avec elle : 1 = toutes les chaines des flux (jusqu'au 2026-11-03), 2 = les chaines montrees,
+// 3 = les memes, les flux mis bout a bout sans separateur (un redecoupage des memes instructions ne change plus rien).
 // Deux empreintes ne se comparent qu'a methode egale.
-export const METHODE_DU_TEXTE = 2;
+export const METHODE_DU_TEXTE = 3;
 const DICTIONNAIRE_LU = 400;
+// Ce qu'on lit apres un `EI` candidat pour juger qu'il ferme l'image : des instructions sont en ASCII, des pixels rarement.
+const SUITE_D_INSTRUCTIONS = 32;
 // Ce que le dictionnaire d'un flux dit quand il ne porte pas de texte imprime.
 // (`<< /S n` ouvre le flux d'indices d'un PDF linearise, `/N n` un profil de couleurs ICC.)
 const SANS_TEXTE =
@@ -103,13 +106,30 @@ function finDuFlux(brut, dictionnaire, debut, fin) {
 	return brut[fin - 1] === '\n' || brut[fin - 1] === '\r' ? fin - 1 : fin;
 }
 
-/** Les flux du PDF qui peuvent porter du texte, `{ octets, flate, illisible }`, dans l'ordre du fichier ; `illisible` quand un filtre que ce lecteur ne sait pas defaire protege peut-etre du texte. */
+/** La fin d'un flux par son `/Length` direct, quand `endstream` la suit : des octets du flux peuvent ecrire `endstream`. */
+function finDeclaree(brut, dictionnaire, debut) {
+	const longueur = /\/Length\s+(\d+)\b(?!\s+\d+\s+R)/.exec(dictionnaire);
+	if (!longueur) return -1;
+	const apres = debut + Number(longueur[1]);
+	return /^[\r\n \t]*endstream/.test(brut.slice(apres, apres + 16)) ? brut.indexOf('endstream', apres) : -1;
+}
+
+/** Les flux du PDF qui peuvent porter du texte, `{ octets, flate, illisible }`, dans l'ordre du fichier ; `illisible` quand un filtre que ce lecteur ne sait pas defaire protege peut-etre du texte, `tronque` pour un flux sans `endstream`. */
 function* fluxDuPdf(octets, brut) {
+	let dejaLu = 0;
 	for (const m of brut.matchAll(/(?<!end)stream\r?\n/g)) {
+		// Un `stream` dans les octets du flux d'avant n'ouvre rien.
+		if (m.index < dejaLu) continue;
 		const debut = m.index + m[0].length;
-		const fin = brut.indexOf('endstream', debut);
-		if (fin < 0) return;
 		const dictionnaire = dictionnaireDuFlux(brut.slice(Math.max(0, m.index - DICTIONNAIRE_LU), m.index));
+		const declaree = finDeclaree(brut, dictionnaire, debut);
+		const fin = declaree >= 0 ? declaree : brut.indexOf('endstream', debut);
+		// Un flux sans fin : ce qu'il portait n'est pas lu, la lecture n'est pas complete.
+		if (fin < 0) {
+			yield { tronque: true };
+			return;
+		}
+		dejaLu = fin;
 		if (SANS_TEXTE.test(dictionnaire) || FILTRE_D_IMAGE.test(dictionnaire)) continue;
 		const flate = FLATE.test(dictionnaire);
 		yield { octets: octets.subarray(debut, finDuFlux(brut, dictionnaire, debut, fin)), flate, illisible: !flate && /\/Filter\b/.test(dictionnaire) };
@@ -145,12 +165,15 @@ function chaineLitterale(s, debut) {
 	return { valeur, fin: i };
 }
 
-/** La fin des octets d'une image en ligne : juste apres le `EI` isole qui suit `ID`. */
+/** La fin des octets d'une image en ligne : juste apres le `EI` isole qui suit `ID` et qu'une suite d'instructions suit (des pixels peuvent ecrire « EI »). */
 function finDeLImageEnLigne(s, debut) {
 	const ei = /\sEI(?=\s|$)/g;
 	ei.lastIndex = debut;
-	const m = ei.exec(s);
-	return m ? m.index + m[0].length : s.length;
+	for (let m = ei.exec(s); m; m = ei.exec(s)) {
+		const fin = m.index + m[0].length;
+		if (/^[\x09\x0a\x0d\x20-\x7e]*$/.test(s.slice(fin, fin + SUITE_D_INSTRUCTIONS))) return fin;
+	}
+	return s.length;
 }
 
 /** Les jetons d'un flux de contenu : `{ type: 'chaine' | 'nombre' | 'nom' | 'delimiteur' | 'operateur', valeur }`, les images en ligne sautees. */
@@ -253,12 +276,14 @@ export function lecteurDeTexte() {
 			pile = [];
 			operandes = [];
 		}
-		return texte.replace(/\s+/g, ' ').trim();
+		return texte;
 	}
 }
 
-/** Les chaines montrees par un flux de contenu en clair, lu seul. */
-export const texteImprime = (clair) => lecteurDeTexte().lire(clair);
+const blancsReduits = (texte) => texte.replace(/\s+/g, ' ').trim();
+
+/** Les chaines montrees par un flux de contenu en clair, lu seul, les blancs reduits. */
+export const texteImprime = (clair) => blancsReduits(lecteurDeTexte().lire(clair));
 
 /** La lecture du texte montre par un PDF : `{ texte, etendue }`, `texte` null sans chaine montree, `etendue` dans `ETENDUE`. */
 export async function lireLeTexte(octets) {
@@ -267,7 +292,7 @@ export async function lireLeTexte(octets) {
 	const brut = latin1.decode(octets);
 	// Un PDF chiffre : ses chaines et ses flux ne sont pas le texte, et une cle neuve les change tous.
 	if (!brut.startsWith('%PDF') || CHIFFRE.test(brut)) return inconnu;
-	const morceaux = [];
+	let tout = '';
 	let etendue = ETENDUE.complete;
 	let reste = TEXTE_CLAIR_TOTAL_MAX;
 	let lus = 0;
@@ -275,7 +300,7 @@ export async function lireLeTexte(octets) {
 	for (const flux of fluxDuPdf(octets, brut)) {
 		// Au-dela d'un plafond, le texte n'est pas connu : rien, jamais une partie.
 		if (++lus > FLUX_PAR_PDF_MAX) return inconnu;
-		if (flux.illisible) {
+		if (flux.tronque || flux.illisible) {
 			etendue = ETENDUE.partielle;
 			continue;
 		}
@@ -288,10 +313,13 @@ export async function lireLeTexte(octets) {
 		const lisible = latin1.decode(clair);
 		// Un flux sans objet texte ne montre rien, sauf la suite d'un flux coupe.
 		if (!lecteur.coupe() && !/\bBT\b/.test(lisible)) continue;
-		const texte = lecteur.lire(lisible);
-		if (texte) morceaux.push(texte);
+		// Bout a bout, sans separateur : les memes instructions coupees en deux flux se lisent comme un seul.
+		tout += lecteur.lire(lisible);
 	}
-	return { texte: morceaux.length ? morceaux.join('\n') : null, etendue };
+	// Un objet texte ou un tableau encore ouvert a la fin : la suite n'a pas ete lue.
+	if (lecteur.coupe()) etendue = ETENDUE.partielle;
+	const texte = blancsReduits(tout);
+	return { texte: texte || null, etendue };
 }
 
 /** Le texte montre par TOUT le PDF, ou null quand la lecture n'est pas complete ou qu'aucun flux ne montre une chaine. */

@@ -95,6 +95,15 @@ test("l'empreinte du texte d'un acte se pose a sa datation, et a la relecture d'
 	assert.equal(texteDe(ancien), await sha256('Travaux de voirie'), 'et ne le changent plus');
 	assert.equal(texteDe(corpsDe(await glaner(db, acte(9), { temoin: temoinQuiGarde('') })).id), null, 'un PDF sans texte lisible n a pas d empreinte');
 });
+
+test('relus par la methode du jour qui n en donne plus, les octets perdent l empreinte de texte d une methode plus ancienne', async () => {
+	const db = baseDeTest();
+	const { id } = corpsDe(await glaner(db, acte(8)));
+	db.sqlite.prepare('INSERT INTO texte (recu, sha256, methode) VALUES (?, ?, 1)').run(id, 'f'.repeat(64));
+	const ocrSeul = async (admise) => ({ ...(await parUrl(admise)), octets: new Uint8Array(Buffer.from('%PDF-1.4\n1 0 obj\n<< /Length 22 >>\nstream\nBT 3 Tr (OCR) Tj ET\nendstream\nendobj\n', 'latin1')) });
+	assert.equal((await glaner(db, acte(8), { maintenant: jourDe(20), temoin: ocrSeul })).statut, 200);
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM texte WHERE recu = ?').get(id).n, 0);
+});
 const disparue = (statut) => async () => {
 	throw Object.assign(new Error(`la source a repondu ${statut}`), { statut });
 };

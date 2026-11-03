@@ -345,6 +345,9 @@ async function jugerLaGlane(db, { acte, empreinte, lue, jour, texte = null }) {
 	if (!deja) return null;
 	// Les memes octets : la meme empreinte de texte, posee sur l'acte date avant qu'elle existe (D-193).
 	if (texte) await faire(db, SQL_DU_TEXTE, deja.recu, texte, METHODE_DU_TEXTE);
+	// Relus par une methode plus recente qui n'en donne plus (un scan dont seule la couche OCR se lisait), les octets
+	// perdent l'empreinte d'avant : elle ne doit plus se comparer.
+	else await faire(db, 'DELETE FROM texte WHERE recu = ? AND methode < ?', deja.recu, METHODE_DU_TEXTE);
 	// Les memes octets relus a l'adresse de l'acte, un autre jour : sa source le sert toujours.
 	if (lue && deja.url === lue && deja.jour < jour) await noterRelecture(db, { jour, statut: 200, ou: 'recu = ?', args: [deja.recu] });
 	return reponse(200, { deja: true, jour: deja.jour, place: Number(deja.place), id: deja.recu });
