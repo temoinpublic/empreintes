@@ -100,12 +100,22 @@ const depot = (l) => `<article class="ok">
 <p><a href="/recu/${l.recu}">${T.voirLeRecu}</a></p>
 </article>`;
 
+/*
+ * Seul un 404 dit l'absence. Un 503 est une lecture impossible : la lire comme
+ * une absence ferait nier au visiteur une preuve qui existe.
+ */
+async function absentSur404(reponse, absent, chemin) {
+	if (reponse.status === 404) return absent;
+	if (!reponse.ok) throw new Error(`${chemin}${NBSP}: ${reponse.status}`);
+	return reponse.json();
+}
+
 async function verifier(empreinte) {
 	const sortie = $('resultat');
 	sortie.innerHTML = '';
 	const [r, d] = await Promise.all([fetch(`/index/${empreinte.slice(0, 2)}.json`), fetch(`/api/depots/${empreinte}`)]);
-	const vus = r.ok ? ((await r.json())[empreinte] ?? []) : [];
-	const deposes = d.ok ? await d.json() : [];
+	const vus = (await absentSur404(r, {}, '/index'))[empreinte] ?? [];
+	const deposes = await absentSur404(d, [], '/api/depots');
 	if (vus.length === 0 && deposes.length === 0) {
 		sortie.innerHTML = `<article class="ko"><h2>${t.jamais}</h2></article>`;
 		return;
@@ -138,8 +148,8 @@ async function signatureDuRecu(recu) {
 
 async function verifierLeRecu(recu) {
 	const id = await idDuRecu(recu);
-	const r = await fetch(`/api/recus/${id}`);
-	$('resultat').innerHTML = r.ok
+	const ligne = await ligneDuRecu(id);
+	$('resultat').innerHTML = ligne
 		? `<article class="ok"><h2>${t.authentique(T.jour(recu.jour))}</h2>${await signatureDuRecu(recu)}<p><a href="/recu/${id}">${T.voirLeRecu}</a></p></article>`
 		: `<article class="ko"><h2>${t.inconnu}</h2></article>`;
 }
