@@ -317,3 +317,29 @@ test('une fausse signature ne relit pas le meme fichier sans fin : l adresse att
 	assert.equal((await essai()).statut, 429);
 	assert.equal(lectures, DEPOTS_PAR_ADRESSE);
 });
+
+test('des depots paralleles d une meme adresse ne passent pas le plafond : la place se reserve avant la lecture', async () => {
+	const db = baseDeTest();
+	const temoin = async (admise) => {
+		await new Promise((fin) => setTimeout(fin, 5));
+		return { url: admise.url, taille: 13, type: 'application/pdf', lu: midi.toISOString(), sha256: createHash('sha256').update(admise.url).digest('hex') };
+	};
+	const demandes = Array.from({ length: DEPOTS_PAR_ADRESSE + 5 }, (_, i) => deposer({ db, corps: { url: `https://cravans.fr/pv-${i}.pdf` }, adresse: 'a', maintenant: midi, temoin }));
+	const statuts = (await Promise.all(demandes)).map((r) => r.statut);
+	assert.equal(statuts.filter((s) => s === 201).length, DEPOTS_PAR_ADRESSE);
+	assert.equal(statuts.filter((s) => s === 429).length, 5);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, DEPOTS_PAR_ADRESSE);
+});
+
+test('une lecture impossible rend sa place reservee ; une signature refusee apres lecture la garde, sans seconde ecriture', async () => {
+	const db = baseDeTest();
+	const panne = async () => {
+		throw Object.assign(new Error('source muette'), { statut: 503 });
+	};
+	assert.equal((await deposer({ db, corps: { url: 'https://cravans.fr/pv.pdf' }, adresse: 'a', maintenant: midi, temoin: panne })).statut, 422);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 0);
+	const temoin = async (admise) => ({ url: admise.url, taille: 13, type: 'application/pdf', lu: midi.toISOString(), sha256: H });
+	const { jws: autre } = await jwsDe({ charge: 'c'.repeat(64) });
+	assert.equal((await deposer({ db, corps: { url: 'https://cravans.fr/pv2.pdf', signature: autre }, adresse: 'a', maintenant: midi, temoin })).statut, 400);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
+});

@@ -222,7 +222,34 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	const auPlafond = () => refus(429, limite.motif, [], { 'retry-after': String(limite.apres) });
 	// La glane relit aussi ses actes deja dates (D-193) : son plafond ne compte que les actes nouveaux, il se juge apres la lecture.
 	if (!limite.ok && !glane) return auPlafond();
+	// Hors glane, la place se RESERVE avant toute lecture, en une ecriture : deux demandes paralleles ne passent
+	// pas toutes les deux sous le plafond, et un telechargement est compte avant d'avoir lieu.
+	const reservee = !glane && (await reserver(db, { jour, cle, duJour, instant, client, produit: demande.produit ?? null }));
+	if (!glane && !reservee) return auPlafond();
+	let gardee = false;
+	try {
+		const issue = await deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond });
+		gardee = issue.compte;
+		return issue.reponse;
+	} finally {
+		if (reservee && !gardee) await faire(db, 'UPDATE compte SET n = n - 1 WHERE jour = ? AND adresse = ? AND n > 0', jour, cle);
+	}
+}
 
+/**
+ * Une place de plus au compte de `cle`, prise en une ecriture qui rend le nouveau compte : la place est
+ * gardee si le plafond l'admettait avant elle, rendue sinon. Vrai quand elle est gardee.
+ */
+async function reserver(db, { jour, cle, duJour, instant, client, produit }) {
+	const { n } = await un(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1 RETURNING n', jour, cle);
+	if (plafond({ deCetteAdresse: n - 1, duJour, instant, client, produit }).ok) return true;
+	await faire(db, 'UPDATE compte SET n = n - 1 WHERE jour = ? AND adresse = ? AND n > 0', jour, cle);
+	return false;
+}
+
+/** La suite d'un depot, sa place deja reservee hors glane : `compte` dit si la place est due (depot ou telechargement). */
+async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond }) {
+	const sans = (reponse) => ({ reponse, compte: false });
 	let empreinte = demande.sha256;
 	let lu = null;
 	let cleLue = null;
@@ -230,10 +257,10 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	const copieVoulue = copie && !flotte;
 	if (demande.url) {
 		const admise = urlAdmise(demande.url);
-		if (admise.refus) return refus(400, 'url refusee', [admise.refus]);
+		if (admise.refus) return sans(refus(400, 'url refusee', [admise.refus]));
 		cleLue = await cleDeLecture(admise.url, jour);
 		const nouvelle = await faire(db, 'INSERT INTO lecture (cle, jour) VALUES (?, ?) ON CONFLICT (cle) DO NOTHING', cleLue, jour);
-		if (nouvelle.meta.changes === 0) return refus(409, 'url deja lue aujourd hui', [], { 'retry-after': String(secondesAvantDemain(instant)) });
+		if (nouvelle.meta.changes === 0) return sans(refus(409, 'url deja lue aujourd hui', [], { 'retry-after': String(secondesAvantDemain(instant)) }));
 		try {
 			// Les octets d'un acte servent a son empreinte de texte (D-193), jamais rendus sans `copie`.
 			lu = await temoin(admise, { juger: true, garder: copieVoulue || Boolean(demande.acte) });
@@ -241,7 +268,7 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 			// Une source qui ne sert plus un acte deja date pour sa commune : la relecture le note, la reponse reste un refus.
 			if (glane && SOURCE_DISPARUE.includes(erreur?.statut))
 				await noterRelecture(db, { jour, statut: erreur.statut, ou: 'collectivite = ? AND url = ?', args: [demande.acte.collectivite, adressePublique(admise.url)] });
-			return refus(422, 'lecture impossible', [String(erreur?.message ?? erreur)]);
+			return sans(refus(422, 'lecture impossible', [String(erreur?.message ?? erreur)]));
 		}
 		empreinte = lu.sha256;
 		if (demande.acte) texte = await empreinteDuTexte(lu.octets);
@@ -250,24 +277,22 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	const signature = demande.signature ? await verifierSignatureDuDeposant(demande.signature, empreinte, instant, await lireAutorites(autorites)) : null;
 	if (signature && !signature.ok) {
 		// Une signature refusee rend la lecture du jour : le deposant peut revenir avec la bonne. Mais le
-		// telechargement a eu lieu, il compte au plafond de l'adresse : sans cela, une fausse signature
-		// relisait le meme fichier sans fin.
-		if (cleLue) {
-			await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
-			await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
-		}
-		return refus(400, 'signature refusee', signature.raisons);
+		// telechargement a eu lieu, il garde sa place au plafond de l'adresse, deja reservee : sans cela, une
+		// fausse signature relisait le meme fichier sans fin.
+		if (cleLue) await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
+		return { reponse: refus(400, 'signature refusee', signature.raisons), compte: Boolean(cleLue) };
 	}
 
 	const acte = demande.acte ? { ...demande.acte, rattachement: await rattachement({ acte: demande.acte, demandee: demande.url, lue: lu.url, annuaire }) } : null;
 	if (glane) {
 		const refusDeLaGlane = await jugerLaGlane(db, { acte, empreinte, lue: adressePublique(lu.url), jour, texte });
-		if (refusDeLaGlane) return refusDeLaGlane;
-		if (!limite.ok) return auPlafond();
+		if (refusDeLaGlane) return sans(refusDeLaGlane);
+		if (!limite.ok) return sans(auPlafond());
 	}
 	const recu = recuDe({ sha256: empreinte, instant, libelle: demande.libelle, url: demande.url, temoin: lu, acte, affichage: demande.affichage ?? null, produit: demande.produit ?? null, signature: signature && { valeur: demande.signature, certificat: signature.certificat.empreinte, sujet: signature.certificat.sujet, emetteur: signature.certificat.emetteur, autorite: signature.certificat.autorite } });
 	const id = await idDuRecu(recu);
-	const suites = [['INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle]];
+	// La glane compte son acte avec le depot ; les autres ont deja leur place.
+	const suites = glane ? [['INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle]] : [];
 	// La serie d'une collectivite ne tient que les actes lus sur son site officiel ; un acte declare reste dans son recu.
 	if (acte?.rattachement === 'site-officiel') {
 		suites.push(['INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)', id, acte.collectivite, acte.nature, demande.libelle ?? null, adressePublique(lu.url)]);
@@ -276,7 +301,7 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	// Le recu d'un produit (D-167) : sa page nomme le produit et mene au recu que celui-ci sert.
 	if (demande.produit) suites.push(['INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url]);
 	const place = await inserer(db, { jour, empreinte, recu: id }, suites);
-	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(copieVoulue ? copieDe(lu) : {}), ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
+	return { reponse: reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(copieVoulue ? copieDe(lu) : {}), ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) }), compte: true };
 }
 
 // Les memes octets relus par une methode plus recente remplacent l'empreinte d'avant ; jamais l'inverse.
