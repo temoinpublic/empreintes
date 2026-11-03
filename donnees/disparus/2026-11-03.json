@@ -1,0 +1,17 @@
+{
+ "jour": "2026-11-03",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-atland-voisin",
+   "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web.pdf",
+   "date": "2026-11-03",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-31",
+    "sha256": "ab652dc2f490ccd8a7ed223bd0afd12a584b99eb46f43b9ea495b149096b94eb"
+   },
+   "apres": null
+  }
+ ]
+}
