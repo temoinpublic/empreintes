@@ -25,7 +25,7 @@ test('les chaines hexadecimales, les echappements et les blancs se lisent comme 
 	assert.equal(texteImprime('BT (a\\)b\\101\\n) Tj  (  c ) Tj ET'), 'a)bA c');
 	assert.equal(texteImprime("BT [(Bud) -20 (get)] TJ (2026) ' ET"), 'Budget2026');
 	assert.equal(texteImprime('q 1 0 0 1 0 0 cm /Im0 Do Q'), '');
-	assert.equal(await texteDuPdf(pdf(objet(4, '', page('Un')), objet(5, '/Filter /FlateDecode', flate(page('Deux'))))), 'Un\nDeux');
+	assert.equal(await texteDuPdf(pdf(objet(4, '', page('Un')), objet(5, '/Filter /FlateDecode', flate(page('Deux'))))), 'UnDeux');
 });
 
 test('rien que des PDF qui impriment : sinon null', async () => {
@@ -78,7 +78,7 @@ test('un flux tronque se lit mais rend la lecture partielle, un flux trop gros e
 	assert.equal(FLUX_CLAIR_MAX, 16 * 1024 * 1024);
 	const lecture = await lireLeTexte(pdf(objet(4, '', page('Texte')), objet(5, '/Filter /FlateDecode', tronque)));
 	assert.equal(lecture.etendue, ETENDUE.partielle);
-	assert.equal(lecture.texte, `Texte\n${partiel}`);
+	assert.equal(lecture.texte, `Texte${partiel}`);
 	assert.equal(await empreinteDuTexte(pdf(objet(4, '', page('Texte')), objet(5, '/Filter /FlateDecode', tronque))), null);
 });
 
@@ -110,7 +110,7 @@ test('une chaine hors d un operateur de texte ne compte pas : dictionnaire d un 
 test('le dictionnaire du flux est le sien : un flux en clair apres un flux comprime se lit, et sa longueur declaree fait foi', async () => {
 	const comprime = objet(4, '/Filter /FlateDecode', flate(page('Un')));
 	const clair = objet(5, '', page('Deux'));
-	assert.equal(await texteDuPdf(pdf(comprime, clair)), 'Un\nDeux');
+	assert.equal(await texteDuPdf(pdf(comprime, clair)), 'UnDeux');
 	const finEnRetour = flate(page('Trois'));
 	const sansLongueur = `6 0 obj\n<< /Filter /FlateDecode /Length 7 0 R >>\nstream\n${finEnRetour}\r\nendstream\nendobj\n7 0 obj\n${finEnRetour.length}\nendobj\n`;
 	assert.deepEqual(await lireLeTexte(pdf(sansLongueur)), { texte: 'Trois', etendue: ETENDUE.complete }, 'la fin de ligne devant endstream n est pas du flux');
@@ -175,8 +175,34 @@ test('un flux vide, un flux suivi de bruit, un flux d indices et un profil ICC n
 	const indices = objet(7, '/S 73 /Filter /FlateDecode', 'pas du zlib');
 	const icc = objet(8, '/N 3 /Filter /ASCIIHexDecode', '00ff>');
 	for (const [nom, o] of Object.entries({ vide, indices, icc })) assert.deepEqual(await lireLeTexte(pdf(texte, o)), { texte: 'Texte', etendue: ETENDUE.complete }, nom);
-	assert.deepEqual(await lireLeTexte(pdf(texte, bruit)), { texte: 'Texte\nVisible', etendue: ETENDUE.complete });
+	assert.deepEqual(await lireLeTexte(pdf(texte, bruit)), { texte: 'TexteVisible', etendue: ETENDUE.complete });
 	assert.equal(await empreinteDuTexte(pdf(texte, vide, indices, icc)), voulue);
 	assert.equal(await empreinteDuTexte(pdf(objet(9, '/N 3 0 R /Filter /LZWDecode', 'x'), texte)), null, 'un /N indirect n est pas un profil');
-	assert.equal(METHODE_DU_TEXTE, 2);
+	assert.equal(METHODE_DU_TEXTE, 3);
+});
+
+test('methode 3 : un flux sans fin ou un objet texte ouvert a la fin rendent la lecture partielle', async () => {
+	const sansFin = pdf(objet(4, '', page('Un')), '5 0 obj\n<< /Length 9 >>\nstream\nBT (x) Tj ET');
+	assert.deepEqual(await lireLeTexte(sansFin), { texte: 'Un', etendue: ETENDUE.partielle });
+	const ouvert = pdf(objet(4, '', page('Un')), objet(5, '', 'BT (Deux) Tj'));
+	assert.equal((await lireLeTexte(ouvert)).etendue, ETENDUE.partielle);
+	assert.equal(await empreinteDuTexte(ouvert), null);
+});
+
+test('methode 3 : les memes instructions coupees en deux flux donnent l empreinte d un seul', async () => {
+	const unSeul = pdf(objet(4, '', 'BT (Bon) Tj (jour) Tj ET BT (a) Tj ET'));
+	const coupe = pdf(objet(4, '', 'BT (Bon) Tj'), objet(5, '', '(jour) Tj ET'), objet(6, '', 'BT (a) Tj ET'));
+	assert.equal(await texteDuPdf(unSeul), 'Bonjoura');
+	assert.equal(await empreinteDuTexte(coupe), await empreinteDuTexte(unSeul));
+	assert.equal(METHODE_DU_TEXTE, 3);
+});
+
+test('une image en ligne dont les pixels ecrivent « EI » se saute jusqu au vrai EI', () => {
+	const pixels = ' EI \x01\x02\xff\x80\x00\x90\xfe\x81\x82\x83\x84\x85\x86\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f\x91\x92\x93\x94\x95\x96\x97\x98\x99\x9a';
+	assert.equal(texteImprime(`BT (Avant) Tj ET BI /W 4 /H 4 ID ${pixels} EI BT (Apres) Tj ET`), 'AvantApres');
+});
+
+test('un flux en clair qui porte « endstream » dans ses octets se lit jusqu a sa longueur declaree', async () => {
+	const contenu = 'BT (Un) Tj ET BI /W 1 /H 1 ID x endstream EI BT (Deux) Tj ET';
+	assert.deepEqual(await lireLeTexte(pdf(objet(4, '', contenu))), { texte: 'UnDeux', etendue: ETENDUE.complete });
 });
