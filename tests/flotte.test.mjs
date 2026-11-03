@@ -151,3 +151,11 @@ test('au plafond du jour, la glane relit encore ses actes, mais ne date rien de 
 	assert.equal(neuf.statut, 429);
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 1);
 });
+
+test('une signature refusee apres la lecture de la glane compte au plafond de la flotte', async () => {
+	const db = baseDeTest();
+	const signature = `${Buffer.from('{"alg":"ES256"}').toString('base64url')}..${Buffer.from('sig').toString('base64url')}`;
+	const refuse = await glaner(db, { ...acte(4), signature });
+	assert.equal(refuse.statut, 400);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte WHERE adresse = ?').get(CLE_DE_LA_FLOTTE)?.n, 1);
+});

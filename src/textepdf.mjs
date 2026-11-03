@@ -25,12 +25,15 @@ export const TEXTE_CLAIR_TOTAL_MAX = 64 * 1024 * 1024;
 export const FLUX_PAR_PDF_MAX = 5000;
 export const ETENDUE = Object.freeze({ complete: 'complete', partielle: 'partielle', inconnue: 'inconnue' });
 // La methode de l'empreinte, rangee avec elle : 1 = toutes les chaines des flux (jusqu'au 2026-11-03), 2 = les chaines montrees,
-// 3 = les memes, les flux mis bout a bout sans separateur (un redecoupage des memes instructions ne change plus rien).
+// 3 = les memes, un flux coupe au milieu d'un objet texte lu d'un seul tenant avec le suivant (un redecoupage des memes
+// instructions ne change plus rien), les flux fermes separes comme avant.
 // Deux empreintes ne se comparent qu'a methode egale.
 export const METHODE_DU_TEXTE = 3;
 const DICTIONNAIRE_LU = 400;
-// Ce qu'on lit apres un `EI` candidat pour juger qu'il ferme l'image : des instructions sont en ASCII, des pixels rarement.
-const SUITE_D_INSTRUCTIONS = 32;
+// Ce qu'on lit apres un `EI` candidat pour juger qu'il ferme l'image : des instructions ne portent aucun octet de
+// controle, des pixels presque toujours.
+const LUS_APRES_EI = 32;
+const SUITE_D_INSTRUCTIONS = /^\s*(?:$|[A-Za-z0-9[(<%/.+\-'"])[^\x00-\x08\x0b\x0e-\x1f]*$/;
 // Ce que le dictionnaire d'un flux dit quand il ne porte pas de texte imprime.
 // (`<< /S n` ouvre le flux d'indices d'un PDF linearise, `/N n` un profil de couleurs ICC.)
 const SANS_TEXTE =
@@ -165,15 +168,37 @@ function chaineLitterale(s, debut) {
 	return { valeur, fin: i };
 }
 
-/** La fin des octets d'une image en ligne : juste apres le `EI` isole qui suit `ID` et qu'une suite d'instructions suit (des pixels peuvent ecrire « EI »). */
+/**
+ * La fin des octets d'une image en ligne. Sa longueur quand son dictionnaire la
+ * donne (`/L`, `/Length`, PDF 2.0) ; sinon le premier `EI` isole que suit ce qui
+ * ressemble a des instructions : un debut de jeton, puis aucun octet de controle
+ * (des pixels en portent presque toujours, un texte accentue jamais). Sans un tel
+ * `EI`, le premier : au pire, la lecture d'avant.
+ */
 function finDeLImageEnLigne(s, debut) {
+	const longueur = longueurDeLImage(s, debut);
+	if (longueur !== null) {
+		const fin = debut + 1 + longueur;
+		const ei = /^\s*EI(?=\s|$)/.exec(s.slice(fin));
+		if (ei) return fin + ei[0].length;
+	}
 	const ei = /\sEI(?=\s|$)/g;
 	ei.lastIndex = debut;
+	let premier = null;
 	for (let m = ei.exec(s); m; m = ei.exec(s)) {
 		const fin = m.index + m[0].length;
-		if (/^[\x09\x0a\x0d\x20-\x7e]*$/.test(s.slice(fin, fin + SUITE_D_INSTRUCTIONS))) return fin;
+		premier ??= fin;
+		if (SUITE_D_INSTRUCTIONS.test(s.slice(fin, fin + LUS_APRES_EI))) return fin;
 	}
-	return s.length;
+	return premier ?? s.length;
+}
+
+/** La longueur declaree d'une image en ligne, lue dans son dictionnaire entre `BI` et `ID` ; null sans elle. */
+function longueurDeLImage(s, id) {
+	const bi = s.lastIndexOf('BI', id);
+	if (bi < 0) return null;
+	const m = /\/(?:L|Length)\s+(\d+)\b/.exec(s.slice(bi, id));
+	return m ? Number(m[1]) : null;
 }
 
 /** Les jetons d'un flux de contenu : `{ type: 'chaine' | 'nombre' | 'nom' | 'delimiteur' | 'operateur', valeur }`, les images en ligne sautees. */
@@ -292,7 +317,8 @@ export async function lireLeTexte(octets) {
 	const brut = latin1.decode(octets);
 	// Un PDF chiffre : ses chaines et ses flux ne sont pas le texte, et une cle neuve les change tous.
 	if (!brut.startsWith('%PDF') || CHIFFRE.test(brut)) return inconnu;
-	let tout = '';
+	const morceaux = [];
+	let enCours = '';
 	let etendue = ETENDUE.complete;
 	let reste = TEXTE_CLAIR_TOTAL_MAX;
 	let lus = 0;
@@ -313,13 +339,18 @@ export async function lireLeTexte(octets) {
 		const lisible = latin1.decode(clair);
 		// Un flux sans objet texte ne montre rien, sauf la suite d'un flux coupe.
 		if (!lecteur.coupe() && !/\bBT\b/.test(lisible)) continue;
-		// Bout a bout, sans separateur : les memes instructions coupees en deux flux se lisent comme un seul.
-		tout += lecteur.lire(lisible);
+		// Un flux coupe au milieu d'un objet texte continue dans le suivant, sans separateur : les memes instructions
+		// coupees en deux se lisent comme un seul flux. Un flux ferme se separe du suivant, comme une page d'une autre.
+		enCours += lecteur.lire(lisible);
+		if (lecteur.coupe()) continue;
+		const morceau = blancsReduits(enCours);
+		if (morceau) morceaux.push(morceau);
+		enCours = '';
 	}
 	// Un objet texte ou un tableau encore ouvert a la fin : la suite n'a pas ete lue.
 	if (lecteur.coupe()) etendue = ETENDUE.partielle;
-	const texte = blancsReduits(tout);
-	return { texte: texte || null, etendue };
+	if (blancsReduits(enCours)) morceaux.push(blancsReduits(enCours));
+	return { texte: morceaux.length ? morceaux.join('\n') : null, etendue };
 }
 
 /** Le texte montre par TOUT le PDF, ou null quand la lecture n'est pas complete ou qu'aucun flux ne montre une chaine. */

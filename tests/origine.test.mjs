@@ -343,3 +343,11 @@ test('une lecture impossible rend sa place reservee ; une signature refusee apre
 	assert.equal((await deposer({ db, corps: { url: 'https://cravans.fr/pv2.pdf', signature: autre }, adresse: 'a', maintenant: midi, temoin })).statut, 400);
 	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
 });
+
+test('un depot qui casse apres le telechargement garde sa place au plafond', async () => {
+	const db = baseDeTest();
+	const temoin = async (admise) => ({ url: admise.url, taille: 13, type: 'application/pdf', lu: midi.toISOString(), sha256: H });
+	const casse = { ...db, batch: async () => { throw new Error('base occupee'); } };
+	await assert.rejects(deposer({ db: casse, corps: { url: 'https://cravans.fr/pv.pdf' }, adresse: 'a', maintenant: midi, temoin }), /base occupee/);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
+});
