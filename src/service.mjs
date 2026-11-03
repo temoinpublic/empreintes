@@ -248,8 +248,13 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 
 	const signature = demande.signature ? await verifierSignatureDuDeposant(demande.signature, empreinte, instant, await lireAutorites(autorites)) : null;
 	if (signature && !signature.ok) {
-		// Une signature refusee ne consomme pas la lecture du jour : le deposant peut revenir avec la bonne.
-		if (cleLue) await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
+		// Une signature refusee rend la lecture du jour : le deposant peut revenir avec la bonne. Mais le
+		// telechargement a eu lieu, il compte au plafond de l'adresse : sans cela, une fausse signature
+		// relisait le meme fichier sans fin.
+		if (cleLue) {
+			await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
+			await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
+		}
 		return refus(400, 'signature refusee', signature.raisons);
 	}
 
