@@ -226,13 +226,14 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	// pas toutes les deux sous le plafond, et un telechargement est compte avant d'avoir lieu.
 	const reservee = !glane && (await reserver(db, { jour, cle, duJour, instant, client, produit: demande.produit ?? null }));
 	if (!glane && !reservee) return auPlafond();
-	let gardee = false;
+	// Un telechargement fait garde sa place, meme si la suite casse : sinon des echecs apres lecture relisaient sans fin.
+	const suivi = { gardee: false };
 	try {
-		const issue = await deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond });
-		gardee = issue.compte;
+		const issue = await deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond, suivi });
+		suivi.gardee ||= issue.compte;
 		return issue.reponse;
 	} finally {
-		if (reservee && !gardee) await faire(db, 'UPDATE compte SET n = n - 1 WHERE jour = ? AND adresse = ? AND n > 0', jour, cle);
+		if (reservee && !suivi.gardee) await faire(db, 'UPDATE compte SET n = n - 1 WHERE jour = ? AND adresse = ? AND n > 0', jour, cle);
 	}
 }
 
@@ -248,7 +249,7 @@ async function reserver(db, { jour, cle, duJour, instant, client, produit }) {
 }
 
 /** La suite d'un depot, sa place deja reservee hors glane : `compte` dit si la place est due (depot ou telechargement). */
-async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond }) {
+async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie, temoin, annuaire, autorites, jour, instant, cle, limite, auPlafond, suivi }) {
 	const sans = (reponse) => ({ reponse, compte: false });
 	let empreinte = demande.sha256;
 	let lu = null;
@@ -264,6 +265,7 @@ async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie
 		try {
 			// Les octets d'un acte servent a son empreinte de texte (D-193), jamais rendus sans `copie`.
 			lu = await temoin(admise, { juger: true, garder: copieVoulue || Boolean(demande.acte) });
+			suivi.gardee = true;
 		} catch (erreur) {
 			// Une source qui ne sert plus un acte deja date pour sa commune : la relecture le note, la reponse reste un refus.
 			if (glane && SOURCE_DISPARUE.includes(erreur?.statut))
@@ -280,6 +282,8 @@ async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie
 		// telechargement a eu lieu, il garde sa place au plafond de l'adresse, deja reservee : sans cela, une
 		// fausse signature relisait le meme fichier sans fin.
 		if (cleLue) await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
+		// La glane ne reserve pas : son telechargement refuse se compte ici, comme avant.
+		if (cleLue && glane) await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
 		return { reponse: refus(400, 'signature refusee', signature.raisons), compte: Boolean(cleLue) };
 	}
 
