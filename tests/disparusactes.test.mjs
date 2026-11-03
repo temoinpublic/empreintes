@@ -13,7 +13,7 @@ import { onRequestGet as fluxGet } from '../functions/disparus.xml.js';
 const hex = (c) => c.repeat(64);
 const SITE = 'https://www.cravans.fr/docs';
 
-/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture, texte]`, `relecture` = [statut, depuis] ou null, `texte` la lettre de son empreinte de texte ou rien. */
+/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture, texte]`, `relecture` = [statut, depuis] ou null, `texte` la lettre de son empreinte de texte (ou `[lettre, methode]`) ou rien. */
 function base(actes) {
 	const db = baseDeTest();
 	actes.forEach(([lettre, jour, url, objet, relecture, texte], place) => {
@@ -21,7 +21,7 @@ function base(actes) {
 		db.sqlite.prepare('INSERT INTO depot (jour, place, sha256, recu) VALUES (?, ?, ?, ?)').run(jour, place, hex(lettre), recu);
 		db.sqlite.prepare('INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)').run(recu, '17133', 'deliberation', objet, url);
 		if (relecture) db.sqlite.prepare('INSERT INTO relecture (recu, jour, depuis, statut) VALUES (?, ?, ?, ?)').run(recu, '2026-10-23', relecture[1], relecture[0]);
-		if (texte) db.sqlite.prepare('INSERT INTO texte (recu, sha256) VALUES (?, ?)').run(recu, hex(texte));
+		if (texte) db.sqlite.prepare('INSERT INTO texte (recu, sha256, methode) VALUES (?, ?, ?)').run(recu, hex(Array.isArray(texte) ? texte[0] : texte), Array.isArray(texte) ? texte[1] : 1);
 	});
 	return db;
 }
@@ -41,13 +41,16 @@ const ACTES = [
 	['5', '2026-10-15', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null],
 	['6', '2026-10-22', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null, '8'],
 	['7', '2026-10-15', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null, '9'],
-	['8', '2026-10-22', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null]
+	['8', '2026-10-22', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null],
+	// Deux empreintes de methodes differentes ne se comparent pas : l'ancienne lisait aussi le texte invisible.
+	['g', '2026-10-15', `${SITE}/pv-avril.pdf`, 'Proces-verbal d avril', null, ['A', 1]],
+	['h', '2026-10-22', `${SITE}/pv-avril.pdf`, 'Proces-verbal d avril', null, ['B', 2]]
 ];
 
 test('les actes disparus et remplaces : version d avant, preuve, aucune personne', async () => {
 	const lu = await actesDisparus({ db: base(ACTES) });
 	assert.equal(lu.disparus.length, 3, 'une adresse retiree en base ne se relit pas, un 200 non plus');
-	assert.equal(lu.remplaces.length, 1, 'le meme texte recompresse et une version sans empreinte de texte ne sont pas des remplacements');
+	assert.equal(lu.remplaces.length, 1, 'le meme texte recompresse, une version sans empreinte de texte et deux methodes differentes ne sont pas des remplacements');
 	assert.equal(lu.remplaces[0].apres, hex('c'));
 	const entrees = await entreesDesActes(lu);
 	assert.deepEqual(

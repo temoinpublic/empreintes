@@ -11,7 +11,7 @@ import { PREFIXE_PRODUIT, cleDuProduit } from './produit.mjs';
 import { verifierSignatureDuDeposant } from './origine.mjs';
 import { EcheanceDepassee, sousEcheance } from './echeance.mjs';
 import { AGENT, DELAI_MS, cleDeLecture, contenuAdmis, estUneIp, ipsDoH, lireBorne, resolutionAdmise, sautSuivant, urlAdmise } from './temoin.mjs';
-import { empreinteDuTexte } from './textepdf.mjs';
+import { METHODE_DU_TEXTE, empreinteDuTexte } from './textepdf.mjs';
 
 /** Le schema de la base `empreintes-depots` ; rejouable. */
 export const SCHEMA = [
@@ -37,8 +37,9 @@ export const SCHEMA = [
 	// (les memes octets), 404 ou 410 ; `depuis`, le premier jour de ce statut.
 	'CREATE TABLE IF NOT EXISTS relecture (recu TEXT PRIMARY KEY, jour TEXT NOT NULL, depuis TEXT NOT NULL, statut INTEGER NOT NULL) WITHOUT ROWID',
 	// D-193 : l'empreinte du TEXTE d'un acte (`src/textepdf.mjs`), posee a sa datation ou a une relecture des memes octets ;
-	// une version nouvelle a la meme adresse n'est « remplacee » que si elle change. Table creee le 2026-10-30 sur la base en service.
-	'CREATE TABLE IF NOT EXISTS texte (recu TEXT PRIMARY KEY, sha256 TEXT NOT NULL) WITHOUT ROWID',
+	// une version nouvelle a la meme adresse n'est « remplacee » que si elle change, a methode egale (`METHODE_DU_TEXTE`).
+	// Table creee le 2026-10-30, `methode` ajoutee le 2026-11-03 par ALTER TABLE sur la base en service (1 pour les empreintes d'avant).
+	'CREATE TABLE IF NOT EXISTS texte (recu TEXT PRIMARY KEY, sha256 TEXT NOT NULL, methode INTEGER NOT NULL DEFAULT 1) WITHOUT ROWID',
 	// D-200 : la liste d'attente d'une offre pas encore ouverte (`src/attente.mjs`) ; l'adresse electronique et le profil, rien d'autre.
 	'CREATE TABLE IF NOT EXISTS attente (offre TEXT NOT NULL, adresse TEXT NOT NULL, profil TEXT NOT NULL, jour TEXT NOT NULL, PRIMARY KEY (offre, adresse)) WITHOUT ROWID',
 	// D-167 : le produit de la flotte qui a depose un recu de consultation, et l'adresse publique de ce recu (table ajoutee le 2026-10-20).
@@ -270,7 +271,7 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	// La serie d'une collectivite ne tient que les actes lus sur son site officiel ; un acte declare reste dans son recu.
 	if (acte?.rattachement === 'site-officiel') {
 		suites.push(['INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)', id, acte.collectivite, acte.nature, demande.libelle ?? null, adressePublique(lu.url)]);
-		if (texte) suites.push([SQL_DU_TEXTE, id, texte]);
+		if (texte) suites.push([SQL_DU_TEXTE, id, texte, METHODE_DU_TEXTE]);
 	}
 	// Le recu d'un produit (D-167) : sa page nomme le produit et mene au recu que celui-ci sert.
 	if (demande.produit) suites.push(['INSERT INTO produit (recu, nom, url) VALUES (?, ?, ?)', id, demande.produit.nom, demande.produit.url]);
@@ -278,7 +279,8 @@ export async function deposer({ db, corps, adresse, maintenant = new Date(), tem
 	return reponse(201, { jour, place, ligne: ligneDe({ sha256: empreinte, jour, place, recu: id }).trim(), id, recu, ...(copieVoulue ? copieDe(lu) : {}), ...(client ? { client: client.id, portee: PORTEE_DU_RECU } : {}) });
 }
 
-const SQL_DU_TEXTE = 'INSERT INTO texte (recu, sha256) VALUES (?, ?) ON CONFLICT (recu) DO NOTHING';
+// Les memes octets relus par une methode plus recente remplacent l'empreinte d'avant ; jamais l'inverse.
+const SQL_DU_TEXTE = 'INSERT INTO texte (recu, sha256, methode) VALUES (?, ?, ?) ON CONFLICT (recu) DO UPDATE SET sha256 = excluded.sha256, methode = excluded.methode WHERE methode < excluded.methode';
 
 /** Au-dela, la reponse ne porte pas la copie : le deposant lit le fichier a sa source. */
 export const COPIE_MAX = 8 * 1024 * 1024;
@@ -317,7 +319,7 @@ async function jugerLaGlane(db, { acte, empreinte, lue, jour, texte = null }) {
 	const deja = await un(db, 'SELECT d.jour, d.place, d.recu, a.url FROM acte a JOIN depot d ON d.recu = a.recu WHERE d.sha256 = ? AND a.collectivite = ? ORDER BY d.jour LIMIT 1', empreinte, acte.collectivite);
 	if (!deja) return null;
 	// Les memes octets : la meme empreinte de texte, posee sur l'acte date avant qu'elle existe (D-193).
-	if (texte) await faire(db, SQL_DU_TEXTE, deja.recu, texte);
+	if (texte) await faire(db, SQL_DU_TEXTE, deja.recu, texte, METHODE_DU_TEXTE);
 	// Les memes octets relus a l'adresse de l'acte, un autre jour : sa source le sert toujours.
 	if (lue && deja.url === lue && deja.jour < jour) await noterRelecture(db, { jour, statut: 200, ou: 'recu = ?', args: [deja.recu] });
 	return reponse(200, { deja: true, jour: deja.jour, place: Number(deja.place), id: deja.recu });
@@ -542,7 +544,7 @@ export const DISPARUS_DES_ACTES_MAX = 100;
  * le TEXTE change, avec la version qui la precede (`avant_*`). Une version
  * dont seuls les octets changent (recompression, autre `Producer`) reste
  * datee mais n'est pas un remplacement ; sans empreinte de texte des deux
- * cotes, rien n'est prouve, rien ne parait (les 857 recompressions de
+ * cotes, ou deux empreintes de methodes differentes, rien n'est prouve, rien ne parait (les 857 recompressions de
  * l'Aveyron d'octobre 2026). Bruts : le filtre de ce qui se publie est
  * `entreesDesActes`.
  */
@@ -555,7 +557,7 @@ export async function actesDisparus({ db, max = DISPARUS_DES_ACTES_MAX }) {
 		.all();
 	const remplaces = await db
 		.prepare(
-			`SELECT * FROM (SELECT d.jour AS date, d.sha256 AS apres, t.sha256 AS texte, LAG(d.jour) OVER suite AS avant_jour, LAG(d.sha256) OVER suite AS avant, LAG(t.sha256) OVER suite AS avant_texte, LAG(a.nature) OVER suite AS nature, a.collectivite, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu LEFT JOIN texte t ON t.recu = a.recu WHERE a.url IS NOT NULL WINDOW suite AS (PARTITION BY a.collectivite, a.url ORDER BY d.jour, d.place)) WHERE avant IS NOT NULL AND texte IS NOT NULL AND avant_texte IS NOT NULL AND texte <> avant_texte ORDER BY date DESC, url LIMIT ?`
+			`SELECT * FROM (SELECT d.jour AS date, d.sha256 AS apres, t.sha256 AS texte, LAG(d.jour) OVER suite AS avant_jour, LAG(d.sha256) OVER suite AS avant, LAG(t.sha256) OVER suite AS avant_texte, t.methode AS methode, LAG(t.methode) OVER suite AS avant_methode, LAG(a.nature) OVER suite AS nature, a.collectivite, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu LEFT JOIN texte t ON t.recu = a.recu WHERE a.url IS NOT NULL WINDOW suite AS (PARTITION BY a.collectivite, a.url ORDER BY d.jour, d.place)) WHERE avant IS NOT NULL AND texte IS NOT NULL AND avant_texte IS NOT NULL AND methode = avant_methode AND texte <> avant_texte ORDER BY date DESC, url LIMIT ?`
 		)
 		.bind(max)
 		.all();

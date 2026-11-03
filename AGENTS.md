@@ -100,6 +100,15 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   `functions/depots/[fichier].js` sert `/depots/<jour>.jsonl`. L'adresse d'un
   deposant n'est jamais ecrite : son hache sale du jour, sel jete le lendemain.
   Les tests jouent le vrai SQL sur `node:sqlite` (`tests/d1.mjs`).
+- L'empreinte du TEXTE d'un acte (D-193, `src/textepdf.mjs`) ne compte que ce
+  qu'un lecteur voit : les operandes des operateurs de texte hors modes de rendu
+  invisibles (la couche OCR d'un scan), jamais une chaine d'un dictionnaire ;
+  le contenu d'une page coupe en plusieurs flux se lit comme un seul. Seule une
+  lecture COMPLETE donne une empreinte (un flux illisible ou tronque : aucune),
+  et la table `texte` range sa `methode` : deux empreintes ne se comparent qu'a
+  methode egale, une relecture des memes octets par une methode plus recente
+  remplace l'ancienne. Mesure du 2026-11-03 sur 600 actes : 596 lectures
+  completes, 11 scans dont tout le texte etait la couche OCR.
 - Un acte de collectivite (D-165) est un depot de type `acte` (`src/acte.mjs`) :
   temoin d'URL obligatoire, `collectivite` (INSEE ou SIREN a cle juste),
   `nature` ; le libelle passe `nommeUnePersonne` (`src/personne.mjs`, copie
