@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { baseDeTest } from './d1.mjs';
 import { DEPOTS_PAR_JOUR, VERSION_DU_RECU_PRODUIT, lireDemande, plafond, recuDe } from '../src/depot.mjs';
-import { PRODUITS, RECUS_PAR_PRODUIT_PAR_JOUR, cleDuProduit, lireProduit } from '../src/produit.mjs';
+import { PRODUITS, RECUS_PAR_PRODUIT_PAR_JOUR, cleDuProduit, lireProduit, relireLeRecuDuProduit } from '../src/produit.mjs';
+import { sha256 } from '../src/chaine.mjs';
 import { bilanPublic, deposer, ligneEtAdresseDuRecu, produitDuRecu, verifierUnRecu } from '../src/service.mjs';
 import { onRequestGet as pageDuRecu } from '../functions/recu/[id].js';
 import { onRequestGet as apiRecu } from '../functions/api/recus/[id].js';
@@ -100,7 +101,7 @@ test('la page du recu d un produit nomme le produit et mene au recu qu il sert, 
 	assert.deepEqual(ligne.produit, { nom: 'auregistre', url: URL_RECU });
 	assert.equal(ligne.acte, undefined);
 	const page = await (await pageDuRecu({ request: new Request(`https://temoinpublic.fr/recu/${r.id}`), params: { id: r.id }, env })).text();
-	assert.match(page, new RegExp(`<div><dt>Produit</dt><dd>auregistre</dd></div>\n<div><dt>Reçu du produit</dt><dd><a href="${URL_RECU}">${URL_RECU}</a></dd></div>\n<div><dt>Empreinte</dt>`));
+	assert.match(page, new RegExp(`<div><dt>Produit</dt><dd>auregistre</dd></div>\n<div><dt>Reçu du produit</dt><dd><a href="${URL_RECU}">${URL_RECU}</a></dd></div>\n<div><dt>Relecture</dt><dd id="relecture-produit" data-url="${URL_RECU}" data-sha256="${H}">lecture du reçu du produit</dd></div>\n<div><dt>Empreinte</dt>`));
 	const allemande = await (await pageDuRecu({ request: new Request(`https://datumszeuge.de/recu/${r.id}`), params: { id: r.id }, env })).text();
 	assert.match(allemande, /<dt>Produkt<\/dt><dd>auregistre<\/dd>[\s\S]*<dt>Beleg des Produkts<\/dt>/);
 	assert.deepEqual((await (await apiRecu({ params: { id: r.id }, env })).json()).produit, { nom: 'auregistre', url: URL_RECU });
@@ -133,4 +134,17 @@ test('la verification d un recu de produit relit les octets a son adresse et com
 	assert.equal(privee.produit, undefined);
 	const ordinaire = corpsDe(await deposer({ db, corps: { sha256: 'd'.repeat(64) }, adresse: '198.51.100.1', maintenant: midi })).recu;
 	assert.equal((await verdict(relu(H), ordinaire)).produit, undefined);
+});
+
+test('le recu d un produit se relit a son adresse : identique, different, ou illisible avec le statut', async () => {
+	const octets = new TextEncoder().encode('{"recu":1}');
+	const attendu = await sha256(octets);
+	const servi = (corps, status = 200) => async () => new Response(corps, { status });
+	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, servi(octets), sha256), { etat: 'identique' });
+	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, servi('{"recu":2}'), sha256), { etat: 'different' });
+	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, servi('Reçu inconnu', 404), sha256), { etat: 'illisible', statut: 404 });
+	const refuse = async () => {
+		throw new TypeError('Failed to fetch');
+	};
+	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, refuse, sha256), { etat: 'illisible', statut: null });
 });

@@ -1,4 +1,5 @@
-import { inscriptionDuRecu } from '/chaine.mjs';
+import { inscriptionDuRecu, sha256 } from '/chaine.mjs';
+import { relireLeRecuDuProduit } from '/produit.mjs';
 import { T } from '/textes.js';
 
 document.getElementById('imprimer')?.addEventListener('click', () => window.print());
@@ -16,3 +17,14 @@ inscriptionDuRecu(recu, (c) => fetch(c))
 	.catch(() => {
 		cible.textContent = T.recu.illisible;
 	});
+
+// Le recu d'un produit de la flotte se relit a son adresse, dans le navigateur du lecteur (D-167).
+const relecture = document.getElementById('relecture-produit');
+if (relecture) {
+	const { url, sha256: attendu } = relecture.dataset;
+	relireLeRecuDuProduit(url, attendu, (u) => fetch(u, { cache: 'no-store' }), sha256).then((r) => {
+		if (r.etat === 'identique') relecture.textContent = T.recu.produitIdentique;
+		else if (r.etat === 'different') relecture.textContent = T.recu.produitDifferent;
+		else relecture.textContent = T.recu.produitIllisible(r.statut);
+	});
+}

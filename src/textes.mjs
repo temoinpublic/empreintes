@@ -159,6 +159,8 @@ export const TEXTES = {
 		lecture: { fr: 'lecture du registre', de: 'Register wird gelesen' },
 		produit: { fr: 'Produit', de: 'Produkt' },
 		recuDuProduit: { fr: 'Reçu du produit', de: 'Beleg des Produkts' },
+		relecture: { fr: 'Relecture', de: 'Nachprüfung' },
+		lectureDuProduit: { fr: 'lecture du reçu du produit', de: 'Beleg des Produkts wird gelesen' },
 		imprimer: { fr: 'Imprimer le reçu', de: 'Beleg drucken' }
 	},
 	editeur: {
