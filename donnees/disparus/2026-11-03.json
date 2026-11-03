@@ -12,6 +12,21 @@
     "sha256": "ab652dc2f490ccd8a7ed223bd0afd12a584b99eb46f43b9ea495b149096b94eb"
    },
    "apres": null
+  },
+  {
+   "classe": "remplace",
+   "source": "scpi-atland-voisin",
+   "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-IP-vdef-web.pdf",
+   "date": "2026-11-03",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-31",
+    "sha256": "1313e59bcc6de25154b5d8c0b46467f72fb12ba61fdf1fc0677431d44767e386"
+   },
+   "apres": {
+    "jour": "2026-11-03",
+    "sha256": "5537f6c6d832d3d31505adc8e90b1917702cefe600f3e0c2873150282acf002d"
+   }
   }
  ]
 }
