@@ -43,3 +43,19 @@ test('une panne de lecture ne se lit pas comme une absence', () => {
 	assert.match(recu, /await ligneDuRecu\(id\)/, 'le recu passe par la lecture qui distingue 404 et panne');
 	assert.match(source, /if \(reponse\.status === 404\) return absent;\n\tif \(!reponse\.ok\) throw/);
 });
+
+/*
+ * 2026-11-03, audit Codex : deux fichiers choisis coup sur coup lancent deux
+ * verifications ; la premiere, plus lente, finissait apres la seconde et son
+ * verdict restait affiche sous le nom du second document.
+ */
+test('seule la derniere verification demandee ecrit son verdict', () => {
+	const source = readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const lancer = source.slice(source.indexOf('const lancer = async'), source.indexOf('// `/verifier?empreinte='));
+	const garde = lancer.indexOf('if (numero !== derniere) return;');
+	assert.ok(garde > 0, 'lancer garde le numero de sa demande');
+	const ecritures = [...source.matchAll(/\$\('resultat'\)\.innerHTML = (?!'')/g)].map((m) => m.index);
+	const debut = source.indexOf('const lancer = async');
+	assert.ok(ecritures.length > 0);
+	for (const i of ecritures) assert.ok(i > debut + garde, 'aucun verdict n est ecrit avant la garde');
+});
