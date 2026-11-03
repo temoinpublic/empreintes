@@ -523,11 +523,12 @@ const lignesDActe = (e, acte, ligne) => {
 };
 
 /** Les lignes propres au recu d'un produit de la flotte (D-167) : le produit, et l'adresse du recu qu'il sert. */
-const lignesDeProduit = (e, produit) => {
+const lignesDeProduit = (e, produit, sha256) => {
 	if (!produit) return '';
 	const url = echapper(produit.url);
 	return `<div><dt>${e.recu.produit}</dt><dd>${echapper(produit.nom)}</dd></div>
 <div><dt>${e.recu.recuDuProduit}</dt><dd><a href="${url}">${url}</a></dd></div>
+<div><dt>${e.recu.relecture}</dt><dd id="relecture-produit" data-url="${url}" data-sha256="${sha256}">${e.recu.lectureDuProduit}</dd></div>
 `;
 };
 
@@ -550,7 +551,7 @@ export function pageRecu(ligne, acte = null, langue = 'fr', produit = null) {
 <article class="ok recu" id="recu" data-recu="${ligne.recu}">
 <h2>${acte ? e.recu.enLigne(jour) : e.recu.date(jour)}</h2>
 <dl>
-${lignesDActe(e, acte, ligne)}${lignesDeProduit(e, produit)}<div><dt>${e.recu.empreinte}</dt><dd><code class="racine">${ligne.sha256}</code></dd></div>
+${lignesDActe(e, acte, ligne)}${lignesDeProduit(e, produit, ligne.sha256)}<div><dt>${e.recu.empreinte}</dt><dd><code class="racine">${ligne.sha256}</code></dd></div>
 <div><dt>${e.recu.ligne}</dt><dd><a href="/depots/${ligne.jour}.jsonl">${e.recu.place(ligne.place, jour)}</a></dd></div>
 <div><dt>${e.recu.registre}</dt><dd id="inscription">${e.recu.lecture}</dd></div>
 </dl>

@@ -38,6 +38,25 @@ export function lireProduit(corps, erreurs) {
 	return erreurs.length ? null : { nom: produit.nom, url: produit.url };
 }
 
+/**
+ * Relit le recu d'un produit a son adresse et compare ses octets a l'empreinte
+ * deposee. `lire(url)` rend une reponse fetch, `hacher(octets)` son sha256.
+ * Rend `{ etat: 'identique' }`, `{ etat: 'different' }`, ou
+ * `{ etat: 'illisible', statut }` quand l'adresse ne sert pas le fichier
+ * (`statut` null quand elle n'a pas repondu).
+ */
+export async function relireLeRecuDuProduit(url, attendu, lire, hacher) {
+	let reponse;
+	try {
+		reponse = await lire(url);
+	} catch {
+		return { etat: 'illisible', statut: null };
+	}
+	if (!reponse.ok) return { etat: 'illisible', statut: reponse.status };
+	const lu = await hacher(new Uint8Array(await reponse.arrayBuffer()));
+	return { etat: lu === attendu ? 'identique' : 'different' };
+}
+
 function adressePublique(url) {
 	if (typeof url !== 'string' || url.length > URL_MAX) return false;
 	try {

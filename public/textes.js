@@ -164,7 +164,10 @@ const TEXTES = {
 		inscrit: { fr: (h) => `inscrit le ${h}`, de: (h) => `eingetragen am ${h}` },
 		attente: { fr: 'en attente d’inscription', de: 'Eintragung steht aus' },
 		nonConforme: { fr: 'preuve non conforme', de: 'Beweis nicht gültig' },
-		illisible: { fr: 'registre illisible pour le moment', de: 'Register im Moment nicht lesbar' }
+		illisible: { fr: 'registre illisible pour le moment', de: 'Register im Moment nicht lesbar' },
+		produitIdentique: { fr: 'le reçu servi à cette adresse a l’empreinte déposée', de: 'der unter dieser Adresse bereitgestellte Beleg hat die hinterlegte Prüfsumme' },
+		produitDifferent: { fr: 'le reçu servi à cette adresse n’a plus l’empreinte déposée', de: 'der unter dieser Adresse bereitgestellte Beleg hat nicht mehr die hinterlegte Prüfsumme' },
+		produitIllisible: { fr: (s) => (s ? `adresse illisible, réponse ${s}` : 'adresse illisible pour le moment'), de: (s) => (s ? `Adresse nicht lesbar, Antwort ${s}` : 'Adresse im Moment nicht lesbar') }
 	},
 	editeur: {
 		flux: { fr: `Flux${NBSP}: `, de: 'Feed: ' },

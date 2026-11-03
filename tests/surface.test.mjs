@@ -32,6 +32,8 @@ test('toute page porte les six protections du navigateur', () => {
 	const bloc = fs.readFileSync(path.join(DIST, '_headers'), 'utf8').split(/\n(?=\S)/)[0];
 	for (const entete of ['Strict-Transport-Security', 'Permissions-Policy', 'X-Content-Type-Options', 'Referrer-Policy', 'Content-Security-Policy']) assert.match(bloc, new RegExp(`^  ${entete}: `, 'm'), entete);
 	assert.match(bloc, /frame-ancestors 'none'/);
+	// La page d'un recu de produit relit le fichier chez le produit (D-167).
+	assert.match(bloc, /connect-src 'self' https:\/\/auregistre\.fr;/);
 });
 
 test('un fichier du journal se dit servi tel quel ; une empreinte inconnue ne trouve rien', async () => {
