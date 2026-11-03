@@ -2,6 +2,7 @@
 // l'edition. Le francais suit son cours ; l'allemand se lit dans `dist/de/`.
 import { decider, horsIndex } from '../src/hote.mjs';
 import { cheminMementoRetabli } from '../src/memento.mjs';
+import { avecReprise } from '../src/reprise.mjs';
 import { onRequestGet as memento } from './memento/[[chemin]].js';
 
 /** Un fichier de `dist/` par la liaison `ASSETS`, au statut voulu ; le `.html` en second quand le chemin propre ne repond pas. */
@@ -19,6 +20,8 @@ const sansIndex = (r) => {
 };
 
 export async function onRequest({ request, env, next }) {
+	// Chaque Function lit `env.DEPOTS` : enveloppee une fois ici, toutes rejouent un verrou passager.
+	if (env.DEPOTS) env.DEPOTS = avecReprise(env.DEPOTS);
 	const d = decider(request.url);
 	let r;
 	if (d.action === 'redirection') r = Response.redirect(d.vers, 301);
