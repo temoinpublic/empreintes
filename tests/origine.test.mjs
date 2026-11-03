@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto';
 import { baseDeTest } from './d1.mjs';
 import { autoriteDuCertificat, estUnJws, inscriteA, nomLisible, verifierSignatureDuDeposant } from '../src/origine.mjs';
 import { element } from '../src/horodatage.mjs';
-import { estUnRecu, idDuRecu, lireDemande } from '../src/depot.mjs';
+import { DEPOTS_PAR_ADRESSE, estUnRecu, idDuRecu, lireDemande } from '../src/depot.mjs';
 import { deposer } from '../src/service.mjs';
 
 const { subtle } = globalThis.crypto;
@@ -184,6 +184,7 @@ test('avec le temoin, une signature refusee rend la lecture du jour : la bonne p
 	const refuse = await deposer({ db, corps: { url: 'https://cravans.fr/pv.pdf', signature: autre }, adresse: 'a', maintenant: midi, temoin });
 	assert.equal(refuse.statut, 400);
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM lecture').get().n, 0);
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1, 'le telechargement refuse compte au plafond');
 	const { jws } = await jwsDe();
 	const accepte = await deposer({ db, corps: { url: 'https://cravans.fr/pv.pdf', signature: jws }, adresse: 'a', maintenant: midi, temoin });
 	assert.equal(accepte.statut, 201);
@@ -301,4 +302,18 @@ test("un depot signe nomme l'autorite dans son recu ; un registre absent ou illi
 	const sans = await deposer({ db: baseDeTest(), corps: { sha256: H, signature: jws }, adresse: 'a', maintenant: midi, autorites: async () => { throw new Error('absent'); } });
 	assert.equal(sans.statut, 201);
 	assert.ok(!('autorite' in corpsDe(sans).recu.signature));
+});
+
+test('une fausse signature ne relit pas le meme fichier sans fin : l adresse atteint son plafond', async () => {
+	const db = baseDeTest();
+	let lectures = 0;
+	const temoin = async (admise) => {
+		lectures += 1;
+		return { url: admise.url, taille: 13, type: 'application/pdf', lu: midi.toISOString(), sha256: H };
+	};
+	const { jws: autre } = await jwsDe({ charge: 'c'.repeat(64) });
+	const essai = () => deposer({ db, corps: { url: 'https://cravans.fr/pv.pdf', signature: autre }, adresse: 'a', maintenant: midi, temoin });
+	for (let i = 0; i < DEPOTS_PAR_ADRESSE; i += 1) assert.equal((await essai()).statut, 400);
+	assert.equal((await essai()).statut, 429);
+	assert.equal(lectures, DEPOTS_PAR_ADRESSE);
 });
