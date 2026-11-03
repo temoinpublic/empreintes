@@ -82,8 +82,16 @@ if ($('acte')) {
 	window.addEventListener('pageshow', accorderALaNature);
 }
 
+// Un seul document par depot : le lien, le fichier et l'empreinte saisie s'excluent.
+// Une empreinte annoncee par `?empreinte=` restait prioritaire sur un lien colle
+// ensuite : l'ancienne etait datee, le document demande jamais lu.
+const viderLEmpreinte = () => {
+	if ($('empreinte')?.value) $('empreinte').value = '';
+};
+
 let attente;
 $('url')?.addEventListener('input', () => {
+	if ($('url').value.trim()) viderLEmpreinte();
 	if ($fichier()?.files.length && $('url').value.trim()) {
 		$fichier().value = '';
 		$fichier().dispatchEvent(new Event('change'));
@@ -93,9 +101,22 @@ $('url')?.addEventListener('input', () => {
 });
 // Un fichier choisi remplace le lien : un seul document par depot.
 $fichier()?.addEventListener('change', () => {
+	if ($fichier().files.length) viderLEmpreinte();
 	if (!$fichier().files.length || !$('url').value) return;
 	$('url').value = '';
 	reconnaitreLaCommune();
+});
+// Une empreinte saisie remplace le lien et le fichier.
+$('empreinte')?.addEventListener('input', () => {
+	if (!$('empreinte').value.trim()) return;
+	if ($fichier()?.files.length) {
+		$fichier().value = '';
+		$fichier().dispatchEvent(new Event('change'));
+	}
+	if ($('url')?.value) {
+		$('url').value = '';
+		reconnaitreLaCommune();
+	}
 });
 
 // Seul un acte lu sur le site officiel entre dans la serie publique de sa collectivite.

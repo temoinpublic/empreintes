@@ -110,9 +110,7 @@ async function absentSur404(reponse, absent, chemin) {
 	return reponse.json();
 }
 
-async function verifier(empreinte) {
-	const sortie = $('resultat');
-	sortie.innerHTML = '';
+async function verifier(empreinte, sortie) {
 	const [r, d] = await Promise.all([fetch(`/index/${empreinte.slice(0, 2)}.json`), fetch(`/api/depots/${empreinte}`)]);
 	const vus = (await absentSur404(r, {}, '/index'))[empreinte] ?? [];
 	const deposes = await absentSur404(d, [], '/api/depots');
@@ -146,10 +144,10 @@ async function signatureDuRecu(recu) {
 	return `<dl><div><dt>${t.signeePar}</dt><dd>${texte}</dd></div>${liste}</dl>`;
 }
 
-async function verifierLeRecu(recu) {
+async function verifierLeRecu(recu, sortie) {
 	const id = await idDuRecu(recu);
 	const ligne = await ligneDuRecu(id);
-	$('resultat').innerHTML = ligne
+	sortie.innerHTML = ligne
 		? `<article class="ok"><h2>${t.authentique(T.jour(recu.jour))}</h2>${await signatureDuRecu(recu)}<p><a href="/recu/${id}">${T.voirLeRecu}</a></p></article>`
 		: `<article class="ko"><h2>${t.inconnu}</h2></article>`;
 }
@@ -200,15 +198,15 @@ function titreDeLaSerie(b) {
 }
 
 /** Le certificat d'une serie d'affichage : chaque recu relu contre sa ligne publique, chaque jour de la periode compte. */
-async function verifierLaSerie(brut) {
+async function verifierLaSerie(brut, sortie) {
 	const lu = lireCertificat(brut);
 	if (lu.erreur) {
-		$('resultat').innerHTML = `<article class="ko"><h2>${s.illisible}</h2><p>${s.erreurs[lu.erreur]}</p></article>`;
+		sortie.innerHTML = `<article class="ko"><h2>${s.illisible}</h2><p>${s.erreurs[lu.erreur]}</p></article>`;
 		return;
 	}
 	const b = await verifierLeCertificat(lu.certificat, enFile(ligneDuRecu), new Date().toISOString().slice(0, 10));
 	const permis = b.auRegistre > 0 && b.permisRelus === b.auRegistre ? s.permisRelu : s.permisNonRelu(b.permisRelus, b.auRegistre);
-	$('resultat').innerHTML = `<article class="${b.continue ? 'ok' : 'ko'}">
+	sortie.innerHTML = `<article class="${b.continue ? 'ok' : 'ko'}">
 <h2>${titreDeLaSerie(b)}</h2>
 <dl>
 <div><dt>${s.permis}</dt><dd>${echapper(b.permis)}, ${permis}</dd></div>
@@ -224,24 +222,33 @@ async function verifierLaSerie(brut) {
 </article>`;
 }
 
-async function verifierLeFichier(fichier) {
+async function verifierLeFichier(fichier, sortie) {
 	const octets = new Uint8Array(await fichier.arrayBuffer());
 	// Un recu signe porte le JWS de son deposant, 32 768 caracteres au plus ; un certificat de serie, deux mois de recus.
 	const r = fichier.size < 1_000_000 ? jsonDans(octets) : null;
-	if (estUnCertificat(r)) return verifierLaSerie(r);
-	return estUnRecu(r) ? verifierLeRecu(r) : verifier(await sha256(octets));
+	if (estUnCertificat(r)) return verifierLaSerie(r, sortie);
+	return estUnRecu(r) ? verifierLeRecu(r, sortie) : verifier(await sha256(octets), sortie);
 }
 
+// Chaque verification ecrit dans sa propre zone ; seule la DERNIERE demandee s'affiche.
+// Deux fichiers choisis coup sur coup finissaient dans le desordre, et le verdict du
+// premier restait sous le nom du second (audit Codex du 2026-11-03).
+let derniere = 0;
 const lancer = async () => {
+	const numero = ++derniere;
 	const fichier = $('fichier').files[0];
 	const saisie = $('empreinte').value.trim().toLowerCase();
+	const sortie = document.createElement('div');
+	$('resultat').innerHTML = '';
 	try {
-		if (fichier) await verifierLeFichier(fichier);
-		else if (/^[0-9a-f]{64}$/.test(saisie)) await verifier(saisie);
-		else $('resultat').innerHTML = `<p>${T.choisir}</p>`;
+		if (fichier) await verifierLeFichier(fichier, sortie);
+		else if (/^[0-9a-f]{64}$/.test(saisie)) await verifier(saisie, sortie);
+		else sortie.innerHTML = `<p>${T.choisir}</p>`;
 	} catch (erreur) {
-		$('resultat').innerHTML = `<article class="ko"><h2>${T.erreur}</h2><p>${echapper(erreur.message)}</p></article>`;
+		sortie.innerHTML = `<article class="ko"><h2>${T.erreur}</h2><p>${echapper(erreur.message)}</p></article>`;
 	}
+	if (numero !== derniere) return;
+	$('resultat').innerHTML = sortie.innerHTML;
 	if ($('resultat').innerHTML) montrer($('resultat'));
 };
 
