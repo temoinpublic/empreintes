@@ -1,0 +1,41 @@
+{
+ "jour": "2026-11-04",
+ "evenements": [
+  {
+   "classe": "disparu",
+   "source": "choisir-service-public-offres",
+   "url": "https://static.data.gouv.fr/resources/les-offres-diffusees-sur-choisir-le-service-public/20261026-070100/offres-datagouv-20261004.csv",
+   "date": "2026-11-04",
+   "http": 404,
+   "avant": {
+    "jour": "2026-10-26",
+    "sha256": "0d1417359b58c2b7eef53b2cabe78847b2ba3e26f0dc29e94a8893985d84d237"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-epsicap",
+   "url": "https://epsicap.fr/app/uploads/2026/08/epsicap-explore-bulletin-trimestriel-t2-2026.pdf",
+   "date": "2026-11-04",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "2476a263ee5c6eb297a2469beea7715d4750e3f3daaba9975a938d37e2eebc55"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-epsicap",
+   "url": "https://epsicap.fr/app/uploads/2026/08/epsicap-nano-bulletin-trimestriel-t2-2026.pdf",
+   "date": "2026-11-04",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "fcda1c2e2d7726f3f7ad41baa0f862e802f53e1405d4df8f8a84a3b2c8c7f1e7"
+   },
+   "apres": null
+  }
+ ]
+}
