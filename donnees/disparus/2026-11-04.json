@@ -36,6 +36,21 @@
     "sha256": "fcda1c2e2d7726f3f7ad41baa0f862e802f53e1405d4df8f8a84a3b2c8c7f1e7"
    },
    "apres": null
+  },
+  {
+   "classe": "remplace",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/01/Politique-risques-durabilite-2025.pdf",
+   "date": "2026-11-04",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "927aede0e61c332b177ca6d782f967ea540ffb498f5bd4af8814604b0ca6d444"
+   },
+   "apres": {
+    "jour": "2026-11-04",
+    "sha256": "0fbedd1495ddc10e46eb90ea819c8e0fb1704f1f304a52b3e36c97f4fc91cd68"
+   }
   }
  ]
 }
