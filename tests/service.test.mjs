@@ -193,6 +193,22 @@ test("un depot s'ecrit avec ce qui l'accompagne, tout ou rien", async () => {
 	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1);
 });
 
+test('une transaction validee dont la reponse se perd ne prend pas une seconde place (audit Codex du 2026-11-05)', async () => {
+	const db = baseDeTest();
+	const batch = db.batch.bind(db);
+	let premier = true;
+	db.batch = async (instructions) => {
+		const r = await batch(instructions);
+		if (premier) {
+			premier = false;
+			throw new Error('reponse perdue');
+		}
+		return r;
+	};
+	assert.equal(await inserer(db, { jour: '2026-10-12', empreinte: 'b'.repeat(64), recu: 'r-sel' }), 1);
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 1, 'une seule place pour un seul recu');
+});
+
 test('une seule echeance borne la lecture du temoin : resolution, sauts et corps compris', async () => {
 	const admise = { url: 'https://x.fr/a', hote: 'x.fr' };
 	const publique = async () => ['93.184.216.34'];

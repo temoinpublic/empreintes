@@ -139,7 +139,8 @@ const SQL_DU_DEPOT = 'INSERT INTO depot (jour, place, sha256, recu) SELECT ?, CO
  * ecrit `suites` (`[sql, ...args]`) dans la MEME transaction (`batch` de D1) :
  * une panne entre deux ecritures laissait une ligne publique sans son acte,
  * son produit, sa version ou son compte. Tout ou rien ; une collision de place
- * avec un depot simultane rejoue le tout une fois.
+ * avec un depot simultane rejoue le tout une fois, sauf si le premier essai
+ * a ecrit (sa reponse perdue) : sa place se relit au lieu d'en prendre une autre.
  */
 export async function inserer(db, { jour, empreinte, recu }, suites = []) {
 	const ecrire = async () => {
@@ -149,6 +150,10 @@ export async function inserer(db, { jour, empreinte, recu }, suites = []) {
 	try {
 		return await ecrire();
 	} catch {
+		// Une transaction validee dont la reponse s'est perdue ne se rejoue pas :
+		// le recu porte un sel, il ne se trouve en base que si elle a ecrit.
+		const deja = await db.prepare('SELECT place FROM depot WHERE jour = ? AND recu = ?').bind(jour, recu).first().catch(() => null);
+		if (deja) return deja.place;
 		return await ecrire();
 	}
 }
@@ -168,15 +173,33 @@ async function rattachement({ acte, demandee, lue, annuaire }) {
 	return surSiteOfficiel(demandee, sites) && surSiteOfficiel(lue, sites) ? 'site-officiel' : 'declaree';
 }
 
-/** L'adresse lue d'un acte, montree sur la page de sa collectivite ; null quand son chemin nomme une personne. */
-export function adressePublique(url) {
-	let chemin;
+/** Un parametre de requete qui porte un acces plutot qu'un document : l'adresse ne se montre pas. */
+const ACCES_DANS_LE_NOM = /token|jeton|session|secret|signature|password|passwd|apikey|auth/i;
+const ACCES_EN_MOT = new Set(['key', 'cle', 'sig', 'sid', 'pass', 'access', 'acces']);
+const porteUnAcces = (cle) => ACCES_DANS_LE_NOM.test(cle) || cle.toLowerCase().split(/[^a-z]+/).some((mot) => ACCES_EN_MOT.has(mot));
+
+/**
+ * Le texte d'une adresse que la page montrerait : son chemin ET les valeurs de
+ * sa requete. `/telecharger.php?fichier=nomination-X.pdf` portait le nom dans
+ * la requete, que le controle du seul chemin laissait passer. `null` quand
+ * l'adresse est illisible ou qu'un parametre porte un acces.
+ */
+export function texteMontreDeLAdresse(url) {
 	try {
-		chemin = decodeURIComponent(new URL(url).pathname);
+		const adresse = new URL(url);
+		const params = [...adresse.searchParams];
+		if (params.some(([cle]) => porteUnAcces(cle))) return null;
+		return [decodeURIComponent(adresse.pathname), ...params.map(([, valeur]) => valeur)].join(' ');
 	} catch {
 		return null;
 	}
-	return nommeUnePersonne(chemin.replace(/[/_.-]+/g, ' ')) ? null : url;
+}
+
+/** L'adresse lue d'un acte, montree sur la page de sa collectivite ; null quand son chemin ou sa requete nomme une personne. */
+export function adressePublique(url) {
+	const texte = texteMontreDeLAdresse(url);
+	if (texte === null) return null;
+	return nommeUnePersonne(texte.replace(/[/_.=&-]+/g, ' ')) ? null : url;
 }
 
 /** Le registre des autorites, ou null quand il manque : la signature se verifie alors sans juger l'emetteur. */

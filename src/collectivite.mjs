@@ -169,7 +169,10 @@ const objetMontrable = (acte) => (acte.objet && !nommeUnePersonne(acte.objet) &&
 function sourceMontrable(acte) {
 	const url = acte.url ? adressePublique(acte.url) : null;
 	if (!url) return null;
-	const fichier = decodeURIComponent(new URL(url).pathname.split('/').pop()).replace(/[-_+.]+/g, ' ');
+	const adresse = new URL(url);
+	const fichier = [decodeURIComponent(adresse.pathname.split('/').pop()), ...[...adresse.searchParams].map(([, valeur]) => valeur)]
+		.join(' ')
+		.replace(/[-_+.]+/g, ' ');
 	return pourraitNommer(fichier, acte.nature) ? null : url;
 }
 
