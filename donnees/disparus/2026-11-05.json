@@ -1,0 +1,29 @@
+{
+ "jour": "2026-11-05",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-perial",
+   "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/69b030d09ded6999b475673f_Politique%20engagement%20parties%20prenantes.pdf",
+   "date": "2026-11-05",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "d3ebbbc82a97af484a10fa1138683e66a1546e0baf90bce64af54ae5d8e3dcbf"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-perial",
+   "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/69b0315f9ded6999b47583e6_Politique%20de%20re%CC%81mune%CC%81ration.pdf",
+   "date": "2026-11-05",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "74f10d49a5e4ac4ccbe225e1a948ee6780b02cdfaec338b85ca6b44783a2235c"
+   },
+   "apres": null
+  }
+ ]
+}
