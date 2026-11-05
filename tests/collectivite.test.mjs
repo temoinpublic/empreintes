@@ -105,6 +105,12 @@ test("l'adresse d'un acte ne se montre pas quand son chemin nomme une personne",
 	assert.equal(adressePublique('https://www.cravans.fr/wp-content/uploads/2026/10/PV-03.09.2026.pdf'), 'https://www.cravans.fr/wp-content/uploads/2026/10/PV-03.09.2026.pdf');
 	assert.equal(adressePublique('https://www.cravans.fr/arretes/arrete-de-M.-Jean-Dupont.pdf'), null);
 	assert.equal(adressePublique('pas une adresse'), null);
+	// Audit Codex du 2026-11-05 : la requete se lit comme le chemin.
+	assert.equal(adressePublique('https://www.cravans.fr/telecharger.php?fichier=arrete-de-M.-Jean-Dupont.pdf'), null);
+	assert.equal(adressePublique('https://www.cravans.fr/telecharger.php?id=12&token=abc'), null);
+	assert.equal(adressePublique('https://www.cravans.fr/telecharger.php?id=12&X-Amz-Signature=f0'), null);
+	assert.equal(adressePublique('https://www.cravans.fr/telecharger.php?id=12&api_key=f0'), null);
+	assert.equal(adressePublique('https://www.cravans.fr/doc.php?article=3&cycle=2'), 'https://www.cravans.fr/doc.php?article=3&cycle=2');
 });
 
 test('une page par commune : le SIREN et les minuscules renvoient au code INSEE, un code illisible est introuvable', async () => {
