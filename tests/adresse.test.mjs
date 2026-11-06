@@ -316,6 +316,9 @@ test('la construction publie la page du schema et son fichier versionne, sans no
 	assert.match(page, /<h1>Adresse pérenne d’un acte local<\/h1>/);
 	assert.match(page, /<a href="\/schema\/adresse-des-actes\/1.json">/);
 	assert.equal((page.match(/<table>/g) ?? []).length, 4);
+	// Un motif ou une adresse d'exemple ne se coupe pas : a 375 px la table debordait de 256 px.
+	assert.equal((page.match(/<div class="defile">\n<table>/g) ?? []).length, 4);
+	assert.match(page, /<a class="racine" href="https:\/\/temoinpublic.fr\/actes\//);
 	assert.doesNotMatch(page, / [:;?!]/);
 	assert.match(fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8'), /<loc>https:\/\/temoinpublic.fr\/adresse-des-actes<\/loc>/);
 	assert.match(fs.readFileSync(path.join(DIST, 'llms.txt'), 'utf8'), /https:\/\/temoinpublic.fr\/schema\/adresse-des-actes\/1.json/);
