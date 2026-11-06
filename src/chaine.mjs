@@ -253,7 +253,9 @@ export async function preuveDuDepot({ recu, texteDesDepots, releves }) {
  */
 export async function inscriptionDuRecu(id, lire) {
 	const r = await lire('/empreintes/depots.jsonl');
-	if (!r.ok) return { etat: 'attente' };
+	// Un journal encore absent attend ; un journal en panne ne se lit pas, il ne dit pas « en attente ».
+	if (r.status === 404) return { etat: 'attente' };
+	if (!r.ok) throw new Error(`journal illisible : ${r.status}`);
 	const texteDesDepots = await r.text();
 	const rang = texteDesDepots.split('\n').filter(Boolean).findIndex((l) => JSON.parse(l).recu === id) + 1;
 	if (!rang) return { etat: 'attente' };

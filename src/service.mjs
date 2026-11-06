@@ -293,7 +293,12 @@ async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie
 			// Une source qui ne sert plus un acte deja date pour sa commune : la relecture le note, la reponse reste un refus.
 			if (glane && SOURCE_DISPARUE.includes(erreur?.statut))
 				await noterRelecture(db, { jour, statut: erreur.statut, ou: 'collectivite = ? AND url = ?', args: [demande.acte.collectivite, adressePublique(admise.url)] });
-			return sans(refus(422, 'lecture impossible', [String(erreur?.message ?? erreur)]));
+			const reponse = refus(422, 'lecture impossible', [String(erreur?.message ?? erreur)]);
+			if (!echecPassager(erreur)) return sans(reponse);
+			// Une panne breve rend la lecture du jour, et la tentative garde sa place au plafond
+			// de l'adresse : la reprise relit la source, et les essais restent bornes.
+			await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
+			return { reponse, compte: true };
 		}
 		empreinte = lu.sha256;
 		if (demande.acte) texte = await empreinteDuTexte(lu.octets);
@@ -382,6 +387,16 @@ async function jugerLaGlane(db, { acte, empreinte, lue, jour, texte = null }) {
 
 /** Les reponses d'une source qui ne sert plus le document (D-193). */
 export const SOURCE_DISPARUE = [404, 410];
+
+/**
+ * Un echec qui peut ne plus etre vrai dans une minute : le delai, le reseau, une
+ * source en 429 ou en 5xx. Un refus (adresse, taille, contenu) ou un 4xx, non.
+ */
+export function echecPassager(erreur) {
+	const statut = erreur?.statut;
+	if (statut !== undefined) return statut === 429 || statut >= 500;
+	return erreur instanceof TypeError || /^lecture au-dela de /.test(String(erreur?.message ?? ''));
+}
 
 /** Note la relecture du jour pour les actes que `ou` designe ; `depuis` ne bouge que quand le statut change. */
 async function noterRelecture(db, { jour, statut, ou, args }) {

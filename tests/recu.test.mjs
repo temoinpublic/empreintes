@@ -54,6 +54,7 @@ test('le resume d un tour porte son compte de depots ; l inscription se lit sur 
 	assert.equal(p.bloc, 971100);
 	assert.deepEqual(await inscriptionDuRecu(h('rien'), lire), { etat: 'attente' });
 	assert.deepEqual(await inscriptionDuRecu(h('recu1'), async () => new Response('', { status: 404 })), { etat: 'attente' });
+	await assert.rejects(inscriptionDuRecu(h('recu1'), async () => new Response('', { status: 503 })), /illisible : 503/, 'une panne ne se dit pas en attente');
 	fichiers['/tours.json'] = JSON.stringify({ tours: [{ ...resume, depots: 2 }] });
 	assert.deepEqual(await inscriptionDuRecu(h('recu3'), lire), { etat: 'attente', rang: 3 });
 	fichiers['/tours.json'] = JSON.stringify({ tours: [{ ...resume, ots: 'calendrier' }] });

@@ -81,6 +81,20 @@ test('le temoin depose l empreinte des octets lus, une seule lecture par url et 
 	assert.match(corpsDe(echec).details[0], /404/);
 });
 
+test('une panne breve de la source rend la lecture du jour, un refus la garde', async () => {
+	const db = baseDeTest();
+	const lu = { url: 'https://x.fr/a.pdf', taille: 3, type: 'application/pdf', lu: midi.toISOString(), sha256: sha('abc') };
+	const panne = async () => { throw new Error('lecture au-dela de 20 s'); };
+	const corps = { url: 'https://x.fr/a.pdf' };
+	assert.equal((await deposer({ db, corps, adresse: 'a', maintenant: midi, temoin: panne })).statut, 422);
+	assert.equal((await deposer({ db, corps, adresse: 'b', maintenant: midi, temoin: async () => lu })).statut, 201, 'la reprise relit la source');
+	const refuse = async () => { throw Object.assign(new Error('la source a repondu 403'), { statut: 403 }); };
+	const autre = { url: 'https://y.fr/a.pdf' };
+	assert.equal((await deposer({ db, corps: autre, adresse: 'a', maintenant: midi, temoin: refuse })).statut, 422);
+	assert.equal((await deposer({ db, corps: autre, adresse: 'b', maintenant: midi, temoin: async () => lu })).statut, 409);
+	assert.equal(db.sqlite.prepare("SELECT n FROM compte").all().reduce((s, r) => s + r.n, 0), 2, 'la tentative en panne garde sa place, le refus non');
+});
+
 test('le deposant d un lien recoit la copie des octets lus, que le service ne garde pas', async () => {
 	const db = baseDeTest();
 	const page = new TextEncoder().encode('<html><body>Avis du 12 octobre</body></html>');

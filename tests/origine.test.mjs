@@ -331,10 +331,11 @@ test('des depots paralleles d une meme adresse ne passent pas le plafond : la pl
 	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, DEPOTS_PAR_ADRESSE);
 });
 
-test('une lecture impossible rend sa place reservee ; une signature refusee apres lecture la garde, sans seconde ecriture', async () => {
+test('une lecture refusee rend sa place reservee ; une signature refusee apres lecture la garde, sans seconde ecriture', async () => {
 	const db = baseDeTest();
+	// Un refus durable (4xx) garde la lecture du jour et rend la place ; une panne passagere, l'inverse (service.test.mjs).
 	const panne = async () => {
-		throw Object.assign(new Error('source muette'), { statut: 503 });
+		throw Object.assign(new Error('source fermee'), { statut: 403 });
 	};
 	assert.equal((await deposer({ db, corps: { url: 'https://cravans.fr/pv.pdf' }, adresse: 'a', maintenant: midi, temoin: panne })).statut, 422);
 	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 0);

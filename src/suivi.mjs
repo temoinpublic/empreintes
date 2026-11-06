@@ -107,6 +107,18 @@ async function lireArticle({ db, flux, entree, connu, instant, jour, temoin }) {
 		return 'echec';
 	}
 	const etat = ['UPDATE article SET empreinte = ?, octets = ?, lu = ? WHERE flux = ? AND id = ?', entree.empreinte, lu.sha256, jour, flux, entree.id];
+	try {
+		return await ecrireLaLecture({ db, flux, entree, connu, instant, jour, lu, etat });
+	} catch {
+		// L'essai du jour est rendu : sans cela, une ecriture en panne laissait l'article
+		// ignore jusqu'au lendemain, et un contenu retire entre-temps etait perdu. Si la base
+		// refuse encore, la tournee suivante n'y peut rien de plus : l'echec reste compte.
+		await faire(db, 'UPDATE article SET essaye = ? WHERE flux = ? AND id = ?', connu?.essaye ?? null, flux, entree.id).catch(() => null);
+		return 'echec';
+	}
+}
+
+async function ecrireLaLecture({ db, flux, entree, connu, instant, jour, lu, etat }) {
 	if (connu?.octets === lu.sha256) {
 		await faire(db, ...etat);
 		return 'inchangee';
