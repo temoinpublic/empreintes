@@ -106,7 +106,8 @@ test("un article ne se dit lu qu'avec sa version : une panne a l'ecriture laisse
 	db.batch = async () => {
 		throw new Error('D1 indisponible');
 	};
-	await assert.rejects(tourneeDesFlux({ db, maintenant: jour(12), temoin: w.temoin }), /D1 indisponible/);
+	await tourneeDesFlux({ db, maintenant: jour(12), temoin: w.temoin });
+	assert.match(db.sqlite.prepare('SELECT etat FROM flux').get().etat, /1 echecs/, 'l echec d ecriture est compte');
 	assert.equal(db.sqlite.prepare('SELECT octets FROM article').get().octets, null, 'pas d empreinte sans version');
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 0);
 	db.batch = batch;
@@ -226,4 +227,20 @@ test("le registre public d'un editeur liste ses versions sans adresse ni titre ;
 	const vide = pageEditeur({ flux: { id: 'f', inscrit: '2026-10-12T00:00:00Z', retire: null }, total: 0, versions: [] });
 	assert.match(vide, /Aucune version datée/);
 	assert.match(vide, /noindex/);
+});
+
+test('une version que la base refuse rend l essai du jour : la tournee suivante la relit', async () => {
+	const w = web({ [FLUX]: rss([[A, 'Un']]), [A]: 'page a' });
+	const { db } = await inscrit(w);
+	const batch = db.batch.bind(db);
+	let echecs = 2; // l'ecriture, puis sa reprise dans `inserer`
+	db.batch = async (...args) => {
+		if (echecs-- > 0) throw new Error('D1 indisponible');
+		return batch(...args);
+	};
+	await tourneeDesFlux({ db, maintenant: jour(12, 13), temoin: w.temoin });
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM version').get().n, 0);
+	assert.equal(db.sqlite.prepare('SELECT essaye FROM article').get().essaye, null, 'l essai est rendu');
+	await tourneeDesFlux({ db, maintenant: jour(12, 14), temoin: w.temoin });
+	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM version').get().n, 1, 'relue le meme jour');
 });
