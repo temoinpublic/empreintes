@@ -1040,12 +1040,14 @@ export function itemsDesActes({ entrees, nomDe = () => null }) {
  */
 export function pageSchemaAdresse(s) {
 	const ligne = (cellules) => `<tr>${cellules.map((c) => `<td>${c}</td>`).join('')}</tr>`;
-	const table = (entetes, lignes) => `<table>
+	const table = (entetes, lignes) => `<div class="defile">
+<table>
 <thead><tr>${entetes.map((t) => `<th>${t}</th>`).join('')}</tr></thead>
 <tbody>
 ${lignes.map(ligne).join('\n')}
 </tbody>
-</table>`;
+</table>
+</div>`;
 	const code = (t) => `<code>${echapper(t)}</code>`;
 	// Le fichier de schema reste plat (une donnee) ; la page soude ce qu'elle en affiche.
 	const souder = (t) => t.replace(/ ([:;?!])/g, `${NBSP}$1`);
@@ -1056,7 +1058,7 @@ ${lignes.map(ligne).join('\n')}
 		corps: `<h1>Adresse pérenne d’un acte local</h1>
 <p class="sous-titre">Version ${s.VERSION_DU_SCHEMA}, licence ouverte Etalab 2.0, <a href="${s.CHEMIN_DU_SCHEMA}">${s.CHEMIN_DU_SCHEMA}</a></p>
 <p><code class="racine">${echapper(s.GABARIT)}</code></p>
-<p><a href="${s.EXEMPLE}">${s.EXEMPLE}</a></p>
+<p><a class="racine" href="${s.EXEMPLE}">${s.EXEMPLE}</a></p>
 <h2>Segments</h2>
 ${table(['Segment', 'Motif', 'Valeur', 'ELI'], s.SEGMENTS.map((g) => [code(`{${g.nom}}`), code(g.motif), souder(g.porte), code(g.eli)]))}
 <h2>Résolution</h2>
