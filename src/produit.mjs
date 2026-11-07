@@ -47,13 +47,16 @@ export function lireProduit(corps, erreurs) {
  */
 export async function relireLeRecuDuProduit(url, attendu, lire, hacher) {
 	let reponse;
+	let octets;
 	try {
 		reponse = await lire(url);
+		if (!reponse.ok) return { etat: 'illisible', statut: reponse.status };
+		// Un corps qui se coupe apres les en-tetes est une lecture illisible, pas une promesse rejetee.
+		octets = new Uint8Array(await reponse.arrayBuffer());
 	} catch {
-		return { etat: 'illisible', statut: null };
+		return { etat: 'illisible', statut: reponse?.status ?? null };
 	}
-	if (!reponse.ok) return { etat: 'illisible', statut: reponse.status };
-	const lu = await hacher(new Uint8Array(await reponse.arrayBuffer()));
+	const lu = await hacher(octets);
 	return { etat: lu === attendu ? 'identique' : 'different' };
 }
 

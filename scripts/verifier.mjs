@@ -9,7 +9,7 @@
 // Sortie 0 : servi tel quel (ou chaine intacte) ; 1 : inconnu ou rompu ; 2 : usage.
 
 import fs from 'node:fs';
-import { sha256, lecteurDeReleves, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '../src/chaine.mjs';
+import { sha256, lecteurDeReleves, lieJusquA, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '../src/chaine.mjs';
 import { CLES_SLH_DU_JOURNAL, cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '../src/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '../src/horodatage.mjs';
 
@@ -28,9 +28,10 @@ async function lireOctets(site, chemin) {
 }
 
 /** L'horodatage qualifie qui couvre le tour `id` : le premier a partir de lui, relu contre sa racine ; null sans. */
-async function horodatageDu(site, tours, id) {
+async function horodatageDu(site, tours, id, racine) {
 	const tour = tourHorodate(tours, id);
 	if (!tour) return null;
+	if (!(await lieJusquA(tours, id, tour.id, racine))) return { ok: false, tour: tour.id, instant: null, autorite: null, raisons: ['la chaine ne relie pas ce tour au tour horodate'] };
 	const v = await verifierHorodatage(await lireOctets(site, `/empreintes/${tour.id}.racine.tsr`), tour.racine);
 	return { ok: v.ok, tour: tour.id, instant: v.instant, autorite: v.autorite, raisons: v.raisons };
 }
@@ -70,7 +71,7 @@ export async function verifierEmpreinte(site, empreinte) {
 		const signee = tours.find((t) => t.id === vu.premier)?.fichiers?.includes(`${vu.premier}.racine.jws`);
 		const signature = signee ? await verifierSignatureDuJournal(await lireTexte(site, `/empreintes/${vu.premier}.racine.jws`), releve.racine, certificatDuTour(vu.premier)) : null;
 		const postQuantique = await signatureSlhDu(site, tours.find((t) => t.id === vu.premier), releve.racine);
-		const horodatage = await horodatageDu(site, tours, vu.premier);
+		const horodatage = await horodatageDu(site, tours, vu.premier, releve.racine);
 		const ok = Boolean(place?.ok) && signature?.ok !== false && postQuantique?.ok !== false && horodatage?.ok !== false;
 		constats.push({ ...vu, racine: releve.racine, signature: signature && { ok: signature.ok, sigT: signature.sigT, raisons: signature.raisons }, postQuantique, horodatage, ok });
 	}

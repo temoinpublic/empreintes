@@ -1,4 +1,4 @@
-import { sha256, lecteurDeReleves, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
+import { sha256, lecteurDeReleves, lieJusquA, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
 import { cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '/horodatage.mjs';
 import { montrer, suivreLeChoix } from '/fichier.js';
@@ -58,10 +58,13 @@ async function signatureSlhDe(tour, racine) {
 }
 
 /** L'horodatage qualifie qui couvre le tour : le premier a partir de lui, relu contre sa racine ; null sans. */
-async function horodatageDu(id) {
-	const tour = tourHorodate(await lesTours(), id);
+async function horodatageDu(id, racine) {
+	const tours = await lesTours();
+	const tour = tourHorodate(tours, id);
 	if (!tour) return null;
 	const nom = `${tour.id}.racine.tsr`;
+	// Un tour horodate plus tard ne couvre ce tour-ci que par des liens intacts.
+	if (!(await lieJusquA(tours, id, tour.id, racine))) return { ok: false, raisons: ['la chaine ne relie pas ce tour au tour horodate'], instant: null, nom };
 	return { ...(await verifierHorodatage(await octets(`/empreintes/${nom}`), tour.racine)), nom };
 }
 
@@ -71,7 +74,7 @@ async function constat(empreinte, vu) {
 	const tour = (await lesTours()).find((t) => t.id === vu.premier);
 	const signature = tour ? await signatureDe(tour, releve.racine) : null;
 	const signatureSlh = tour ? await signatureSlhDe(tour, releve.racine) : null;
-	const horodatage = await horodatageDu(vu.premier);
+	const horodatage = await horodatageDu(vu.premier, releve.racine);
 	const ok = place?.ok && signature?.ok !== false && signatureSlh?.ok !== false && horodatage?.ok !== false;
 	const preuves = (tour?.fichiers ?? [])
 		.filter((f) => f.endsWith('.ots') || f.endsWith('.tsr'))
