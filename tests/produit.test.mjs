@@ -147,4 +147,15 @@ test('le recu d un produit se relit a son adresse : identique, different, ou ill
 		throw new TypeError('Failed to fetch');
 	};
 	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, refuse, sha256), { etat: 'illisible', statut: null });
+	const coupe = async () =>
+		new Response(
+			new ReadableStream({
+				start(c) {
+					c.enqueue(octets.slice(0, 3));
+					c.error(new Error('coupure'));
+				}
+			}),
+			{ status: 200 }
+		);
+	assert.deepEqual(await relireLeRecuDuProduit(URL_RECU, attendu, coupe, sha256), { etat: 'illisible', statut: 200 });
 });

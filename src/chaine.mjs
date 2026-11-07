@@ -161,6 +161,22 @@ export async function verifierChaine(ids, lire, { surTour } = {}) {
 }
 
 /**
+ * Vrai quand le tour `jusqua` engage le tour `depuis` : `depuis` porte `racine`,
+ * et chaque tour qui suit, jusqu'a `jusqua` compris, porte la racine du tour
+ * d'avant et sa propre racine chainee. Un horodatage d'un tour plus tard ne
+ * couvre un tour plus tot qu'a cette condition.
+ */
+export async function lieJusquA(tours, depuis, jusqua, racine) {
+	const i = tours.findIndex((t) => t.id === depuis);
+	const k = tours.findIndex((t) => t.id === jusqua);
+	if (i < 0 || k < i || tours[i].racine !== racine) return false;
+	for (let j = i + 1; j <= k; j += 1) {
+		if (tours[j].precedente !== tours[j - 1].racine || (await chainer(tours[j])) !== tours[j].racine) return false;
+	}
+	return true;
+}
+
+/**
  * Verifie la chaine sur les seuls resumes des tours de `/tours.json` (`id`,
  * `precedente`, `arbre`, `racine`) : chaque racine recalculee, chaque
  * `precedente` egale a la racine d'avant, le premier sur la racine nulle. Ne

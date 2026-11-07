@@ -26,5 +26,7 @@ if (relecture) {
 		if (r.etat === 'identique') relecture.textContent = T.recu.produitIdentique;
 		else if (r.etat === 'different') relecture.textContent = T.recu.produitDifferent;
 		else relecture.textContent = T.recu.produitIllisible(r.statut);
+	}).catch(() => {
+		relecture.textContent = T.recu.produitIllisible(null);
 	});
 }

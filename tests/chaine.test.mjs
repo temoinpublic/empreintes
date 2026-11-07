@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, estUnDelta, lecteurDeReleves, placeDuFichier, racineDepuisChemin, reconstruireReleve, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
+import { RACINE_NULLE, arbre, cheminDAudit, chainer, empreinteDeFeuille, estUnDelta, lecteurDeReleves, lieJusquA, placeDuFichier, racineDepuisChemin, reconstruireReleve, verifierChaine, verifierChaineLegere, verifierLiens, verifierReleve } from '../src/chaine.mjs';
 
 const DONNEES = path.resolve(import.meta.dirname, '..', 'donnees', 'empreintes');
 // Chaque tour publie, plein ou en delta : un releve plein suit le dernier delta de la veille, pas le plein d'avant.
@@ -241,4 +241,18 @@ test("la chaine entiere se verifie quand le dernier tour n'est publie qu'en delt
 	const v = await verifierChaine(ids, lecteurDeReleves(lireFichier));
 	assert.deepEqual(v.raisons, []);
 	assert.equal(v.tours, ids.length);
+});
+
+test('un tour horodate plus tard n engage un tour plus tot que par une chaine de liens intacts', async () => {
+	const tours = ids.map(resume);
+	const [a, b, c] = [tours[0], tours[1], tours[2]];
+	assert.equal(await lieJusquA(tours, a.id, c.id, a.racine), true);
+	assert.equal(await lieJusquA(tours, a.id, a.id, a.racine), true);
+	assert.equal(await lieJusquA(tours, a.id, c.id, h(9)), false);
+	assert.equal(await lieJusquA(tours, c.id, a.id, c.racine), false);
+	assert.equal(await lieJusquA(tours, 'absent', c.id, a.racine), false);
+	const rompue = [a, { ...b, precedente: h(8) }, c];
+	assert.equal(await lieJusquA(rompue, a.id, c.id, a.racine), false);
+	const recalculee = [a, { ...b, arbre: h(7) }, c];
+	assert.equal(await lieJusquA(recalculee, a.id, c.id, a.racine), false);
 });
