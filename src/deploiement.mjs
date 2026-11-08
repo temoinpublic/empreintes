@@ -43,6 +43,32 @@ export async function lireLaTete(chercher = fetch) {
 	throw new Error(`${derniere?.message ?? derniere} apres ${TENTATIVES} tentatives : github.com`);
 }
 
+/** La tete reussie se garde 2 min, l'echec 1 min : jamais plus d'une lecture de GitHub a la fois. */
+export const TETE_GARDEE_MS = 2 * MINUTE;
+export const ECHEC_GARDE_MS = MINUTE;
+
+/**
+ * `lire` partage par tous les `/health` : sans elle, chaque sonde attendait
+ * GitHub jusqu'a 16 s (2026-11-08). `horloge` remplace `Date.now` dans les tests.
+ */
+export function teteEnMemoire(lire, horloge = Date.now) {
+	let memoire = null;
+	return () => {
+		if (memoire && horloge() < memoire.jusqua) return memoire.promesse;
+		const promesse = lire();
+		memoire = { promesse, jusqua: Infinity };
+		promesse.then(
+			() => {
+				memoire.jusqua = horloge() + TETE_GARDEE_MS;
+			},
+			() => {
+				memoire.jusqua = horloge() + ECHEC_GARDE_MS;
+			}
+		);
+		return promesse;
+	};
+}
+
 const meme = (a, b) => a.startsWith(b) || b.startsWith(a);
 const court = (sha) => sha.slice(0, 7);
 

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { FLUX_DE_MAIN, RETARD_TOLERE_MIN, commitsDuFlux, juger, lireLaTete, sansTete } from '../src/deploiement.mjs';
+import { ECHEC_GARDE_MS, FLUX_DE_MAIN, RETARD_TOLERE_MIN, TETE_GARDEE_MS, commitsDuFlux, juger, lireLaTete, sansTete, teteEnMemoire } from '../src/deploiement.mjs';
 import { onRequestGet as sonde } from '../functions/health.js';
 
 const A = 'a'.repeat(40);
@@ -70,6 +70,31 @@ test('la tete se lit dans le flux, est relue une fois, et l echec nomme l hote',
 		{ message: 'fetch failed apres 2 tentatives : github.com' }
 	);
 	await assert.rejects(lireLaTete(async () => new Response('', { status: 404 })), { message: 'HTTP 404 apres 2 tentatives : github.com' });
+});
+
+test('la tete se lit une fois pour toutes les sondes en vol et se garde, l echec moins longtemps', async () => {
+	let t = 0;
+	let lectures = 0;
+	let casse = false;
+	const lire = teteEnMemoire(async () => {
+		lectures += 1;
+		if (casse) throw new Error('HTTP 504');
+		return [{ sha: C, date: '2026-10-25T23:00:00Z' }];
+	}, () => t);
+	await Promise.all([lire(), lire(), lire()]);
+	assert.equal(lectures, 1, 'trois sondes en vol, une seule lecture de GitHub');
+	t = TETE_GARDEE_MS - 1;
+	await lire();
+	assert.equal(lectures, 1);
+	t = TETE_GARDEE_MS;
+	casse = true;
+	await assert.rejects(lire(), { message: 'HTTP 504' });
+	await assert.rejects(lire(), { message: 'HTTP 504' });
+	assert.equal(lectures, 2, 'l echec se garde aussi');
+	t += ECHEC_GARDE_MS;
+	casse = false;
+	await lire();
+	assert.equal(lectures, 3);
 });
 
 const actifs = (version) => ({ fetch: async (url) => (new URL(url).pathname === '/version.json' ? Response.json(version) : new Response('', { status: 404 })) });

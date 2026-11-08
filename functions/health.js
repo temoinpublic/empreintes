@@ -2,7 +2,7 @@
 import { avecLaBase, verdict } from '../src/journal.mjs';
 import { comptesDAttente } from '../src/attente.mjs';
 import { etatDeLApi } from '../src/client.mjs';
-import { juger, lireLaTete, sansTete } from '../src/deploiement.mjs';
+import { juger, lireLaTete, sansTete, teteEnMemoire } from '../src/deploiement.mjs';
 import { MARQUE, baseCoupee, lectureCoupee } from '../src/exercice.mjs';
 import { jouerLesParcours } from '../src/parcours.mjs';
 
@@ -10,6 +10,8 @@ async function lireAsset(env, url, chemin) {
 	const r = await env.ASSETS.fetch(new URL(chemin, url));
 	return r.ok ? r.json() : null;
 }
+
+const teteGardee = teteEnMemoire(() => lireLaTete());
 
 const NIVEAUX = ['ok', 'attention', 'rouge'];
 const pire = (a, b) => NIVEAUX[Math.max(NIVEAUX.indexOf(a), NIVEAUX.indexOf(b))];
@@ -45,7 +47,7 @@ export async function corpsDeLaSante({ request, env, coupe = [], garder = true }
 	const journal = avecLaBase(verdict(tours, new Date(), liste?.copie ?? null), attente !== undefined);
 	const lire = coupe.includes('verificateur') ? lectureCoupee : (chemin) => env.ASSETS.fetch(new URL(chemin, request.url));
 	const db = env.DEPOTS && coupe.includes('depot') ? baseCoupee() : env.DEPOTS;
-	const lireTete = coupe.includes('tete') ? teteCoupee : (env.LIRE_TETE ?? lireLaTete);
+	const lireTete = coupe.includes('tete') ? teteCoupee : (env.LIRE_TETE ?? teteGardee);
 	const [deploiement, parcours] = await Promise.all([jugerLeDeploiement(lireTete, version), jouerLesParcours({ lire, tours, db, garder })]);
 	return {
 		service: 'empreintes',
