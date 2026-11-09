@@ -1,0 +1,17 @@
+{
+ "jour": "2026-11-09",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "choisir-service-public-offres",
+   "url": "https://static.data.gouv.fr/resources/les-offres-diffusees-sur-choisir-le-service-public/20261102-070124/offres-datagouv-20261011.csv",
+   "date": "2026-11-09",
+   "http": null,
+   "avant": {
+    "jour": "2026-11-02",
+    "sha256": "5c6ec5c17eb6e6ce537bcf180ffd91a0fbfbee58ed655f46467a407dde87570c"
+   },
+   "apres": null
+  }
+ ]
+}
