@@ -1,0 +1,41 @@
+{
+ "jour": "2026-11-10",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2024/07/ccab88e8-f79b-429a-8c30-ec1d0c1e73a6-20250708Statuts-Novapierre-Residentiel.pdf",
+   "date": "2026-11-10",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-21",
+    "sha256": "5c74c7299d1985fdb83443b3601e5a297d2918c670de53c20528ac6e8ff2b6fe"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2025/10/35b8b0c7-8c01-4ad8-8b3b-0c69d457735a-Flyer-Novapierre-Residentiel-30-06-2025.pdf",
+   "date": "2026-11-10",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "71cb883fff4b5e28ebf1ef4567b84c808b98796ffddababf757ab76b7fcfdf51"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2025/10/7108f0d3-d728-45a0-a728-42b3ea50ab1e-Flyer-Novapierre-1-30-06-2025.pdf",
+   "date": "2026-11-10",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "ff0486f08749eae1b3b041aab7627395355a5a05a20c1eb28a2c138fea844493"
+   },
+   "apres": null
+  }
+ ]
+}
