@@ -104,6 +104,30 @@
   "extension": "json"
  },
  {
+  "nom": "presidentielle-2027-melenchon-donbass-franceinfo",
+  "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/c-est-au-peuple-de-decider-lui-meme-ce-qu-il-veut-on-vous-resume-la-polemique-suscitee-par-les-propos-de-jean-luc-melenchon-sur-l-ukraine_8276072.html",
+  "famille": "reecrit",
+  "theme": "presidentielle-2027",
+  "pourquoi": "La polemique du Donbass (meeting du Bourget, 7 novembre 2026) : ce que le candidat et la presse en disent tel jour, relu chaque jour, car une page reecrite ou retiree apres un dementi ne garde aucune version.",
+  "extension": "html"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-donbass-lcp",
+  "url": "https://lcp.fr/actualites/accuse-de-se-faire-le-porte-parole-du-kremlin-jean-luc-melenchon-replique-sur-l-ukraine",
+  "famille": "reecrit",
+  "theme": "presidentielle-2027",
+  "pourquoi": "La polemique du Donbass (meeting du Bourget, 7 novembre 2026) : ce que le candidat et la presse en disent tel jour, relu chaque jour, car une page reecrite ou retiree apres un dementi ne garde aucune version.",
+  "extension": "html"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-ukraine-mise-au-point",
+  "url": "https://lafranceinsoumise.fr/2026/11/09/mise-au-point-sur-la-position-de-la-france-insoumise-et-son-candidat-sur-la-guerre-en-ukraine/",
+  "famille": "reecrit",
+  "theme": "presidentielle-2027",
+  "pourquoi": "La polemique du Donbass (meeting du Bourget, 7 novembre 2026) : ce que le candidat et la presse en disent tel jour, relu chaque jour, car une page reecrite ou retiree apres un dementi ne garde aucune version.",
+  "extension": "html"
+ },
+ {
   "nom": "qualiopi-organismes-formation",
   "url": "https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv",
   "famille": "reecrit",
