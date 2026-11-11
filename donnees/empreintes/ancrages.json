@@ -1,5 +1,5 @@
 {
- "dernier": "20261111T124417Z",
+ "dernier": "20261111T161607Z",
  "tours": {
   "20261011T041935Z": {
    "ots": "bitcoin",
@@ -3045,11 +3045,11 @@
    "bloc": 975429
   },
   "20261111T101931Z": {
-   "ots": "calendrier",
+   "ots": "bitcoin",
    "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
    "racine": "46062fb2e0007b903f66606d9df6874a3c77685c06550b4d611e07052a125d1c",
    "feuilles": 16044,
-   "maj": "2026-11-11T12:02:05.075Z",
+   "maj": "2026-11-11T17:55:31.607Z",
    "signature": {
     "etat": "signe",
     "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
@@ -3063,18 +3063,41 @@
    "horodatage": {
     "etat": "deja",
     "tour": "20261111T041353Z"
-   }
+   },
+   "bloc": 975441
   },
   "20261111T124417Z": {
-   "ots": "calendrier",
+   "ots": "bitcoin",
    "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
    "racine": "1daed304a66a01bceeea920080b02b1e22361ec7323be830d287e5d268c4a319",
    "feuilles": 16086,
-   "maj": "2026-11-11T14:14:23.038Z",
+   "maj": "2026-11-11T17:55:31.607Z",
    "signature": {
     "etat": "signe",
     "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
     "sigT": "2026-11-11T14:14:23Z"
+   },
+   "signatureSlh": {
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
+   },
+   "horodatage": {
+    "etat": "deja",
+    "tour": "20261111T041353Z"
+   },
+   "bloc": 975445
+  },
+  "20261111T161607Z": {
+   "ots": "calendrier",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "f2811ec8995c87b5792d436f820e5dccae527e480b67017bdc0db135c4c7f2ce",
+   "feuilles": 16116,
+   "maj": "2026-11-11T17:55:31.607Z",
+   "signature": {
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-11-11T17:55:31Z"
    },
    "signatureSlh": {
     "etat": "signe",
