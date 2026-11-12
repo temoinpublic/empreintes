@@ -9,6 +9,7 @@
 // de l'editeur (morceau 3), jamais un titre.
 
 import { sha256 } from './chaine.mjs';
+import { apresLeCurseur, avantLeCurseur, pageDe } from './curseur.mjs';
 import { idDuRecu, jourDe, recuDe, selAleatoire } from './depot.mjs';
 import { LECTURES_PAR_JOUR, empreinteDEntree, idDArticle, lireFlux, planDuJour, repriseApres } from './flux.mjs';
 import { inserer, temoigner } from './service.mjs';
@@ -65,6 +66,10 @@ export async function inscrireFlux({ db, corps, maintenant = new Date(), temoin 
 	}
 	const jeton = selAleatoire() + selAleatoire();
 	await faire(db, 'DELETE FROM flux WHERE id = ?', id);
+	// Une reinscription est une generation neuve : ses articles se relisent comme
+	// jamais lus, sinon des octets inchanges ne lui donnaient aucun recu (audit Codex
+	// du 2026-11-11). Les versions d'avant restent dans l'arbre.
+	await faire(db, 'UPDATE article SET empreinte = NULL, octets = NULL, essaye = NULL, lu = NULL WHERE flux = ?', id);
 	await faire(db, 'INSERT INTO flux (id, url, jeton, inscrit) VALUES (?, ?, ?, ?)', id, admise.url, await sha256(jeton), maintenant.toISOString());
 	return reponse(201, { id, jeton, format: flux.format, entrees: flux.entrees.length, registre: `/editeur/${id}`, prive: `/editeur/${id}#${jeton}` });
 }
@@ -174,34 +179,57 @@ export const REGISTRE_MAX = 2000;
  * Le registre public d'un flux : ses versions (article, jour, place,
  * empreinte, recu), sans adresse ni titre ; null pour un flux inconnu.
  */
-export async function registreDeLEditeur({ db, id, limite = REGISTRE_MAX }) {
+export async function registreDeLEditeur({ db, id, limite = REGISTRE_MAX, avant = null }) {
 	const flux = await un(db, 'SELECT id, inscrit, retire FROM flux WHERE id = ?', String(id ?? ''));
 	if (!flux) return null;
 	const total = (await un(db, 'SELECT COUNT(*) AS n FROM version WHERE flux = ?', flux.id)).n;
-	const versions = await tous(
+	const borne = avantLeCurseur(avant);
+	const lues = await tous(
 		db,
-		'SELECT v.article, d.jour, d.place, d.sha256, d.recu FROM version v JOIN depot d ON d.recu = v.recu WHERE v.flux = ? ORDER BY d.jour DESC, d.place DESC LIMIT ?',
+		`SELECT v.article, d.jour, d.place, d.sha256, d.recu FROM version v JOIN depot d ON d.recu = v.recu WHERE v.flux = ?${borne.sql} ORDER BY d.jour DESC, d.place DESC LIMIT ?`,
 		flux.id,
-		limite
+		...borne.args,
+		limite + 1
 	);
-	return { flux, total, versions };
+	const { lignes, suivant } = pageDe(lues, limite);
+	return { flux, total, versions: lignes, suivant, suite: Boolean(avant) };
 }
 
 /** Le registre prive d'un flux, sur presentation de son jeton : l'adresse du flux et de chaque article, et chaque recu. */
-export async function registrePrive({ db, id, jeton }) {
+/** Au plus tant de recus par lot de l'export prive ; `suivant` donne le lot d'apres. */
+export const EXPORT_MAX = 2000;
+
+export async function registrePrive({ db, id, jeton, apres = null, limite = EXPORT_MAX }) {
 	const flux = await un(db, 'SELECT id, url, jeton, inscrit, retire, lu, etat FROM flux WHERE id = ?', String(id ?? ''));
 	if (!flux) return refus(404, 'flux inconnu');
 	if (!jeton || (await sha256(jeton)) !== flux.jeton) return refus(403, 'jeton refuse');
 	// Une reinscription apres un retrait ouvre un registre neuf : son jeton ne lit
-	// que ce qui a ete depose depuis, jamais les recus de l'inscription d'avant.
+	// que ce qui a ete depose depuis, jamais les recus de l'inscription d'avant. A
+	// l'INSTANT pres et non au jour : retiree et reprise le meme jour, l'inscription
+	// neuve lisait les recus de la precedente (audit Codex du 2026-11-11).
 	const depuis = jourDe(flux.inscrit);
+	const DEPUIS_L_INSCRIPTION = "v.flux = ? AND v.jour >= ? AND json_extract(v.contenu, '$.depose') >= ?";
 	const articles = await tous(
 		db,
-		'SELECT a.id, a.lien, a.lu FROM article a WHERE a.flux = ? AND EXISTS (SELECT 1 FROM version v WHERE v.flux = a.flux AND v.article = a.id AND v.jour >= ?) ORDER BY a.id',
+		`SELECT a.id, a.lien, a.lu FROM article a WHERE a.flux = ? AND EXISTS (SELECT 1 FROM version v WHERE ${DEPUIS_L_INSCRIPTION} AND v.article = a.id) ORDER BY a.id`,
 		flux.id,
-		depuis
+		flux.id,
+		depuis,
+		flux.inscrit
 	);
-	const recus = await tous(db, 'SELECT recu, article, contenu FROM version WHERE flux = ? AND jour >= ? ORDER BY jour, recu', flux.id, depuis);
+	// Par lots bornes, comme les pages publiques : charge d'un coup, l'export d'un flux
+	// ancien finissait par ne plus tenir dans une invocation (audit Codex du 2026-11-11).
+	const borne = apresLeCurseur(apres);
+	const lus = await tous(
+		db,
+		`SELECT v.recu, v.article, v.contenu, d.jour, d.place FROM version v JOIN depot d ON d.recu = v.recu WHERE ${DEPUIS_L_INSCRIPTION}${borne.sql} ORDER BY d.jour, d.place LIMIT ?`,
+		flux.id,
+		depuis,
+		flux.inscrit,
+		...borne.args,
+		limite + 1
+	);
+	const { lignes, suivant } = pageDe(lus, limite);
 	const public_ = { id: flux.id, url: flux.url, inscrit: flux.inscrit, retire: flux.retire, lu: flux.lu, etat: flux.etat };
-	return reponse(200, { flux: public_, articles, recus: recus.map((r) => ({ id: r.recu, article: r.article, recu: JSON.parse(r.contenu) })) });
+	return reponse(200, { flux: public_, articles, recus: lignes.map((r) => ({ id: r.recu, article: r.article, recu: JSON.parse(r.contenu) })), suivant });
 }

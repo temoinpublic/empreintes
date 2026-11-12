@@ -33,7 +33,15 @@ function bouton(texte, principal, action) {
 async function afficher(id, entete) {
 	const r = await fetch(`/api/flux/${id}`, { headers: entete });
 	if (!r.ok) throw new Error(String(r.status));
-	const { flux, articles, recus } = await r.json();
+	const { flux, articles, recus, suivant } = await r.json();
+	// L'export prive vient par lots : le telechargement les reunit tous.
+	for (let apres = suivant; apres; ) {
+		const lot = await fetch(`/api/flux/${id}?apres=${encodeURIComponent(apres)}`, { headers: entete });
+		if (!lot.ok) throw new Error(String(lot.status));
+		const suite = await lot.json();
+		recus.push(...suite.recus);
+		apres = suite.suivant;
+	}
 	const liste = el('ul');
 	for (const a of articles) {
 		const li = el('li');

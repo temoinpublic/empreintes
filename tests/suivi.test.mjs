@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { baseDeTest } from './d1.mjs';
 import { FLUX_MAX, inscrireFlux, registreDeLEditeur, registrePrive, retirerFlux, tourneeDesFlux, idDuFlux } from '../src/suivi.mjs';
 import { pageEditeur } from '../src/pages.mjs';
+import { lireCurseur } from '../src/curseur.mjs';
 import { onRequestGet as pageDeLEditeur } from '../functions/editeur/[id].js';
 import { deposer, fichierDuJour, temoigner } from '../src/service.mjs';
 import { lireFichierDuJour } from '../src/depot.mjs';
@@ -243,4 +244,42 @@ test('une version que la base refuse rend l essai du jour : la tournee suivante 
 	assert.equal(db.sqlite.prepare('SELECT essaye FROM article').get().essaye, null, 'l essai est rendu');
 	await tourneeDesFlux({ db, maintenant: jour(12, 14), temoin: w.temoin });
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM version').get().n, 1, 'relue le meme jour');
+});
+
+test("retire puis repris le meme jour, le flux ouvre une generation neuve : ni les recus d'avant, ni des articles tenus pour lus", async () => {
+	const w = web({ [FLUX]: rss([[A, 'Un']]), [A]: 'page a' });
+	const { db, id, jeton } = await inscrit(w);
+	await tourneeDesFlux({ db, maintenant: jour(12, 13), temoin: w.temoin });
+	assert.equal((await retirerFlux({ db, id, jeton, maintenant: jour(12, 14) })).statut, 200);
+	const reprise = await inscrireFlux({ db, corps: { url: FLUX }, maintenant: jour(12, 15), temoin: w.temoin });
+	const neuf = JSON.parse(reprise.corps).jeton;
+	const avant = JSON.parse((await registrePrive({ db, id, jeton: neuf })).corps);
+	assert.deepEqual([avant.articles, avant.recus], [[], []], 'le jeton neuf ne lit pas les recus du matin');
+	await tourneeDesFlux({ db, maintenant: jour(13), temoin: w.temoin });
+	const apres = JSON.parse((await registrePrive({ db, id, jeton: neuf })).corps);
+	assert.equal(apres.recus.length, 1, 'l article inchange recoit son recu dans la generation neuve');
+	assert.deepEqual(apres.articles.map((a) => a.lien), [A]);
+});
+
+test("le registre public et l'export prive se lisent par lots bornes, sans rien perdre des anciennes versions", async () => {
+	const w = web({ [FLUX]: rss([[A, 'Un'], [B, 'Deux']]), [A]: 'a1', [B]: 'b1' });
+	const { db, id, jeton } = await inscrit(w);
+	await tourneeDesFlux({ db, maintenant: jour(12), temoin: w.temoin });
+	w.pages[A] = 'a2';
+	await tourneeDesFlux({ db, maintenant: jour(19), temoin: w.temoin });
+	const premiere = await registreDeLEditeur({ db, id, limite: 2 });
+	assert.equal(premiere.versions.length, 2);
+	assert.match(premiere.suivant, /^2026-10-12\.\d+$/);
+	assert.match(pageEditeur(premiere), new RegExp(`<a href="/editeur/${id}\\?avant=${premiere.suivant}" rel="next">Versions plus anciennes</a>`));
+	const seconde = await registreDeLEditeur({ db, id, limite: 2, avant: lireCurseur(premiere.suivant) });
+	assert.equal(seconde.versions.length, 1);
+	assert.equal(seconde.suivant, null);
+	assert.match(pageEditeur(seconde), /noindex/);
+	const lot = JSON.parse((await registrePrive({ db, id, jeton, limite: 2 })).corps);
+	assert.equal(lot.recus.length, 2);
+	const reste = JSON.parse((await registrePrive({ db, id, jeton, limite: 2, apres: lireCurseur(lot.suivant) })).corps);
+	assert.equal(reste.recus.length, 1);
+	assert.equal(reste.suivant, null);
+	assert.equal(new Set([...lot.recus, ...reste.recus].map((r) => r.id)).size, 3);
+	assert.equal(lireCurseur('pas un curseur'), null);
 });

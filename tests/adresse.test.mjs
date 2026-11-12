@@ -360,3 +360,14 @@ test("la page dit la relecture de la source : le meme document, ou l'adresse qui
 	const remplacee = pageAdresse({ acte, versions: [{ ...acte }, { ...acte, recu: 'c'.repeat(64), jour: '2026-10-20', sha256: B }], relecture: { jour: '2026-10-30', depuis: '2026-10-23', statut: 404 } });
 	assert.doesNotMatch(remplacee, /Relecture/, 'une version plus recente l emporte');
 });
+
+test('deux depots des memes octets le meme jour ne rendent pas une liste de liens identiques', async () => {
+	const { db, ids } = await base();
+	await dater(db, { n: 4, url: 'https://www.cravans.fr/pv-1-copie.pdf', sha256: A, jour: '2026-10-11' });
+	const r = await repondre(db, '/actes/17133/2026-10-11/deliberation-abcdef012344');
+	assert.equal(r.statut, 200);
+	assert.match(r.corps, new RegExp(ids.a));
+	const liste = await repondre(db, '/actes/17133/2026-10-11/abcdef01');
+	assert.equal(liste.statut, 300);
+	assert.match(liste.corps, /<h1>2 actes à cette adresse<\/h1>/);
+});

@@ -1,11 +1,12 @@
 // GET /api/flux/<id> : le registre prive d'un flux ; DELETE : le retirer, les versions deja deposees restent.
 // Les deux demandent `authorization: Bearer <jeton>`.
+import { lireCurseur } from '../../../src/curseur.mjs';
 import { registrePrive, retirerFlux } from '../../../src/suivi.mjs';
 
 const jetonDe = (request) => (request.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '');
 
 export async function onRequestGet({ request, params, env }) {
-	const r = await registrePrive({ db: env.DEPOTS, id: params.id, jeton: jetonDe(request) });
+	const r = await registrePrive({ db: env.DEPOTS, id: params.id, jeton: jetonDe(request), apres: lireCurseur(new URL(request.url).searchParams.get('apres')) });
 	return new Response(r.corps, { status: r.statut, headers: r.entetes });
 }
 

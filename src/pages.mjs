@@ -406,7 +406,10 @@ const marqueDuPluriel = (n) => (n > 1 ? 's' : '');
 const titreDeSerie = (n) => (n ? `${nombre(n)} acte${marqueDuPluriel(n)} daté${marqueDuPluriel(n)}` : 'Aucun acte daté');
 
 /** La ligne qui dit qu'une serie est coupee, vide sinon. */
-const coupe = (serie) => (serie.total > serie.actes.length ? `<p class="compte">Les ${nombre(serie.actes.length)} plus récents sur ${nombre(serie.total)}.</p>` : '');
+const coupe = (serie) => (!serie.suite && serie.total > serie.actes.length ? `<p class="compte">Les ${nombre(serie.actes.length)} plus récents sur ${nombre(serie.total)}.</p>` : '');
+
+/** La suite d'une liste longue : un lien vers les lignes plus anciennes, quand il en reste. */
+const suite = (chemin, suivant, texte) => (suivant ? `<p class="compte"><a href="${chemin}?avant=${suivant}" rel="next">${texte}</a></p>` : '');
 
 /** L'objet d'un acte, lie a l'acte en ligne quand son adresse est connue. */
 const objetDe = (a, sansObjet = 'Sans objet') => {
@@ -433,13 +436,14 @@ export function pageCollectivite({ code, commune, serie, departement = null }) {
 ${lignes}
 </tbody>
 </table>
-${coupe(serie)}`
+${coupe(serie)}
+${suite(`/collectivite/${code}`, serie.suivant, 'Actes plus anciens')}`
 		: '';
 	return gabarit(EDITIONS.fr, {
 		titre: `${nom}, actes datés`,
 		description: `Actes de ${nom} datés à leur adresse sur le site officiel de la commune${NBSP}: date de mise en ligne, nature, objet, reçu.`,
 		chemin: `/collectivite/${code}`,
-		indexer: serie.total > 0,
+		indexer: serie.total > 0 && !serie.suite,
 		corps: `<h1>${nom}</h1>
 <p class="sous-titre">${codes}</p>
 <h2>${titreDeSerie(serie.total)}</h2>
@@ -676,7 +680,7 @@ ${lignes}
 }
 
 /** Le registre public d'un editeur : chaque version datee de ses articles, sans adresse ni titre. */
-export function pageEditeur({ flux, total, versions }, langue = 'fr') {
+export function pageEditeur({ flux, total, versions, suivant = null, suite: plusLoin = false }, langue = 'fr') {
 	const e = EDITIONS[langue];
 	const parArticle = new Map();
 	for (const v of versions) parArticle.set(v.article, (parArticle.get(v.article) ?? 0) + 1);
@@ -694,7 +698,8 @@ export function pageEditeur({ flux, total, versions }, langue = 'fr') {
 ${lignes}
 </tbody>
 </table>
-${total > versions.length ? `<p class="compte">${e.editeur.coupe(versions.length, total)}</p>` : ''}`
+${total > versions.length ? `<p class="compte">${e.editeur.coupe(versions.length, total)}</p>` : ''}
+${suite(`/editeur/${flux.id}`, suivant, e.editeur.plusAnciennes)}`
 		: '';
 	const inscrit = e.jour(flux.inscrit.slice(0, 10));
 	const etat = flux.retire ? e.editeur.suiviDuAu(inscrit, e.jour(flux.retire.slice(0, 10))) : e.editeur.suiviDepuis(inscrit);
@@ -704,7 +709,7 @@ ${total > versions.length ? `<p class="compte">${e.editeur.coupe(versions.length
 		description: e.editeur.description(flux.id),
 		chemin,
 		chemins: { fr: chemin, de: chemin },
-		indexer: total > 0,
+		indexer: total > 0 && !plusLoin,
 		script: '<script type="module" src="/editeur.js"></script>\n',
 		corps: `<h1>${e.editeur.h1}</h1>
 <p class="sous-titre">${e.editeur.flux(flux.id, etat)}</p>

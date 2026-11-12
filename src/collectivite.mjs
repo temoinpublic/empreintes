@@ -27,14 +27,14 @@ const renvoi = (location) => ({ statut: 301, corps: '', entetes: { location, 'ca
  * La reponse a `/collectivite/<code>` : `{ statut, corps, entetes }`.
  * `commune(code)` rend `{ nom, insee, siren }` ou null.
  */
-export async function reponseCollectivite({ db, code, commune }) {
+export async function reponseCollectivite({ db, code, commune, avant = null }) {
 	const lu = String(code ?? '').toUpperCase();
 	if (!estUnInsee(lu) && !estUnSiren(lu)) return introuvable();
 	const fiche = await commune(lu);
 	const canonique = fiche?.insee ?? lu;
 	if (canonique !== code) return renvoi(`/collectivite/${canonique}`);
 	const codes = [canonique, fiche?.siren].filter(Boolean);
-	const serie = await serieDeLaCollectivite({ db, codes });
+	const serie = await serieDeLaCollectivite({ db, codes, avant });
 	const departement = estUnInsee(canonique) ? departementDe(canonique) : null;
 	return { statut: 200, corps: pageCollectivite({ code: canonique, commune: fiche, serie, departement }), entetes: { ...HTML, 'cache-control': 'public, max-age=60' } };
 }

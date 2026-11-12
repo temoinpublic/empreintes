@@ -1,6 +1,7 @@
 // Le service de depot : la base (D1, ou toute base qui en a la forme), les
 // plafonds, le temoin et la reponse. Les Functions ne font que le brancher.
 
+import { avantLeCurseur, pageDe } from './curseur.mjs';
 import { surSiteOfficiel } from './acte.mjs';
 import { cheminDeLActe } from './adresse.mjs';
 import { nommeUnePersonne } from './personne.mjs';
@@ -478,14 +479,16 @@ export const SERIE_MAX = 500;
  * la nature, l'objet donne au depot et l'adresse lue sur le site officiel ;
  * `depuis`, le jour du premier acte date.
  */
-export async function serieDeLaCollectivite({ db, codes, limite = SERIE_MAX }) {
+export async function serieDeLaCollectivite({ db, codes, limite = SERIE_MAX, avant = null }) {
 	const marques = codes.map(() => '?').join(', ');
 	const compte = await un(db, `SELECT COUNT(*) AS n, MIN(d.jour) AS depuis FROM acte a JOIN depot d ON d.recu = a.recu WHERE a.collectivite IN (${marques})`, ...codes);
+	const borne = avantLeCurseur(avant);
 	const { results } = await db
-		.prepare(`SELECT d.jour, d.place, d.sha256, d.recu, a.collectivite, a.nature, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu WHERE a.collectivite IN (${marques}) ORDER BY d.jour DESC, d.place DESC LIMIT ?`)
-		.bind(...codes, limite)
+		.prepare(`SELECT d.jour, d.place, d.sha256, d.recu, a.collectivite, a.nature, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu WHERE a.collectivite IN (${marques})${borne.sql} ORDER BY d.jour DESC, d.place DESC LIMIT ?`)
+		.bind(...codes, ...borne.args, limite + 1)
 		.all();
-	return { total: Number(compte.n), depuis: compte.depuis ?? null, actes: results };
+	const { lignes, suivant } = pageDe(results, limite);
+	return { total: Number(compte.n), depuis: compte.depuis ?? null, actes: lignes, suivant, suite: Boolean(avant) };
 }
 
 /** Le compte d'actes rattaches de chaque code de collectivite (INSEE ou SIREN), `[{ code, actes }]`. */
