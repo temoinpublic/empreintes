@@ -127,9 +127,22 @@ async function verifier(empreinte, sortie) {
 
 /** Le fichier lu comme un objet JSON, s'il en est un ; null pour tout autre document. */
 function jsonDans(octets) {
-	if (octets[0] !== 0x7b) return null;
+	// Un recu passe entre deux logiciels peut gagner un blanc en tete : il reste un recu.
+	let debut = 0;
+	while ([0x20, 0x09, 0x0a, 0x0d].includes(octets[debut])) debut++;
+	if (octets[debut] !== 0x7b) return null;
 	try {
-		return JSON.parse(new TextDecoder().decode(octets));
+		return JSON.parse(new TextDecoder().decode(octets.subarray(debut)));
+	} catch {
+		return null;
+	}
+}
+
+/** La liste des autorites, ou null : facultative, sa panne (reseau comme HTTP) ne bloque pas la verification. */
+async function autoritesConnues() {
+	try {
+		const r = await fetch('/confiance/autorites.json');
+		return r.ok ? (await r.json()).autorites : null;
 	} catch {
 		return null;
 	}
@@ -138,8 +151,7 @@ function jsonDans(octets) {
 /** La signature du deposant d'un recu version 4, relue ici contre l'empreinte et l'instant du depot ; vide sans signature. */
 async function signatureDuRecu(recu) {
 	if (!recu.signature) return '';
-	const r = await fetch('/confiance/autorites.json');
-	const v = await verifierSignatureDuDeposant(recu.signature.jws ?? recu.signature.cades, recu.sha256, recu.depose, r.ok ? (await r.json()).autorites : null);
+	const v = await verifierSignatureDuDeposant(recu.signature.jws ?? recu.signature.cades, recu.sha256, recu.depose, await autoritesConnues());
 	const nom = (n) => echapper(n ?? t.sansNom);
 	const autorite = v.certificat?.autorite;
 	const texte = v.ok ? t.signeeValide(nom(v.certificat.sujet), nom(v.certificat.emetteur)) : t.signeeNonConforme;
