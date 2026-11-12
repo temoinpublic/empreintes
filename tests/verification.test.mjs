@@ -59,3 +59,24 @@ test('seule la derniere verification demandee ecrit son verdict', () => {
 	assert.ok(ecritures.length > 0);
 	for (const i of ecritures) assert.ok(i > debut + garde, 'aucun verdict n est ecrit avant la garde');
 });
+
+/*
+ * 2026-11-12, audit Codex : un recu precede d'un blanc se lisait comme un
+ * document ordinaire (« jamais date »), et une panne RESEAU de la liste des
+ * autorites bloquait la verification qu'un 503 laissait passer.
+ */
+test('un recu precede d un blanc reste un recu, et la liste des autorites est facultative', async () => {
+	const source = readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const corps = (nom) => {
+		const debut = source.indexOf(`function ${nom}(`);
+		return source.slice(source.lastIndexOf('\n', debut) + 1, source.indexOf('\n}\n', debut) + 2);
+	};
+	const jsonDans = new Function(`${corps('jsonDans')}; return jsonDans;`)();
+	const octets = (texte) => new TextEncoder().encode(texte);
+	assert.deepEqual(jsonDans(octets('\n  {"sha256":"ab"}')), { sha256: 'ab' });
+	assert.equal(jsonDans(octets('x{"sha256":"ab"}')), null);
+	const enPanne = new Function('fetch', `${corps('autoritesConnues')}; return autoritesConnues;`);
+	assert.equal(await enPanne(async () => { throw new TypeError('Failed to fetch'); })(), null);
+	assert.equal(await enPanne(async () => ({ ok: false }))(), null);
+	assert.deepEqual(await enPanne(async () => ({ ok: true, json: async () => ({ autorites: [1] }) }))(), [1]);
+});
