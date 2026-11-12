@@ -32,7 +32,9 @@ export async function reponseCollectivite({ db, code, commune, avant = null }) {
 	if (!estUnInsee(lu) && !estUnSiren(lu)) return introuvable();
 	const fiche = await commune(lu);
 	const canonique = fiche?.insee ?? lu;
-	if (canonique !== code) return renvoi(`/collectivite/${canonique}`);
+	// La page demandee suit le renvoi : sans elle, `?avant=` sur un SIREN revenait a la
+	// premiere page (relecture Codex de la PR 154, 2026-11-12).
+	if (canonique !== code) return renvoi(`/collectivite/${canonique}${avant ? `?avant=${avant.jour}.${String(avant.place)}` : ''}`);
 	const codes = [canonique, fiche?.siren].filter(Boolean);
 	const serie = await serieDeLaCollectivite({ db, codes, avant });
 	const departement = estUnInsee(canonique) ? departementDe(canonique) : null;

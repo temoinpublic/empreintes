@@ -117,6 +117,8 @@ test("l'adresse d'un acte ne se montre pas quand son chemin nomme une personne",
 test('une page par commune : le SIREN et les minuscules renvoient au code INSEE, un code illisible est introuvable', async () => {
 	const db = baseDeTest();
 	assert.deepEqual((await reponseCollectivite({ db, code: '211701339', commune })).entetes.location, '/collectivite/17133');
+	const page2 = await reponseCollectivite({ db, code: '211701339', commune, avant: { jour: '2026-10-02', place: 7 } });
+	assert.equal(page2.entetes.location, '/collectivite/17133?avant=2026-10-02.7', 'le renvoi garde la page demandee');
 	const corse = await reponseCollectivite({ db, code: '2a004', commune: async () => null });
 	assert.equal(corse.statut, 301);
 	assert.equal(corse.entetes.location, '/collectivite/2A004');
