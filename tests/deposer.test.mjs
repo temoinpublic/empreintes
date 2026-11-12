@@ -28,3 +28,16 @@ test('une empreinte saisie efface le lien et le fichier', () => {
 	assert.match(e, /\$\('url'\)\.value = ''/);
 	assert.match(e, /\$fichier\(\)\.value = ''/);
 });
+
+/*
+ * 2026-11-12, audit Codex : pendant les 350 ms de temporisation ou la lecture
+ * de l'annuaire, un acte partait avec la collectivite du lien d'avant.
+ */
+test('un lien change efface la commune reconnue et le depot attend la nouvelle lecture', () => {
+	const e = ecouteur("$('url')");
+	assert.match(e, /lecture\+\+;\n\tif \(\$\('acte'\)\) \$\('collectivite'\)\.value = '';/);
+	const envoi = source.slice(source.indexOf("$('formulaire').addEventListener('submit'"));
+	assert.ok(envoi.indexOf('await communeAJour();') >= 0);
+	assert.ok(envoi.indexOf('await communeAJour();') < envoi.indexOf('await demande()'));
+	assert.match(source, /async function communeAJour\(\) \{\n\tif \(attente !== null\) \{\n\t\tclearTimeout\(attente\);\n\t\tlancerLaLecture\(\);\n\t\}\n\tawait enVol;/);
+});
