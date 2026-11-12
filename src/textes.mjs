@@ -179,6 +179,7 @@ export const TEXTES = {
 			de: (articles, versions) => `${nombreDe(versions)} ${en(versions)}, ${nombreDe(articles)} Artikel`
 		},
 		aucune: { fr: 'Aucune version datée', de: 'Keine datierte Version' },
+		plusAnciennes: { fr: 'Versions plus anciennes', de: 'Ältere Versionen' },
 		coupe: { fr: (montrees, total) => `Les ${nombreFr(montrees)} plus récentes sur ${nombreFr(total)}.`, de: (montrees, total) => `Die ${nombreDe(montrees)} neuesten von ${nombreDe(total)}.` }
 	},
 	recuInconnu: {

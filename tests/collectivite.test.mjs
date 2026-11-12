@@ -4,6 +4,7 @@ import { baseDeTest } from './d1.mjs';
 import { communeDe, communeDesActifs, fragments, nomsDesCommunes } from '../src/annuaire.mjs';
 import { reponseCollectivite } from '../src/collectivite.mjs';
 import { pageCollectivite } from '../src/pages.mjs';
+import { lireCurseur } from '../src/curseur.mjs';
 import { acteDuRecu, adressePublique, deposer, ligneDuRecu, serieDeLaCollectivite } from '../src/service.mjs';
 import { pageRecu } from '../src/pages.mjs';
 import { onRequestGet } from '../functions/collectivite/[code].js';
@@ -134,6 +135,15 @@ test('une serie plus longue que la page dit combien elle en montre', async () =>
 	assert.equal(serie.total, 2);
 	assert.equal(serie.actes.length, 1);
 	assert.match(pageCollectivite({ code: '17133', commune: CRAVANS, serie }), /Les 1 plus récents sur 2\./);
+	// Audit Codex du 2026-11-11 : au-dela du plafond, les actes anciens restent atteignables.
+	assert.match(pageCollectivite({ code: '17133', commune: CRAVANS, serie }), new RegExp(`<a href="/collectivite/17133\\?avant=${serie.suivant}" rel="next">Actes plus anciens</a>`));
+	const suite = await serieDeLaCollectivite({ db, codes: ['17133', '211701339'], limite: 1, avant: lireCurseur(serie.suivant) });
+	assert.equal(suite.actes.length, 1);
+	assert.notEqual(suite.actes[0].recu, serie.actes[0].recu);
+	assert.equal(suite.suivant, null);
+	const page = pageCollectivite({ code: '17133', commune: CRAVANS, serie: suite });
+	assert.match(page, /noindex/);
+	assert.doesNotMatch(page, /plus récents sur/);
 	assert.match(pageCollectivite({ code: '17133', commune: { nom: 'A & B', insee: '17133', siren: null }, serie }), /<h1>A &amp; B<\/h1>\n<p class="sous-titre">Code 17133<\/p>/);
 });
 
