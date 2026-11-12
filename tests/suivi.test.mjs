@@ -280,6 +280,9 @@ test("le registre public et l'export prive se lisent par lots bornes, sans rien 
 	const reste = JSON.parse((await registrePrive({ db, id, jeton, limite: 2, apres: lireCurseur(lot.suivant) })).corps);
 	assert.equal(reste.recus.length, 1);
 	assert.equal(reste.suivant, null);
+	// 2026-11-12 (relecture de la PR 154) : chaque lot rechargeait tous les articles.
+	assert.equal(lot.articles.length, 2);
+	assert.deepEqual(reste.articles, []);
 	assert.equal(new Set([...lot.recus, ...reste.recus].map((r) => r.id)).size, 3);
 	assert.equal(lireCurseur('pas un curseur'), null);
 });

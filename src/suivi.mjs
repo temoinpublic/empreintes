@@ -209,14 +209,18 @@ export async function registrePrive({ db, id, jeton, apres = null, limite = EXPO
 	// neuve lisait les recus de la precedente (audit Codex du 2026-11-11).
 	const depuis = jourDe(flux.inscrit);
 	const DEPUIS_L_INSCRIPTION = "v.flux = ? AND v.jour >= ? AND json_extract(v.contenu, '$.depose') >= ?";
-	const articles = await tous(
-		db,
-		`SELECT a.id, a.lien, a.lu FROM article a WHERE a.flux = ? AND EXISTS (SELECT 1 FROM version v WHERE ${DEPUIS_L_INSCRIPTION} AND v.article = a.id) ORDER BY a.id`,
-		flux.id,
-		flux.id,
-		depuis,
-		flux.inscrit
-	);
+	// La liste des articles vient avec le PREMIER lot seulement : chaque lot la
+	// rechargeait en entier (relecture Codex de la PR 154, 2026-11-12).
+	const articles = apres
+		? []
+		: await tous(
+				db,
+				`SELECT a.id, a.lien, a.lu FROM article a WHERE a.flux = ? AND EXISTS (SELECT 1 FROM version v WHERE ${DEPUIS_L_INSCRIPTION} AND v.article = a.id) ORDER BY a.id`,
+				flux.id,
+				flux.id,
+				depuis,
+				flux.inscrit
+			);
 	// Par lots bornes, comme les pages publiques : charge d'un coup, l'export d'un flux
 	// ancien finissait par ne plus tenir dans une invocation (audit Codex du 2026-11-11).
 	const borne = apresLeCurseur(apres);
