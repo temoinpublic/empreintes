@@ -42,7 +42,12 @@ export function lireAdresse(segments) {
  */
 export function resoudre(chemin, actes) {
 	if (actes.length === 0) return { statut: 404 };
-	if (actes.length > 1) return { statut: 300, actes };
+	// Deux depots des memes octets, meme collectivite, nature et jour (deux URL qui
+	// servent le meme fichier), ont la meme adresse : ce n'est pas une ambiguite,
+	// c'est un acte, et le premier date le porte. Une liste de liens identiques
+	// ramenait au meme choix (audit Codex du 2026-11-11).
+	const distincts = [...new Map(actes.map((a) => [cheminDeLActe(a), a])).values()];
+	if (distincts.length > 1) return { statut: 300, actes: distincts.map((d) => actes.find((a) => cheminDeLActe(a) === cheminDeLActe(d))) };
 	const [acte] = actes;
 	const canonique = cheminDeLActe(acte);
 	return canonique === chemin ? { statut: 200, acte } : { statut: 301, vers: canonique };
