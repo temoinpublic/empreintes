@@ -89,15 +89,32 @@ const viderLEmpreinte = () => {
 	if ($('empreinte')?.value) $('empreinte').value = '';
 };
 
-let attente;
+// Le lien change : la commune reconnue pour l'ancien ne vaut plus, tout de suite, et
+// un depot lance avant la fin de la nouvelle lecture l'attend (audit Codex du
+// 2026-11-12 : l'acte partait avec la collectivite et la nature du lien d'avant).
+let attente = null;
+let enVol = Promise.resolve();
+const lancerLaLecture = () => {
+	attente = null;
+	enVol = reconnaitreLaCommune();
+};
+async function communeAJour() {
+	if (attente !== null) {
+		clearTimeout(attente);
+		lancerLaLecture();
+	}
+	await enVol;
+}
 $('url')?.addEventListener('input', () => {
 	if ($('url').value.trim()) viderLEmpreinte();
 	if ($fichier()?.files.length && $('url').value.trim()) {
 		$fichier().value = '';
 		$fichier().dispatchEvent(new Event('change'));
 	}
+	lecture++;
+	if ($('acte')) $('collectivite').value = '';
 	clearTimeout(attente);
-	attente = setTimeout(reconnaitreLaCommune, 350);
+	attente = setTimeout(lancerLaLecture, 350);
 });
 // Un fichier choisi remplace le lien : un seul document par depot.
 $fichier()?.addEventListener('change', () => {
@@ -215,6 +232,7 @@ $('formulaire').addEventListener('submit', async (e) => {
 	const bouton = e.submitter ?? $('formulaire').querySelector('button');
 	bouton.disabled = true;
 	try {
+		await communeAJour();
 		const corps = await demande();
 		if (corps) await envoyer(corps);
 		else $('resultat').innerHTML = `<p>${T.choisir}</p>`;
