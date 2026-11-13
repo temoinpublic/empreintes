@@ -87,8 +87,8 @@ nav a[aria-current='page'] { color: var(--encre); background: color-mix(in srgb,
 .par-lien #resultat:empty { min-height: 9rem; border: 1px solid var(--trait); border-radius: 0.8rem; background: var(--surface); }
 .par-lien #resultat article { margin-top: 0; padding: 1.6rem 1.5rem; }
 .par-lien #resultat article h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
-.par-lien #resultat .autre { margin-inline: 0.2rem; }
-#resultat .autre { margin: 1rem 0 0; font-size: 0.95rem; }
+.par-lien .autre { margin-inline: 0.2rem; }
+#resultat + .autre { margin: 1rem 0 0; font-size: 0.95rem; }
 .une-page { padding: 2rem 1.5rem 3.6rem; }
 .une-page h1 { margin: 0 auto; font-size: clamp(1.7rem, 5vw, 2.3rem); }
 .suite { text-align: center; color: var(--doux); margin: 1.2rem 0; }

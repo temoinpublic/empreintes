@@ -105,6 +105,26 @@ test('arrive par un lien, le verdict passe avant le formulaire, replie', async (
 	assert.match(css, /\.par-lien #formulaire, \.par-lien \.une-page \{ display: none; \}/);
 });
 
+/* 2026-11-13 (relecture Codex de la PR 162) : arrivee.js et verifier.js lisaient l'adresse par deux regles. */
+test('arrivee.js cache le formulaire pour exactement les liens que verifier.js lance', async () => {
+	const { runInNewContext } = await import('node:vm');
+	const code = readFileSync(new URL('../public/arrivee.js', import.meta.url), 'utf8');
+	const cache = (search) => {
+		const classes = new Set();
+		runInNewContext(code, { location: { search }, URLSearchParams, document: { documentElement: { classList: { add: (c) => classes.add(c) } } } });
+		return classes.has('par-lien');
+	};
+	const sha = 'a'.repeat(64);
+	assert.equal(cache(`?empreinte=${sha}`), true);
+	assert.equal(cache(`?%65mpreinte=${sha}`), true, 'un nom encode que URLSearchParams decode');
+	assert.equal(cache(`?EMPREINTE=${sha}`), false, 'la casse du nom compte, comme pour verifier.js');
+	assert.equal(cache(`?empreinte=invalide&empreinte=${sha}`), false, 'la premiere occurrence decide, comme pour verifier.js');
+	const source = readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const arrivee = source.slice(source.indexOf('// `/verifier?empreinte='));
+	assert.ok(arrivee.indexOf("insertAdjacentHTML('afterend'") < arrivee.indexOf('lancer()'), 'le lien vers un autre document est la avant le verdict');
+	assert.match(arrivee, /classList\.remove\('par-lien'\)/);
+});
+
 /* 2026-11-13, vu en prod : `form { display: grid }` l'emportait sur `hidden`, le formulaire replie restait affiche. */
 test('un formulaire replie ne s affiche pas', () => {
 	const css = readFileSync(new URL('../public/style.css', import.meta.url), 'utf8');

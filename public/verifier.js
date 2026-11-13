@@ -273,11 +273,16 @@ const demandee = new URLSearchParams(location.search).get('empreinte')?.toLowerC
 // premier rendu par arrivee.js), puis un lien discret vers la page vide pour un autre document.
 if (demandee && /^[0-9a-f]{64}$/.test(demandee) && $('empreinte')) {
 	$('empreinte').value = demandee;
+	// Le lien vers un autre document est la des maintenant, sous le resultat : une requete
+	// qui pend ne laisse pas le visiteur devant une page sans formulaire ni issue.
+	$('resultat').insertAdjacentHTML('afterend', `<p class="autre"><a href="${location.pathname}">${t.autre}</a></p>`);
 	lancer().then(() => {
 		const verdict = $('resultat').querySelector('h2')?.textContent;
 		if (verdict) document.title = `${verdict} | ${document.title.split(' | ').at(-1)}`;
-		$('resultat').insertAdjacentHTML('beforeend', `<p class="autre"><a href="${location.pathname}">${t.autre}</a></p>`);
 	});
+} else {
+	// Un lien que verifier.js ne lance pas ne doit pas laisser le formulaire cache.
+	document.documentElement.classList.remove('par-lien');
 }
 
 $('formulaire')?.addEventListener('submit', (e) => {
