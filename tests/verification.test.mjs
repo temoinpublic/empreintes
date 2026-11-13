@@ -102,7 +102,7 @@ test('arrive par un lien, le verdict passe avant le formulaire, replie', async (
 	const tete = readFileSync(new URL('../public/arrivee.js', import.meta.url), 'utf8');
 	assert.match(tete, /classList\.add\('par-lien'\)/);
 	const css = readFileSync(new URL('../public/style.css', import.meta.url), 'utf8');
-	assert.match(css, /\.par-lien #formulaire \{ display: none; \}/);
+	assert.match(css, /\.par-lien #formulaire, \.par-lien \.une-page \{ display: none; \}/);
 });
 
 /* 2026-11-13, vu en prod : `form { display: grid }` l'emportait sur `hidden`, le formulaire replie restait affiche. */
