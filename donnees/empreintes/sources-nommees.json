@@ -1,0 +1,3034 @@
+[
+ {
+  "nom": "abeis-liste-noire",
+  "url": "https://www.abe-infoservice.fr/fr/abeis-liste-noire.csv"
+ },
+ {
+  "nom": "amf-listes-noires",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/d2d9df6d-1cd2-41a8-96f5-684cb3057ecb"
+ },
+ {
+  "nom": "amf-psan",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/e03f8899-2499-4826-aaae-6842f520bdac"
+ },
+ {
+  "nom": "amf-sgp-agreees",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/2220f808-8908-4afc-98e3-cf74a25678e2"
+ },
+ {
+  "nom": "esma-entites-agreees",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B{v}0000%20TO%20{v}9999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json"
+ },
+ {
+  "nom": "esma-indices-references",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_bench_entities/select?q=*:*&fl=id,_root_,type_s,entity_type,en_*,bm_*&rows=50000&sort=id%20asc&wt=json"
+ },
+ {
+  "nom": "esma-mica-artzz",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv"
+ },
+ {
+  "nom": "esma-mica-casps",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/CASPS.csv"
+ },
+ {
+  "nom": "esma-mica-emtwp",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/EMTWP.csv"
+ },
+ {
+  "nom": "esma-mica-ncasp",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/NCASP.csv"
+ },
+ {
+  "nom": "esma-mica-other",
+  "url": "https://www.esma.europa.eu/sites/default/files/2024-12/OTHER.csv"
+ },
+ {
+  "nom": "esma-ventes-decouvert-exemptions",
+  "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:{v}&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json"
+ },
+ {
+  "nom": "hatvp-repertoire",
+  "url": "https://www.hatvp.fr/agora/opendata/agora_repertoire_opendata.json"
+ },
+ {
+  "nom": "presidentielle-2027-animaliste-programme",
+  "url": "https://parti-animaliste.fr/programme",
+  "libelle": "Le programme",
+  "editeur": "Mira Markovic (Parti animaliste)"
+ },
+ {
+  "nom": "presidentielle-2027-arthaud-brochure-ete-2026-pdf",
+  "url": "https://www.lutte-ouvriere.org/medias/document/fichiers/2026/06/brochure-ete-2026.pdf",
+  "libelle": "Brochure de campagne (PDF)",
+  "editeur": "Nathalie Arthaud (Lutte ouvrière)"
+ },
+ {
+  "nom": "presidentielle-2027-arthaud-campagne",
+  "url": "https://www.nathalie-arthaud.info/",
+  "libelle": "Site de campagne",
+  "editeur": "Nathalie Arthaud (Lutte ouvrière)"
+ },
+ {
+  "nom": "presidentielle-2027-arthaud-discours-meeting-2026-09-26",
+  "url": "https://www.lutte-ouvriere.org/portail/brochures/meeting-26-septembre-2026-discours-nathalie-arthaud-197446.html",
+  "libelle": "Discours du meeting du 26 septembre 2026",
+  "editeur": "Nathalie Arthaud (Lutte ouvrière)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-campagne",
+  "url": "https://attalpresident.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-aide-professionnels-vehicule",
+  "url": "https://attalpresident.fr/programme/mesures/aide-professionnels-vehicule",
+  "libelle": "Aide aux professionnels dépendants de leur véhicule",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-aides-directes-plutot-que-baisses-de-taxes",
+  "url": "https://attalpresident.fr/programme/mesures/aides-directes-plutot-que-baisses-de-taxes",
+  "libelle": "Aides directes ciblées pour le pouvoir d’achat",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-amende-des-le-premier-acte-maltraitance",
+  "url": "https://attalpresident.fr/programme/mesures/amende-des-le-premier-acte-maltraitance",
+  "libelle": "Maltraitance animale : amende dès le premier acte",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-amendes-majorees-saisie-vehicules",
+  "url": "https://attalpresident.fr/programme/mesures/amendes-majorees-saisie-vehicules",
+  "libelle": "Occupation illégale : amendes et saisies de véhicules",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-annee-passerelle",
+  "url": "https://attalpresident.fr/programme/mesures/annee-passerelle",
+  "libelle": "L’année passerelle pour les élèves de CM2",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-assistant-medical-ia",
+  "url": "https://attalpresident.fr/programme/mesures/assistant-medical-ia",
+  "libelle": "Un assistant médical IA pour chaque Français",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-attestation-honorabilite-mineurs",
+  "url": "https://attalpresident.fr/programme/mesures/attestation-honorabilite-mineurs",
+  "libelle": "Attestation d’honorabilité pour tous les encadrants",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-aucune-hausse-impots",
+  "url": "https://attalpresident.fr/programme/mesures/aucune-hausse-impots",
+  "libelle": "Aucune hausse d’impôts pendant le quinquennat",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-audit-programmes-armement",
+  "url": "https://attalpresident.fr/programme/mesures/audit-programmes-armement",
+  "libelle": "Audit des programmes d’armement | Gabriel Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-bareme-national-sanctions",
+  "url": "https://attalpresident.fr/programme/mesures/bareme-national-sanctions",
+  "libelle": "Barème national des sanctions scolaires",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-big-bang-territorial",
+  "url": "https://attalpresident.fr/programme/mesures/big-bang-territorial",
+  "libelle": "Réforme territoriale : supprimer un échelon",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-bouclier-tarifaire-eau",
+  "url": "https://attalpresident.fr/programme/mesures/bouclier-tarifaire-eau",
+  "libelle": "Bouclier tarifaire sur l’eau : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-brevet-obligatoire-entree-lycee",
+  "url": "https://attalpresident.fr/programme/mesures/brevet-obligatoire-entree-lycee",
+  "libelle": "Le brevet obligatoire pour entrer au lycée",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-capitalisation-startups",
+  "url": "https://attalpresident.fr/programme/mesures/capitalisation-startups",
+  "libelle": "Retraite : capitalisation et innovation selon Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-carte-famille-monoparentale",
+  "url": "https://attalpresident.fr/programme/mesures/carte-famille-monoparentale",
+  "libelle": "Carte famille monoparentale : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-cent-mille-postes-en-moins",
+  "url": "https://attalpresident.fr/programme/mesures/cent-mille-postes-en-moins",
+  "libelle": "Supprimer 100 000 postes sans licencier personne",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-certificat-etudes-cm2",
+  "url": "https://attalpresident.fr/programme/mesures/certificat-etudes-cm2",
+  "libelle": "Certificat d’études en CM2 : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-clauses-miroir-systematiques",
+  "url": "https://attalpresident.fr/programme/mesures/clauses-miroir-systematiques",
+  "libelle": "Clauses miroir dans les accords commerciaux",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-climatisation-etablissements",
+  "url": "https://attalpresident.fr/programme/mesures/climatisation-etablissements",
+  "libelle": "Plan d’urgence de climatisation des établissements",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-commande-publique-defense",
+  "url": "https://attalpresident.fr/programme/mesures/commande-publique-defense",
+  "libelle": "Commande publique défense : la réforme pour les PME",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-comparution-immediate-mineurs",
+  "url": "https://attalpresident.fr/programme/mesures/comparution-immediate-mineurs",
+  "libelle": "Comparution immédiate pour les mineurs récidivistes",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-conseil-discipline-primaire",
+  "url": "https://attalpresident.fr/programme/mesures/conseil-discipline-primaire",
+  "libelle": "Conseil de discipline dès l’école primaire",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-constitution-du-travail",
+  "url": "https://attalpresident.fr/programme/mesures/constitution-du-travail",
+  "libelle": "Une Constitution du travail de 50 pages au maximum",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-contractualisation-pluriannuelle",
+  "url": "https://attalpresident.fr/programme/mesures/contractualisation-pluriannuelle",
+  "libelle": "Contrats pluriannuels agricoles : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-deficit-sous-trois-pour-cent",
+  "url": "https://attalpresident.fr/programme/mesures/deficit-sous-trois-pour-cent",
+  "libelle": "Déficit sous 3 % du PIB avant 2032 : le plan Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-defiscaliser-pensions-alimentaires",
+  "url": "https://attalpresident.fr/programme/mesures/defiscaliser-pensions-alimentaires",
+  "libelle": "Défiscaliser les pensions alimentaires",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-delai-deux-mois-porteurs-projets",
+  "url": "https://attalpresident.fr/programme/mesures/delai-deux-mois-porteurs-projets",
+  "libelle": "Délai de 2 mois pour les porteurs de projets",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-delit-maintien-illicite",
+  "url": "https://attalpresident.fr/programme/mesures/delit-maintien-illicite",
+  "libelle": "Gens du voyage : un délit de maintien illicite",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-depistage-pfas-captages",
+  "url": "https://attalpresident.fr/programme/mesures/depistage-pfas-captages",
+  "libelle": "PFAS dans l’eau potable : le plan de Gabriel Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-diviser-par-deux-dependance-militaire",
+  "url": "https://attalpresident.fr/programme/mesures/diviser-par-deux-dependance-militaire",
+  "libelle": "Souveraineté européenne sur les équipements militaires",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-dome-de-fer-europeen",
+  "url": "https://attalpresident.fr/programme/mesures/dome-de-fer-europeen",
+  "libelle": "Un dôme de fer européen contre missiles et drones",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-dossier-administratif-par-convoi",
+  "url": "https://attalpresident.fr/programme/mesures/dossier-administratif-par-convoi",
+  "libelle": "Convois de caravanes : un dossier obligatoire",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-doubler-subventions-geoenergie",
+  "url": "https://attalpresident.fr/programme/mesures/doubler-subventions-geoenergie",
+  "libelle": "Géoénergie : 160 millions d’euros par an",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-droit-a-la-climatisation",
+  "url": "https://attalpresident.fr/programme/mesures/droit-a-la-climatisation",
+  "libelle": "Droit à la climatisation : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-droit-au-brut",
+  "url": "https://attalpresident.fr/programme/mesures/droit-au-brut",
+  "libelle": "Droit au brut : 250 € nets de plus par mois",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-droit-au-repit",
+  "url": "https://attalpresident.fr/programme/mesures/droit-au-repit",
+  "libelle": "Droit au répit pour les familles monoparentales",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-durcir-regroupement-familial",
+  "url": "https://attalpresident.fr/programme/mesures/durcir-regroupement-familial",
+  "libelle": "Regroupement familial : la réforme d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-encadrer-ventes-animaux-en-ligne",
+  "url": "https://attalpresident.fr/programme/mesures/encadrer-ventes-animaux-en-ligne",
+  "libelle": "Ventes d’animaux en ligne : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-equilibre-securite-sociale",
+  "url": "https://attalpresident.fr/programme/mesures/equilibre-securite-sociale",
+  "libelle": "Équilibrer la Sécurité sociale d’ici 2032",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-extension-batiments-elevage",
+  "url": "https://attalpresident.fr/programme/mesures/extension-batiments-elevage",
+  "libelle": "Bâtiments d’élevage : simplifier les extensions",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-facturation-tarif-camping",
+  "url": "https://attalpresident.fr/programme/mesures/facturation-tarif-camping",
+  "libelle": "Occupation illégale : facturer au tarif camping",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-fichier-interdits-de-detention",
+  "url": "https://attalpresident.fr/programme/mesures/fichier-interdits-de-detention",
+  "libelle": "Fichier national des interdits de détenir un animal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-fiscalite-portage-foncier",
+  "url": "https://attalpresident.fr/programme/mesures/fiscalite-portage-foncier",
+  "libelle": "Fiscalité du foncier agricole : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-fonds-investissement-defense",
+  "url": "https://attalpresident.fr/programme/mesures/fonds-investissement-defense",
+  "libelle": "Fonds d’investissement pour les PME de la défense",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-former-tous-enseignants-ia",
+  "url": "https://attalpresident.fr/programme/mesures/former-tous-enseignants-ia",
+  "libelle": "Former tous les enseignants à l’IA",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-fusion-nucleaire-europe",
+  "url": "https://attalpresident.fr/programme/mesures/fusion-nucleaire-europe",
+  "libelle": "Fusion nucléaire : le projet européen d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-groupes-de-niveau-college",
+  "url": "https://attalpresident.fr/programme/mesures/groupes-de-niveau-college",
+  "libelle": "Groupes de niveau au collège : le projet d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-ia-savoirs-fondamentaux",
+  "url": "https://attalpresident.fr/programme/mesures/ia-savoirs-fondamentaux",
+  "libelle": "L’IA au socle des savoirs fondamentaux",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-ia-traitement-judiciaire",
+  "url": "https://attalpresident.fr/programme/mesures/ia-traitement-judiciaire",
+  "libelle": "Justice et IA : accélérer les délais de jugement",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-immigration-systeme-a-points",
+  "url": "https://attalpresident.fr/programme/mesures/immigration-systeme-a-points",
+  "libelle": "Immigration à points : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-imprescriptibilite-crimes-sexuels-mineurs",
+  "url": "https://attalpresident.fr/programme/mesures/imprescriptibilite-crimes-sexuels-mineurs",
+  "libelle": "Crimes sexuels sur mineurs : l’imprescriptibilité",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-interconnecter-fichiers",
+  "url": "https://attalpresident.fr/programme/mesures/interconnecter-fichiers",
+  "libelle": "Interconnecter les fichiers police, justice et Éducation",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-interessement-petites-structures",
+  "url": "https://attalpresident.fr/programme/mesures/interessement-petites-structures",
+  "libelle": "Intéressement étendu aux petites entreprises",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-interessement-vers-epargne-retraite",
+  "url": "https://attalpresident.fr/programme/mesures/interessement-vers-epargne-retraite",
+  "libelle": "Intéressement et épargne retraite : la proposition Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-journee-referendaire-annuelle",
+  "url": "https://attalpresident.fr/programme/mesures/journee-referendaire-annuelle",
+  "libelle": "Une journée référendaire par an selon Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-livre-blanc-defense-2027",
+  "url": "https://attalpresident.fr/programme/mesures/livre-blanc-defense-2027",
+  "libelle": "Défense nationale : la doctrine d’Attal pour 2027",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-loi-de-stabilite-fiscale",
+  "url": "https://attalpresident.fr/programme/mesures/loi-de-stabilite-fiscale",
+  "libelle": "Loi de programmation fiscale sur dix ans",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-maire-elu-le-plus-puissant",
+  "url": "https://attalpresident.fr/programme/mesures/maire-elu-le-plus-puissant",
+  "libelle": "Attal veut faire du maire l’élu le plus puissant",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-methode-singapour",
+  "url": "https://attalpresident.fr/programme/mesures/methode-singapour",
+  "libelle": "La méthode de Singapour en maths pour tous",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-ministere-de-l-eau",
+  "url": "https://attalpresident.fr/programme/mesures/ministere-de-l-eau",
+  "libelle": "Ministère de l’Eau : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-pac-moyens-renforces",
+  "url": "https://attalpresident.fr/programme/mesures/pac-moyens-renforces",
+  "libelle": "Gabriel Attal et la PAC : défendre le budget agricole",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-parcours-separation-simplifie",
+  "url": "https://attalpresident.fr/programme/mesures/parcours-separation-simplifie",
+  "libelle": "Séparation : un parcours simplifié en CAF",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-parquet-national-pedocriminalite",
+  "url": "https://attalpresident.fr/programme/mesures/parquet-national-pedocriminalite",
+  "libelle": "Parquet national contre la pédocriminalité",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-perpetuite-reelle-predateurs",
+  "url": "https://attalpresident.fr/programme/mesures/perpetuite-reelle-predateurs",
+  "libelle": "Perpétuité réelle pour les prédateurs sexuels en série",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-plafond-dix-huit-mois-procedures",
+  "url": "https://attalpresident.fr/programme/mesures/plafond-dix-huit-mois-procedures",
+  "libelle": "Procédures bloquées : un recours, 18 mois max",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-plan-eau-a-euro-constant",
+  "url": "https://attalpresident.fr/programme/mesures/plan-eau-a-euro-constant",
+  "libelle": "Plan Eau d’Attal : sept chantiers sans impôt nouveau",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-plan-france-2040",
+  "url": "https://attalpresident.fr/programme/mesures/plan-france-2040",
+  "libelle": "Plan IA : 200 milliards d’euros pour la France",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-plan-messmer-2",
+  "url": "https://attalpresident.fr/programme/mesures/plan-messmer-2",
+  "libelle": "Plan Messmer II : réduire la dépendance énergétique",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-plan-voltaire-esprit-critique",
+  "url": "https://attalpresident.fr/programme/mesures/plan-voltaire-esprit-critique",
+  "libelle": "Plan Voltaire : 30 minutes d’esprit critique par jour",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-politique-ia-europeenne-commune",
+  "url": "https://attalpresident.fr/programme/mesures/politique-ia-europeenne-commune",
+  "libelle": "PIAC : la politique européenne de l’IA selon Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-preference-europeenne-defense",
+  "url": "https://attalpresident.fr/programme/mesures/preference-europeenne-defense",
+  "libelle": "Préférence européenne dans les achats de défense",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-premiers-actes-quarante-huit-heures",
+  "url": "https://attalpresident.fr/programme/mesures/premiers-actes-quarante-huit-heures",
+  "libelle": "Crimes sur mineurs : enquête sous 48h dès la plainte",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-prix-planchers-agricoles",
+  "url": "https://attalpresident.fr/programme/mesures/prix-planchers-agricoles",
+  "libelle": "Prix planchers agricoles indexés sur les coûts",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-procedures-mineurs-trois-mois",
+  "url": "https://attalpresident.fr/programme/mesures/procedures-mineurs-trois-mois",
+  "libelle": "Crimes sur mineurs jugés en moins de trois mois",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-puissance-de-calcul-europeenne",
+  "url": "https://attalpresident.fr/programme/mesures/puissance-de-calcul-europeenne",
+  "libelle": "L’Europe à 20 % de la puissance de calcul mondiale",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-quintupler-capacites-geoenergie",
+  "url": "https://attalpresident.fr/programme/mesures/quintupler-capacites-geoenergie",
+  "libelle": "Géoénergie : multiplier par cinq d’ici 2035",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-quotas-migratoires-revises",
+  "url": "https://attalpresident.fr/programme/mesures/quotas-migratoires-revises",
+  "libelle": "Quotas migratoires votés par le Parlement",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-referendums-locaux-facilites",
+  "url": "https://attalpresident.fr/programme/mesures/referendums-locaux-facilites",
+  "libelle": "Référendums locaux : la réforme proposée par Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reforme-assurance-chomage-cinq-milliards",
+  "url": "https://attalpresident.fr/programme/mesures/reforme-assurance-chomage-cinq-milliards",
+  "libelle": "Réforme chômage : 5 milliards et 100 000 emplois",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reforme-nominations-hautes-fonctions",
+  "url": "https://attalpresident.fr/programme/mesures/reforme-nominations-hautes-fonctions",
+  "libelle": "Réformer les nominations aux hautes fonctions de l’État",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-refuser-mercosur",
+  "url": "https://attalpresident.fr/programme/mesures/refuser-mercosur",
+  "libelle": "Gabriel Attal contre le traité Mercosur",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-remplacement-enseignants-absents",
+  "url": "https://attalpresident.fr/programme/mesures/remplacement-enseignants-absents",
+  "libelle": "Remplacement des enseignants absents : la proposition Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-renseignement-ofmin",
+  "url": "https://attalpresident.fr/programme/mesures/renseignement-ofmin",
+  "libelle": "Renseignement anti-pédocriminel : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reparer-cinq-cents-reseaux-eau",
+  "url": "https://attalpresident.fr/programme/mesures/reparer-cinq-cents-reseaux-eau",
+  "libelle": "Réparer les 500 réseaux d’eau les plus vétustes",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reponse-subvention-quatre-vingt-dix-jours",
+  "url": "https://attalpresident.fr/programme/mesures/reponse-subvention-quatre-vingt-dix-jours",
+  "libelle": "Géoénergie : réponse aux subventions en 90 jours",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-retablir-redoublement",
+  "url": "https://attalpresident.fr/programme/mesures/retablir-redoublement",
+  "libelle": "Rétablir le redoublement scolaire",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-revalorisation-salaires-professeurs",
+  "url": "https://attalpresident.fr/programme/mesures/revalorisation-salaires-professeurs",
+  "libelle": "Revalorisation des enseignants : +200 à +500 €/mois",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-simplifier-forages-geothermiques",
+  "url": "https://attalpresident.fr/programme/mesures/simplifier-forages-geothermiques",
+  "libelle": "Forages géothermiques : simplifier les règles",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-stabilite-prix-electricite",
+  "url": "https://attalpresident.fr/programme/mesures/stabilite-prix-electricite",
+  "libelle": "Prix de l’électricité stables pendant cinq ans",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-statut-auto-tpe",
+  "url": "https://attalpresident.fr/programme/mesures/statut-auto-tpe",
+  "libelle": "Statut Auto-TPE : embaucher son premier salarié",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-test-pme-avant-chaque-loi",
+  "url": "https://attalpresident.fr/programme/mesures/test-pme-avant-chaque-loi",
+  "libelle": "Test PME obligatoire avant chaque loi : la proposition Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-trois-mille-magistrats-greffiers",
+  "url": "https://attalpresident.fr/programme/mesures/trois-mille-magistrats-greffiers",
+  "libelle": "3 000 magistrats et greffiers recrutés",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-tu-casses-tu-repares",
+  "url": "https://attalpresident.fr/programme/mesures/tu-casses-tu-repares",
+  "libelle": "Dégradations : casseurs et mineurs face à leurs actes",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-tuteur-numerique-souverain",
+  "url": "https://attalpresident.fr/programme/mesures/tuteur-numerique-souverain",
+  "libelle": "Un tuteur IA gratuit et souverain pour chaque élève",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-un-seul-ministre-education",
+  "url": "https://attalpresident.fr/programme/mesures/un-seul-ministre-education",
+  "libelle": "Un seul ministre de l’Éducation pendant cinq ans",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-vingt-millions-salaries-ia",
+  "url": "https://attalpresident.fr/programme/mesures/vingt-millions-salaries-ia",
+  "libelle": "Former 20 millions de salariés à l’IA d’ici 2030",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme",
+  "url": "https://attalpresident.fr/programme",
+  "libelle": "Programme",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-dette-de-letat",
+  "url": "https://attalpresident.fr/programme/dette-de-letat",
+  "libelle": "Dette de l’État",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-dette-ecologique",
+  "url": "https://attalpresident.fr/programme/dette-ecologique",
+  "libelle": "Dette écologique",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-education",
+  "url": "https://attalpresident.fr/programme/education",
+  "libelle": "Éducation",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-frontieres",
+  "url": "https://attalpresident.fr/programme/frontieres",
+  "libelle": "Frontières",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-intelligence-artificielle",
+  "url": "https://attalpresident.fr/programme/intelligence-artificielle",
+  "libelle": "Intelligence artificielle",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-programme-travail-salaires",
+  "url": "https://attalpresident.fr/programme/travail-salaires",
+  "libelle": "Travail et salaires",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-augustin-billetdoux-declaration",
+  "url": "https://billetdoux2027.fr/",
+  "libelle": "La déclaration",
+  "editeur": "Augustin Billetdoux (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-autain-11-mesures",
+  "url": "https://clementine-autain.fr/nous-sommes-prets-a-gouverner-nos-11-mesures-prioritaires/",
+  "libelle": "Nos 11 mesures prioritaires",
+  "editeur": "Clémentine Autain (L'Après)"
+ },
+ {
+  "nom": "presidentielle-2027-autain-anti-concentration-medias",
+  "url": "https://clementine-autain.fr/contre-la-bollorisation-pour-une-loi-anti-concentration-dans-les-medias/",
+  "libelle": "Pour une loi anti-concentration dans les médias",
+  "editeur": "Clémentine Autain (L'Après)"
+ },
+ {
+  "nom": "presidentielle-2027-autain-appel-candidature-unique",
+  "url": "https://clementine-autain.fr/appel-de-lapres-pour-une-candidature-unique-du-nouveau-front-populaire/",
+  "libelle": "Appel pour une candidature unique",
+  "editeur": "Clémentine Autain (L'Après)"
+ },
+ {
+  "nom": "presidentielle-2027-autain-manifeste",
+  "url": "https://clementine-autain.fr/wp-content/uploads/2026/02/Manifeste_Clementine-Autain_VF.pdf",
+  "libelle": "Manifeste (PDF)",
+  "editeur": "Clémentine Autain (L'Après)"
+ },
+ {
+  "nom": "presidentielle-2027-autain-narcotrafic",
+  "url": "https://clementine-autain.fr/narcotrafic-mes-propositions-pour-agir/",
+  "libelle": "Narcotrafic, mes propositions",
+  "editeur": "Clémentine Autain (L'Après)"
+ },
+ {
+  "nom": "presidentielle-2027-batho-campagne",
+  "url": "https://www.delphinebatho.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Delphine Batho (Génération écologie)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-5-refondations",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/",
+  "libelle": "Les 5 refondations",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-campagne",
+  "url": "https://becht2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-3",
+  "url": "https://becht2027.fr/chapitre/partie-3/",
+  "libelle": "Le Projet France, partie 3 : de l’espoir à l’action",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-4",
+  "url": "https://becht2027.fr/chapitre/partie-4/",
+  "libelle": "Le Projet France, partie 4 : un nouveau modèle économique",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-5",
+  "url": "https://becht2027.fr/chapitre/partie-5/",
+  "libelle": "Le Projet France, partie 5 : un nouveau modèle social",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-6",
+  "url": "https://becht2027.fr/chapitre/partie-6/",
+  "libelle": "Le Projet France, partie 6 : un nouveau modèle de santé",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-7",
+  "url": "https://becht2027.fr/chapitre/partie-7/",
+  "libelle": "Le Projet France, partie 7 : un nouveau modèle de sécurité",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-8",
+  "url": "https://becht2027.fr/chapitre/partie-8/",
+  "libelle": "Le Projet France, partie 8 : la République et les libertés",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-projet-france-partie-9",
+  "url": "https://becht2027.fr/chapitre/partie-9/",
+  "libelle": "Le Projet France, partie 9 : un nouveau modèle de rayonnement",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-refondation-democratique-territoriale",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/refondation-democratique-territoriale/",
+  "libelle": "Le pacte démocratique et territorial",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-refondation-energie",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/refondation-energie/",
+  "libelle": "L’énergie",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-refondation-sante",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/refondation-sante/",
+  "libelle": "La santé",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-refondation-securite",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/refondation-securite/",
+  "libelle": "La sécurité",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-becht-refondation-sociale",
+  "url": "https://becht2027.fr/projet-france/les-5-refondations/refondation-sociale/",
+  "libelle": "La refondation sociale",
+  "editeur": "Olivier Becht (Ensemble pour la République)"
+ },
+ {
+  "nom": "presidentielle-2027-bouamrane-campagne",
+  "url": "https://www.karimbouamrane2027.org/",
+  "libelle": "Site de campagne",
+  "editeur": "Karim Bouamrane (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-bouamrane-manifeste",
+  "url": "https://www.karimbouamrane2027.org/manifeste.html",
+  "libelle": "Manifeste",
+  "editeur": "Karim Bouamrane (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-branco-accueil",
+  "url": "https://ruches.org/",
+  "libelle": "Accueil des Ruches",
+  "editeur": "Juan Branco (Les Ruches)"
+ },
+ {
+  "nom": "presidentielle-2027-branco-projet",
+  "url": "https://ruches.org/le-projet",
+  "libelle": "Le projet 2027",
+  "editeur": "Juan Branco (Les Ruches)"
+ },
+ {
+  "nom": "presidentielle-2027-cazeneuve-lettre-aux-francais",
+  "url": "https://assets.nationbuilder.com/laconvention/pages/2515/attachments/original/1784151599/Auxfrancaisversionfinale1507.pdf",
+  "libelle": "Lettre aux Français du 15 juillet 2026 (PDF)",
+  "editeur": "Bernard Cazeneuve (La Convention)"
+ },
+ {
+  "nom": "presidentielle-2027-cazeneuve-synthese-mesures",
+  "url": "https://assets.nationbuilder.com/laconvention/pages/2513/attachments/original/1784135398/Synthese_mesuresVfinale.pdf",
+  "libelle": "Synthèse des mesures (PDF)",
+  "editeur": "Bernard Cazeneuve (La Convention)"
+ },
+ {
+  "nom": "presidentielle-2027-christian-collovati-accueil",
+  "url": "https://www.xn--lepeuplefranais2027-hyb.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Christian Collovati (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-debout-manifeste",
+  "url": "https://debout.fr/notre-manifeste/",
+  "libelle": "Le manifeste",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-affaires-etrangeres",
+  "url": "https://www.debout-la-france.fr/projet/affaires-etrangeres/",
+  "libelle": "Affaires étrangères",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-affaires-europeennes",
+  "url": "https://www.debout-la-france.fr/projet/affaires-europeennes/",
+  "libelle": "Affaires européennes",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-agriculture",
+  "url": "https://www.debout-la-france.fr/projet/agriculture/",
+  "libelle": "Agriculture",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-bien-etre-animal",
+  "url": "https://www.debout-la-france.fr/projet/bien-etre-animal/",
+  "libelle": "Bien-être animal",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-combat-pour-les-femmes",
+  "url": "https://www.debout-la-france.fr/projet/combat-pour-les-femmes/",
+  "libelle": "Combat pour les femmes",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-culture-patrimoine",
+  "url": "https://www.debout-la-france.fr/projet/culture-patrimoine/",
+  "libelle": "Culture et patrimoine",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-defense",
+  "url": "https://www.debout-la-france.fr/projet/defense/",
+  "libelle": "Défense nationale",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-dependance-fin-de-vie",
+  "url": "https://www.debout-la-france.fr/projet/dependance-fin-de-vie/",
+  "libelle": "Dépendance et fin de vie",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-economie-travail",
+  "url": "https://www.debout-la-france.fr/projet/economie-travail/",
+  "libelle": "Économie",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-enseignement-superieur",
+  "url": "https://www.debout-la-france.fr/projet/enseignement-superieur/",
+  "libelle": "Enseignement supérieur",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-environnement-energie",
+  "url": "https://www.debout-la-france.fr/projet/environnement-energie/",
+  "libelle": "Environnement et énergie",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-equilibre-territoire-monde-rural",
+  "url": "https://www.debout-la-france.fr/projet/equilibre-territoire-monde-rural/",
+  "libelle": "Équilibre du territoire",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-famille",
+  "url": "https://www.debout-la-france.fr/projet/famille/",
+  "libelle": "Famille",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-francais-de-l-etranger",
+  "url": "https://www.debout-la-france.fr/projet/francais-de-l-etranger/",
+  "libelle": "Français de l’étranger",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-grand-partenariat-entre-la-france-et-l-afrique",
+  "url": "https://www.debout-la-france.fr/projet/grand-partenariat-entre-la-france-et-l-afrique/",
+  "libelle": "Le grand partenariat entre la France et l’Afrique",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-handicap",
+  "url": "https://www.debout-la-france.fr/projet/handicap/",
+  "libelle": "Handicap",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-immigration-et-assimilation",
+  "url": "https://www.debout-la-france.fr/projet/immigration-et-assimilation/",
+  "libelle": "Immigration et assimilation",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-instruction-publique",
+  "url": "https://www.debout-la-france.fr/projet/instruction-publique/",
+  "libelle": "Éducation",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-intelligence-artificielle",
+  "url": "https://www.debout-la-france.fr/projet/intelligence-artificielle/",
+  "libelle": "Intelligence Artificielle",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-justice",
+  "url": "https://www.debout-la-france.fr/projet/justice/",
+  "libelle": "Justice",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-logement",
+  "url": "https://www.debout-la-france.fr/projet/logement/",
+  "libelle": "Logement",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-outre-mer",
+  "url": "https://www.debout-la-france.fr/projet/outre-mer/",
+  "libelle": "Outre-mer",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-politique-mer",
+  "url": "https://www.debout-la-france.fr/projet/politique-mer/",
+  "libelle": "Politique de la mer",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-produire-en-france",
+  "url": "https://www.debout-la-france.fr/projet/produire-en-france/",
+  "libelle": "Produire en France",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-projet",
+  "url": "https://www.debout-la-france.fr/notre-projet/",
+  "libelle": "Notre projet",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-refonder-et-moraliser-notre-democratie",
+  "url": "https://www.debout-la-france.fr/projet/refonder-et-moraliser-notre-democratie/",
+  "libelle": "Refonder et moraliser notre démocratie",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-retraites",
+  "url": "https://www.debout-la-france.fr/projet/retraites/",
+  "libelle": "Retraites",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-sante",
+  "url": "https://www.debout-la-france.fr/projet/sante/",
+  "libelle": "Santé",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-sciences-souverainete-industrielle",
+  "url": "https://www.debout-la-france.fr/projet/sciences-souverainete-industrielle/",
+  "libelle": "Sciences, souveraineté industrielle et numérique",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-securite",
+  "url": "https://www.debout-la-france.fr/projet/securite/",
+  "libelle": "Sécurité",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-sport-associations",
+  "url": "https://www.debout-la-france.fr/projet/sport-associations/",
+  "libelle": "Sport et Associations",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-tourisme",
+  "url": "https://www.debout-la-france.fr/projet/tourisme/",
+  "libelle": "Tourisme",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dlf-transport-automobilistes",
+  "url": "https://www.debout-la-france.fr/projet/transport-automobilistes/",
+  "libelle": "Automobilistes et Motards",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-campagne",
+  "url": "https://dubuisson2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-ce-qui-change-pour-vous",
+  "url": "https://dubuisson2027.fr/ce-qui-change-pour-vous",
+  "libelle": "Ce qui change pour vous",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-1-methode-de-travail",
+  "url": "https://dubuisson2027.fr/dossiers/1-methode-de-travail",
+  "libelle": "Ma méthode de travail",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-10-agriculture-alimentation-eau",
+  "url": "https://dubuisson2027.fr/dossiers/10-agriculture-alimentation-eau",
+  "libelle": "Agriculture, alimentation et eau",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-11-referendum",
+  "url": "https://dubuisson2027.fr/dossiers/11-referendum",
+  "libelle": "Rendre la parole aux Français",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-12-campagne-sobre",
+  "url": "https://dubuisson2027.fr/dossiers/12-campagne-sobre",
+  "libelle": "Une campagne sobre",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-13-agenda-budget-presidentiel",
+  "url": "https://dubuisson2027.fr/dossiers/13-agenda-budget-presidentiel",
+  "libelle": "Agenda et budget présidentiel",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-2-richesse-pour-les-francais",
+  "url": "https://dubuisson2027.fr/dossiers/2-richesse-pour-les-francais",
+  "libelle": "La richesse pour les Français",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-3-sante-publique-medecine",
+  "url": "https://dubuisson2027.fr/dossiers/3-sante-publique-medecine",
+  "libelle": "Santé publique et médecine",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-4-fonction-publique",
+  "url": "https://dubuisson2027.fr/dossiers/4-fonction-publique",
+  "libelle": "Fonction publique",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-5-securite",
+  "url": "https://dubuisson2027.fr/dossiers/5-securite",
+  "libelle": "Une sécurité qui tient",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-6-justice-probite-publique",
+  "url": "https://dubuisson2027.fr/dossiers/6-justice-probite-publique",
+  "libelle": "Justice et probité publique",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-7-outre-mer",
+  "url": "https://dubuisson2027.fr/dossiers/7-outre-mer",
+  "libelle": "La vision des Outre-mer",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-8-probite-ethique-presidentielle",
+  "url": "https://dubuisson2027.fr/dossiers/8-probite-ethique-presidentielle",
+  "libelle": "Probité et éthique présidentielle",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-dossier-9-fiscalite-budget",
+  "url": "https://dubuisson2027.fr/dossiers/9-fiscalite-budget",
+  "libelle": "Fiscalité et budget",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dubuisson-projet",
+  "url": "https://dubuisson2027.fr/projet",
+  "libelle": "Projet présidentiel",
+  "editeur": "Emmanuel Dubuisson (Les Gaulois)"
+ },
+ {
+  "nom": "presidentielle-2027-dupont-aignan-20-mesures",
+  "url": "https://www.dupontaignan.fr/actualite/20-mesures-pour-retablir-lordre-et-defendre-la-justice-sociale/",
+  "libelle": "20 mesures pour rétablir l’ordre et défendre la justice sociale",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dupont-aignan-campagne",
+  "url": "https://www.dupontaignan.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-dupont-aignan-discours-rentree-2026",
+  "url": "https://www.dupontaignan.fr/actualite/liberons-la-france-%c2%b7-discours-de-rentree-de-nicolas-dupont-aignan/",
+  "libelle": "Discours de rentrée « Libérons la France » (septembre 2026)",
+  "editeur": "Nicolas Dupont-Aignan (Debout la France)"
+ },
+ {
+  "nom": "presidentielle-2027-equinoxe-manifeste",
+  "url": "https://parti-equinoxe.fr/wp-content/uploads/2026/08/Manifeste-du-parti-Equinoxe-Pour-en-finir-avec-la-demesure.pdf",
+  "libelle": "Manifeste « Pour en finir avec la démesure » (PDF)",
+  "editeur": "Antoine Mikolajczak (Équinoxe)"
+ },
+ {
+  "nom": "presidentielle-2027-equinoxe-presidentielle",
+  "url": "https://parti-equinoxe.fr/presidentielle-2027/",
+  "libelle": "Présidentielle 2027",
+  "editeur": "Antoine Mikolajczak (Équinoxe)"
+ },
+ {
+  "nom": "presidentielle-2027-erwan-rohou-energie",
+  "url": "https://www.les-ecologistes-mei.org/post/d%C3%A9carboner-sans-d%C3%A9naturer-refonder-la-politique-%C3%A9nerg%C3%A9tique-fran%C3%A7aise",
+  "libelle": "Décarboner sans dénaturer",
+  "editeur": "Erwan Rohou (Mouvement écologiste indépendant)"
+ },
+ {
+  "nom": "presidentielle-2027-erwan-rohou-programme",
+  "url": "https://www.les-ecologistes-mei.org/notre-programme",
+  "libelle": "Le programme du MEI",
+  "editeur": "Erwan Rohou (Mouvement écologiste indépendant)"
+ },
+ {
+  "nom": "presidentielle-2027-faure-mes-propositions",
+  "url": "https://avecfaure2027.fr/mes-propositions",
+  "libelle": "Mes propositions",
+  "editeur": "Olivier Faure (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ge-decroissance",
+  "url": "https://www.generationecologie.fr/la-decroissance/",
+  "libelle": "La décroissance",
+  "editeur": "Delphine Batho (Génération écologie)"
+ },
+ {
+  "nom": "presidentielle-2027-ge-projet",
+  "url": "https://www.generationecologie.fr/a-propos/generation-ecologie/notre-projet/",
+  "libelle": "Notre projet",
+  "editeur": "Delphine Batho (Génération écologie)"
+ },
+ {
+  "nom": "presidentielle-2027-ge-securite-climatique",
+  "url": "https://www.generationecologie.fr/2026/09/08/agir-pour-notre-securite-climatique/",
+  "libelle": "Agir pour notre sécurité climatique",
+  "editeur": "Delphine Batho (Génération écologie)"
+ },
+ {
+  "nom": "presidentielle-2027-ge-vivre-autrement",
+  "url": "https://www.generationecologie.fr/vivre-autrement/",
+  "libelle": "Vivre autrement",
+  "editeur": "Delphine Batho (Génération écologie)"
+ },
+ {
+  "nom": "presidentielle-2027-glucksmann-campagne",
+  "url": "https://glucks2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-glucksmann-lettre-aux-francais",
+  "url": "https://place-publique.eu/posts/2fgDdljEIy36rgxBjRyiQZ/raphael-glucksmann-sa-lettre-aux-francais",
+  "libelle": "Lettre aux Français",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-horizons-accueil",
+  "url": "https://horizonsleparti.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-horizons-manifeste",
+  "url": "https://horizonsleparti.fr/le-manifeste/",
+  "libelle": "Le manifeste",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-horizons-plan-narcotrafic",
+  "url": "https://horizonsleparti.fr/le-plan-dedouard-philippe-contre-le-narcotrafic/",
+  "libelle": "Plan contre le narcotrafic",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-jean-francois-legendre-accueil",
+  "url": "https://www.anousmaintenant.fr/",
+  "libelle": "Accueil d’À nous maintenant",
+  "editeur": "Jean-François Legendre (À nous maintenant)"
+ },
+ {
+  "nom": "presidentielle-2027-jean-lassalle-accueil",
+  "url": "https://resistons-france.fr/",
+  "libelle": "Accueil de Résistons !",
+  "editeur": "Jean Lassalle (Résistons)"
+ },
+ {
+  "nom": "presidentielle-2027-joel-cheve-election-2027",
+  "url": "https://www.lafranceadulte.fr/election2027",
+  "libelle": "Élection 2027",
+  "editeur": "Joël Chevé (La France adulte)"
+ },
+ {
+  "nom": "presidentielle-2027-joel-cheve-projet",
+  "url": "https://www.lafranceadulte.fr/projet",
+  "libelle": "Projet de remontée citoyenne",
+  "editeur": "Joël Chevé (La France adulte)"
+ },
+ {
+  "nom": "presidentielle-2027-joel-cheve-resume-projet-pdf",
+  "url": "https://www.lafranceadulte.fr/projet/resume-projet-la-france-adulte.pdf",
+  "libelle": "Résumé du projet (PDF)",
+  "editeur": "Joël Chevé (La France adulte)"
+ },
+ {
+  "nom": "presidentielle-2027-kazib-campagne",
+  "url": "https://anasse2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Anasse Kazib (Révolution permanente)"
+ },
+ {
+  "nom": "presidentielle-2027-kazib-candidature",
+  "url": "https://anasse2027.fr/pourquoi-nous-soutenir",
+  "libelle": "Notre candidature",
+  "editeur": "Anasse Kazib (Révolution permanente)"
+ },
+ {
+  "nom": "presidentielle-2027-kazib-depliant",
+  "url": "https://anasse2027.fr/programme/depliant-anasse-2027.pdf",
+  "libelle": "Dépliant de campagne (PDF)",
+  "editeur": "Anasse Kazib (Révolution permanente)"
+ },
+ {
+  "nom": "presidentielle-2027-kazib-programme",
+  "url": "https://anasse2027.fr/programme",
+  "libelle": "Programme",
+  "editeur": "Anasse Kazib (Révolution permanente)"
+ },
+ {
+  "nom": "presidentielle-2027-lalanne-campagne",
+  "url": "https://dieudolalanne2027.com/",
+  "libelle": "Site de campagne",
+  "editeur": "Francis Lalanne (France libre)"
+ },
+ {
+  "nom": "presidentielle-2027-lalanne-programme",
+  "url": "https://dieudolalanne2027.com/programme/",
+  "libelle": "Programme",
+  "editeur": "Francis Lalanne (France libre)"
+ },
+ {
+  "nom": "presidentielle-2027-lfi-programme",
+  "url": "https://programme.lafranceinsoumise.fr/",
+  "libelle": "Programme du mouvement",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-agriculture-pdf",
+  "url": "https://nouvelle-energie-media-prod.s3.fr-par.scw.cloud/media/legacy/2026/06/AGRICULTURE.pdf",
+  "libelle": "Carnet agriculture 2026 (PDF)",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-campagne",
+  "url": "https://www.lisnard2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-discours-bayeux-2026-06-17-pdf",
+  "url": "https://nouvelle-energie-media-prod.s3.fr-par.scw.cloud/media/legacy/2026/06/Discours-de-David-Lisnard-a-Bayeux-17062026.pdf",
+  "libelle": "Discours de Bayeux (17 juin 2026)",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-livret-sante-pdf",
+  "url": "https://nouvelle-energie-media-prod.s3.fr-par.scw.cloud/media/legacy/2026/05/Livret-Sante-Nouvelle-Energie.pdf",
+  "libelle": "Livret santé (PDF)",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/",
+  "libelle": "Le programme",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-agriculture",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/agriculture/",
+  "libelle": "Agriculture : le projet de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-education",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/education/",
+  "libelle": "École : le projet de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-etre-maitre-de-notre-destin",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/etre-maitre-de-notre-destin/",
+  "libelle": "Institutions et dette : David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-generer-un-renouveau-civique",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/generer-un-renouveau-civique/",
+  "libelle": "Le renouveau civique de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-immigration",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/immigration/",
+  "libelle": "Immigration : le projet de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-reussir-une-nouvelle-ambition-francaise",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/reussir-une-nouvelle-ambition-francaise/",
+  "libelle": "L’ambition française de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-sante",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/sante/",
+  "libelle": "Santé : le projet de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lisnard-programme-securite",
+  "url": "https://www.unenouvelleenergie.fr/notre-programme/securite/",
+  "libelle": "Sécurité : le projet de David Lisnard",
+  "editeur": "David Lisnard (Nouvelle Énergie)"
+ },
+ {
+  "nom": "presidentielle-2027-lo-accueil",
+  "url": "https://lutte-ouvriere.org/",
+  "libelle": "Accueil du parti",
+  "editeur": "Nathalie Arthaud (Lutte ouvrière)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-accueil",
+  "url": "https://republicains.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-agriculture-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/03/LR_Agriculture.pdf",
+  "libelle": "Livret agriculture (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-brochure-2026-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/01/51705_LesRepublicains_Brochures_A5-40P_DEF.pdf",
+  "libelle": "Brochure de janvier 2026 (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-charte-republicaine-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/09/PJLC-Charte-republicaine-v010926.pdf",
+  "libelle": "Projet de loi constitutionnelle : la Charte républicaine",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-comptes-publics-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/10/20261011_Fiches_presse_comptes_publics_mise_en_page.pdf",
+  "libelle": "Rétablir l’ordre dans les comptes publics (fiches, octobre 2026)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-ecole-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/09/LR_Ecole_vF.pdf",
+  "libelle": "Livret école (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-electricite-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Electricite_vFF070626.pdf",
+  "libelle": "Livret électricité (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-famille-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Famille_vFinale.pdf",
+  "libelle": "Livret famille (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-ia-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/07/LR_IA.pdf",
+  "libelle": "Livret intelligence artificielle (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-logement-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/05/LR_Logement.pdf",
+  "libelle": "Livret logement (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-produire-plus-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/02/LR_Produire_Plus_LIVRET.pdf",
+  "libelle": "Livret « Produire plus » (PDF)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-propositions",
+  "url": "https://republicains.fr/nos-propositions/",
+  "libelle": "Nos propositions",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-souverainete-du-peuple-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/09/0523ceeb-5312-4629-a1f0-a7eba5aaefbb.pdf",
+  "libelle": "Projet de loi constitutionnelle sur la souveraineté du peuple",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-lr-travail-gagnant-pdf",
+  "url": "https://republicains.fr/wp-content/uploads/2026/01/Slide-presentation-Travail-gagnant-07-01-26.pdf",
+  "libelle": "Le projet « Travail gagnant » (janvier 2026)",
+  "editeur": "Bruno Retailleau (Les Républicains)"
+ },
+ {
+  "nom": "presidentielle-2027-mathieu-candidat",
+  "url": "https://benoitmathieu2027.fr/le-candidat",
+  "libelle": "Le candidat",
+  "editeur": "Benoît Mathieu (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-mathieu-programme",
+  "url": "https://benoitmathieu2027.fr/programme",
+  "libelle": "Programme",
+  "editeur": "Benoît Mathieu (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-accueil",
+  "url": "https://melenchon2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-comptes-publics-pdf",
+  "url": "https://melenchon2027.fr/wp-content/uploads/2026/10/Comment-nous-allons-remettre-de-l-ordre-dans-les-comptes-publics.pdf",
+  "libelle": "Comment nous allons remettre de l’ordre dans les comptes publics (PDF)",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-donbass-franceinfo",
+  "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/c-est-au-peuple-de-decider-lui-meme-ce-qu-il-veut-on-vous-resume-la-polemique-suscitee-par-les-propos-de-jean-luc-melenchon-sur-l-ukraine_8276072.html"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-donbass-lcp",
+  "url": "https://lcp.fr/actualites/accuse-de-se-faire-le-porte-parole-du-kremlin-jean-luc-melenchon-replique-sur-l-ukraine"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-lettre-au-peuple",
+  "url": "https://melenchon2027.fr/lettre-au-peuple-de-france/",
+  "libelle": "Lettre au peuple de France",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre",
+  "url": "https://melenchon2027.fr/programme2025/livre/",
+  "libelle": "Le livre programme, sommaire",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre1/",
+  "libelle": "L’Avenir en commun, chapitre 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre1-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre1/s1/",
+  "libelle": "L’Avenir en commun, chapitre 1, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre1-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre1/s2/",
+  "libelle": "L’Avenir en commun, chapitre 1, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre1-s6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre1/s6/",
+  "libelle": "L’Avenir en commun, chapitre 1, section 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/",
+  "libelle": "L’Avenir en commun, chapitre 10",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/s1/",
+  "libelle": "L’Avenir en commun, chapitre 10, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/s2/",
+  "libelle": "L’Avenir en commun, chapitre 10, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/s3/",
+  "libelle": "L’Avenir en commun, chapitre 10, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/s4/",
+  "libelle": "L’Avenir en commun, chapitre 10, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre10-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre10/s5/",
+  "libelle": "L’Avenir en commun, chapitre 10, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre11",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre11/",
+  "libelle": "L’Avenir en commun, chapitre 11",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre11-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre11/s1/",
+  "libelle": "L’Avenir en commun, chapitre 11, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre11-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre11/s2/",
+  "libelle": "L’Avenir en commun, chapitre 11, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre12",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre12/",
+  "libelle": "L’Avenir en commun, chapitre 12",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre12-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre12/s1/",
+  "libelle": "L’Avenir en commun, chapitre 12, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre12-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre12/s2/",
+  "libelle": "L’Avenir en commun, chapitre 12, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre12-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre12/s3/",
+  "libelle": "L’Avenir en commun, chapitre 12, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/",
+  "libelle": "L’Avenir en commun, chapitre 13",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/s1/",
+  "libelle": "L’Avenir en commun, chapitre 13, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/s2/",
+  "libelle": "L’Avenir en commun, chapitre 13, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/s3/",
+  "libelle": "L’Avenir en commun, chapitre 13, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/s4/",
+  "libelle": "L’Avenir en commun, chapitre 13, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre13-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre13/s5/",
+  "libelle": "L’Avenir en commun, chapitre 13, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/",
+  "libelle": "L’Avenir en commun, chapitre 14",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s1/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s2/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s3/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s4/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s5/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre14-s6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre14/s6/",
+  "libelle": "L’Avenir en commun, chapitre 14, section 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre15",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/",
+  "libelle": "L’Avenir en commun, chapitre 15",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre15-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/s1/",
+  "libelle": "L’Avenir en commun, chapitre 15, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre15-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/s2/",
+  "libelle": "L’Avenir en commun, chapitre 15, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre15-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/s3/",
+  "libelle": "L’Avenir en commun, chapitre 15, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre15-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre15/s4/",
+  "libelle": "L’Avenir en commun, chapitre 15, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/",
+  "libelle": "L’Avenir en commun, chapitre 16",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s1/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s10",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s10/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 10",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s11",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s11/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 11",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s12",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s12/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 12",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s2/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s3/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s4/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s5/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s6/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s7",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s7/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 7",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s8",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s8/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 8",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre16-s9",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre16/s9/",
+  "libelle": "L’Avenir en commun, chapitre 16, section 9",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre17",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre17/",
+  "libelle": "L’Avenir en commun, chapitre 17",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre17-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre17/s1/",
+  "libelle": "L’Avenir en commun, chapitre 17, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre17-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre17/s2/",
+  "libelle": "L’Avenir en commun, chapitre 17, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/",
+  "libelle": "L’Avenir en commun, chapitre 18",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/s1/",
+  "libelle": "L’Avenir en commun, chapitre 18, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/s2/",
+  "libelle": "L’Avenir en commun, chapitre 18, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/s3/",
+  "libelle": "L’Avenir en commun, chapitre 18, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/s4/",
+  "libelle": "L’Avenir en commun, chapitre 18, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre18-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre18/s5/",
+  "libelle": "L’Avenir en commun, chapitre 18, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre2/",
+  "libelle": "L’Avenir en commun, chapitre 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre2-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre2/s1/",
+  "libelle": "L’Avenir en commun, chapitre 2, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre2-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre2/s2/",
+  "libelle": "L’Avenir en commun, chapitre 2, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre3/",
+  "libelle": "L’Avenir en commun, chapitre 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre3-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre3/s1/",
+  "libelle": "L’Avenir en commun, chapitre 3, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre3-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre3/s2/",
+  "libelle": "L’Avenir en commun, chapitre 3, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre4/",
+  "libelle": "L’Avenir en commun, chapitre 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre4-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre4/s1/",
+  "libelle": "L’Avenir en commun, chapitre 4, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre4-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre4/s2/",
+  "libelle": "L’Avenir en commun, chapitre 4, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre4-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre4/s3/",
+  "libelle": "L’Avenir en commun, chapitre 4, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/",
+  "libelle": "L’Avenir en commun, chapitre 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s1/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s2/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s3/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s4/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s5/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s6/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre5-s7",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre5/s7/",
+  "libelle": "L’Avenir en commun, chapitre 5, section 7",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/",
+  "libelle": "L’Avenir en commun, chapitre 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/s1/",
+  "libelle": "L’Avenir en commun, chapitre 6, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/s2/",
+  "libelle": "L’Avenir en commun, chapitre 6, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/s3/",
+  "libelle": "L’Avenir en commun, chapitre 6, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/s4/",
+  "libelle": "L’Avenir en commun, chapitre 6, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre6-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre6/s5/",
+  "libelle": "L’Avenir en commun, chapitre 6, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/",
+  "libelle": "L’Avenir en commun, chapitre 7",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s1/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s2/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s3/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s4/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s5/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s7",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s7/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 7",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre7-s9",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre7/s9/",
+  "libelle": "L’Avenir en commun, chapitre 7, section 9",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/",
+  "libelle": "L’Avenir en commun, chapitre 8",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s1/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s2/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s3/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s4/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s5/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s6",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s6/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 6",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s7",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s7/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 7",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre8-s8",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre8/s8/",
+  "libelle": "L’Avenir en commun, chapitre 8, section 8",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre9",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre9/",
+  "libelle": "L’Avenir en commun, chapitre 9",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre9-s1",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre9/s1/",
+  "libelle": "L’Avenir en commun, chapitre 9, section 1",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre9-s2",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre9/s2/",
+  "libelle": "L’Avenir en commun, chapitre 9, section 2",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-chapitre9-s3",
+  "url": "https://melenchon2027.fr/programme2025/livre/chapitre9/s3/",
+  "libelle": "L’Avenir en commun, chapitre 9, section 3",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-faire-la-revolution-citoyenne",
+  "url": "https://melenchon2027.fr/programme2025/livre/faire-la-revolution-citoyenne/",
+  "libelle": "L’Avenir en commun, partie « Faire la révolution citoyenne »",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-faire-la-revolution-citoyenne-chapitre1-3-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/faire-la-revolution-citoyenne/chapitre1-3/s4/",
+  "libelle": "L’Avenir en commun, « Faire la révolution citoyenne », chapitre 1-3, section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-faire-la-revolution-citoyenne-chapitre1-3-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/faire-la-revolution-citoyenne/chapitre1-3/s5/",
+  "libelle": "L’Avenir en commun, « Faire la révolution citoyenne », chapitre 1-3, section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-faire-la-revolution-citoyenne-s4",
+  "url": "https://melenchon2027.fr/programme2025/livre/faire-la-revolution-citoyenne/s4/",
+  "libelle": "L’Avenir en commun, « Faire la révolution citoyenne », section 4",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-faire-la-revolution-citoyenne-s5",
+  "url": "https://melenchon2027.fr/programme2025/livre/faire-la-revolution-citoyenne/s5/",
+  "libelle": "L’Avenir en commun, « Faire la révolution citoyenne », section 5",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-introduction",
+  "url": "https://melenchon2027.fr/programme2025/livre/introduction/",
+  "libelle": "L’Avenir en commun, introduction",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-l-harmonie-des-etres-humains-avec-la-nature",
+  "url": "https://melenchon2027.fr/programme2025/livre/l-harmonie-des-etres-humains-avec-la-nature/",
+  "libelle": "L’Avenir en commun, partie « L’harmonie des êtres humains avec la nature »",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-l-harmonie-des-etres-humains-entre-eux",
+  "url": "https://melenchon2027.fr/programme2025/livre/l-harmonie-des-etres-humains-entre-eux/",
+  "libelle": "L’Avenir en commun, partie « L’harmonie des êtres humains entre eux »",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-livre-ordonner-le-monde",
+  "url": "https://melenchon2027.fr/programme2025/livre/ordonner-le-monde/",
+  "libelle": "L’Avenir en commun, partie « Ordonner le monde »",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plan-automobile",
+  "url": "https://melenchon2027.fr/programme/plans-investissement/automobile/",
+  "libelle": "Plan automobile",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plan-btp-logement",
+  "url": "https://melenchon2027.fr/programme/plans-investissement/btp-logement/",
+  "libelle": "Plan BTP et logement",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plan-esr",
+  "url": "https://melenchon2027.fr/programme/plans-thematiques/esr/",
+  "libelle": "Plan enseignement supérieur et recherche",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plan-ruralite",
+  "url": "https://melenchon2027.fr/programme/plans-thematiques/ruralite/",
+  "libelle": "Plan ruralité",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plans-investissement",
+  "url": "https://melenchon2027.fr/programme/plans-investissement/",
+  "libelle": "Plans d'investissement",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-plans-thematiques",
+  "url": "https://melenchon2027.fr/programme/plans-thematiques/",
+  "libelle": "Plans thématiques",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-pole-public-bancaire-pdf",
+  "url": "https://melenchon2027.fr/wp-content/uploads/2026/10/DP-POLE-PUBLIC-BANCAIRE_ST.pdf",
+  "libelle": "Dossier du pôle public bancaire (PDF)",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-programme",
+  "url": "https://melenchon2027.fr/programme/decouvrir/",
+  "libelle": "Programme",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-programme-front-populaire-pdf",
+  "url": "https://melenchon2027.fr/wp-content/uploads/2026/04/PROGRAMME-FRONT-POPULAIRE.pdf",
+  "libelle": "Programme du Front populaire (PDF)",
+  "editeur": "Jean-Luc Mélenchon (La France insoumise)"
+ },
+ {
+  "nom": "presidentielle-2027-melenchon-ukraine-mise-au-point",
+  "url": "https://lafranceinsoumise.fr/2026/11/09/mise-au-point-sur-la-position-de-la-france-insoumise-et-son-candidat-sur-la-guerre-en-ukraine/"
+ },
+ {
+  "nom": "presidentielle-2027-npa-r-accueil",
+  "url": "https://npa-revolutionnaires.org/",
+  "libelle": "Accueil du parti",
+  "editeur": "Selma Labib (NPA-Révolutionnaires)"
+ },
+ {
+  "nom": "presidentielle-2027-npa-r-communique-candidature",
+  "url": "https://npa-revolutionnaires.org/articles/communique-presidentielle-2027-selma-labib-une-candidature-ouvriere-et-revolutionnaire-soutenue-par-gael-quirante",
+  "libelle": "Communiqué de candidature",
+  "editeur": "Selma Labib (NPA-Révolutionnaires)"
+ },
+ {
+  "nom": "presidentielle-2027-npa-r-discours-fete-humanite-2026-09-12",
+  "url": "https://npa-revolutionnaires.org/articles/intervention-de-selma-labib-a-la-fete-de-lhumanite-2026",
+  "libelle": "Discours à la fête de l’Humanité du 12 septembre 2026",
+  "editeur": "Selma Labib (NPA-Révolutionnaires)"
+ },
+ {
+  "nom": "presidentielle-2027-npa-r-lettre-juvin-2026-10-26",
+  "url": "https://npa-revolutionnaires.org/articles/reponse-de-selma-labib-a-philippe-juvin-rapporteur-general-de-la-commission-des-finances",
+  "libelle": "Lettre à Philippe Juvin du 26 octobre 2026",
+  "editeur": "Selma Labib (NPA-Révolutionnaires)"
+ },
+ {
+  "nom": "presidentielle-2027-patriotes-projet",
+  "url": "https://les-patriotes.fr/projetpourlafrance/",
+  "libelle": "Projet pour la France",
+  "editeur": "Florian Philippot (Les Patriotes)"
+ },
+ {
+  "nom": "presidentielle-2027-patriotes-projet-pdf",
+  "url": "https://les-patriotes.fr/wp-content/uploads/2026/09/Projet-pour-la-France-2026-v2.pdf",
+  "libelle": "Projet pour la France 2026 (PDF)",
+  "editeur": "Florian Philippot (Les Patriotes)"
+ },
+ {
+  "nom": "presidentielle-2027-philippe-campagne",
+  "url": "https://edouardphilippe2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-philippe-discours-conseil-national-2026-05-10",
+  "url": "https://horizonsleparti.fr/discours-dedouard-philippe-lors-du-conseil-national-a-reims-10-mai-2026/",
+  "libelle": "Discours du conseil national du 10 mai 2026",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-philippe-discours-meeting-2026-07-05",
+  "url": "https://horizonsleparti.fr/discours-dedouard-philippe-lors-de-son-grand-meeting-a-ladidas-arena-5-juillet-2026/",
+  "libelle": "Discours du meeting du 5 juillet 2026",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-philippe-proposition-entrepreneurs",
+  "url": "https://horizonsleparti.fr/ma-proposition-aux-entrepreneurs/",
+  "libelle": "Ma proposition aux entrepreneurs",
+  "editeur": "Édouard Philippe (Horizons)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-accueil",
+  "url": "https://place-publique.eu/",
+  "libelle": "Accueil de Place publique",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-acte-1",
+  "url": "https://place-publique.eu/pages/6mRSwq5tuSrSi68Cw1IADX/l-acte-i",
+  "libelle": "L’acte I de Place publique",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-acte1-pdf",
+  "url": "https://place-publique.eu/document/6J8wjk3EW8dBCLwKxa7J96/projet-placepublique-acte1.pdf",
+  "libelle": "Le projet, acte I (PDF)",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-combats",
+  "url": "https://place-publique.eu/pages/59EfFYTpFlj2lJhQ92PXsy/les-combats",
+  "libelle": "Les combats de Place publique",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-jeunesses-pdf",
+  "url": "https://place-publique.eu/document/EC2P1GWu675utSaAUjqVG/nos-jeunesses-au-coeur-de-nos-combats.pdf",
+  "libelle": "Les jeunesses au cœur de nos combats (PDF)",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-place-publique-projet",
+  "url": "https://place-publique.eu/pages/69jA2SKIG5udlNX7wI3dmc/le-projet",
+  "libelle": "Le projet de Place publique",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-polony-campagne",
+  "url": "https://natachapolony2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Natacha Polony (Nous sommes la France)"
+ },
+ {
+  "nom": "presidentielle-2027-polony-lettre-pourquoi-agir",
+  "url": "https://natachapolony2027.fr/actualites/pourquoi-nous-devons-agir",
+  "libelle": "Lettre « Pourquoi nous devons agir »",
+  "editeur": "Natacha Polony (Nous sommes la France)"
+ },
+ {
+  "nom": "presidentielle-2027-polony-ma-vision",
+  "url": "https://natachapolony2027.fr/natacha-polony/ma-vision",
+  "libelle": "Ma vision pour la France",
+  "editeur": "Natacha Polony (Nous sommes la France)"
+ },
+ {
+  "nom": "presidentielle-2027-polony-mes-principes",
+  "url": "https://natachapolony2027.fr/natacha-polony/mes-principes",
+  "libelle": "Mes principes et convictions",
+  "editeur": "Natacha Polony (Nous sommes la France)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-faure",
+  "url": "https://choisir2027.fr/candidat/olivier-faure/",
+  "libelle": "Page de candidat à la primaire",
+  "editeur": "Olivier Faure (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-faure-profession-de-foi",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/Prof.foi_A4_OF-1.pdf",
+  "libelle": "Profession de foi (PDF)",
+  "editeur": "Olivier Faure (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-faure-profession-de-foi-v1",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/Prof.foi_A4_OF.pdf",
+  "libelle": "Profession de foi, première version (PDF)",
+  "editeur": "Olivier Faure (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-glucksmann",
+  "url": "https://choisir2027.fr/candidat/raphael-glucksmann/",
+  "libelle": "Page de candidat à la primaire",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-glucksmann-profession-de-foi",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/Profession-de-foi-RG.pdf",
+  "libelle": "Profession de foi de la primaire (PDF)",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-guedj",
+  "url": "https://choisir2027.fr/candidat/jerome-guedj/",
+  "libelle": "Page de candidat à la primaire",
+  "editeur": "Jérôme Guedj (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-guedj-profession-de-foi",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/PF-Jerome-Guedj.pdf",
+  "libelle": "Profession de foi (PDF)",
+  "editeur": "Jérôme Guedj (Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-maurel",
+  "url": "https://choisir2027.fr/candidat/emmanuel-maurel/",
+  "libelle": "Page de candidat à la primaire",
+  "editeur": "Emmanuel Maurel (Gauche républicaine et socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-maurel-profession-de-foi",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/Profession-de-foi-Emmanuel-Maurel.pdf",
+  "libelle": "Profession de foi (PDF)",
+  "editeur": "Emmanuel Maurel (Gauche républicaine et socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-royal",
+  "url": "https://choisir2027.fr/candidat/segolene-royal/",
+  "libelle": "Page de candidate à la primaire",
+  "editeur": "Ségolène Royal (Divers gauche)"
+ },
+ {
+  "nom": "presidentielle-2027-primaire-royal-profession-de-foi",
+  "url": "https://choisir2027.fr/wp-content/uploads/2026/09/Profession_de_foi_Segolene_Royal_2027.pdf",
+  "libelle": "Profession de foi (PDF)",
+  "editeur": "Ségolène Royal (Divers gauche)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet",
+  "url": "https://projet-socialiste.fr/",
+  "libelle": "Le projet du Parti socialiste",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-etre-en-securites",
+  "url": "https://projet-socialiste.fr/projet/etre-en-securites/",
+  "libelle": "Être en sécurités",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-pacifier-le-monde",
+  "url": "https://projet-socialiste.fr/projet/pacifier-le-monde/",
+  "libelle": "Pacifier le monde",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-refaire-societe",
+  "url": "https://projet-socialiste.fr/projet/refaire-societe/",
+  "libelle": "Refaire société",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-sepanouir-a-egalite",
+  "url": "https://projet-socialiste.fr/projet/sepanouir-a-egalite/",
+  "libelle": "S’épanouir à égalité",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-sommaire",
+  "url": "https://projet-socialiste.fr/projet/",
+  "libelle": "Projet socialiste, sommaire",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-vivre-avec-la-nature",
+  "url": "https://projet-socialiste.fr/projet/vivre-avec-la-nature/",
+  "libelle": "Vivre avec la nature",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-ps-projet-vivre-libres",
+  "url": "https://projet-socialiste.fr/projet/vivre-libres/",
+  "libelle": "Vivre libres",
+  "editeur": "Raphaël Glucksmann (Place publique et Parti socialiste)"
+ },
+ {
+  "nom": "presidentielle-2027-reconquete-accueil",
+  "url": "https://www.parti-reconquete.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-reconquete-budget2027",
+  "url": "https://www.budget2027.fr/",
+  "libelle": "Le plan de 140 milliards d’économies (Sarah Knafo, Reconquête)",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-reconquete-programme",
+  "url": "https://leprogrammepourlafrance.fr/",
+  "libelle": "Le programme pour la France",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-renaissance-accueil",
+  "url": "https://parti-renaissance.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-22-mesures",
+  "url": "https://rassemblementnational.fr/22-mesures",
+  "libelle": "Les 22 mesures",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-accueil",
+  "url": "https://rassemblementnational.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-contre-budget-2026-pdf",
+  "url": "https://rassemblementnational.fr/documents/GRN-CONTRE-BUDGET-2026.pdf",
+  "libelle": "Contre-budget 2026 (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-lettre-buralistes",
+  "url": "https://rassemblementnational.fr/lettre-ouverte/lettre-ouverte-de-marine-le-pen-aux-buralistes-de-france",
+  "libelle": "Lettre aux buralistes",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-lettre-immobilier",
+  "url": "https://rassemblementnational.fr/lettre-ouverte/lettre-ouverte-de-marine-le-pen-aux-professionnels-de-limmobilier",
+  "libelle": "Lettre aux professionnels de l’immobilier",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-livret-entreprise-pdf",
+  "url": "https://rassemblementnational.fr/documents/WEB-GRN-LIVRET-ENTREPRISE.pdf",
+  "libelle": "Livret entreprise (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-controle-de-limmigration-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-controle-de-limmigration.pdf",
+  "libelle": "Projet : Contrôle de l’immigration (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-l-agriculture-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-l-agriculture.pdf",
+  "libelle": "Projet : L’agriculture (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-l-ecole-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-l-ecole.pdf",
+  "libelle": "Projet : L’école (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-famille-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-famille.pdf",
+  "libelle": "Projet : La famille (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-jeunesse-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-jeunesse.pdf",
+  "libelle": "Projet : La jeunesse (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-lutte-contre-la-fraude-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-lutte-contre-la-fraude.pdf",
+  "libelle": "Projet : La lutte contre la fraude (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-protection-de-lenfance-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-protection-de-lenfance.pdf",
+  "libelle": "Projet : La protection de l’enfance (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-protection-des-animaux-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-protection-des-animaux.pdf",
+  "libelle": "Projet : La protection des animaux (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-sante-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-sante.pdf",
+  "libelle": "Projet : La santé (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-la-securite-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-la-securite.pdf",
+  "libelle": "Projet : La sécurité (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-le-numerique-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-le-numerique.pdf",
+  "libelle": "Projet : Le numérique (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-le-patrimoine-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-le-patrimoine.pdf",
+  "libelle": "Projet : Le patrimoine (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-le-tourisme-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-le-tourisme.pdf",
+  "libelle": "Projet : Le tourisme (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-lecologie-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-lecologie.pdf",
+  "libelle": "Projet : L’écologie (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-les-porteurs-de-handicap-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-les-porteurs-de-handicap.pdf",
+  "libelle": "Projet : Les porteurs de handicap (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-rn-projet-outre-mer-pdf",
+  "url": "https://rassemblementnational.fr/documents/projet/projet-outre-mer.pdf",
+  "libelle": "Projet : Outre-mer (PDF)",
+  "editeur": "Marine Le Pen (Rassemblement national)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-climat",
+  "url": "https://www.fabienroussel2027.fr/climat_planifier_produire_autrement_et_proteger",
+  "libelle": "Climat : planifier, produire autrement, protéger",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-jeunesse-reponses",
+  "url": "https://www.fabienroussel2027.fr/la_jeunesse_merite_des_reponses",
+  "libelle": "La jeunesse mérite des réponses",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-lettre-aux-energeticiens",
+  "url": "https://www.fabienroussel2027.fr/lettre_aux_energeticiens",
+  "libelle": "Lettre aux énergéticiens",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-lettre-aux-francais",
+  "url": "https://www.fabienroussel2027.fr/lettre_aux_francais",
+  "libelle": "Lettre aux Français",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-lettre-aux-soignants",
+  "url": "https://www.fabienroussel2027.fr/lettre_aux_soignants",
+  "libelle": "Lettre aux soignants",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-plan-jeunesse",
+  "url": "https://www.fabienroussel2027.fr/plan_jeunesse_2027_2032",
+  "libelle": "Plan jeunesse 2027-2032",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-services-publics",
+  "url": "https://www.fabienroussel2027.fr/services_publics_notre_richesse_notre_avenir",
+  "libelle": "Services publics",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-roussel-travail",
+  "url": "https://www.fabienroussel2027.fr/travail",
+  "libelle": "Travail",
+  "editeur": "Fabien Roussel (Parti communiste français)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-agriculture",
+  "url": "https://nouspresident.fr/pour-une-exception-agriculturelle-francaise/",
+  "libelle": "Agriculture",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-cahiers-de-campagne",
+  "url": "https://nouspresident.fr/cahiers-de-campagne/",
+  "libelle": "Cahiers de campagne",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-campagne",
+  "url": "https://nouspresident.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-education",
+  "url": "https://nouspresident.fr/education-une-ecole-de-tous-les-savoirs/",
+  "libelle": "Éducation",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-industrie",
+  "url": "https://nouspresident.fr/pour-proteger-notre-industrie-relocaliser-100-produits-strategiques/",
+  "libelle": "Industrie",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-logement",
+  "url": "https://nouspresident.fr/face-a-la-crise-du-logement/",
+  "libelle": "Logement",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-plan-data-centers",
+  "url": "https://nouspresident.fr/plan-data-centers/",
+  "libelle": "Plan data centers",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-plan-de-redressement",
+  "url": "https://nouspresident.fr/plan-de-redressement/",
+  "libelle": "Plan de redressement",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-plan-urgence-climat",
+  "url": "https://nouspresident.fr/plan-urgence-climat/",
+  "libelle": "Plan urgence climat",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-plans-daction",
+  "url": "https://nouspresident.fr/nos-plans-daction/",
+  "libelle": "Nos plans d’action",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-president-au-smic",
+  "url": "https://nouspresident.fr/president-au-smic/",
+  "libelle": "Président au Smic",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-programme",
+  "url": "https://nouspresident.fr/notre-programme/",
+  "libelle": "Notre programme",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-separation-argent-etat",
+  "url": "https://nouspresident.fr/separation-argent-etat/",
+  "libelle": "Séparation de l’argent et de l’État",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-temps-loisirs",
+  "url": "https://nouspresident.fr/temps-loisirs/",
+  "libelle": "Temps et loisirs",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-travailleurs-essentiels",
+  "url": "https://nouspresident.fr/statut-travailleurs-essentiels/",
+  "libelle": "Statut des travailleurs essentiels",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-ruffin-travaillisme-ecologique",
+  "url": "https://nouspresident.fr/travaillisme-ecologique/",
+  "libelle": "Travaillisme écologique",
+  "editeur": "François Ruffin (Debout !)"
+ },
+ {
+  "nom": "presidentielle-2027-solution-democratique-accueil",
+  "url": "https://solutiondemocratique.fr/",
+  "libelle": "Accueil du parti",
+  "editeur": "Clara Egger (Solution démocratique)"
+ },
+ {
+  "nom": "presidentielle-2027-solution-democratique-calendrier-president",
+  "url": "https://solutiondemocratique.fr/notre-solution/calendrier-president/",
+  "libelle": "Le programme présidentiel et son calendrier",
+  "editeur": "Clara Egger (Solution démocratique)"
+ },
+ {
+  "nom": "presidentielle-2027-solution-democratique-notre-solution",
+  "url": "https://solutiondemocratique.fr/notre-solution/",
+  "libelle": "Programme et stratégie",
+  "editeur": "Clara Egger (Solution démocratique)"
+ },
+ {
+  "nom": "presidentielle-2027-solution-democratique-revision-constitutionnelle",
+  "url": "https://solutiondemocratique.fr/notre-solution/proposition-de-revision-constitutionnelle-controle-constitution/",
+  "libelle": "Proposition de révision constitutionnelle",
+  "editeur": "Clara Egger (Solution démocratique)"
+ },
+ {
+  "nom": "presidentielle-2027-solution-democratique-revision-legislative",
+  "url": "https://solutiondemocratique.fr/notre-solution/proposition-de-revision-legislative-pour-instaurer-la-democratie-directe-dans-les-communes/",
+  "libelle": "Proposition de révision législative",
+  "editeur": "Clara Egger (Solution démocratique)"
+ },
+ {
+  "nom": "presidentielle-2027-sylvain-pierre-durif-accueil",
+  "url": "https://elvita2027.com/",
+  "libelle": "Site de campagne",
+  "editeur": "Sylvain Pierre Durif (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-sylvain-pierre-durif-programme-pdf",
+  "url": "https://elvita2027.com/documents/Programme_Sylvain_Pierre_Durif_2027Presidentielle.pdf",
+  "libelle": "Programme (PDF)",
+  "editeur": "Sylvain Pierre Durif (Sans étiquette)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-21-priorites",
+  "url": "https://marinetondelier.fr/blog/21-priorites-gouverner-ensemble-demain",
+  "libelle": "21 priorités communes",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-campagne",
+  "url": "https://marinetondelier.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-carnet-international-pdf",
+  "url": "https://marinetondelier.fr/s/CARNET-DE-DOCTRINE-INTERNATIONAL.pdf",
+  "libelle": "Carnet de doctrine international (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-carnet-numerique-pdf",
+  "url": "https://marinetondelier.fr/s/Carnet-numerique.pdf",
+  "libelle": "Carnet de doctrine numérique (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-carnets-de-doctrine",
+  "url": "https://marinetondelier.fr/carnets-de-doctrine",
+  "libelle": "Carnets de doctrine",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livre",
+  "url": "https://marinetondelier.fr/lelivre",
+  "libelle": "Le livre",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-enfance-pdf",
+  "url": "https://marinetondelier.fr/s/livret-enfance-vf.pdf",
+  "libelle": "Livret enfance (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-littoraux-pdf",
+  "url": "https://marinetondelier.fr/s/Livret-littoraux.pdf",
+  "libelle": "Livret littoraux (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-montagne-pdf",
+  "url": "https://marinetondelier.fr/s/Livret-montagne.pdf",
+  "libelle": "Livret montagne (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-sante-environnementale-pdf",
+  "url": "https://marinetondelier.fr/s/Livret-sante-environnementale.pdf",
+  "libelle": "Livret santé environnementale (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-sante-reproductive-pdf",
+  "url": "https://marinetondelier.fr/s/Livret-sante-reproductive.pdf",
+  "libelle": "Livret santé reproductive (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livret-solitude-pdf",
+  "url": "https://marinetondelier.fr/s/Livret-solitude.pdf",
+  "libelle": "Livret solitude (PDF)",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-livrets-thematiques",
+  "url": "https://marinetondelier.fr/livrets-thematiques",
+  "libelle": "Livrets thématiques",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-manifeste",
+  "url": "https://marinetondelier.fr/manifeste",
+  "libelle": "Manifeste",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-tondelier-projet",
+  "url": "https://lesecologistes.fr/pages/6ImK65GKUnvibm33WGkjkj/projet-2027",
+  "libelle": "Le projet des Écologistes",
+  "editeur": "Marine Tondelier (Les Écologistes)"
+ },
+ {
+  "nom": "presidentielle-2027-trajectoire-campagne",
+  "url": "https://trajectoire2027.fr/",
+  "libelle": "Site de campagne",
+  "editeur": "Manolo Mlekuz (Trajectoire)"
+ },
+ {
+  "nom": "presidentielle-2027-trajectoire-programme",
+  "url": "https://trajectoire2027.fr/programme",
+  "libelle": "Programme",
+  "editeur": "Manolo Mlekuz (Trajectoire)"
+ },
+ {
+  "nom": "presidentielle-2027-trajectoire-programme-detaille",
+  "url": "https://trajectoire2027.fr/docs/programme-detaille-trajectoire.pdf",
+  "libelle": "Programme détaillé (PDF)",
+  "editeur": "Manolo Mlekuz (Trajectoire)"
+ },
+ {
+  "nom": "presidentielle-2027-upr-frexit",
+  "url": "https://upr.fr/le-frexit",
+  "libelle": "Le Frexit",
+  "editeur": "François Asselineau (Union populaire républicaine)"
+ },
+ {
+  "nom": "presidentielle-2027-upr-programme",
+  "url": "https://upr.fr/notre-programme",
+  "libelle": "Notre programme",
+  "editeur": "François Asselineau (Union populaire républicaine)"
+ },
+ {
+  "nom": "presidentielle-2027-upr-retour-au-franc",
+  "url": "https://upr.fr/le-retour-au-franc",
+  "libelle": "Le retour au franc",
+  "editeur": "François Asselineau (Union populaire républicaine)"
+ },
+ {
+  "nom": "presidentielle-2027-xavier-bertrand-vision",
+  "url": "https://www.nousfrance.fr/vision/",
+  "libelle": "La vision de Nous France",
+  "editeur": "Xavier Bertrand (Nous France)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-identite",
+  "url": "https://www.ericzemmour.fr/identite",
+  "libelle": "Identité",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-impots",
+  "url": "https://www.ericzemmour.fr/impots",
+  "libelle": "Impôts",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-independance",
+  "url": "https://www.ericzemmour.fr/independance",
+  "libelle": "Indépendance",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-industrie",
+  "url": "https://www.ericzemmour.fr/industrie",
+  "libelle": "Industrie",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-instruction",
+  "url": "https://www.ericzemmour.fr/instruction",
+  "libelle": "Instruction",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-priorites",
+  "url": "https://www.ericzemmour.fr/priorites",
+  "libelle": "Priorités",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "presidentielle-2027-zemmour-programme-defense",
+  "url": "https://www.ericzemmour.fr/presentation-du-programme-defense",
+  "libelle": "Programme de défense",
+  "editeur": "Éric Zemmour (Reconquête)"
+ },
+ {
+  "nom": "qualiopi-organismes-formation",
+  "url": "https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv"
+ }
+]
