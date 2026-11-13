@@ -301,6 +301,7 @@ export function pageVerifier(langue = 'fr') {
 		chemins: cheminsDe('verifier'),
 		script: '<script type="module" src="/verifier.js"></script>\n',
 		corps: `<section class="une une-page"><h1>${e.actes.verifier.titre}</h1></section>
+<div id="resultat" aria-live="polite"></div>
 <form id="formulaire" class="carte">
 ${choixDeFichier(e.verifier.deposez, langue)}
 <details>
@@ -309,8 +310,7 @@ ${choixDeFichier(e.verifier.deposez, langue)}
 <input type="text" id="empreinte" autocomplete="off" spellcheck="false">
 </details>
 <button type="submit" class="principal large-bouton">${e.verifier.bouton}</button>
-</form>
-<div id="resultat" aria-live="polite"></div>`
+</form>`
 	});
 }
 

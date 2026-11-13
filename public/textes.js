@@ -88,6 +88,8 @@ const TEXTES = {
 		objet: { fr: 'Objet', de: 'Objekt' },
 		vu: { fr: 'Vu', de: 'Gesehen' },
 		duTourAu: { fr: (a, b) => `du tour ${a} au tour ${b}`, de: (a, b) => `von Runde ${a} bis Runde ${b}` },
+		vuEnLigne: { fr: (a, b) => (a === b ? `Vu en ligne le ${a}` : `Vu en ligne du ${a} au ${b}`), de: (a, b) => (a === b ? `Online gesehen am ${a}` : `Online gesehen vom ${a} bis ${b}`) },
+		autre: { fr: 'Vérifier un autre document', de: 'Ein anderes Dokument prüfen' },
 		chemin: { fr: 'Chemin d’audit', de: 'Prüfpfad' },
 		etapes: { fr: (n) => `${n} étapes, racine recalculée`, de: (n) => `${n} Schritte, Wurzel nachgerechnet` },
 		absent: { fr: 'absent du relevé', de: 'nicht im Protokoll' },
