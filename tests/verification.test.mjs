@@ -80,3 +80,22 @@ test('un recu precede d un blanc reste un recu, et la liste des autorites est fa
 	assert.equal(await enPanne(async () => ({ ok: false }))(), null);
 	assert.deepEqual(await enPanne(async () => ({ ok: true, json: async () => ({ autorites: [1] }) }))(), [1]);
 });
+
+/*
+ * 2026-11-13, sur la lecture de Florian : un lien de preuve (avantapres2027,
+ * auregistre) ouvrait le formulaire de depot, puis une ligne sans le document
+ * ni ses dates. Arrive par un lien, le verdict passe seul en tete.
+ */
+test('arrive par un lien, le verdict passe avant le formulaire, replie', async () => {
+	const source = readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const arrivee = source.slice(source.indexOf('// `/verifier?empreinte='));
+	assert.match(arrivee, /replierLeFormulaire\(\);\n\tlancer\(\)/);
+	assert.match(arrivee, /formulaire\.hidden = true/);
+	assert.match(arrivee, /document\.title = /);
+	const constat = source.slice(source.indexOf('async function constat('), source.indexOf('const depot ='));
+	assert.ok(constat.indexOf('t.vuEnLigne(') < constat.indexOf('<details>'), 'les dates se lisent sans deplier');
+	assert.ok(constat.indexOf('t.objet') < constat.indexOf('<details>'), 'l objet se lit sans deplier');
+	const { pageVerifier } = await import('../src/pages.mjs');
+	const page = pageVerifier();
+	assert.ok(page.indexOf('id="resultat"') < page.indexOf('id="formulaire"'), 'le verdict au-dessus du formulaire');
+});

@@ -82,11 +82,10 @@ async function constat(empreinte, vu) {
 		.join(' ');
 	return `<article class="${ok ? 'ok' : 'ko'}">
 <h2>${ok ? t.identique(T.jour(vu.jour)) : t.nonConforme}</h2>
+<p class="faits">${t.vuEnLigne(T.heure(vu.premier), T.heure(vu.dernier))}<br>${t.objet}${NBSP}: <code>${echapper(vu.cle)}</code></p>
 <details>
 <summary>${t.details}</summary>
 <dl>
-<div><dt>${t.objet}</dt><dd><code>${echapper(vu.cle)}</code></dd></div>
-<div><dt>${t.vu}</dt><dd>${t.duTourAu(T.heure(vu.premier), T.heure(vu.dernier))}</dd></div>
 <div><dt>${t.chemin}</dt><dd>${place ? t.etapes(place.chemin.length) : t.absent}</dd></div>
 <div><dt>${t.racine}</dt><dd><code class="racine">${releve.racine}</code></dd></div>
 <div><dt>Bitcoin</dt><dd>${ancrage(tour)} ${preuves}</dd></div>
@@ -269,9 +268,30 @@ const lancer = async () => {
 
 // `/verifier?empreinte=<sha256>` : le lien qu'une autre page donne vers la preuve d'un document.
 const demandee = new URLSearchParams(location.search).get('empreinte')?.toLowerCase();
+// Arrive par un lien, le visiteur n'a rien a deposer : le verdict seul, le formulaire derriere un bouton.
 if (demandee && /^[0-9a-f]{64}$/.test(demandee) && $('empreinte')) {
 	$('empreinte').value = demandee;
-	lancer();
+	replierLeFormulaire();
+	lancer().then(() => {
+		const verdict = $('resultat').querySelector('h2')?.textContent;
+		if (verdict) document.title = `${verdict} | ${document.title.split(' | ').at(-1)}`;
+	});
+}
+
+function replierLeFormulaire() {
+	const formulaire = $('formulaire');
+	if (!formulaire) return;
+	formulaire.hidden = true;
+	const bouton = document.createElement('button');
+	bouton.type = 'button';
+	bouton.className = 'autre';
+	bouton.textContent = t.autre;
+	bouton.addEventListener('click', () => {
+		formulaire.hidden = false;
+		bouton.remove();
+		$('empreinte').value = '';
+	});
+	formulaire.before(bouton);
 }
 
 $('formulaire')?.addEventListener('submit', (e) => {
