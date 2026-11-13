@@ -174,7 +174,12 @@ test('un depot signe rend un recu version 4 ; une signature fausse est refusee s
 	assert.equal(faux.statut, 400);
 	assert.deepEqual(corpsDe(faux), { erreur: 'signature refusee', details: ["la charge utile n'est pas l'empreinte du document"] });
 	assert.equal(db.sqlite.prepare('SELECT COUNT(*) AS n FROM depot').get().n, 1);
-	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 1, 'un refus ne compte pas dans le plafond');
+	// Audit Codex du 2026-11-13 : une signature refusee garde sa place, sinon les essais etaient sans fin.
+	assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, 2, 'la signature refusee compte au plafond');
+	for (const n of [3, 4, 5]) {
+		await deposer({ db, corps: { sha256: 'b'.repeat(64), signature: jws }, adresse: '203.0.113.1', maintenant: midi });
+		assert.equal(db.sqlite.prepare('SELECT n FROM compte').get().n, n, 'chaque refus compte');
+	}
 });
 
 test('avec le temoin, une signature refusee rend la lecture du jour : la bonne passe ensuite', async () => {

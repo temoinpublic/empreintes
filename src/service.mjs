@@ -313,7 +313,10 @@ async function deposerApresLaReserve({ db, demande, flotte, glane, client, copie
 		if (cleLue) await faire(db, 'DELETE FROM lecture WHERE cle = ?', cleLue);
 		// La glane ne reserve pas : son telechargement refuse se compte ici, comme avant.
 		if (cleLue && glane) await faire(db, 'INSERT INTO compte (jour, adresse, n) VALUES (?, ?, 1) ON CONFLICT (jour, adresse) DO UPDATE SET n = n + 1', jour, cle);
-		return { reponse: refus(400, 'signature refusee', signature.raisons), compte: Boolean(cleLue) };
+		// Une signature refusee garde aussi sa place sur une empreinte DECLAREE : la verifier lit les
+		// autorites et fait le calcul, et 25 refus de suite depuis une adresse finissaient a zero au
+		// compteur (audit Codex du 2026-11-13). Le plafond de l'adresse borne donc les essais.
+		return { reponse: refus(400, 'signature refusee', signature.raisons), compte: true };
 	}
 
 	const acte = demande.acte ? { ...demande.acte, rattachement: await rattachement({ acte: demande.acte, demandee: demande.url, lue: lu.url, annuaire }) } : null;
