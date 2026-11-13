@@ -99,3 +99,9 @@ test('arrive par un lien, le verdict passe avant le formulaire, replie', async (
 	const page = pageVerifier();
 	assert.ok(page.indexOf('id="resultat"') < page.indexOf('id="formulaire"'), 'le verdict au-dessus du formulaire');
 });
+
+/* 2026-11-13, vu en prod : `form { display: grid }` l'emportait sur `hidden`, le formulaire replie restait affiche. */
+test('un formulaire replie ne s affiche pas', () => {
+	const css = readFileSync(new URL('../public/style.css', import.meta.url), 'utf8');
+	assert.match(css, /form\[hidden\] \{ display: none; \}/);
+});

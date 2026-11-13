@@ -99,6 +99,7 @@ main > .compte:last-child { text-align: center; font-size: 0.95rem; }
 .carte { background: var(--surface); border: 1px solid var(--trait); border-radius: 1rem; padding: 1.5rem; box-shadow: var(--ombre); }
 .carte h2:first-child { margin-top: 0; }
 form { display: grid; gap: 0.45rem; }
+form[hidden] { display: none; }
 label { color: var(--doux); font-size: 0.92rem; font-weight: 500; margin-top: 0.6rem; }
 input[type='text'], input[type='email'], select {
 	width: 100%;
