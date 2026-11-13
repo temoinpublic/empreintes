@@ -299,7 +299,7 @@ export function pageVerifier(langue = 'fr') {
 		description: e.verifier.description,
 		chemin: e.actes.verifier.chemin,
 		chemins: cheminsDe('verifier'),
-		script: '<script type="module" src="/verifier.js"></script>\n',
+		script: '<script src="/arrivee.js"></script>\n<script type="module" src="/verifier.js"></script>\n',
 		corps: `<section class="une une-page"><h1>${e.actes.verifier.titre}</h1></section>
 <div id="resultat" aria-live="polite"></div>
 <form id="formulaire" class="carte">
