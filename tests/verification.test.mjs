@@ -89,15 +89,20 @@ test('un recu precede d un blanc reste un recu, et la liste des autorites est fa
 test('arrive par un lien, le verdict passe avant le formulaire, replie', async () => {
 	const source = readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
 	const arrivee = source.slice(source.indexOf('// `/verifier?empreinte='));
-	assert.match(arrivee, /replierLeFormulaire\(\);\n\tlancer\(\)/);
-	assert.match(arrivee, /formulaire\.hidden = true/);
 	assert.match(arrivee, /document\.title = /);
+	assert.match(arrivee, /class="autre"><a href="\$\{location\.pathname\}">/);
 	const constat = source.slice(source.indexOf('async function constat('), source.indexOf('const depot ='));
 	assert.ok(constat.indexOf('t.vuEnLigne(') < constat.indexOf('<details>'), 'les dates se lisent sans deplier');
-	assert.ok(constat.indexOf('t.objet') < constat.indexOf('<details>'), 'l objet se lit sans deplier');
+	assert.ok(constat.indexOf('t.objet') > constat.indexOf('<details>'), 'l identifiant technique reste dans les details');
 	const { pageVerifier } = await import('../src/pages.mjs');
 	const page = pageVerifier();
 	assert.ok(page.indexOf('id="resultat"') < page.indexOf('id="formulaire"'), 'le verdict au-dessus du formulaire');
+	// 2026-11-13, sa capture : le formulaire apparaissait puis disparaissait. Il est cache avant le premier rendu.
+	assert.ok(page.indexOf('<script src="/arrivee.js"></script>') < page.indexOf('</head>'), 'arrivee.js lu dans la tete, sans defer');
+	const tete = readFileSync(new URL('../public/arrivee.js', import.meta.url), 'utf8');
+	assert.match(tete, /classList\.add\('par-lien'\)/);
+	const css = readFileSync(new URL('../public/style.css', import.meta.url), 'utf8');
+	assert.match(css, /\.par-lien #formulaire \{ display: none; \}/);
 });
 
 /* 2026-11-13, vu en prod : `form { display: grid }` l'emportait sur `hidden`, le formulaire replie restait affiche. */

@@ -82,7 +82,9 @@ nav a[aria-current='page'] { color: var(--encre); background: color-mix(in srgb,
 .une + #resultat + .carte { position: relative; margin: 1.2rem 1rem 0; }
 .une + #resultat:empty + .carte { margin-top: 0; }
 #resultat .faits { margin: 0.4rem 0 0.8rem; }
-button.autre { display: block; margin: 1.2rem 1rem 0; }
+.par-lien #formulaire { display: none; }
+.par-lien #resultat:empty { min-height: 8rem; }
+#resultat .autre { margin: 1rem 0 0; font-size: 0.95rem; }
 .une-page { padding: 2rem 1.5rem 3.6rem; }
 .une-page h1 { margin: 0 auto; font-size: clamp(1.7rem, 5vw, 2.3rem); }
 .suite { text-align: center; color: var(--doux); margin: 1.2rem 0; }
@@ -239,7 +241,6 @@ footer { margin-top: 2rem; background: var(--surface); border-top: 1px solid var
 	.une + .carte { margin: 0 0.5rem; }
 	.une ~ #resultat { margin-inline: 0.5rem; }
 	.une + #resultat + .carte { margin-inline: 0.5rem; }
-	button.autre { margin-inline: 0.5rem; }
 	.carte { padding: 1.1rem; border-radius: 0.85rem; }
 	.zone { padding: 1.2rem 0.8rem; }
 	.zone-icone { width: 2.2rem; height: 2.2rem; margin: 0; }
