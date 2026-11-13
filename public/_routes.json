@@ -21,6 +21,7 @@
 		"/affichage.mjs",
 		"/produit.mjs",
 		"/serie.mjs",
+		"/sources.mjs",
 		"/tours.json",
 		"/version.json",
 		"/openapi.json",

@@ -5,6 +5,7 @@ import { montrer, suivreLeChoix } from '/fichier.js';
 import { estUnRecu, idDuRecu } from '/depot.mjs';
 import { estUnCertificat, lireCertificat, verifierLeCertificat } from '/serie.mjs';
 import { verifierSignatureDuDeposant } from '/origine.mjs';
+import { SOURCES_NOMMEES, nommer } from '/sources.mjs';
 import { T } from '/textes.js';
 
 suivreLeChoix(document);
@@ -68,6 +69,24 @@ async function horodatageDu(id, racine) {
 	return { ...(await verifierHorodatage(await octets(`/empreintes/${nom}`), tour.racine)), nom };
 }
 
+/** La table des sources nommees, lue une fois ; facultative, sa panne (reseau comme HTTP) ne bloque pas le verdict. */
+let nommees;
+async function sourcesNommees() {
+	try {
+		const r = await (nommees ??= fetch(`/empreintes/${SOURCES_NOMMEES}`));
+		return r.ok ? await r.clone().json() : null;
+	} catch {
+		return null;
+	}
+}
+
+/** Le document dit en clair : son nom, son editeur, son adresse ; vide quand la table ne nomme pas la cle. */
+function documentNomme(d) {
+	if (!d) return '';
+	const ligne = (terme, valeur) => (valeur ? `<div><dt>${terme}</dt><dd>${valeur}</dd></div>` : '');
+	return `<dl class="document">${ligne(t.document, d.libelle && echapper(d.libelle))}${ligne(t.editeur, echapper(d.editeur ?? d.hote))}${ligne(t.source, `<a href="${echapper(d.url)}">${echapper(d.url)}</a>`)}</dl>`;
+}
+
 async function constat(empreinte, vu) {
 	const releve = await lireReleve(vu.premier);
 	const place = await placeDuFichier(releve, empreinte);
@@ -75,6 +94,7 @@ async function constat(empreinte, vu) {
 	const signature = tour ? await signatureDe(tour, releve.racine) : null;
 	const signatureSlh = tour ? await signatureSlhDe(tour, releve.racine) : null;
 	const horodatage = await horodatageDu(vu.premier, releve.racine);
+	const nomme = nommer(await sourcesNommees(), vu.cle);
 	const ok = place?.ok && signature?.ok !== false && signatureSlh?.ok !== false && horodatage?.ok !== false;
 	const preuves = (tour?.fichiers ?? [])
 		.filter((f) => f.endsWith('.ots') || f.endsWith('.tsr'))
@@ -82,6 +102,7 @@ async function constat(empreinte, vu) {
 		.join(' ');
 	return `<article class="${ok ? 'ok' : 'ko'}">
 <h2>${ok ? t.identique(T.jour(vu.jour)) : t.nonConforme}</h2>
+${documentNomme(nomme)}
 <p class="faits">${t.vuEnLigne(T.heure(vu.premier), T.heure(vu.dernier))}</p>
 <details>
 <summary>${t.details}</summary>

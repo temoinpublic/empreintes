@@ -82,6 +82,7 @@ nav a[aria-current='page'] { color: var(--encre); background: color-mix(in srgb,
 .une + #resultat + .carte { position: relative; margin: 1.2rem 1rem 0; }
 .une + #resultat:empty + .carte { margin-top: 0; }
 #resultat .faits { margin: 0.4rem 0 0.8rem; }
+#resultat .document { margin: 0.2rem 0 0.9rem; }
 .par-lien #formulaire, .par-lien .une-page { display: none; }
 .par-lien .une-page ~ #resultat { margin: 1.5rem 0 0; }
 .par-lien #resultat:empty { min-height: 9rem; border: 1px solid var(--trait); border-radius: 0.8rem; background: var(--surface); }
