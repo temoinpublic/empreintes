@@ -312,7 +312,7 @@ test('la construction publie la page du schema et son fichier versionne, sans no
 	const fichier = JSON.parse(fs.readFileSync(path.join(DIST, SCHEMA.CHEMIN_DU_SCHEMA.slice(1)), 'utf8'));
 	assert.deepEqual(fichier, SCHEMA.schemaDeLAdresse());
 	const page = fs.readFileSync(path.join(DIST, 'adresse-des-actes.html'), 'utf8');
-	assert.equal(pageSchemaAdresse(SCHEMA), page);
+	assert.equal(pageSchemaAdresse(SCHEMA), page.replace(/\?v=[0-9a-f]{10}/g, ''));
 	assert.match(page, /<h1>Adresse pérenne d’un acte local<\/h1>/);
 	assert.match(page, /<a href="\/schema\/adresse-des-actes\/1.json">/);
 	assert.equal((page.match(/<table>/g) ?? []).length, 4);

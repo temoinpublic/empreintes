@@ -8,6 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { FICHIER_PUBLIE, ID_DE_TOUR, PREUVE_PUBLIEE, creerLIndex, resumeDe } from '../src/journal.mjs';
 import { lecteurDeReleves } from '../src/chaine.mjs';
 import { INDEX_MEMENTO, SOURCES_TEMOIN, creerLesVersions } from '../src/memento.mjs';
@@ -33,7 +34,17 @@ function commitServi() {
 	}
 }
 
-const ecrire = (relatif, contenu) => {
+// Chaque page appelle sa feuille et ses scripts avec l'empreinte de leur contenu : le cache de
+// Cloudflare servait l'ancienne feuille sous la meme adresse apres un deploiement (2026-11-13).
+const VERSIONS = Object.fromEntries(
+	fs
+		.readdirSync(path.join(RACINE, 'public'))
+		.filter((f) => /\.(css|js)$/.test(f))
+		.map((f) => [f, createHash('sha256').update(fs.readFileSync(path.join(RACINE, 'public', f))).digest('hex').slice(0, 10)])
+);
+const versionner = (html) => html.replace(/(href|src)="\/([\w-]+\.(?:css|js))"/g, (tout, attribut, f) => (VERSIONS[f] ? `${attribut}="/${f}?v=${VERSIONS[f]}"` : tout));
+const ecrire = (relatif, brut) => {
+	const contenu = relatif.endsWith('.html') && typeof brut === 'string' ? versionner(brut) : brut;
 	const f = path.join(DIST, relatif);
 	fs.mkdirSync(path.dirname(f), { recursive: true });
 	fs.writeFileSync(f, contenu);

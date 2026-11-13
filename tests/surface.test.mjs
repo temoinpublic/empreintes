@@ -100,3 +100,11 @@ test('chaque module importe par un script servi est servi, hors de la Function',
 		}
 	}
 });
+
+// 2026-11-13 : apres un deploiement, le cache de Cloudflare servait l'ancienne feuille sous la meme adresse.
+test('chaque page appelle sa feuille et ses scripts avec l empreinte de leur contenu', () => {
+	const html = fs.readFileSync(path.join(DIST, 'verifier.html'), 'utf8');
+	assert.match(html, /href="\/style\.css\?v=[0-9a-f]{10}"/);
+	assert.match(html, /src="\/arrivee\.js\?v=[0-9a-f]{10}"/);
+	assert.match(html, /src="\/verifier\.js\?v=[0-9a-f]{10}"/);
+});
