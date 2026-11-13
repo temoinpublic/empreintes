@@ -133,6 +133,6 @@ ecrire(`${CHEMIN_OFFRE_CONFORMITE.slice(1)}.html`, pageOffreConformite());
 ecrire(`${CHEMIN_PROMESSES.slice(1)}.html`, pagePromesses(promesses));
 for (const f of promesses) ecrire(`${cheminDeLaCommune(f.insee).slice(1)}.html`, pagePromessesDeLaCommune(f));
 for (const b of BESOINS) ecrire(`${b.chemin.slice(1)}.html`, pageBesoin(b));
-for (const m of ['chaine.mjs', 'horodatage.mjs', 'slh.mjs', 'depot.mjs', 'acte.mjs', 'personne.mjs', 'annuaire.mjs', 'affichage.mjs', 'origine.mjs', 'produit.mjs', 'serie.mjs']) ecrire(m, fs.readFileSync(path.join(RACINE, 'src', m)));
+for (const m of ['chaine.mjs', 'horodatage.mjs', 'slh.mjs', 'depot.mjs', 'acte.mjs', 'personne.mjs', 'annuaire.mjs', 'affichage.mjs', 'origine.mjs', 'produit.mjs', 'sources.mjs', 'serie.mjs']) ecrire(m, fs.readFileSync(path.join(RACINE, 'src', m)));
 for (const f of fs.readdirSync(path.join(RACINE, 'public'))) ecrire(f, fs.readFileSync(path.join(RACINE, 'public', f)));
 console.log(`${tours.length} tours, ${fichiers.length} fichiers du journal, ${preuves.length} preuves, ${entrees.length} disparus, ${promesses.length} communes a promesses, dist/ ecrit`);
