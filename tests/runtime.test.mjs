@@ -44,3 +44,12 @@ test('la constante de vidage ecrite en clair est celle de zlib', async () => {
 	const source = fs.readFileSync(path.join(RACINE, 'src', 'glane.mjs'), 'utf8');
 	assert.match(source, new RegExp(`const Z_SYNC_FLUSH = ${constants.Z_SYNC_FLUSH};`));
 });
+
+test('toute Function qui repond a GET repond a HEAD par le meme code', async () => {
+	const lisibles = entrees('functions').filter((f) => /export async function onRequestGet\b/.test(fs.readFileSync(f, 'utf8')));
+	assert.ok(lisibles.length >= 14, 'les Functions de lecture sont lues');
+	for (const fichier of lisibles) {
+		const module = await import(fichier);
+		assert.equal(module.onRequestHead, module.onRequestGet, path.relative(RACINE, fichier));
+	}
+});

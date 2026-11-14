@@ -76,3 +76,6 @@ export const enJson = (corps, status = 200) =>
 export async function onRequestGet({ request, env }) {
 	return enJson(await corpsDeLaSante({ request, env }));
 }
+
+// HEAD suit GET : sans ce nom, le routeur de Pages rend un 404 a qui verifie un lien.
+export { onRequestGet as onRequestHead };

@@ -15,6 +15,17 @@ Un changement en vol par famille de pages ; chacun porte sa date de jugement.
 | --- | --- | --- | --- | --- |
 | offres sans prix (`/marches-publics`, `/publicite-des-actes`, `/date-de-publication`, `/dossier-de-sinistre`, `/versions-d-un-acte`, `/documents-du-personnel` ; D-200, D-195) | famille nee le 2026-10-16 : une page par milieu, une liste d'attente commune ; liees de l'accueil (une phrase), au plan du site, et `/publicite-des-actes` depuis chaque page de commune | 2026-10-16 | **2026-12-15** | Search Console : impressions et clics des trois pages ; `/health` `attente` par offre |
 
+## Lecture 2026-11-14 - `/collectivite/<INSEE>` a un mois du jugement
+
+Le pari ne change pas ; ceci est sa mesure a mi-course.
+
+- Servi : 8 244 communes et 143 444 actes (`/api/communes`), 8 340 adresses dans `sitemap-communes.xml`.
+- Search Console, 14/10 au 11/11 : 43 pages de commune avec au moins une impression (critere : 1 000). Le domaine est passe de 67 impressions par jour le 27/10 a 0 a 2 depuis le 30/10.
+- Inspection de 60 adresses a pas constant dans le plan : 54 inconnues de Google (90 %), 4 indexees (6,7 %, intervalle a 95 % de 2,6 a 15,9 %), 2 explorees et non indexees. Les indexees ont ete lues du 19 au 22/10, les refusees le 30/10.
+- Le plan est connu et lu (il y a 7 jours, 5 073 adresses, 0 erreur) : ce n'est pas un defaut de declaration. `/collectivite` et `/collectivite/departement/12` sont « explorees, non indexees » ; les departements 49 et 75 sont inconnus. Google a cesse de suivre le moyeu, il ne refuse pas les pages une a une.
+- Ce que ca dit du 15/12 : sans lien exterieur vers la famille, le critere des 1 000 pages ne sera pas tenu. Le geste est hors du site (D-239, D-284), pas dans le modele des pages.
+- Rejouer : `node setup/scripts/search-console-indexation.mjs --site sc-domain:temoinpublic.fr --sitemap https://temoinpublic.fr/sitemap-communes.xml --famille /collectivite/ --n 60 --population toutes` (depot `assistant`).
+
 ## Pari 2026-10-16 - les offres sans prix
 
 - Ce qui change : la famille nait (six pages au plan du site, `/dossier-de-sinistre`, `/versions-d-un-acte` et `/documents-du-personnel` ajoutees le meme soir, avant toute mesure) et se maille depuis l'accueil, par une phrase qui lie les six pages, et depuis chaque page de commune vers `/publicite-des-actes` (PR #76). Pas de lien en pied de page : il toucherait tout le site, et deux paris sont en vol (`/collectivite/<INSEE>` au 2026-12-15, `/besoin/<besoin>` au 2026-11-30).

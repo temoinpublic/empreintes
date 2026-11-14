@@ -7,3 +7,6 @@ export async function onRequestGet({ request, env }) {
 	const rep = reponse(index, request.url, { acceptDatetime: request.headers.get('accept-datetime'), accept: request.headers.get('accept') ?? '' });
 	return new Response(rep.corps || null, { status: rep.statut, headers: rep.entetes });
 }
+
+// HEAD suit GET : sans ce nom, le routeur de Pages rend un 404 a qui verifie un lien.
+export { onRequestGet as onRequestHead };
