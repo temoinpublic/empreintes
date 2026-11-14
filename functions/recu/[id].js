@@ -12,3 +12,6 @@ export async function onRequestGet({ request, params, env }) {
 		headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=60' }
 	});
 }
+
+// HEAD suit GET : sans ce nom, le routeur de Pages rend un 404 a qui verifie un lien.
+export { onRequestGet as onRequestHead };

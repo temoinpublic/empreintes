@@ -14,3 +14,6 @@ export async function onRequestDelete({ request, params, env }) {
 	const r = await retirerFlux({ db: env.DEPOTS, id: params.id, jeton: jetonDe(request) });
 	return new Response(r.corps, { status: r.statut, headers: r.entetes });
 }
+
+// HEAD suit GET : sans ce nom, le routeur de Pages rend un 404 a qui verifie un lien.
+export { onRequestGet as onRequestHead };

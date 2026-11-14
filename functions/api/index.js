@@ -8,3 +8,6 @@ export async function onRequestGet({ request, env }) {
 	const openapi = await (await env.ASSETS.fetch(new URL('/openapi.json', request.url))).json();
 	return new Response(`${JSON.stringify(indexDeLApi(openapi), null, 1)}\n`, { status: 200, headers: JSON_UTF8 });
 }
+
+// HEAD suit GET : sans ce nom, le routeur de Pages rend un 404 a qui verifie un lien.
+export { onRequestGet as onRequestHead };
