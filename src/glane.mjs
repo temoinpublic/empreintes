@@ -475,17 +475,41 @@ function formatDe(debut) {
 /**
  * Les actes deja dates a relire ce passage (D-193) : ceux dont la derniere
  * lecture (relecture, sinon datation) date d'au moins `jours`, les plus anciens
- * d'abord, `max` au plus. Il faut le recu, la commune, la nature et l'objet
- * (requis pour un acte) pour redemander la datation ; `[url, entree]` dans
- * l'ordre de relecture.
+ * d'abord, `max` au plus et `parCommune` au plus par commune. Il faut le recu,
+ * la commune, la nature et l'objet (requis pour un acte) pour redemander la
+ * datation. Rendus `[url, entree]`, un hote apres l'autre : les relecteurs en
+ * parallele ne s'attendent pas devant le meme site (un appel par hote toutes
+ * les 5 s).
  */
-export function aRelire(pdfs, { jour, jours, max }) {
+export function aRelire(pdfs, { jour, jours, max, parCommune = Infinity }) {
 	const limite = new Date(Date.parse(`${jour}T00:00:00Z`) - jours * 864e5).toISOString().slice(0, 10);
 	const dernier = ([, e]) => e.relu ?? e.jour;
-	return Object.entries(pdfs)
+	const parCode = new Map();
+	const retenus = [];
+	for (const entree of Object.entries(pdfs)
 		.filter(([, e]) => e.id && e.code && e.nature && e.libelle && dernier([, e]) <= limite)
-		.sort((a, b) => (dernier(a) < dernier(b) ? -1 : dernier(a) > dernier(b) ? 1 : 0))
-		.slice(0, max);
+		.sort((a, b) => (dernier(a) < dernier(b) ? -1 : dernier(a) > dernier(b) ? 1 : 0))) {
+		if (retenus.length >= max) break;
+		const n = parCode.get(entree[1].code) ?? 0;
+		if (n >= parCommune) continue;
+		parCode.set(entree[1].code, n + 1);
+		retenus.push(entree);
+	}
+	return unHoteApresLAutre(retenus);
+}
+
+/** Les memes entrees `[url, ...]`, en tournant sur leurs hotes ; l'ordre de chaque hote est garde. */
+function unHoteApresLAutre(entrees) {
+	const parHote = new Map();
+	for (const entree of entrees) {
+		const hote = new URL(entree[0]).hostname;
+		if (!parHote.has(hote)) parHote.set(hote, []);
+		parHote.get(hote).push(entree);
+	}
+	const files = [...parHote.values()];
+	const rendu = [];
+	for (let rang = 0; rendu.length < entrees.length; rang++) for (const file of files) if (rang < file.length) rendu.push(file[rang]);
+	return rendu;
 }
 
 /**
@@ -625,6 +649,11 @@ export class Disjoncteur {
 		this.reprise = null;
 	}
 
+	/** Les millisecondes avant qu'un essai puisse partir : 0 ferme ou la pause finie. */
+	attente() {
+		return this.ouvert ? Math.max(0, this.reprise - this.maintenant()) : 0;
+	}
+
 	get ouvert() {
 		return this.reprise !== null;
 	}
@@ -660,5 +689,20 @@ export class Disjoncteur {
 		if (this.ouvert || this.echecs < this.seuil) return;
 		this.reprise = this.maintenant() + this.pauseMs;
 		this.dire({ disjoncteur: 'ouvert', echecs: this.echecs, statut, pauseMs: this.pauseMs });
+	}
+}
+
+/**
+ * Une relecture qui attend la fin de la pause du disjoncteur au lieu de passer
+ * son tour (D-193) : ouvert, `relire` rend `a-relire` sans appel, et sans
+ * attente la file entiere s'y vidait en quelques secondes. L'attente cesse a
+ * `jusqua` : passe cette heure, un service toujours absent laisse l'acte au
+ * passage suivant.
+ */
+export async function relireSansPasserSonTour(relire, { disjoncteur, jusqua, dormir = (ms) => new Promise((r) => setTimeout(r, ms)), maintenant = Date.now }) {
+	for (;;) {
+		const issue = await relire();
+		if (issue !== 'a-relire' || maintenant() >= jusqua) return issue;
+		await dormir(Math.max(1000, Math.min(disjoncteur.attente(), jusqua - maintenant())));
 	}
 }
