@@ -90,6 +90,14 @@ export const estUnDossier = (d) => d?.format === FORMAT_DU_DOSSIER && Array.isAr
 /** Le nom du fichier a garder a cote du document. */
 export const nomDuDossier = (empreinte) => `preuve-${empreinte.slice(0, 16)}.json`;
 
+/** L'instant d'un tour, lu dans son identifiant : c'est lui que la racine chainee engage, pas un champ libre du dossier. */
+function instantDuTour(id) {
+	const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(id);
+	return m ? `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}Z` : null;
+}
+
+const jourLu = (j) => (/^\d{4}-\d{2}-\d{2}$/.test(j) ? j : null);
+
 async function placeRelue(c, empreinte) {
 	const raisons = [];
 	if (c.feuille?.sha256 !== empreinte) raisons.push("la feuille ne porte pas l'empreinte du document");
@@ -127,7 +135,7 @@ async function bitcoinRelu(c) {
 	const attendu = await sha256(`${c.tour.racine}\n`);
 	const condensat = [...ots.subarray(MARQUE_OTS.length, MARQUE_OTS.length + 32)].map((o) => o.toString(16).padStart(2, '0')).join('');
 	const ok = MARQUE_OTS.every((o, i) => ots[i] === o) && condensat === attendu;
-	return { ok, etat: c.bitcoin.etat ?? null, bloc: c.bitcoin.bloc ?? null, raisons: ok ? [] : ["la preuve OpenTimestamps ne porte pas sur la racine du tour"] };
+	return { ok, etat: c.bitcoin.etat === 'bitcoin' ? 'bitcoin' : null, bloc: Number.isInteger(c.bitcoin.bloc) ? c.bitcoin.bloc : null, raisons: ok ? [] : ["la preuve OpenTimestamps ne porte pas sur la racine du tour"] };
 }
 
 async function constatRelu(c, empreinte) {
@@ -141,11 +149,12 @@ async function constatRelu(c, empreinte) {
 	const garantie = [signature, postQuantique, horodatage].some((p) => p?.ok);
 	const raisons = [...raisonsDeLaPlace, ...pieces.flatMap((p) => p.raisons), ...(garantie ? [] : ['aucune signature ni horodatage ne garantit la racine'])];
 	return {
-		cle: c.cle ?? c.feuille?.cle ?? null,
-		jour: c.jour ?? null,
+		// La cle et le jour sont ceux de la feuille, l'instant celui de l'identifiant du tour : les seuls que la racine engage.
+		cle: String(c.feuille.cle),
+		jour: jourLu(c.feuille.jour),
 		tour: c.tour.id,
 		racine: c.tour.racine,
-		inscrit: c.tour.instant ?? null,
+		inscrit: instantDuTour(c.tour.id),
 		signature: signature && { ok: signature.ok, sigT: signature.sigT },
 		postQuantique: postQuantique && { ok: postQuantique.ok },
 		horodatage: horodatage && { ok: horodatage.ok, tour: horodatage.tour, instant: horodatage.instant, autorite: horodatage.autorite },
@@ -170,7 +179,7 @@ export async function verifierDossier(dossier, { empreinte = null } = {}) {
 		try {
 			constats.push(await constatRelu(c, attendue));
 		} catch {
-			constats.push({ cle: c?.cle ?? null, tour: c?.tour?.id ?? null, ok: false, raisons: ['constat illisible'] });
+			constats.push({ cle: null, jour: null, tour: null, ok: false, raisons: ['constat illisible'] });
 		}
 	}
 	const ok = constats.some((c) => c.ok);

@@ -169,13 +169,22 @@ test('chaque piece alteree se dit, et un dossier sans garantie ne prouve rien', 
 	assert.equal(await raisonsDe((c) => Object.assign(c, { signature: null, signaturePq: null, horodatage: null, bitcoin: null })), 'aucune signature ni horodatage ne garantit la racine');
 	assert.equal(await raisonsDe((c, d) => (d.constats[0] = null)), 'constat illisible');
 	assert.equal(await raisonsDe((c, d) => (d.constats[0] = { tour: null })), 'constat illisible');
+	assert.match(await raisonsDe((c) => (c.tour.id = 'pas-un-tour')), /la racine chainee du tour ne correspond pas/);
 	// Un constat sans les champs facultatifs se relit quand meme.
 	const nu = copie(base);
 	Object.assign(nu.constats[0], { cle: undefined, jour: undefined, bitcoin: { ots: nu.constats[0].bitcoin.ots } });
 	delete nu.constats[0].tour.instant;
 	const v = await verifierDossier(nu);
 	assert.equal(v.ok, true);
-	assert.deepEqual([v.constats[0].cle, v.constats[0].jour, v.constats[0].inscrit, v.constats[0].bitcoin], [base.constats[0].feuille.cle, null, null, { ok: true, etat: null, bloc: null }]);
+	assert.deepEqual([v.constats[0].cle, v.constats[0].jour, v.constats[0].inscrit, v.constats[0].bitcoin], [base.constats[0].feuille.cle, base.constats[0].feuille.jour, COMPLET.instant, { ok: true, etat: null, bloc: null }]);
+	// Les champs libres du dossier ne se lisent pas : le jour, l'objet et l'instant viennent de la feuille et du tour, que la racine engage.
+	const farde = copie(base);
+	Object.assign(farde.constats[0], { cle: '<img src=x>', jour: '1999-01-01', bitcoin: { ots: farde.constats[0].bitcoin.ots, etat: '<b>', bloc: '<b>' } });
+	farde.constats[0].tour.instant = '1999-01-01T00:00:00Z';
+	const lu = (await verifierDossier(farde)).constats[0];
+	assert.deepEqual([lu.ok, lu.cle, lu.jour, lu.inscrit, lu.bitcoin], [true, base.constats[0].feuille.cle, base.constats[0].feuille.jour, COMPLET.instant, { ok: true, etat: null, bloc: null }]);
+	// Un jour que la feuille n'ecrit pas comme une date ne s'affiche pas.
+	assert.match(await raisonsDe((c) => (c.feuille.jour = '<i>')), /le chemin d'audit ne rend pas l'arbre/);
 });
 
 test('ce qui n est pas un dossier est refuse ; la composition ecarte une place qui ne se relit pas', async () => {

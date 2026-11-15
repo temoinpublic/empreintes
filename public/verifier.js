@@ -149,13 +149,13 @@ const ouiNon = (piece) => (piece.ok ? t.signatureValide : t.signatureNonConforme
 /** Un constat d'un dossier relu hors ligne : trois dates, chacune avec celui qui la garantit. */
 function constatDuDossier(c) {
 	const ligne = (terme, valeur) => (valeur ? `<div><dt>${terme}</dt><dd>${valeur}</dd></div>` : '');
-	const bitcoin = c.bitcoin && (c.bitcoin.ok && c.bitcoin.bloc ? `<a href="https://mempool.space/block/${Number(c.bitcoin.bloc)}">${T.bloc(Number(c.bitcoin.bloc))}</a>` : c.bitcoin.ok ? T.calendrier : t.signatureNonConforme);
+	const bitcoin = c.bitcoin && (c.bitcoin.ok && c.bitcoin.bloc ? `<a href="https://mempool.space/block/${c.bitcoin.bloc}">${T.bloc(c.bitcoin.bloc)}</a>` : c.bitcoin.ok ? T.calendrier : t.signatureNonConforme);
 	return `<article class="${c.ok ? 'ok' : 'ko'}">
 <h2>${c.ok ? t.identique(T.jour(c.jour)) : t.nonConforme}</h2>
 <p class="faits">${d.horsLigne}</p>
 <dl>
 ${ligne(t.objet, c.cle && `<code>${echapper(c.cle)}</code>`)}
-${ligne(d.inscrit, c.inscrit && T.instant(echapper(c.inscrit)))}
+${ligne(d.inscrit, c.inscrit && T.instant(c.inscrit))}
 ${ligne(d.horodate, c.horodatage && (c.horodatage.ok ? `${T.instant(c.horodatage.instant)}, ${echapper(c.horodatage.autorite)}` : t.signatureNonConforme))}
 ${ligne(d.ancre, bitcoin)}
 ${ligne(t.racine, c.racine && `<code class="racine">${echapper(c.racine)}</code>`)}
