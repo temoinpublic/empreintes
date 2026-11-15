@@ -220,3 +220,19 @@ test('la page propose le dossier et le relit sans le site', () => {
 	assert.ok(fs.existsSync(path.join(DIST, 'dossier.mjs')), 'le module est servi');
 	assert.ok(JSON.parse(fs.readFileSync(path.join(DIST, '_routes.json'), 'utf8')).exclude.includes('/dossier.mjs'));
 });
+
+test('--garder refuse d ecrire le dossier sur le document lui-meme', async () => {
+	const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'garder-'));
+	const document = path.join(tmp, 'facture.pdf');
+	fs.writeFileSync(document, 'le document');
+	const refus = await muet(() => principal([document, '--garder', path.join(tmp, '.', 'facture.pdf')]));
+	assert.equal(refus.code, 2);
+	assert.equal(fs.readFileSync(document, 'utf8'), 'le document');
+});
+
+test('la page lit un dossier de plus d un million d octets comme un dossier', () => {
+	const source = fs.readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const borne = Number(/const TAILLE_LUE_COMME_PIECE = ([\d_]+);/.exec(source)[1].replaceAll('_', ''));
+	assert.ok(borne >= 50_000_000, `borne ${borne}`);
+	assert.match(source, /fichier\.size < TAILLE_LUE_COMME_PIECE \? jsonDans\(octets\)/);
+});

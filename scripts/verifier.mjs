@@ -115,6 +115,15 @@ async function relireLeDossier(chemin, cible) {
 	return v.ok ? 0 : 1;
 }
 
+/** Vrai quand les deux chemins menent au meme fichier existant. */
+function memeFichier(a, b) {
+	try {
+		return fs.realpathSync(a) === fs.realpathSync(b);
+	} catch {
+		return false;
+	}
+}
+
 export async function principal(args) {
 	const site = option(args, '--site') ?? SITE;
 	const dossier = option(args, '--dossier');
@@ -137,6 +146,10 @@ export async function principal(args) {
 		const ok = v.ok && s.ok && pq.ok && h.ok;
 		console.log(JSON.stringify({ ...v, ok, signatures: s.signees, signaturesPostQuantiques: pq.signees, horodatages: h.horodates, raisons: [...v.raisons, ...s.raisons, ...pq.raisons, ...h.raisons] }, null, 1));
 		return ok ? 0 : 1;
+	}
+	if (garder && memeFichier(garder, cible)) {
+		console.error('--garder ecrirait le dossier sur le document lui-meme : choisir un autre chemin');
+		return 2;
 	}
 	const empreinte = await empreinteDe(cible);
 	if (garder) {
