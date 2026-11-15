@@ -5,6 +5,11 @@
 //
 //   node scripts/verifier.mjs <fichier|sha256> [--site <adresse>]
 //   node scripts/verifier.mjs --chaine [--site <adresse>]
+//   node scripts/verifier.mjs <fichier|sha256> --garder <dossier.json> [--site <adresse>]
+//   node scripts/verifier.mjs --dossier <dossier.json> [fichier|sha256]
+//
+// `--garder` ecrit le dossier de preuve a conserver avec le document ; `--dossier`
+// le relit SANS RESEAU : aucune lecture du site, les cles sont epinglees ici.
 //
 // Sortie 0 : servi tel quel (ou chaine intacte) ; 1 : inconnu ou rompu ; 2 : usage.
 
@@ -12,6 +17,7 @@ import fs from 'node:fs';
 import { sha256, lecteurDeReleves, lieJusquA, placeDuFichier, verifierChaine, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '../src/chaine.mjs';
 import { CLES_SLH_DU_JOURNAL, cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '../src/slh.mjs';
 import { tourHorodate, verifierHorodatage, verifierHorodatages } from '../src/horodatage.mjs';
+import { composerDossier, verifierDossier } from '../src/dossier.mjs';
 
 const SITE = 'https://temoinpublic.fr';
 
@@ -78,12 +84,45 @@ export async function verifierEmpreinte(site, empreinte) {
 	return constats;
 }
 
-async function principal(args) {
-	const i = args.indexOf('--site');
-	const site = i >= 0 ? args.splice(i, 2)[1] : SITE;
+/** Le dossier de preuve d'une empreinte, compose depuis le site ; null quand le journal ne la porte pas. */
+export async function dossierDe(site, empreinte) {
+	const r = await fetch(new URL(`/index/${empreinte.slice(0, 2)}.json`, site));
+	const vus = r.ok ? ((await r.json())[empreinte] ?? []) : [];
+	if (vus.length === 0) return null;
+	const { tours } = await lire(site, '/tours.json');
+	return composerDossier({ site, empreinte, vus, tours, lireReleve: lecteurDuSite(site, tours), lireTexte: (nom) => lireTexte(site, `/empreintes/${nom}`), lireOctets: (nom) => lireOctets(site, `/empreintes/${nom}`) });
+}
+
+/** L'empreinte d'une cible : un sha256 saisi, ou celui du fichier nomme. */
+const empreinteDe = async (cible) => (/^[0-9a-f]{64}$/i.test(cible) && !fs.existsSync(cible) ? cible.toLowerCase() : sha256(fs.readFileSync(cible)));
+
+/** Retire `--nom valeur` des arguments et rend la valeur ; undefined sans l'option. */
+function option(args, nom) {
+	const i = args.indexOf(nom);
+	return i >= 0 ? args.splice(i, 2)[1] : undefined;
+}
+
+/** Relit un dossier de preuve hors ligne ; le document, s'il est donne, doit etre celui du dossier. */
+async function relireLeDossier(chemin, cible) {
+	let dossier = null;
+	try {
+		dossier = JSON.parse(fs.readFileSync(chemin, 'utf8'));
+	} catch {
+		// un fichier absent ou illisible se dit comme un dossier refuse
+	}
+	const v = await verifierDossier(dossier, { empreinte: cible ? await empreinteDe(cible) : null });
+	console.log(JSON.stringify(v, null, 1));
+	return v.ok ? 0 : 1;
+}
+
+export async function principal(args) {
+	const site = option(args, '--site') ?? SITE;
+	const dossier = option(args, '--dossier');
+	const garder = option(args, '--garder');
 	const [cible] = args;
+	if (dossier) return relireLeDossier(dossier, cible);
 	if (!cible) {
-		console.error('usage : node scripts/verifier.mjs <fichier|sha256> | --chaine [--site <adresse>]');
+		console.error('usage : node scripts/verifier.mjs <fichier|sha256> [--garder <dossier.json>] | --chaine [--site <adresse>] | --dossier <dossier.json> [fichier|sha256]');
 		return 2;
 	}
 	if (cible === '--chaine') {
@@ -99,7 +138,17 @@ async function principal(args) {
 		console.log(JSON.stringify({ ...v, ok, signatures: s.signees, signaturesPostQuantiques: pq.signees, horodatages: h.horodates, raisons: [...v.raisons, ...s.raisons, ...pq.raisons, ...h.raisons] }, null, 1));
 		return ok ? 0 : 1;
 	}
-	const empreinte = /^[0-9a-f]{64}$/i.test(cible) && !fs.existsSync(cible) ? cible.toLowerCase() : await sha256(fs.readFileSync(cible));
+	const empreinte = await empreinteDe(cible);
+	if (garder) {
+		const compose = await dossierDe(site, empreinte);
+		if (!compose) {
+			console.error('aucune place a garder : le journal ne porte pas cette empreinte');
+			return 1;
+		}
+		fs.writeFileSync(garder, `${JSON.stringify(compose)}\n`);
+		console.log(JSON.stringify({ empreinte, dossier: garder, constats: compose.constats.length }, null, 1));
+		return 0;
+	}
 	const constats = await verifierEmpreinte(site, empreinte);
 	console.log(JSON.stringify({ empreinte, constats }, null, 1));
 	return constats.some((c) => c.ok) ? 0 : 1;
