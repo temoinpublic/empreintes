@@ -196,6 +196,8 @@ async function verifier(empreinte, sortie) {
 }
 
 /** Le fichier lu comme un objet JSON, s'il en est un ; null pour tout autre document. */
+const TAILLE_LUE_COMME_PIECE = 64_000_000;
+
 function jsonDans(octets) {
 	// Un recu passe entre deux logiciels peut gagner un blanc en tete : il reste un recu.
 	let debut = 0;
@@ -309,8 +311,9 @@ async function verifierLaSerie(brut, sortie) {
 
 async function verifierLeFichier(fichier, sortie) {
 	const octets = new Uint8Array(await fichier.arrayBuffer());
-	// Un recu signe porte le JWS de son deposant, 32 768 caracteres au plus ; un certificat de serie, deux mois de recus.
-	const r = fichier.size < 1_000_000 ? jsonDans(octets) : null;
+	// Un recu signe porte le JWS de son deposant, 32 768 caracteres au plus ; un certificat de serie, deux mois de recus ;
+	// un dossier de preuve n'a pas de borne (une vingtaine de Ko par constat). jsonDans ne lit qu'un objet JSON.
+	const r = fichier.size < TAILLE_LUE_COMME_PIECE ? jsonDans(octets) : null;
 	if (estUnCertificat(r)) return verifierLaSerie(r, sortie);
 	if (estUnDossier(r)) return verifierLeDossier(r, sortie);
 	return estUnRecu(r) ? verifierLeRecu(r, sortie) : verifier(await sha256(octets), sortie);
