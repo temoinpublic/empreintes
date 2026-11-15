@@ -47,6 +47,14 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   la main (`src/cahier.mjs`, polices standard en WinAnsi) et ne porte aucune date
   de fabrication : le meme trimestre rend les memes octets. Le cahier 1 est le
   4e trimestre 2026.
+- Le dossier de preuve (D-323, `src/dossier.mjs`, MIT, format `dossier-de-preuve/1`) :
+  un JSON a garder avec le document (feuille, chemin d'audit, tour, liens jusqu'au
+  tour horodate, `.jws`, `.slh` et sa cle, `.tsr`, `.ots`). `verifierDossier` le
+  relit sans une lecture du site ; les cles et l'autorite restent EPINGLEES dans le
+  code, jamais lues dans le dossier, et un chemin d'audit sans signature ni
+  horodatage valide ne prouve rien. Le bloc Bitcoin y est declare : la preuve
+  `.ots` est liee a la racine, le bloc se confirme chez un explorateur.
+  `tests/dossier.test.mjs` coupe le reseau.
 - Rien que des empreintes : `FICHIER_PUBLIE` fixe ce qui se publie de
   `donnees/empreintes/`.
 - Un tour se publie PLEIN (`<id>.json`) ou EN DELTA (`<id>.delta.json`, D-158 :

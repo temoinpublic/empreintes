@@ -6,6 +6,7 @@ import { estUnRecu, idDuRecu } from '/depot.mjs';
 import { estUnCertificat, lireCertificat, verifierLeCertificat } from '/serie.mjs';
 import { verifierSignatureDuDeposant } from '/origine.mjs';
 import { SOURCES_NOMMEES, nommer } from '/sources.mjs';
+import { composerDossier, estUnDossier, nomDuDossier, verifierDossier } from '/dossier.mjs';
 import { T } from '/textes.js';
 
 suivreLeChoix(document);
@@ -124,6 +125,53 @@ const depot = (l) => `<article class="ok">
 <p><a href="/recu/${l.recu}">${T.voirLeRecu}</a></p>
 </article>`;
 
+const texteDe = async (chemin) => {
+	const r = await fetch(chemin);
+	if (!r.ok) throw new Error(`${chemin}${NBSP}: ${r.status}`);
+	return r.text();
+};
+
+/** Le dossier de preuve d'une empreinte, compose ici et remis au visiteur comme un fichier a garder avec son document. */
+async function garderLeDossier(empreinte) {
+	const vus = (await lire(`/index/${empreinte.slice(0, 2)}.json`))[empreinte] ?? [];
+	const dossier = await composerDossier({ site: location.origin, empreinte, vus, tours: await lesTours(), lireReleve, lireTexte: (nom) => texteDe(`/empreintes/${nom}`), lireOctets: (nom) => octets(`/empreintes/${nom}`) });
+	if (!dossier) throw new Error(t.absent);
+	const lien = document.createElement('a');
+	lien.href = URL.createObjectURL(new Blob([`${JSON.stringify(dossier)}\n`], { type: 'application/json' }));
+	lien.download = nomDuDossier(empreinte);
+	lien.click();
+	URL.revokeObjectURL(lien.href);
+}
+
+const d = t.dossier;
+const ouiNon = (piece) => (piece.ok ? t.signatureValide : t.signatureNonConforme);
+
+/** Un constat d'un dossier relu hors ligne : trois dates, chacune avec celui qui la garantit. */
+function constatDuDossier(c) {
+	const ligne = (terme, valeur) => (valeur ? `<div><dt>${terme}</dt><dd>${valeur}</dd></div>` : '');
+	const bitcoin = c.bitcoin && (c.bitcoin.ok && c.bitcoin.bloc ? `<a href="https://mempool.space/block/${c.bitcoin.bloc}">${T.bloc(c.bitcoin.bloc)}</a>` : c.bitcoin.ok ? T.calendrier : t.signatureNonConforme);
+	return `<article class="${c.ok ? 'ok' : 'ko'}">
+<h2>${c.ok ? t.identique(T.jour(c.jour)) : t.nonConforme}</h2>
+<p class="faits">${d.horsLigne}</p>
+<dl>
+${ligne(t.objet, c.cle && `<code>${echapper(c.cle)}</code>`)}
+${ligne(d.inscrit, c.inscrit && T.instant(c.inscrit))}
+${ligne(d.horodate, c.horodatage && (c.horodatage.ok ? `${T.instant(c.horodatage.instant)}, ${echapper(c.horodatage.autorite)}` : t.signatureNonConforme))}
+${ligne(d.ancre, bitcoin)}
+${ligne(t.racine, c.racine && `<code class="racine">${echapper(c.racine)}</code>`)}
+${ligne(t.signature, c.signature && ouiNon(c.signature))}
+${ligne(t.signaturePq, c.postQuantique && ouiNon(c.postQuantique))}
+</dl>
+${c.ok ? '' : `<ul>${c.raisons.map((r) => `<li>${echapper(r)}</li>`).join('')}</ul>`}
+</article>`;
+}
+
+/** Un dossier de preuve depose seul : relu ici, sans une lecture du site. */
+async function verifierLeDossier(dossier, sortie) {
+	const v = await verifierDossier(dossier);
+	sortie.innerHTML = v.constats.length ? v.constats.map(constatDuDossier).join('') : `<article class="ko"><h2>${t.nonConforme}</h2></article>`;
+}
+
 /*
  * Seul un 404 dit l'absence. Un 503 est une lecture impossible : la lire comme
  * une absence ferait nier au visiteur une preuve qui existe.
@@ -143,7 +191,8 @@ async function verifier(empreinte, sortie) {
 		return;
 	}
 	const constats = await Promise.all(vus.map((vu) => constat(empreinte, vu)));
-	sortie.innerHTML = [...deposes.map(depot), ...constats].join('');
+	const garder = vus.length ? `<p class="garder"><button type="button" data-garder="${empreinte}">${t.garder}</button></p>` : '';
+	sortie.innerHTML = [...deposes.map(depot), ...constats, garder].join('');
 }
 
 /** Le fichier lu comme un objet JSON, s'il en est un ; null pour tout autre document. */
@@ -263,6 +312,7 @@ async function verifierLeFichier(fichier, sortie) {
 	// Un recu signe porte le JWS de son deposant, 32 768 caracteres au plus ; un certificat de serie, deux mois de recus.
 	const r = fichier.size < 1_000_000 ? jsonDans(octets) : null;
 	if (estUnCertificat(r)) return verifierLaSerie(r, sortie);
+	if (estUnDossier(r)) return verifierLeDossier(r, sortie);
 	return estUnRecu(r) ? verifierLeRecu(r, sortie) : verifier(await sha256(octets), sortie);
 }
 
@@ -305,6 +355,20 @@ if (demandee && /^[0-9a-f]{64}$/.test(demandee) && $('empreinte')) {
 	// Un lien que verifier.js ne lance pas ne doit pas laisser le formulaire cache.
 	document.documentElement.classList.remove('par-lien');
 }
+
+// Le resultat est recopie dans la page : le bouton se suit sur son conteneur, pas sur lui-meme.
+$('resultat')?.addEventListener('click', async (e) => {
+	const bouton = e.target.closest?.('button[data-garder]');
+	if (!bouton) return;
+	bouton.disabled = true;
+	try {
+		await garderLeDossier(bouton.dataset.garder);
+	} catch (erreur) {
+		bouton.insertAdjacentHTML('afterend', ` <span class="ko">${T.erreurAvec(echapper(erreur.message))}</span>`);
+	} finally {
+		bouton.disabled = false;
+	}
+});
 
 $('formulaire')?.addEventListener('submit', (e) => {
 	e.preventDefault();

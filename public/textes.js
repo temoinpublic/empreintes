@@ -123,6 +123,13 @@ const TEXTES = {
 		horodatage: { fr: 'Horodatage eIDAS', de: 'eIDAS-Zeitstempel' },
 		horodatageValide: { fr: (h) => `valide, ${h}`, de: (h) => `gültig, ${h}` },
 		horodatages: { fr: (n) => `${n} horodatages eIDAS valides`, de: (n) => `${n} gültige eIDAS-Zeitstempel` },
+		garder: { fr: 'Garder le dossier de preuve', de: 'Beweisdatei aufbewahren' },
+		dossier: {
+			horsLigne: { fr: 'Dossier de preuve relu hors ligne', de: 'Beweisdatei offline geprüft' },
+			inscrit: { fr: 'Inscrit par Témoin public', de: 'Eingetragen von Datumszeuge' },
+			horodate: { fr: 'Horodatage eIDAS, au plus tard', de: 'eIDAS-Zeitstempel, spätestens' },
+			ancre: { fr: 'Ancré dans Bitcoin, au plus tard', de: 'In Bitcoin verankert, spätestens' }
+		},
 		serie: {
 			complete: { fr: (n) => `Série complète${NBSP}: ${n} jours, chacun au registre`, de: (n) => `Vollständige Serie: ${n} Tage, jeder im Register` },
 			enCours: { fr: (a, n) => `Série en cours${NBSP}: ${a} jours sur ${n} au registre, aucun manqué`, de: (a, n) => `Laufende Serie: ${a} von ${n} Tagen im Register, keiner ausgelassen` },

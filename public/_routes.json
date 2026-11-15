@@ -13,6 +13,7 @@
 		"/chaine.mjs",
 		"/horodatage.mjs",
 		"/slh.mjs",
+		"/dossier.mjs",
 		"/origine.mjs",
 		"/depot.mjs",
 		"/acte.mjs",
