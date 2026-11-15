@@ -156,19 +156,73 @@ test('un acte qui pourrait nommer une personne n est pas depose, son adresse ser
 import { aRelire, issueDeRelecture } from '../src/glane.mjs';
 
 test('la glane relit ses actes les plus anciennement lus, apres leur delai, quand elle sait les redemander', () => {
+	const u = (n) => `https://mairie.example/${n}.pdf`;
 	const pdfs = {
-		a: { jour: '2026-10-16', id: 'r1', code: '17133', nature: 'deliberation', libelle: 'PV' },
-		b: { jour: '2026-10-08', id: 'r2', code: '17133', nature: 'arrete', libelle: 'Arrete', relu: '2026-10-09' },
-		c: { jour: '2026-10-02', id: 'r3', code: '17133', nature: 'deliberation', libelle: 'PV' },
-		d: { jour: '2026-10-01', id: 'r4', code: '17133' },
-		h: { jour: '2026-10-01', id: 'r8', code: '17133', nature: 'deliberation' },
-		e: { jour: '2026-10-01', statut: 422, essais: 1 },
-		f: { jour: '2026-10-01', id: 'r6', nature: 'deliberation' },
-		g: { jour: '2026-10-09', id: 'r7', code: '17133', nature: 'decision', libelle: 'Decision', relu: '2026-10-16' }
+		[u('a')]: { jour: '2026-10-16', id: 'r1', code: '17133', nature: 'deliberation', libelle: 'PV' },
+		[u('b')]: { jour: '2026-10-08', id: 'r2', code: '17133', nature: 'arrete', libelle: 'Arrete', relu: '2026-10-09' },
+		[u('c')]: { jour: '2026-10-02', id: 'r3', code: '17133', nature: 'deliberation', libelle: 'PV' },
+		[u('d')]: { jour: '2026-10-01', id: 'r4', code: '17133' },
+		[u('h')]: { jour: '2026-10-01', id: 'r8', code: '17133', nature: 'deliberation' },
+		[u('e')]: { jour: '2026-10-01', statut: 422, essais: 1 },
+		[u('f')]: { jour: '2026-10-01', id: 'r6', nature: 'deliberation' },
+		[u('g')]: { jour: '2026-10-09', id: 'r7', code: '17133', nature: 'decision', libelle: 'Decision', relu: '2026-10-16' }
 	};
-	assert.deepEqual(aRelire(pdfs, { jour: '2026-10-16', jours: 7, max: 10 }).map(([u]) => u), ['c', 'b']);
-	assert.deepEqual(aRelire(pdfs, { jour: '2026-10-16', jours: 7, max: 1 }).map(([u]) => u), ['c']);
-	assert.deepEqual(aRelire(pdfs, { jour: '2026-10-16', jours: 0, max: 10 }).map(([u]) => u), ['c', 'b', 'a', 'g']);
+	const noms = (liste) => liste.map(([url]) => url.slice(-5, -4));
+	assert.deepEqual(noms(aRelire(pdfs, { jour: '2026-10-16', jours: 7, max: 10 })), ['c', 'b']);
+	assert.deepEqual(noms(aRelire(pdfs, { jour: '2026-10-16', jours: 7, max: 1 })), ['c']);
+	assert.deepEqual(noms(aRelire(pdfs, { jour: '2026-10-16', jours: 0, max: 10 })), ['c', 'b', 'a', 'g']);
+	assert.deepEqual(noms(aRelire(pdfs, { jour: '2026-10-16', jours: 0, max: 10, parCommune: 2 })), ['c', 'b'], 'pas plus de --par-commune par commune');
+});
+
+test('les relectures tournent sur les hotes, et une commune pleine laisse la place aux suivantes', () => {
+	const acte = (code, jour) => ({ jour, id: `r-${code}-${jour}`, code, nature: 'deliberation', libelle: 'PV' });
+	const pdfs = {
+		'https://grande.example/1.pdf': acte('17001', '2026-10-01'),
+		'https://grande.example/2.pdf': acte('17001', '2026-10-02'),
+		'https://grande.example/3.pdf': acte('17001', '2026-10-03'),
+		'https://petite.example/1.pdf': acte('17002', '2026-10-04'),
+		'https://autre.example/1.pdf': acte('17003', '2026-10-05'),
+		'https://petite.example/2.pdf': acte('17002', '2026-10-06')
+	};
+	const urls = (opts) => aRelire(pdfs, { jour: '2026-11-15', jours: 7, ...opts }).map(([url]) => url);
+	assert.deepEqual(urls({ max: 10 }), ['https://grande.example/1.pdf', 'https://petite.example/1.pdf', 'https://autre.example/1.pdf', 'https://grande.example/2.pdf', 'https://petite.example/2.pdf', 'https://grande.example/3.pdf']);
+	assert.deepEqual(urls({ max: 3, parCommune: 1 }), ['https://grande.example/1.pdf', 'https://petite.example/1.pdf', 'https://autre.example/1.pdf'], 'le plafond se remplit avec les communes suivantes');
+});
+
+import { relireSansPasserSonTour } from '../src/glane.mjs';
+
+test('une relecture attend la fin de la pause du disjoncteur au lieu de passer son tour, jusqu a son heure', async () => {
+	let t = 0;
+	const d = new Disjoncteur({ seuil: 1, pauseMs: 300000, maintenant: () => t });
+	d.noter(503);
+	assert.equal(d.attente(), 300000);
+	const dormis = [];
+	const dormir = async (ms) => {
+		dormis.push(ms);
+		t += ms;
+	};
+	const issues = ['a-relire', 'a-relire', 'inchange'];
+	const issue = await relireSansPasserSonTour(async () => issues.shift(), { disjoncteur: d, jusqua: 3600000, dormir, maintenant: () => t });
+	assert.equal(issue, 'inchange');
+	assert.deepEqual(dormis, [300000, 1000], 'la pause entiere, puis une seconde quand un autre relecteur a pris l essai');
+
+	t = 0;
+	const toujours = await relireSansPasserSonTour(async () => 'a-relire', { disjoncteur: d, jusqua: 2500, dormir, maintenant: () => t });
+	assert.equal(toujours, 'a-relire', 'passe son heure, l acte reste au passage suivant');
+	assert.equal(t, 2500);
+
+	const ferme = new Disjoncteur();
+	assert.equal(ferme.attente(), 0);
+	assert.equal(await relireSansPasserSonTour(async () => 'robots', { disjoncteur: ferme, jusqua: 0 }), 'robots');
+});
+
+test('relireSansPasserSonTour dort pour de vrai par defaut', async () => {
+	const d = new Disjoncteur({ seuil: 1, pauseMs: 1 });
+	d.noter(503);
+	const issues = ['a-relire', 'inchange'];
+	const debut = Date.now();
+	assert.equal(await relireSansPasserSonTour(async () => issues.shift(), { disjoncteur: d, jusqua: Date.now() + 5000 }), 'inchange');
+	assert.ok(Date.now() - debut >= 900);
 });
 
 test('la reponse du service a une relecture dit le meme document, une version nouvelle, une disparition, ou de reessayer', () => {

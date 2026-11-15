@@ -6,7 +6,7 @@
 //
 //   JETON_FLOTTE=... node scripts/glaner-actes.mjs --departements 17,37 --etat <dossier>
 //     [--base https://temoinpublic.fr] [--paralleles 6] [--par-commune 40] [--communes-max N] [--communes 17245,37031] [--sec]
-//     [--relectures 3000] [--relecture-jours 7]
+//     [--relectures 5000] [--relecture-jours 7] [--relecteurs 6]
 //
 // L'etat (`glane.json` : robots.txt lus, PDF deja deposes) et le releve du jour
 // (`glane-<jour>.tsv`, une ligne par commune) vivent dans `--etat`, hors du depot.
@@ -17,7 +17,8 @@
 // texte, page de garde (SIRET, exercice, libelle du budget), dans `glane-<jour>-budgets.jsonl` ;
 // chaque document n'est lu qu'une fois.
 // Avant les communes, elle redemande la datation des actes deja dates les plus
-// anciennement lus (D-193, `--relectures` par passage, tous les `--relecture-jours`) :
+// anciennement lus (D-193, `--relectures` par passage, `--par-commune` au plus par commune, tous les
+// `--relecture-jours`, `--relecteurs` a la fois) :
 // le temoin du service relit la source, note les memes octets ou une adresse en
 // 404/410, et date une version nouvelle ; releve dans `glane-<jour>-relectures.jsonl`.
 // Chaque lecture et chaque commune ont leur echeance propre (`src/echeance.mjs`) ; un
@@ -35,7 +36,7 @@ import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
 import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, Disjoncteur, aRelire, acteDuLien, communesDuReleve, coucheTexte, communesServies, documentBudgetaireDe, enLargeurDAbord, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, Disjoncteur, aRelire, relireSansPasserSonTour, acteDuLien, communesDuReleve, coucheTexte, communesServies, documentBudgetaireDe, enLargeurDAbord, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -46,7 +47,10 @@ const { values: options } = parseArgs({
 		'par-commune': { type: 'string', default: '40' },
 		'communes-max': { type: 'string', default: '0' },
 		communes: { type: 'string' },
-		relectures: { type: 'string', default: '3000' },
+		// 5 000 par passage : les 150 000 actes dates du 2026-11-15 relus en 30 jours.
+		relectures: { type: 'string', default: '5000' },
+		// Caddy n'ouvre que 8 connexions vers le service (vps5) : a 30, il repondait 503 en deux minutes.
+		relecteurs: { type: 'string', default: '6' },
 		'relecture-jours': { type: 'string', default: '7' },
 		sec: { type: 'boolean', default: false }
 	}
@@ -64,6 +68,8 @@ if (!JETON && !options.sec) {
 const INTERVALLE_MS = 5000;
 const DELAI_MS = 20000;
 const DOC_DELAI_MS = 60000;
+// Les relecteurs attendent la fin des pauses du disjoncteur pendant ce temps au plus, puis laissent la file au passage suivant.
+const RELECTURES_ATTENTE_MS = 2 * 3600000;
 const POST_DELAI_MS = 90000;
 // L'echeance propre d'une lecture tombe MARGE_MS apres celle du fetch ; une commune entiere a COMMUNE_MS.
 const MARGE_MS = 10000;
@@ -456,19 +462,20 @@ function completerLesNatures() {
 const relectures = {};
 if (!options.sec && Number(options.relectures) > 0) {
 	completerLesNatures();
-	const file = aRelire(etat.pdfs, { jour, jours: Number(options['relecture-jours']), max: Number(options.relectures) });
+	const file = aRelire(etat.pdfs, { jour, jours: Number(options['relecture-jours']), max: Number(options.relectures), parCommune: Number(options['par-commune']) });
+	const jusqua = Date.now() + RELECTURES_ATTENTE_MS;
 	const detailRelectures = path.join(options.etat, `glane-${jour}-relectures.jsonl`);
 	let i = 0;
 	const relecteur = async (qui) => {
 		while (i < file.length) {
 			const [url, e] = file[i++];
-			const issue = await ouvrierCourant.run(`r${qui}`, () => relire(url, e));
+			const issue = await ouvrierCourant.run(`r${qui}`, () => relireSansPasserSonTour(() => relire(url, e), { disjoncteur, jusqua }));
 			sentinelle.liberer(`r${qui}`);
 			fs.appendFileSync(detailRelectures, `${JSON.stringify({ code: e.code, url, recu: e.id, issue })}\n`);
 			relectures[issue] = (relectures[issue] ?? 0) + 1;
 		}
 	};
-	await Promise.all(Array.from({ length: Number(options.paralleles) }, (_, qui) => relecteur(qui)));
+	await Promise.all(Array.from({ length: Number(options.relecteurs) }, (_, qui) => relecteur(qui)));
 	sauver();
 	console.log(JSON.stringify({ relectures }));
 }
