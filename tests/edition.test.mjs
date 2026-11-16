@@ -111,7 +111,7 @@ test('la valeur de preuve en allemand cite la ZPO et eIDAS, et dit l horodatage 
 	const [sans, avec] = de.slice(-7, -5);
 	assert.match(sans, /<h1>Beweiswert<\/h1>\n<h2>Was ein Beleg beweist<\/h2>/);
 	assert.match(sans, /Jeden Tag wird das Datum in Bitcoin verankert\.<\/li>/);
-	assert.match(avec, /Vertrauensliste \(eIDAS\) mit einem Zeitstempel versehen, seit dem 12\.10\.2026|seit dem 12\.10\.2026 von einem Anbieter/);
+	assert.match(avec, /Seit dem 12\.10\.2026 wird die Wurzel des Tages von Sectigo mit einem Zeitstempel versehen, einem Anbieter der europäischen Vertrauensliste \(eIDAS\)/);
 	assert.match(sans, /href="https:\/\/www.gesetze-im-internet.de\/zpo\/__286.html">§ 286 ZPO<\/a>/);
 	assert.match(sans, /Öffentliches Git-Repository<\/a>/);
 	assert.match(sans, /<\/code> und <code>ots verify/);

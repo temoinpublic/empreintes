@@ -120,15 +120,14 @@ const TEXTES = {
 		signatures: { fr: (n) => `${n} signatures du journal valides`, de: (n) => `${n} gültige Signaturen des Journals` },
 		signaturePq: { fr: 'Signature post-quantique', de: 'Post-Quanten-Signatur' },
 		signaturesPq: { fr: (n) => `${n} signatures post-quantiques valides`, de: (n) => `${n} gültige Post-Quanten-Signaturen` },
-		horodatage: { fr: 'Horodatage eIDAS', de: 'eIDAS-Zeitstempel' },
-		horodatageValide: { fr: (h) => `valide, ${h}`, de: (h) => `gültig, ${h}` },
 		horodatages: { fr: (n) => `${n} horodatages eIDAS valides`, de: (n) => `${n} gültige eIDAS-Zeitstempel` },
 		garder: { fr: 'Garder le dossier de preuve', de: 'Beweisdatei aufbewahren' },
 		dossier: {
 			horsLigne: { fr: 'Dossier de preuve relu hors ligne', de: 'Beweisdatei offline geprüft' },
 			inscrit: { fr: 'Inscrit par Témoin public', de: 'Eingetragen von Datumszeuge' },
 			horodate: { fr: 'Horodatage eIDAS, au plus tard', de: 'eIDAS-Zeitstempel, spätestens' },
-			ancre: { fr: 'Ancré dans Bitcoin, au plus tard', de: 'In Bitcoin verankert, spätestens' }
+			ancre: { fr: 'Ancré dans Bitcoin, au plus tard', de: 'In Bitcoin verankert, spätestens' },
+			horodateAVenir: { fr: 'à venir, une fois par jour', de: 'ausstehend, einmal täglich' }
 		},
 		serie: {
 			complete: { fr: (n) => `Série complète${NBSP}: ${n} jours, chacun au registre`, de: (n) => `Vollständige Serie: ${n} Tage, jeder im Register` },
@@ -173,7 +172,6 @@ const TEXTES = {
 		}
 	},
 	recu: {
-		inscrit: { fr: (h) => `inscrit le ${h}`, de: (h) => `eingetragen am ${h}` },
 		attente: { fr: 'en attente d’inscription', de: 'Eintragung steht aus' },
 		nonConforme: { fr: 'preuve non conforme', de: 'Beweis nicht gültig' },
 		illisible: { fr: 'registre illisible pour le moment', de: 'Register im Moment nicht lesbar' },

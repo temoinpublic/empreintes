@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
-import { FORMAT_DU_DOSSIER, composerDossier, estUnDossier, nomDuDossier, verifierDossier } from '../src/dossier.mjs';
+import { FORMAT_DU_DOSSIER, composerDossier, estUnDossier, horodatageQuiCouvre, nomDuDossier, verifierDossier } from '../src/dossier.mjs';
 import { dossierDe, principal } from '../scripts/verifier.mjs';
 
 const DIST = path.resolve(import.meta.dirname, '..', 'dist');
@@ -209,7 +209,7 @@ test('ce qui n est pas un dossier est refuse ; la composition ecarte une place q
 
 test('la page propose le dossier et le relit sans le site', () => {
 	const source = fs.readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
-	assert.match(source, /import \{ composerDossier, estUnDossier, nomDuDossier, verifierDossier \} from '\/dossier.mjs';/);
+	assert.match(source, /import \{ composerDossier, estUnDossier, horodatageQuiCouvre, nomDuDossier, verifierDossier \} from '\/dossier.mjs';/);
 	assert.match(source, /if \(estUnDossier\(r\)\) return verifierLeDossier\(r, sortie\);/);
 	// La relecture d'un dossier ne lit rien : aucun fetch entre son entree et sa sortie.
 	const relecture = source.slice(source.indexOf('function constatDuDossier'), source.indexOf(" * Seul un 404 dit l'absence"));
@@ -235,4 +235,29 @@ test('la page lit un dossier de plus d un million d octets comme un dossier', ()
 	const borne = Number(/const TAILLE_LUE_COMME_PIECE = ([\d_]+);/.exec(source)[1].replaceAll('_', ''));
 	assert.ok(borne >= 50_000_000, `borne ${borne}`);
 	assert.match(source, /fichier\.size < TAILLE_LUE_COMME_PIECE \? jsonDans\(octets\)/);
+});
+
+test('l horodatage qui couvre un tour en ligne : le premier tour horodate, relie par la chaine, avec son autorite (D-323)', async () => {
+	const lireOctets = (nom) => new Uint8Array(fs.readFileSync(path.join(DIST, 'empreintes', nom)));
+	const h = await horodatageQuiCouvre(tours, COMPLET.id, COMPLET.racine, lireOctets);
+	assert.equal(h.ok, true, h.raisons?.join(', '));
+	assert.equal(h.nom, `${COMPLET.id}.racine.tsr`);
+	assert.match(h.autorite, /^Sectigo/);
+	assert.match(h.instant, /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/);
+	const faux = await horodatageQuiCouvre(tours, COMPLET.id, '0'.repeat(64), lireOctets);
+	assert.deepEqual([faux.ok, faux.raisons], [false, ['la chaine ne relie pas ce tour au tour horodate']]);
+	assert.equal(await horodatageQuiCouvre(tours, 'inconnu', COMPLET.racine, lireOctets), null);
+	const sansJeton = tours.findLast((t) => !porte(t, 'tsr'));
+	if (sansJeton && tours.at(-1).id === sansJeton.id) assert.equal(await horodatageQuiCouvre(tours, sansJeton.id, sansJeton.racine, lireOctets), null);
+});
+
+test('le verdict en ligne et le recu disent les trois dates, chacune avec son garant (D-323)', () => {
+	const verifier = fs.readFileSync(new URL('../public/verifier.js', import.meta.url), 'utf8');
+	const constat = verifier.slice(verifier.indexOf('async function constat('), verifier.indexOf('const depot ='));
+	assert.match(constat, /<dl class="dates">\n\$\{lignesDesDates\(T\.heure\(vu\.premier\), horodatageEnLigne\(horodatage\), `\$\{ancrage\(tour\)\} \$\{preuves\}`\)\}\n<\/dl>\n<details>/, 'hors du depliant');
+	assert.match(verifier, /return \[ligne\(d\.inscrit, inscrit\), ligne\(d\.horodate, horodatage\), ligne\(d\.ancre, bitcoin\)\]/);
+	assert.match(verifier, /if \(!h\) return d\.horodateAVenir;/);
+	const recu = fs.readFileSync(new URL('../public/recu.js', import.meta.url), 'utf8');
+	assert.match(recu, /\[ligne\(d\.inscrit, T\.heure\(p\.tour\)\), ligne\(d\.horodate, horodatage\), ligne\(d\.ancre, bloc\(p\.bloc\)\)\]/);
+	assert.match(recu, /horodatageQuiCouvre\(tours, p\.tour, p\.racine,/);
 });

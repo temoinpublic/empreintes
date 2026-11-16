@@ -117,6 +117,19 @@ async function horodatageRelu(c) {
 	return { ok: v.ok, tour: h.tour, instant: v.instant, autorite: v.autorite, raisons: v.raisons };
 }
 
+/**
+ * L'horodatage eIDAS qui couvre le tour `id` de racine `racine`, lu en ligne : le
+ * premier tour horodate a partir de lui, relie par une chaine intacte. Rend
+ * `{ ok, instant, autorite, nom, raisons }`, ou null tant qu'aucun tour ne l'est.
+ */
+export async function horodatageQuiCouvre(tours, id, racine, lireOctets) {
+	const tour = tourHorodate(tours, id);
+	if (!tour) return null;
+	const nom = `${tour.id}.racine.tsr`;
+	if (!(await lieJusquA(tours, id, tour.id, racine))) return { ok: false, raisons: ['la chaine ne relie pas ce tour au tour horodate'], instant: null, autorite: null, nom };
+	return { ...(await verifierHorodatage(await lireOctets(nom), tour.racine)), nom };
+}
+
 function signaturePqRelue(c) {
 	if (!c.signaturePq) return null;
 	const cle = cleSlhDuTour(c.tour.id);

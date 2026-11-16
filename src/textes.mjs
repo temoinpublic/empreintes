@@ -3,7 +3,10 @@
 // temoinpublic.fr ; l'allemand Datumszeuge sur datumszeuge.de, sans les actes de
 // collectivite. Les scripts du navigateur ont leurs textes dans `public/textes.js`.
 
+import { AUTORITES_QUALIFIEES } from './horodatage.mjs';
 const NBSP = '\u00A0';
+// La liste de confiance ou l'autorite d'horodatage epinglee est inscrite (D-323).
+const LISTE_DE_SECTIGO = AUTORITES_QUALIFIEES.find((a) => a.nom.startsWith('Sectigo')).liste;
 const jourFr = (j) => j.split('-').reverse().join('/');
 const jourDe = (j) => j.split('-').reverse().join('.');
 const nombreFr = (n) => n.toLocaleString('fr-FR').replace(/\u202f/g, NBSP);
@@ -328,8 +331,12 @@ export const TEXTES = {
 		lien: { fr: `Pour un lien${NBSP}: ce fichier était servi à cette adresse à cet instant.`, de: 'Bei einem Link: Diese Datei wurde in diesem Moment unter dieser Adresse ausgeliefert.' },
 		ancrage: { fr: 'Chaque jour, la date est ancrée dans Bitcoin.', de: 'Jeden Tag wird das Datum in Bitcoin verankert.' },
 		ancrageQualifie: {
-			fr: (j) => `Chaque jour, la date est ancrée dans Bitcoin et horodatée par un prestataire de la liste de confiance européenne (eIDAS), depuis le ${j}.`,
-			de: (j) => `Jeden Tag wird das Datum in Bitcoin verankert und seit dem ${j} von einem Anbieter der europäischen Vertrauensliste (eIDAS) mit einem Zeitstempel versehen.`
+			fr: (j) => `Depuis le ${j}, la racine du jour est horodatée par Sectigo, prestataire de la liste de confiance européenne (eIDAS), inscrit sur la <a href="${LISTE_DE_SECTIGO}">liste espagnole</a> pour l’horodatage (QTST). Le jeton porte sur cette racine, qui contient l’empreinte du document par l’arbre de Merkle. Chaque jour, la racine est aussi ancrée dans Bitcoin.`,
+			de: (j) => `Seit dem ${j} wird die Wurzel des Tages von Sectigo mit einem Zeitstempel versehen, einem Anbieter der europäischen Vertrauensliste (eIDAS), auf der <a href="${LISTE_DE_SECTIGO}">spanischen Liste</a> für Zeitstempel (QTST) eingetragen. Der Zeitstempel gilt dieser Wurzel, die die Prüfsumme des Dokuments über den Merkle-Baum enthält. Jeden Tag wird die Wurzel zusätzlich in Bitcoin verankert.`
+		},
+		existaitHorodate: {
+			fr: 'Le document existait, identique à l’octet près, au plus tard à l’heure de l’horodatage eIDAS qui suit son inscription. La date du reçu est celle de Témoin public.',
+			de: 'Das Dokument existierte, Byte für Byte identisch, spätestens zum Zeitpunkt des eIDAS-Zeitstempels nach seiner Eintragung. Das Datum des Belegs ist das von Datumszeuge.'
 		},
 		neProuvePas: { fr: 'Ce qu’il ne prouve pas', de: 'Was er nicht beweist' },
 		limites: {
