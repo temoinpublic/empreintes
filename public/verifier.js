@@ -102,8 +102,8 @@ async function constat(empreinte, vu) {
 	const nomme = nommer(await sourcesNommees(), vu.cle);
 	const ok = place?.ok && signature?.ok !== false && signatureSlh?.ok !== false && horodatage?.ok !== false;
 	const preuves = (tour?.fichiers ?? [])
-		.filter((f) => f.endsWith('.ots') || f.endsWith('.tsr'))
-		.map((f) => `<a href="/empreintes/${f}">${f.endsWith('.ots') ? t.preuveOts : t.horodatageTsr}</a>`)
+		.filter((f) => f.endsWith('.ots'))
+		.map((f) => `<a href="/empreintes/${f}">${t.preuveOts}</a>`)
 		.join(' ');
 	return `<article class="${ok ? 'ok' : 'ko'}">
 <h2>${ok ? t.identique(T.jour(vu.jour)) : t.nonConforme}</h2>

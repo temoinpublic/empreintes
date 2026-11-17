@@ -81,7 +81,6 @@ const TEXTES = {
 	},
 	verifier: {
 		preuveOts: { fr: 'preuve .ots', de: 'Beweis .ots' },
-		horodatageTsr: { fr: 'horodatage .tsr', de: 'Zeitstempel .tsr' },
 		identique: { fr: (j) => `Identique au document daté du ${j}`, de: (j) => `Identisch mit dem am ${j} datierten Dokument` },
 		nonConforme: { fr: 'Preuve non conforme', de: 'Beweis nicht gültig' },
 		details: { fr: 'Détails de la preuve', de: 'Details des Beweises' },
