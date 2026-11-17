@@ -1,10 +1,10 @@
 {
- "produites": "2026-11-17T00:07:43.017Z",
+ "produites": "2026-11-17T20:02:20.536Z",
  "comptes": {
   "adresses": 1185,
-  "attestees": 1185,
+  "attestees": 1154,
   "attente": 0,
-  "sansTour": 0,
+  "sansTour": 31,
   "illisible": 0
  },
  "adresses": [
@@ -9568,50 +9568,6 @@
    "preuve": "preuves/bc659343853cef3ec487ab6d8681c0f9188b7737f1f7164adde80abd0336b452.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_bench_entities/select?q=*:*&fl=id,_root_,type_s,entity_type,en_*,bm_*&rows=50000&sort=id%20asc&wt=json",
-   "source": "esma-indices-references",
-   "sha256": "b52ed4c32c2516f2e3cbf97f97626e1925cdc9925d49920d408b4f7c86334bf9",
-   "octets": 8229393,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/b52ed4c32c2516f2e3cbf97f97626e1925cdc9925d49920d408b4f7c86334bf9.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:at&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "75ed3e48ffe74273f17091eb52f8bf20fc33b199450090188aad0c5be3129bda",
-   "octets": 12925,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/75ed3e48ffe74273f17091eb52f8bf20fc33b199450090188aad0c5be3129bda.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:be&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "f8e9b505ce1d71c04328638d03ca5b7a8f98a677f1d05940756198e7cc0578fa",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/f8e9b505ce1d71c04328638d03ca5b7a8f98a677f1d05940756198e7cc0578fa.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:bg&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "fa155f8037787dab86093878cc50e5177537e586eb2402f69503e16853fd8502",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/fa155f8037787dab86093878cc50e5177537e586eb2402f69503e16853fd8502.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:cy&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
    "source": "esma-ventes-decouvert-exemptions",
    "sha256": "aa3aee3b4a9130de28cfd21a0eb02c562113f427a560f684ef29de585741f561",
@@ -9621,28 +9577,6 @@
    "tour": "20261115T101401Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/aa3aee3b4a9130de28cfd21a0eb02c562113f427a560f684ef29de585741f561.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:cz&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "b1e182cd9966d7d15d75d3e6807a783dd46db72e403fc11d2189bc5ae13144e5",
-   "octets": 5901,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T092617Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/b1e182cd9966d7d15d75d3e6807a783dd46db72e403fc11d2189bc5ae13144e5.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:de&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "744df98eb2b020e8b49320ea4e97aa7bd5445686822119c1c9ce86cefc94533a",
-   "octets": 52302823,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/744df98eb2b020e8b49320ea4e97aa7bd5445686822119c1c9ce86cefc94533a.json"
   },
   {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:dk&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
@@ -9656,39 +9590,6 @@
    "preuve": "preuves/1217e75bcd38e5d986a8c8859aca59099a0907130814bd51c3d05a31e3eda167.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:ee&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "754babf28e9726e7e46cab3808aa08310d0aa10e80d61780641b7e8070fda112",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/754babf28e9726e7e46cab3808aa08310d0aa10e80d61780641b7e8070fda112.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:es&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "92ac1ee2854023850ac06543f20b9bb005629b82958584dee8c0feca0ada5222",
-   "octets": 93827,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T161210Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/92ac1ee2854023850ac06543f20b9bb005629b82958584dee8c0feca0ada5222.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:fi&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "ee3c9c54d0d480ec9e0e366493f7dbba681af42202124b37231c759da2d73da4",
-   "octets": 2386,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/ee3c9c54d0d480ec9e0e366493f7dbba681af42202124b37231c759da2d73da4.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:fr&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
    "source": "esma-ventes-decouvert-exemptions",
    "sha256": "dbf25949a53a918deff56d4a46470697f0fb23413a43ac3f41a3c2c60275cc64",
@@ -9698,17 +9599,6 @@
    "tour": "20261116T221556Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/dbf25949a53a918deff56d4a46470697f0fb23413a43ac3f41a3c2c60275cc64.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:gb&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "34d4b177266d7e9c07b6a4731fa58e09283521c7454e8c98c578d6905f322e84",
-   "octets": 11260914,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/34d4b177266d7e9c07b6a4731fa58e09283521c7454e8c98c578d6905f322e84.json"
   },
   {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:gr&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
@@ -9722,39 +9612,6 @@
    "preuve": "preuves/5862a26b96b7e4d42a6d1e6c0999971f052dd038684d7d9327eefacc957610a3.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:hr&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "1a1c1e1d67201416215a4ac700c0b340fef0bb00649bfcab550ca8339d9c130d",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/1a1c1e1d67201416215a4ac700c0b340fef0bb00649bfcab550ca8339d9c130d.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:hu&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "34bdeb8172840fab9f83d35bea39f1c6094d1a31dabd403ed7a93dd3da18cee5",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/34bdeb8172840fab9f83d35bea39f1c6094d1a31dabd403ed7a93dd3da18cee5.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:ie&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "75e0d33c3307e7300abaf66718bd1138872e1aee2db48757176c743820190134",
-   "octets": 4720576,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/75e0d33c3307e7300abaf66718bd1138872e1aee2db48757176c743820190134.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:is&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
    "source": "esma-ventes-decouvert-exemptions",
    "sha256": "e00cc348c2155c88c9bba0127943ed96bec4dfeabbf7bc631dd337981a64e4c5",
@@ -9764,28 +9621,6 @@
    "tour": "20261116T092617Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/e00cc348c2155c88c9bba0127943ed96bec4dfeabbf7bc631dd337981a64e4c5.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:it&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "704209a5e6c8a602681fc03fe366de5f0ed7ce9d5de0e62d81c77c46e0d76ba5",
-   "octets": 22408,
-   "premierJour": "2026-11-15",
-   "dernierJour": "2026-11-16",
-   "tour": "20261115T041100Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/704209a5e6c8a602681fc03fe366de5f0ed7ce9d5de0e62d81c77c46e0d76ba5.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:li&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "eb13ef9e052dc29339a35fb27db711df0e321b07bdd087531f9fd0b5b34d23a2",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/eb13ef9e052dc29339a35fb27db711df0e321b07bdd087531f9fd0b5b34d23a2.json"
   },
   {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:lt&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
@@ -9799,39 +9634,6 @@
    "preuve": "preuves/53beddefa1da74d810f427efe947d3d48a7aa8be5648e530c0875a05feb86fcf.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:lu&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "694ac411340f0bb8418e0a26b5388a5f8842187e713eb845c8fed4d209054f7b",
-   "octets": 22285,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/694ac411340f0bb8418e0a26b5388a5f8842187e713eb845c8fed4d209054f7b.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:lv&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "9ed9be029493a772c9baba3a3cf14dc38736cac2dbe0669de3951923541f12b2",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/9ed9be029493a772c9baba3a3cf14dc38736cac2dbe0669de3951923541f12b2.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:mt&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "49b0212a11695b151d3970be75eaba8d10285ce25fb5206e3ca67f83ec70bd57",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/49b0212a11695b151d3970be75eaba8d10285ce25fb5206e3ca67f83ec70bd57.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:nl&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
    "source": "esma-ventes-decouvert-exemptions",
    "sha256": "fdbe7d08d9ed99b6d5e0985172d6a812e259e96bb391cf3c267880fce9854f77",
@@ -9843,17 +9645,6 @@
    "preuve": "preuves/fdbe7d08d9ed99b6d5e0985172d6a812e259e96bb391cf3c267880fce9854f77.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:no&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "ca0984ba78829bff0f6c7006cb162423dce4307774f124fcecd45dae6d6ea0a7",
-   "octets": 15116,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T041939Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/ca0984ba78829bff0f6c7006cb162423dce4307774f124fcecd45dae6d6ea0a7.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:pl&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
    "source": "esma-ventes-decouvert-exemptions",
    "sha256": "6a395bacb65ce195d152d3e5d8b169e28c890816390348cc8963f7ff9f657495",
@@ -9863,17 +9654,6 @@
    "tour": "20261115T221807Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/6a395bacb65ce195d152d3e5d8b169e28c890816390348cc8963f7ff9f657495.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:pt&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
-   "source": "esma-ventes-decouvert-exemptions",
-   "sha256": "1a7106bb18af8efec7ab6ea1e6a26925a8705730a126841fea8b4d25b8a21ef9",
-   "octets": 399,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T092617Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/1a7106bb18af8efec7ab6ea1e6a26925a8705730a126841fea8b4d25b8a21ef9.json"
   },
   {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:ro&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json",
@@ -9920,72 +9700,6 @@
    "preuve": "preuves/364ad9707e6cf128ac74b807c698b2ee1a44d67405510a654eb325697c8b7e8f.json"
   },
   {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B00000%20TO%2009999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "a057377a053aa49307f9523a370061adfea367459654656a50165706c3962168",
-   "octets": 24471386,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T161210Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/a057377a053aa49307f9523a370061adfea367459654656a50165706c3962168.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B10000%20TO%2019999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "58b0bb994184e973dc8529fc52b8e3d7325530c6d89c51fa562f589657fdd719",
-   "octets": 8781339,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/58b0bb994184e973dc8529fc52b8e3d7325530c6d89c51fa562f589657fdd719.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B20000%20TO%2029999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "1f727ce20a148b593bc26b3327b891c2abb053b8ce2d246d14a89a08432e3267",
-   "octets": 3708280,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/1f727ce20a148b593bc26b3327b891c2abb053b8ce2d246d14a89a08432e3267.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B30000%20TO%2039999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "c0ccf81a25635901abec5fb601bd0955ad92e2b3e8f9b3fefbb09482bb28f68b",
-   "octets": 11153036,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/c0ccf81a25635901abec5fb601bd0955ad92e2b3e8f9b3fefbb09482bb28f68b.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B40000%20TO%2049999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "5963cece5bb9b23c153e122f6841e6aae1e7fb878f99437c92ded0b26c239ee9",
-   "octets": 9604725,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/5963cece5bb9b23c153e122f6841e6aae1e7fb878f99437c92ded0b26c239ee9.json"
-  },
-  {
-   "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B50000%20TO%2059999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
-   "source": "esma-entites-agreees",
-   "sha256": "3f263ca980db98aab98fbf7332a82e6775826d158201ddde91d16e771af2b3d9",
-   "octets": 5150624,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T221556Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/3f263ca980db98aab98fbf7332a82e6775826d158201ddde91d16e771af2b3d9.json"
-  },
-  {
    "url": "https://registers.esma.europa.eu/solr/esma_registers_upreg/select?q=type_s:parent&fq=ae_dbId:%5B60000%20TO%2069999%5D&fl=*,%5Bchild%20parentFilter=type_s:parent%20limit=1000%5D&rows=20000&sort=ae_dbId%20asc&wt=json",
    "source": "esma-entites-agreees",
    "sha256": "8d7043ddb788d6396ce29e9050df3e6538bfc3c74c4954b0da9807215df65c8e",
@@ -10028,17 +9742,6 @@
    "tour": "20261114T041448Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/152c8e94dd8c4d61c48f34006b77cc5c0e7c609b0ad94e3f1da5ba0b59fb56a3.json"
-  },
-  {
-   "url": "https://www.abe-infoservice.fr/fr/abeis-liste-noire.csv",
-   "source": "abeis-liste-noire",
-   "sha256": "e6ad8088e2e393cc6ec333231a85aaab21bea9af13c0d0e1f7231fb0d28a9f0b",
-   "octets": 970506,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T041939Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/e6ad8088e2e393cc6ec333231a85aaab21bea9af13c0d0e1f7231fb0d28a9f0b.json"
   },
   {
    "url": "https://www.advenis-reim.com/wp-content/uploads/2025/06/Rapport_annuel_SCPI_Renovalys_n%C2%B06_2024.pdf",
@@ -10303,39 +10006,6 @@
    "tour": "20261015T221231Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/d88cd33d4e840556ba5b73b3ce9e095e88177c61bc625344ee38f40340bfc894.json"
-  },
-  {
-   "url": "https://www.data.gouv.fr/api/1/datasets/r/2220f808-8908-4afc-98e3-cf74a25678e2",
-   "source": "amf-sgp-agreees",
-   "sha256": "ab334f068715e3eb0cdba2e34cb5af96ff71caceff79fe735083b5e4fff7e859",
-   "octets": 1667094,
-   "premierJour": "2026-11-12",
-   "dernierJour": "2026-11-16",
-   "tour": "20261112T101315Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/ab334f068715e3eb0cdba2e34cb5af96ff71caceff79fe735083b5e4fff7e859.json"
-  },
-  {
-   "url": "https://www.data.gouv.fr/api/1/datasets/r/d2d9df6d-1cd2-41a8-96f5-684cb3057ecb",
-   "source": "amf-listes-noires",
-   "sha256": "e1c5ebf7232f48c8fb73b37bf7058fa8335709607ec2179a453a26cb974d0bf3",
-   "octets": 194217,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T092617Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/e1c5ebf7232f48c8fb73b37bf7058fa8335709607ec2179a453a26cb974d0bf3.json"
-  },
-  {
-   "url": "https://www.data.gouv.fr/api/1/datasets/r/e03f8899-2499-4826-aaae-6842f520bdac",
-   "source": "amf-psan",
-   "sha256": "303ec47701d56a44c0e90cdb1d037f6949a9865ad779c5034ae32ec592d7b11f",
-   "octets": 357697,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T092617Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/303ec47701d56a44c0e90cdb1d037f6949a9865ad779c5034ae32ec592d7b11f.json"
   },
   {
    "url": "https://www.esma.europa.eu/sites/default/files/2024-12/ARTZZ.csv",
@@ -12833,17 +12503,6 @@
    "tour": "20261016T055008Z",
    "dernierTour": "20261116T221556Z",
    "preuve": "preuves/c347d0643cf6303c28ed49ec4eee3df88eb417616212d6a1e2d91c34ec983808.json"
-  },
-  {
-   "url": "https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv",
-   "source": "qualiopi-organismes-formation",
-   "sha256": "be95b9ab392af28ddb66236ee5121b5645052151e130d0a7f9dac9fc0f5523f2",
-   "octets": 36723724,
-   "premierJour": "2026-11-16",
-   "dernierJour": "2026-11-16",
-   "tour": "20261116T041939Z",
-   "dernierTour": "20261116T221556Z",
-   "preuve": "preuves/be95b9ab392af28ddb66236ee5121b5645052151e130d0a7f9dac9fc0f5523f2.json"
   },
   {
    "url": "https://www.praemiareim.fr/documents/14836074/14836362/Patrimmo+Habitation+1+Rapport+Annuel+2025.pdf/76ac2e53-1f30-8185-f1a8-a6781f6a94b1?t=1780900782453",
