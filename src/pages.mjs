@@ -858,7 +858,7 @@ export function pagePreuve(tours, copies = COPIES, langue = 'fr') {
 		chemins: cheminsDe('preuve'),
 		corps: `<h1>${e.actes.preuve.titre}</h1>
 <h2>${e.preuve.prouve}</h2>
-${elements([e.preuve.existait, e.preuve.lien, qualifie ? e.preuve.ancrageQualifie(qualifie) : e.preuve.ancrage])}
+${elements(qualifie ? [e.preuve.existaitHorodate, e.preuve.lien, e.preuve.ancrageQualifie(qualifie)] : [e.preuve.existait, e.preuve.lien, e.preuve.ancrage])}
 <h2>${e.preuve.neProuvePas}</h2>
 ${elements(e.preuve.limites)}
 <h2>${e.preuve.textes}</h2>

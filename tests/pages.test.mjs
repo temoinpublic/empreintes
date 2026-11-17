@@ -199,7 +199,12 @@ test('la valeur de preuve dit l’horodatage qualifie seulement quand un tour en
 	assert.equal(premierHorodatageQualifie([t]), null);
 	assert.equal(premierHorodatageQualifie([t, tsr]), '20/10/2026');
 	assert.doesNotMatch(pagePreuve([t]), /liste de confiance/);
-	assert.match(pagePreuve([t, tsr]), /liste de confiance européenne \(eIDAS\), depuis le 20\/10\/2026/);
+	const preuve = pagePreuve([t, tsr]);
+	assert.match(preuve, /Depuis le 20\/10\/2026, la racine du jour est horodatée par Sectigo, prestataire de la liste de confiance européenne \(eIDAS\)/);
+	assert.match(preuve, /<a href="https:\/\/tsl\.digital\.gob\.es\/TSL\.xml">liste espagnole<\/a> pour l’horodatage \(QTST\)\. Le jeton porte sur cette racine, qui contient l’empreinte du document par l’arbre de Merkle/);
+	assert.match(preuve, /au plus tard à l’heure de l’horodatage eIDAS qui suit son inscription\. La date du reçu est celle de Témoin public/, 'la date du recu est dite declaree, pas garantie');
+	assert.doesNotMatch(preuve, /au plus tard à la date du reçu/);
+	assert.match(pagePreuve([t, tsr], undefined, 'de'), /von Sectigo mit einem Zeitstempel versehen/);
 	for (const c of COPIES) assert.ok(pagePreuve([]).includes(`href="${c.adresse}"`), c.nom);
 	assert.match(pageDocumentation(), /POST \/mcp/);
 	assert.ok(PLAN.includes('/preuve'));

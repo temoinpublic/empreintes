@@ -1,12 +1,12 @@
-import { sha256, lecteurDeReleves, lieJusquA, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
+import { sha256, lecteurDeReleves, placeDuFichier, verifierChaineLegere, verifierSignatureDuJournal, verifierSignatures, certificatDuTour } from '/chaine.mjs';
 import { cleSlhDuTour, verifierSignatureSlhDuJournal, verifierSignaturesSlh } from '/slh.mjs';
-import { tourHorodate, verifierHorodatage, verifierHorodatages } from '/horodatage.mjs';
+import { verifierHorodatages } from '/horodatage.mjs';
 import { montrer, suivreLeChoix } from '/fichier.js';
 import { estUnRecu, idDuRecu } from '/depot.mjs';
 import { estUnCertificat, lireCertificat, verifierLeCertificat } from '/serie.mjs';
 import { verifierSignatureDuDeposant } from '/origine.mjs';
 import { SOURCES_NOMMEES, nommer } from '/sources.mjs';
-import { composerDossier, estUnDossier, nomDuDossier, verifierDossier } from '/dossier.mjs';
+import { composerDossier, estUnDossier, horodatageQuiCouvre, nomDuDossier, verifierDossier } from '/dossier.mjs';
 import { T } from '/textes.js';
 
 suivreLeChoix(document);
@@ -59,17 +59,6 @@ async function signatureSlhDe(tour, racine) {
 	return { ...v, nom };
 }
 
-/** L'horodatage qualifie qui couvre le tour : le premier a partir de lui, relu contre sa racine ; null sans. */
-async function horodatageDu(id, racine) {
-	const tours = await lesTours();
-	const tour = tourHorodate(tours, id);
-	if (!tour) return null;
-	const nom = `${tour.id}.racine.tsr`;
-	// Un tour horodate plus tard ne couvre ce tour-ci que par des liens intacts.
-	if (!(await lieJusquA(tours, id, tour.id, racine))) return { ok: false, raisons: ['la chaine ne relie pas ce tour au tour horodate'], instant: null, nom };
-	return { ...(await verifierHorodatage(await octets(`/empreintes/${nom}`), tour.racine)), nom };
-}
-
 /** La table des sources nommees, lue une fois ; facultative, sa panne (reseau comme HTTP) ne bloque pas le verdict. */
 let nommees;
 async function sourcesNommees() {
@@ -88,31 +77,47 @@ function documentNomme(d) {
 	return `<dl class="document">${ligne(t.document, d.libelle && echapper(d.libelle))}${ligne(t.editeur, echapper(d.editeur ?? d.hote))}${ligne(t.source, `<a href="${echapper(d.url)}">${echapper(d.url)}</a>`)}</dl>`;
 }
 
+const d = t.dossier;
+
+/** Les trois dates d'un constat, chacune avec celui qui la garantit (D-323) : le service, l'autorite eIDAS, Bitcoin. */
+function lignesDesDates(inscrit, horodatage, bitcoin) {
+	const ligne = (terme, valeur) => (valeur ? `<div><dt>${terme}</dt><dd>${valeur}</dd></div>` : '');
+	return [ligne(d.inscrit, inscrit), ligne(d.horodate, horodatage), ligne(d.ancre, bitcoin)].join('\n');
+}
+
+/** L'horodatage d'un releve en ligne, avec son autorite et le lien vers son jeton ; « a venir » tant que le tour du jour n'est pas horodate. */
+function horodatageEnLigne(h) {
+	if (!h) return d.horodateAVenir;
+	const texte = h.ok ? `${T.instant(h.instant)}, ${echapper(h.autorite)}` : t.signatureNonConforme;
+	return `<a href="/empreintes/${h.nom}">${texte}</a>`;
+}
+
 async function constat(empreinte, vu) {
 	const releve = await lireReleve(vu.premier);
 	const place = await placeDuFichier(releve, empreinte);
 	const tour = (await lesTours()).find((t) => t.id === vu.premier);
 	const signature = tour ? await signatureDe(tour, releve.racine) : null;
 	const signatureSlh = tour ? await signatureSlhDe(tour, releve.racine) : null;
-	const horodatage = await horodatageDu(vu.premier, releve.racine);
+	const horodatage = await horodatageQuiCouvre(await lesTours(), vu.premier, releve.racine, (nom) => octets(`/empreintes/${nom}`));
 	const nomme = nommer(await sourcesNommees(), vu.cle);
 	const ok = place?.ok && signature?.ok !== false && signatureSlh?.ok !== false && horodatage?.ok !== false;
 	const preuves = (tour?.fichiers ?? [])
-		.filter((f) => f.endsWith('.ots') || f.endsWith('.tsr'))
-		.map((f) => `<a href="/empreintes/${f}">${f.endsWith('.ots') ? t.preuveOts : t.horodatageTsr}</a>`)
+		.filter((f) => f.endsWith('.ots'))
+		.map((f) => `<a href="/empreintes/${f}">${t.preuveOts}</a>`)
 		.join(' ');
 	return `<article class="${ok ? 'ok' : 'ko'}">
 <h2>${ok ? t.identique(T.jour(vu.jour)) : t.nonConforme}</h2>
 ${documentNomme(nomme)}
 <p class="faits">${t.vuEnLigne(T.heure(vu.premier), T.heure(vu.dernier))}</p>
+<dl class="dates">
+${lignesDesDates(T.heure(vu.premier), horodatageEnLigne(horodatage), `${ancrage(tour)} ${preuves}`)}
+</dl>
 <details>
 <summary>${t.details}</summary>
 <dl>
 <div><dt>${t.objet}</dt><dd><code>${echapper(vu.cle)}</code></dd></div>
 <div><dt>${t.chemin}</dt><dd>${place ? t.etapes(place.chemin.length) : t.absent}</dd></div>
 <div><dt>${t.racine}</dt><dd><code class="racine">${releve.racine}</code></dd></div>
-<div><dt>Bitcoin</dt><dd>${ancrage(tour)} ${preuves}</dd></div>
-${horodatage ? `<div><dt>${t.horodatage}</dt><dd><a href="/empreintes/${horodatage.nom}">${horodatage.ok ? t.horodatageValide(T.instant(horodatage.instant)) : t.signatureNonConforme}</a></dd></div>` : ''}
 ${signature ? `<div><dt>${t.signature}</dt><dd><a href="/empreintes/${signature.nom}">${signature.ok ? t.signatureValide : t.signatureNonConforme}</a></dd></div>` : ''}
 ${signatureSlh ? `<div><dt>${t.signaturePq}</dt><dd><a href="/empreintes/${signatureSlh.nom}">${signatureSlh.ok ? t.signatureValide : t.signatureNonConforme}</a></dd></div>` : ''}
 </dl>
@@ -143,7 +148,6 @@ async function garderLeDossier(empreinte) {
 	URL.revokeObjectURL(lien.href);
 }
 
-const d = t.dossier;
 const ouiNon = (piece) => (piece.ok ? t.signatureValide : t.signatureNonConforme);
 
 /** Un constat d'un dossier relu hors ligne : trois dates, chacune avec celui qui la garantit. */
@@ -155,9 +159,7 @@ function constatDuDossier(c) {
 <p class="faits">${d.horsLigne}</p>
 <dl>
 ${ligne(t.objet, c.cle && `<code>${echapper(c.cle)}</code>`)}
-${ligne(d.inscrit, c.inscrit && T.instant(c.inscrit))}
-${ligne(d.horodate, c.horodatage && (c.horodatage.ok ? `${T.instant(c.horodatage.instant)}, ${echapper(c.horodatage.autorite)}` : t.signatureNonConforme))}
-${ligne(d.ancre, bitcoin)}
+${lignesDesDates(c.inscrit && T.instant(c.inscrit), c.horodatage && (c.horodatage.ok ? `${T.instant(c.horodatage.instant)}, ${echapper(c.horodatage.autorite)}` : t.signatureNonConforme), bitcoin)}
 ${ligne(t.racine, c.racine && `<code class="racine">${echapper(c.racine)}</code>`)}
 ${ligne(t.signature, c.signature && ouiNon(c.signature))}
 ${ligne(t.signaturePq, c.postQuantique && ouiNon(c.postQuantique))}
