@@ -3648,10 +3648,14 @@
    "feuilles": 17654,
    "maj": "2026-11-18T08:23:27.772Z",
    "signature": {
-    "etat": "absent"
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-11-18T10:23:58Z"
    },
    "signatureSlh": {
-    "etat": "absent"
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
    },
    "bloc": 976395
   },
