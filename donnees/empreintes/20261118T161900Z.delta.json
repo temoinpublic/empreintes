@@ -1,0 +1,1764 @@
+{
+ "id": "20261118T161900Z",
+ "debut": "2026-11-18T16:19:00.593Z",
+ "algorithme": "sha256",
+ "precedente": "60d42e6d5bb1d04892dc0baa76e607028cf793ab47aa564fc509c5d4420fa4d2",
+ "arbre": "5524f2fcac16a9a53840e03e58a29cafb5da4485deee617ee57c8f9be7eef3db",
+ "racine": "60e215fb4542365e33577721b6482a46f638a2a7a2ce609ef683282059bde577",
+ "base": "20261118T053155Z",
+ "ajoutees": [
+  {
+   "index": 372,
+   "cle": "amf-listes-noires",
+   "sha256": "717f52972f7ca44cfd9ba91bea3ef91278bbf7d439c005119d6b0516d207f3ed",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 373,
+   "cle": "amf-psan",
+   "sha256": "2bf5c0927bd0a5ab1c91005e4e75deb00a11b5d8443353b77baff3aa067ab659",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 826,
+   "cle": "amf-sgp-agreees",
+   "sha256": "ed3b1c67da7791575cc4cd3f611e3a2d45c54bacd04bb08752b59c2b9fd8701b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 828,
+   "cle": "anj-operateurs-agrees",
+   "sha256": "988a74c37ae18a30aec94c45b0a673de6c3764c4e03e58b9ba752c4ca68157e4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 858,
+   "cle": "ansm-disponibilites",
+   "sha256": "990e8946f91bf86b458c26e3b89c467a43e102f7676f18adb61ca5a91fa3d17b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1193,
+   "cle": "ansm-injonctions/53ef44f3b74de27af8e6",
+   "sha256": "ccd6567ebb19584732c042c4de521b57692319dc04f1248d9571b684c9284dcd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1194,
+   "cle": "ansm-injonctions/55fea08d9ce7df0c522c",
+   "sha256": "7c13193877282e5ba4bf29391d3791f98807821ba21253c8107c850f3329249b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1195,
+   "cle": "ansm-injonctions/6003067acfd0eaa1e032",
+   "sha256": "dc2e0c20eb1a3fcd7ddd47f88bda8ec36350eac92547c2f24700b99458f28071",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1196,
+   "cle": "ansm-injonctions/673ef55d7268f037a29b",
+   "sha256": "2e8a7bd2fbc28504f3a630d032ee81132c79a50ed093364902625684f155743c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1197,
+   "cle": "ansm-injonctions/696fb50c2089d3ac562c",
+   "sha256": "66c06c6ff0047d57ca0a4a60600d5a72062739f2ae4be6a45fe8aaa426e6e2e3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1198,
+   "cle": "ansm-injonctions/71e5b9cdec94b22c4966",
+   "sha256": "b09e52a463febeaaa2f6598bad6365db799c4026727f440ce845883555dbb9d3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1199,
+   "cle": "ansm-injonctions/722a48bb246eff2a1a81",
+   "sha256": "ee18cd4e75bc170383b62056a1bdc63fc01e65fc29eebfe9cfb50e58449c96b3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1200,
+   "cle": "ansm-injonctions/741457844b4f73b4c585",
+   "sha256": "fa0fd6a814c1aced48d3fc92993d6e2dabaac1b4d9a09fe988e1c63ad7f63896",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1201,
+   "cle": "ansm-injonctions/7a116aeaad87105fb06a",
+   "sha256": "6950819610463005e6c5969b1e01103ea1809fb971cf1b97fc2e0fb0d3b9add5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1202,
+   "cle": "ansm-injonctions/7a879e9f30505d6d139e",
+   "sha256": "4b9a127eb9496cfdb71f6e31050f4263d6ee8e5f34731735675eb72ef21cc5fe",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1203,
+   "cle": "ansm-injonctions/7deed8a2cde130cc38ac",
+   "sha256": "fbe5ed80459401aec745c6fb08b39705ace90fe8ec26b607fea2d765f3226c3a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1204,
+   "cle": "ansm-injonctions/7f20bd7d79c5c86caaae",
+   "sha256": "ec565b5f0c6e6fa2c74f1c2c6a7aede09ed38af41beb0fb4bdf9e009c8acd02c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1205,
+   "cle": "ansm-injonctions/888947855131036bd83c",
+   "sha256": "0dd1f67beb014c2efbdca4feffe56c6d759dc02738a254a48a4c28f3a2ed4ba1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1206,
+   "cle": "ansm-injonctions/91a3fb84d95e94eea657",
+   "sha256": "32c4359a3abdb0aa1481aa18205eec8dbf67af26a251f9ffbeeee1494b630218",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1207,
+   "cle": "ansm-injonctions/949a79a1629972844132",
+   "sha256": "bc8512d46bd4ba71c4d3c08c1014059d3830dc39a26318c48036530c21e0038f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1208,
+   "cle": "ansm-injonctions/9d757346a619fb55cdf3",
+   "sha256": "75dc05644093c890f5dac388e2c06f503e9ca5344d0e11245a9beda945b974d4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1243,
+   "cle": "ansm-sanctions-financieres/5520282e968a35b6e7d9",
+   "sha256": "4962e2d07b217f40e153be6492ad6f063f801e09ffc5aef015cff4f800036225",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1244,
+   "cle": "ansm-sanctions-financieres/566212b224da18d66353",
+   "sha256": "8299a2c4cb997cdc751421e85c3cdec2d1aee8d0f2ef6896cbd2312373231f3b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1245,
+   "cle": "ansm-sanctions-financieres/590a0b02f984a427b093",
+   "sha256": "18ad70782d8763f1e787a39d2007a8587fbb25215a162fcfb031e0e6846e0452",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1246,
+   "cle": "ansm-sanctions-financieres/5e227df4f8a32bcb5750",
+   "sha256": "f7bb27ba1f9458a209df5cfeb1e6c902ea66dbd1e346fe7907e1d31f5c23382d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1247,
+   "cle": "ansm-sanctions-financieres/619ec96fc72f889a19aa",
+   "sha256": "21b086f2a0a7b67b336355213dd661b32b60a7acd485e8d7ffac014d08c4ab9b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1248,
+   "cle": "ansm-sanctions-financieres/721e6f0118b7636b0287",
+   "sha256": "ad7edbe3a31f3f3df6fb1713a2ad1b1b67e75d5598c4c9cf380522eab34ed1c8",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1249,
+   "cle": "ansm-sanctions-financieres/7c4ab54b2d7ff0577e99",
+   "sha256": "8c0846f879d2f4f1de003d33fc1ba1b12928288abbda753f75d02caeec5cca0b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1250,
+   "cle": "ansm-sanctions-financieres/879c1f25eae8c6a7e939",
+   "sha256": "f6fa3119918f08f23cf2b30b77e8d32c036a9af1585b9bd7ae7abf117e7ac1cd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1251,
+   "cle": "ansm-sanctions-financieres/8c5cd62f426a398d0163",
+   "sha256": "a8da484381c6c75fce064b121ffa9cafb45d039a0b9c92b45d9e42c027f09445",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1252,
+   "cle": "ansm-sanctions-financieres/8ce2e869d4db7390e85e",
+   "sha256": "f373843bc770cccd894aefc3561e1035bb75d3925302399ac01a788f45e2b098",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1253,
+   "cle": "ansm-sanctions-financieres/9934daf0af01a9ad32db",
+   "sha256": "8e1fe69fbfc6040dd2fff614e62a818734cd176084a89ddfe46ebf3e778f1b19",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1254,
+   "cle": "ansm-sanctions-financieres/9c68cc7ba0d3c2d33e0a",
+   "sha256": "6ec1e23f3ae4d8217a2f7616cc29bd65d6ae60096148316d6b0108dcb04058fb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1255,
+   "cle": "ansm-sanctions-financieres/9ef2b6353084b6f79a79",
+   "sha256": "b000e2fad722440147a668093a2a3ba59eae91c3a330b3a7a0e187135fdb381e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1256,
+   "cle": "ansm-sanctions-financieres/a9c9bde3703bf9a23e80",
+   "sha256": "ccf52da53948584e597e54461e0c1407585a8d2152bcd7155803083496272016",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1277,
+   "cle": "at-fma-casp-3241",
+   "sha256": "737065694cccc4ed2722d8aa9c951ff80e5be4bfe11910cc7cbaef1053305068",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 1278,
+   "cle": "at-fma-casp-3242",
+   "sha256": "c75b42d634decdf7ee7d6e645cdd6be85267a34a2162b12de37102d817865f13",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 2829,
+   "cle": "bison-fute-evenements-RecapBouchonsFranceEntiere",
+   "sha256": "1982ed9552475465715af09c58bfd85b76d4abcbb2b56c42695717058cb9e4f4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 2830,
+   "cle": "bison-fute-evenements-RecapChantiersEnCours",
+   "sha256": "c4006e915257b59a911473e3967c11bdb72ca02b6580aa6edd6f6195d674e9db",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 2831,
+   "cle": "bison-fute-evenements-RecapChantiersPrevi",
+   "sha256": "b57ab9119768356fe700e3b0b7583af2e19ae17237c2a924f5902011eaa119cc",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 2832,
+   "cle": "bison-fute-evenements-RecapTraficFranceEntiere",
+   "sha256": "b1a386f092adfd615dd0fa6d16c23b675f0afba32f18c599db0d98f6e51e454e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 2833,
+   "cle": "bison-fute-evenements-coupures",
+   "sha256": "eeac20da1eb8d5a8ae819169d07632ec6d9536ee7ec3e9ea001aac275e0bc208",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4173,
+   "cle": "cppap-presse",
+   "sha256": "a3b0fcc2dbb012f1dda9857bcb396a0fe094fa12eebc4c4310089aa3cfc74e0e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4202,
+   "cle": "de-bafin-mesures-banques/7f9d81b7c7705960fd0c",
+   "sha256": "71c3df8a41188702a97949d11d190308f349e20353bc31707469e5936ab74ae0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4203,
+   "cle": "de-bafin-mesures-banques/8690fc00562f190a6cf7",
+   "sha256": "50b89ddeeb02abaa45fb6e34b9d95464a53d64f0f2e165a07098ae0e734bd9d6",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4204,
+   "cle": "de-bafin-mesures-banques/a876c7bb5a39d3c64a84",
+   "sha256": "b60df5dfa99da28cac595c8b95ad7829cddc86880f430023efb521eca0dfb8b7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4205,
+   "cle": "de-bafin-mesures-banques/af0412ee72da8dbaa153",
+   "sha256": "69be83aad18a0abf86c42bff3bdadff5c49008c180bfd6704c634a9fad81d057",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4206,
+   "cle": "de-bafin-mesures-banques/ca6529529113a11e1480",
+   "sha256": "86cf100bffbfdcd027ef8f9d072538dc8e0a1e5bcf470791947f64a56f8d66cd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4207,
+   "cle": "de-bafin-mesures-banques/d4924299de6ba8b0d83e",
+   "sha256": "6877c37af08d787c377b4013b705c92dfe95882922bdd2d5111b1f521b210e6a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4208,
+   "cle": "de-bafin-mesures-banques/d50163b93caf77fd5995",
+   "sha256": "61f8bc63f928cdb454a235f6d5fa064bcb41dea92942bf5f793cf59c68188e38",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4319,
+   "cle": "de-lebensmittelwarnung/612520e5a8a54bd5c997",
+   "sha256": "4ec89dc77f017204a58769fdf791432f4e0b39ce4cb3b5240b8840b864987807",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4320,
+   "cle": "de-lebensmittelwarnung/6322724a33bfd37db7b7",
+   "sha256": "aa0760b7519826d1389da76b41af9578d820d81275ba956d2ec34a4788e2ba56",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4321,
+   "cle": "de-lebensmittelwarnung/63b274893ef26b2d9a3f",
+   "sha256": "e21b1637e6d1b8dd5ebbb0f3c3124b09d4110bc732afe80fbff42fab6d842f74",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4322,
+   "cle": "de-lebensmittelwarnung/649f31cf007eb17882f3",
+   "sha256": "299259639b374d7c0ea76127e4ece795bf15cf1c0f9d6087dfac2309e6bc7317",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4323,
+   "cle": "de-lebensmittelwarnung/6500cefb2dc13e226522",
+   "sha256": "a4ed9cf50a60f979b4386d74f87369d749aff818c3bfcceeac3a3e5f1b92f8ca",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4325,
+   "cle": "de-lebensmittelwarnung/66372949788f8033abf7",
+   "sha256": "e26b963a8593a5237d5ea6a5eccd9398bc6c24ad1b5831132123af3f59b88ad3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4327,
+   "cle": "de-lebensmittelwarnung/67e4d7811cc06f3f7f13",
+   "sha256": "783db583e2456a5340cdc9a329cb141d34d2a04d8e8b79afac6de612ac1452c7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4329,
+   "cle": "de-lebensmittelwarnung/6925542bbb41dd606427",
+   "sha256": "f59d151cdef27ea30a4521671186cf33b14b0fcfe01339073602809dbc93651c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4330,
+   "cle": "de-lebensmittelwarnung/6b5b491a45bc9db2c012",
+   "sha256": "c71382dd2f6e6e7e40a002a0852a91799c4794264300bb872125a6104e2c92db",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4331,
+   "cle": "de-lebensmittelwarnung/6b7051d17594b6442620",
+   "sha256": "3ea2d9d4f42444ce169957417364743a558298ec2f5b890b9844d33b42bb44e0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4332,
+   "cle": "de-lebensmittelwarnung/6de09cb1afacf80c0b84",
+   "sha256": "28bf8eb57af541ebbf2e5086c03d8dac119ca1665eb3dabdbeca9ce5409aa662",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4333,
+   "cle": "de-lebensmittelwarnung/6f0f0d3efa18f7ddd2c5",
+   "sha256": "32cfac72fdf869bd5ce0cc5e5b7f5aaf10878e7dbf21fc164d5f65f5572255e9",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4334,
+   "cle": "de-lebensmittelwarnung/711e1827317e531e0bf0",
+   "sha256": "528da84e59765149cf64a7b16d7780a445426c314fb6c2337065105321698f07",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4335,
+   "cle": "de-lebensmittelwarnung/723c4debe33e75847834",
+   "sha256": "93943aa0aef1921388e05a9635c3f5dcd40e0d16b5834edfa9a0d6f0bd841798",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4336,
+   "cle": "de-lebensmittelwarnung/723c549a2a4749eb1159",
+   "sha256": "975d94b134c26c05f5d2e8bb19331a4a8cc80058b60a6f54e164e76546922905",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4337,
+   "cle": "de-lebensmittelwarnung/74e945a2071d773a3595",
+   "sha256": "e7a4347d4d5ad3d7c89e49e9538e639ec9ca0bf01a3e5aa04a1bcd01e2a460ea",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4338,
+   "cle": "de-lebensmittelwarnung/752cdb331b465a3c44c4",
+   "sha256": "6b2b064d99c98f148a0d04d54bba10ef673366ae420377d67f1d616066d3bd79",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4339,
+   "cle": "de-lebensmittelwarnung/7800c13f097712eaadad",
+   "sha256": "dc025af2a1967a2a04c450c8a553c3103964fb6aa2cf1fc9cb3d3c19c854f28a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4340,
+   "cle": "de-lebensmittelwarnung/78ab200a899ed6cee3fe",
+   "sha256": "1352246e99c449ec8fb03f0f7c79fb585aad882879c1ff40ae7fd7bf93a9c92f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4342,
+   "cle": "de-lebensmittelwarnung/78fe0ba10100d25ade66",
+   "sha256": "8f4bcb0fa274bcb538f3718ea7b5a120ae272f91cb13cd5169ccabb29b98156e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4343,
+   "cle": "de-lebensmittelwarnung/79bafe971b248f85991f",
+   "sha256": "57dfebca78fbe06b654bf170fde10518ea0e5eadaf9b99f8e460185332c43b69",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4344,
+   "cle": "de-lebensmittelwarnung/7a94e28d36732bc6c785",
+   "sha256": "6f16e446b1ab3a7c8393fce0d9f87ecb815b41d03f4b08c1427af5fcb3d9f5e6",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4345,
+   "cle": "de-lebensmittelwarnung/7c5312b466c305174c09",
+   "sha256": "ec3eeb613efccdba093f174d693821b5d79802bb93b8c35b02c4c4fda621b95e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4346,
+   "cle": "de-lebensmittelwarnung/7c6e5ba618a9677ae0b3",
+   "sha256": "92f9177b1c0b914995af71cfb4aaedf4e6c7d7a1a2504ad5e68c9fc99f71eca4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4347,
+   "cle": "de-lebensmittelwarnung/7cba98fa146013b1b47c",
+   "sha256": "479fa6c919632dbfa631ea3304bdb7137fec0728e98deebf0f6c5c9d17910e5d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4348,
+   "cle": "de-lebensmittelwarnung/7cc4bad24ee8bf708545",
+   "sha256": "2424c55b0be71c1797c68a825b12debfd23207f5ca80d24ca3a020560d21a968",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4349,
+   "cle": "de-lebensmittelwarnung/7ed0221a5d3e7cbd660d",
+   "sha256": "9819ace9c4f75330db30fe941b810e527398b1ccd3b0fe2ceb56ce071fbf1466",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4350,
+   "cle": "de-lebensmittelwarnung/7ed0b4fc4e9a7aad401e",
+   "sha256": "114d4b50491d3c1e7974de156034f741974b3eef6bcc30a7f44f780cbbb58bdb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4351,
+   "cle": "de-lebensmittelwarnung/7edbf428cbe7dacfda7c",
+   "sha256": "7624630b5aa292e588456cde30e21c19565cf04619525d0b5d989abe5224c444",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4353,
+   "cle": "de-lebensmittelwarnung/818e7da81b930fb8b0a1",
+   "sha256": "22da59bf47e549c55baf25439e8ccd3f93c57ea48b08ba5ac1e83f2b704a88fb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4354,
+   "cle": "de-lebensmittelwarnung/81926d24aa2f5915e46a",
+   "sha256": "62e76a31490486dfe16863515b72efb7ffce37a06843be27bfa1afeb623632b4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4356,
+   "cle": "de-lebensmittelwarnung/88ec39a015edc1993418",
+   "sha256": "0c2f397eb6349f00abd7c2edc255b75a0088164779bd2aafae918d06c9e05cca",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4362,
+   "cle": "de-lebensmittelwarnung/8fc8822300f650d4548f",
+   "sha256": "b5e36a9ac8d1dfee17587899a2790ef11c5f84054d7af37f69d1b9a7b82e1906",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4365,
+   "cle": "de-lebensmittelwarnung/916e7ca15ab0d1f029a2",
+   "sha256": "942c4ed0b9e79c9b3e0ddd08f60b1e006026fbfb9fb2dbc53e4d81998cf3bf5a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4366,
+   "cle": "de-lebensmittelwarnung/91ad4cd6f84531f56bb3",
+   "sha256": "57525f10df2002d91bbf37d1979b42534d5f00ba9356ecb84a8362b0ef43de01",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4367,
+   "cle": "de-lebensmittelwarnung/927958c86e47e5f11620",
+   "sha256": "d8549a57dbd38d0d010c6ef2d379fc9bfebee4dafcee271a49bffbd65a3a0d28",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4368,
+   "cle": "de-lebensmittelwarnung/92e1592493090ccdf4b0",
+   "sha256": "4c308f44c9a86b29a467e2a21e79d622ab97f917eec4d50fa8dc856b2a27cb10",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4369,
+   "cle": "de-lebensmittelwarnung/92f7d3ad7afbe88a9a4b",
+   "sha256": "d53e99c40f154920ee7460937711cee7ea6e03d3cb3eda011a8e9aafbd5a64e2",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4370,
+   "cle": "de-lebensmittelwarnung/93c4749ea30c505ae6ba",
+   "sha256": "d1212df2d86805b01da5061bce430ca61e60ec82e327f848108aa773bed08b11",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4371,
+   "cle": "de-lebensmittelwarnung/93f3f18c0043d7368daa",
+   "sha256": "26279460e6a88eab276bfa6fd34c7196f2a1916e789da751c8534651395394b1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4372,
+   "cle": "de-lebensmittelwarnung/94147f653698879b6a2b",
+   "sha256": "07839f9c22ce5c8e67a4e525a7b75dfc773ce5a04f1a6f77d59ff281d9f40504",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4374,
+   "cle": "de-lebensmittelwarnung/9671aef5ebc9c207e49a",
+   "sha256": "08c95797778dda4b65009bd5484844852b2f2769776245554a28ac535d06040a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4377,
+   "cle": "de-lebensmittelwarnung/99b25c775f6c3d1472b0",
+   "sha256": "06b6717e19074168e9f787af4f33e11e0f89d8886ef66c366e7c80bc4bcdcbc3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4378,
+   "cle": "de-lebensmittelwarnung/9a8413f7803f34823ff5",
+   "sha256": "e739a00d6828856510f407f65b67388711d50aa317b1d37bef5c2e5c4506ee49",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4379,
+   "cle": "de-lebensmittelwarnung/9b076b8c40269e62165a",
+   "sha256": "3e5d67b7cc9e47c8cdefdefacc46c2305cd52dd07c5877782c02fdf59eb8a90a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4380,
+   "cle": "de-lebensmittelwarnung/9d0d60ac8d09f1364423",
+   "sha256": "e6c2ff368dec2d74d14dbcfc6079acb554c49b93792a5dfbf5fcb591f5aafed5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4381,
+   "cle": "de-lebensmittelwarnung/9d9c824b5764a037410e",
+   "sha256": "2c7b3f6d531c9025805400933e50ca5073b3b4822180d4e80339fcd6308256af",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4386,
+   "cle": "de-lebensmittelwarnung/a072f4c57d05a1d22d39",
+   "sha256": "9360ad23b95d5d957343df83733ef139acf9f6049918f25cf4a7a11d89c116c0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4387,
+   "cle": "de-lebensmittelwarnung/a0f3b93bd63975c4f668",
+   "sha256": "295ddc3494a86c702c28d4b44f222eb4075b1fa542ca8ad407cfc7890ffbb52d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4388,
+   "cle": "de-lebensmittelwarnung/a13f0d162b7319f03144",
+   "sha256": "363244a181fd46b0871347995921a71720f837f8706255a52505de16abd4c3a8",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4389,
+   "cle": "de-lebensmittelwarnung/a19fb6f804803ae40e04",
+   "sha256": "db9eb28de754d3f6febba077a121fd3913cb1aa4f6925642b35894dc10bfe52d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4390,
+   "cle": "de-lebensmittelwarnung/a2c784cf8810823012a3",
+   "sha256": "790e335cee5ad9dbb832044084243eda17ed1cd62773d3883ad5d34a5e24c652",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4391,
+   "cle": "de-lebensmittelwarnung/a2eaf555882daa3fa8e5",
+   "sha256": "df6545fda94e25bc2af5c1bf5971e5927df9d2dfc8c6509299e582608244055b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4393,
+   "cle": "de-lebensmittelwarnung/a4fe164759e1da71cb36",
+   "sha256": "05781157d79d0fb2dfd0e3e928d020c3c228bafd0879b84abf99a4890a0eb5d4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4395,
+   "cle": "de-lebensmittelwarnung/a7d3a7bad0e79ccb80cc",
+   "sha256": "b99d7fe25b7866adf4828abb3d1133c15ec8a8bc68fd6e8e044ed4fb857ac172",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4396,
+   "cle": "de-lebensmittelwarnung/a824754880e16208a664",
+   "sha256": "2ab62831a28d982cf0fb36f017e05ade365fa39940fbf29e38e669cb138728d5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4397,
+   "cle": "de-lebensmittelwarnung/a8c267ca41016807d955",
+   "sha256": "d429040c9cb7c20b41e6e31186785e59033458a3ff2d9991a700db03370752c4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4401,
+   "cle": "de-lebensmittelwarnung/ad65b5ada93c39caaeef",
+   "sha256": "106b170295df52071c00d60d915ee0819224e8d9f43a6c4f619296a34586ea3e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4403,
+   "cle": "de-lebensmittelwarnung/af4b679638f4f6071090",
+   "sha256": "0492cb3a02f6f819a13ed583388d8c4064cdd889879819b942c184f2c6aa5af2",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4405,
+   "cle": "de-lebensmittelwarnung/b0754134a015b4042e34",
+   "sha256": "6c952de72ea334f4bdfffff19b1319f0a85a5c7adfc31ff7ee46bba59879201a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4411,
+   "cle": "de-lebensmittelwarnung/b6155f74b30e07f790f3",
+   "sha256": "fa1526b585be00f69e6be5bebcd0346a5d5ea46158fe1142112a9e80aa43eb79",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4412,
+   "cle": "de-lebensmittelwarnung/b7bdf8af19d597ef9220",
+   "sha256": "22a733d8c27bee99501fbbf6e00f362ff8b3b42b358408bc12ea43982c5aa475",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4414,
+   "cle": "de-lebensmittelwarnung/b862e45b1cf206b264d2",
+   "sha256": "89b07e1eb2b0aed94c8c1e52c41a4678426245b8aecd02a188a5bd2c96aa36ee",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4415,
+   "cle": "de-lebensmittelwarnung/b87fe4e23c59f20f6f1c",
+   "sha256": "4031c8b282273d61ba1769e4e807284a9c955db9d9b5f2cfc48b8164b7605ff0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4416,
+   "cle": "de-lebensmittelwarnung/b887288b3a27dad75cce",
+   "sha256": "a004a5b29c4bb68c774af5852063aed9e1b9ec08331825d400558594a86b91fd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4418,
+   "cle": "de-lebensmittelwarnung/bcbd376419570ded3626",
+   "sha256": "6af3b0894d6c88272c765c9865550abc46157e914f43f6bed2484d4f700bad09",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4419,
+   "cle": "de-lebensmittelwarnung/bebda7a49a0dfc4c9c33",
+   "sha256": "6c8b009f4a693e6af2473053adceb143309f4eb1ed19209b4af29dda6c50fc17",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4420,
+   "cle": "de-lebensmittelwarnung/bef02c73ad14d3c7cb54",
+   "sha256": "1e4f7a720bbcee3e66c94848110996f728d8d3a826590e1e2e179092c2fd0116",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4421,
+   "cle": "de-lebensmittelwarnung/bf26e8950f997b917e27",
+   "sha256": "d5f4913529fd0c98a55dcca9059cb73310ffbb26988179a1fc2b01877479a6df",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4422,
+   "cle": "de-lebensmittelwarnung/bfbd5bd602cc5c94334a",
+   "sha256": "7947357e410610ad948d6f193ab32b01b556ac8b623e2bc1ce9b38deb951d84f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4424,
+   "cle": "de-lebensmittelwarnung/c26ebcfead3504597d35",
+   "sha256": "dc848baeff60905e71475f08aabb2dd9675af78f3ffe8e502e7e013f5c29b846",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4426,
+   "cle": "de-lebensmittelwarnung/c343b91486ac9cb004b9",
+   "sha256": "4ad02e3b7187793a52ca52d3aa8a8d49a4eb871edbcee718aa21b3d1278dd3e2",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4427,
+   "cle": "de-lebensmittelwarnung/c3e75539188550b45d72",
+   "sha256": "698b2fce883e07ddf3bd5b08a330f36b7ad8c00d7240920797cd61b8fc99196f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4429,
+   "cle": "de-lebensmittelwarnung/c6099ec152a07a44f513",
+   "sha256": "3902dd00a220be3c236e3715cffdc4d60057d91e9712839cacdd68416f0ddb14",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4476,
+   "cle": "de-lebensmittelwarnung/ebeec30057828e4d0a04",
+   "sha256": "1fe868103207045272782e2cb02d80ad86bad741055eb93ee1d4604ba3c15b1d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4505,
+   "cle": "dgccrf-injonctions-sanctions-lues/1388084799e560540073",
+   "sha256": "95b2739afabac03a3a076d07d446d7c8be5c156696035851f5fc06f4b9e8f02b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4516,
+   "cle": "dgccrf-injonctions-sanctions-lues/3af07ef07700b4991930",
+   "sha256": "6aaf558c4d000281d3ab14ef742d5b38062c079373f1a5069ced2acc656922eb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4517,
+   "cle": "dgccrf-injonctions-sanctions-lues/40a88f4dc19879cc07b8",
+   "sha256": "b11deea495b27276381cadbbfe680c186370010d241ffb56cd012e8b3afba4c6",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4519,
+   "cle": "dgccrf-injonctions-sanctions-lues/4929092d30f2cb236711",
+   "sha256": "02a1b1020191de4edf7489356bccb9b58b983cd7fd974085110950573750fe28",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4534,
+   "cle": "dgccrf-injonctions-sanctions-lues/8f69812424a6248e9f3a",
+   "sha256": "39ef0fd0f64f3e33818b8c2622d5dd780ddbcf1e6b97a78494bb6ca9cbd4bae5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4544,
+   "cle": "dgccrf-injonctions-sanctions-lues/b6d0ba9df6b1d536f10f",
+   "sha256": "89c84d96826f5ebc8b923d489716f7f931587a065ccf6514a5d5bb6dec445ea2",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4549,
+   "cle": "dgccrf-injonctions-sanctions-lues/c2d0535a85c70074e5e1",
+   "sha256": "97cbe27c36d5cd926cba968ffb00f02e9cc092a28a71b4805a331ce12ba35570",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 4551,
+   "cle": "dgccrf-injonctions-sanctions-lues/cd7413d76c8ef8477dcb",
+   "sha256": "f6149583c3cac9fb584a3ed452eec888c9e4e860b38a2b68c88e24064280a645",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 6864,
+   "cle": "diplomatie-conseils-voyageurs-canada",
+   "sha256": "0cf2b841c61d9fc60aa20f25bdf979dec47a76176247d4059d9cf0615ef6ee62",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 6866,
+   "cle": "diplomatie-conseils-voyageurs-chili",
+   "sha256": "639efbb328acdad779c334266b1827956c46e36dcc95b852dea3d48db0250036",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 6888,
+   "cle": "diplomatie-conseils-voyageurs-etats-unis",
+   "sha256": "a8a97ec88718f129932b24f4014bd183ec4c83d4654a7f084632cf4a4d26408b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 6939,
+   "cle": "diplomatie-conseils-voyageurs-maroc",
+   "sha256": "d19683bafb7244399c5e3ec7ea44b842bb9f77a833b586028409a746fc91311f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7015,
+   "cle": "diplomatie-conseils-voyageurs-venezuela",
+   "sha256": "a417f6fc34765bd601d41b7b3eb1eafb40f43c25866789be11a430dd0065290e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7417,
+   "cle": "eba-psd2-registre-PSD_EMI",
+   "sha256": "180b32043d942ae94a8f9179a13cc78a328899acb051774859db10f0950746b5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7419,
+   "cle": "eba-psd2-registre-PSD_EPI",
+   "sha256": "f731d34416a24d939b82c97083adb882bef5a607dadffb8f08a523b0aa9087c3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7421,
+   "cle": "eba-psd2-registre-PSD_PI",
+   "sha256": "e5f386022446f2cc02bab368aa41d973a7c8cecc03999dc479d4c566128f6f7a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7471,
+   "cle": "education-annuaire",
+   "sha256": "cf84f0a0a07f2934af37cd9a27f655fcf23bc20f12118822b7001c0a77f2f1b6",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7475,
+   "cle": "ee-fi-casp-transfrontalier-0",
+   "sha256": "f192b6f0b29684ebdd8cb207235c2df3455a8c9e1a7ce9e717888264f38bf827",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 7476,
+   "cle": "ee-fi-casp-transfrontalier-1",
+   "sha256": "e30a8b3816831d1e47016db6c3f06123c60198840100812957c38273ac90bd54",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8037,
+   "cle": "esma-entites-agreees-0",
+   "sha256": "c4a1ae4d45bd1f553995e70eefe0cbc7bfe7a8ca4c33afb1f92ee689ccf4fa65",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8038,
+   "cle": "esma-entites-agreees-1",
+   "sha256": "841026fc6d37e20b226a3fe83b3939cc91076915be98030c46997077a65a8fb4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8039,
+   "cle": "esma-entites-agreees-2",
+   "sha256": "c356561ca74949d9470602bd9108a4afe82a4e538dfac4d1def81abaf7e4d2a0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8040,
+   "cle": "esma-entites-agreees-3",
+   "sha256": "2557b1536ff74ab57cafff7073a72efa82f2f949d0a7697cbaa93cf950dd4c6c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8041,
+   "cle": "esma-entites-agreees-4",
+   "sha256": "f8e504ecc152ba8d91a6c39a0f165df45c6f46c6b6d0c3ad495165048c3d3e17",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8042,
+   "cle": "esma-entites-agreees-5",
+   "sha256": "652209c0cee68691f18ef64d9cb53af8f4885f39f31eab7149de83edb60e53a9",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8045,
+   "cle": "esma-entites-agreees-8",
+   "sha256": "56276359a91111a427eb1b7f0fd5dfd29725467e2a2b01752a47b3499c5d389b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8078,
+   "cle": "esma-fonds-monetaires",
+   "sha256": "7ff1fb263ee0330f7aa761c626b7745c8e0f36449588d4d942a9a2c1f258a74f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8111,
+   "cle": "esma-indices-references",
+   "sha256": "8fbd9a6c39a5c75b56a9a90cb8fc5e2127c5336c2eca5ad251c96ea624f182a7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8113,
+   "cle": "esma-mica-casps",
+   "sha256": "6c9c5578a651740147b569470a914506d1e7392f5ad4417084e6278c68bf888d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8115,
+   "cle": "esma-mica-ncasp",
+   "sha256": "5fbe59389a074f55c1eab6446a9cf3b9f25e7e60e6eb2cb8ed481c88b0e9ba33",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8116,
+   "cle": "esma-mica-other",
+   "sha256": "9cc2839bd13ff8822e892278bfe1bf14de226070ff6e91e4e6f065a9a2cadfae",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8117,
+   "cle": "esma-suspensions-retraits",
+   "sha256": "2b5ba5607aacac1ea905737629757b11751bfa30f6f4429288ed203882789efa",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8118,
+   "cle": "esma-titrisations-sts",
+   "sha256": "23aa67ef711fccd6beff85500a07795ac82edb5364f4014671430e0a559d88dd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8119,
+   "cle": "esma-ventes-decouvert-exemptions-at",
+   "sha256": "a1709ee6f242c7b11caf764924f2e9290dfaf6a42a38cddce5e413b3e7b8294d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8120,
+   "cle": "esma-ventes-decouvert-exemptions-be",
+   "sha256": "66ad6fad46978fe5654d0c64545358d3ef0cc7eccee9d8ccc512ca400928dd07",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8121,
+   "cle": "esma-ventes-decouvert-exemptions-bg",
+   "sha256": "84a237b268147f465b27d1d16b2200c6769aee4a2985cfd35e1333fc836d4d5c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8122,
+   "cle": "esma-ventes-decouvert-exemptions-cy",
+   "sha256": "aa3aee3b4a9130de28cfd21a0eb02c562113f427a560f684ef29de585741f561",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8123,
+   "cle": "esma-ventes-decouvert-exemptions-cz",
+   "sha256": "11132224fd57d92a659364a86190c9bde6b7317b146c16298874586ac8da0624",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8124,
+   "cle": "esma-ventes-decouvert-exemptions-de",
+   "sha256": "0399c54589d58a53acd00adcba06968713cef7241ea8cf0070dfa5a1a656c17e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8125,
+   "cle": "esma-ventes-decouvert-exemptions-dk",
+   "sha256": "1217e75bcd38e5d986a8c8859aca59099a0907130814bd51c3d05a31e3eda167",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8126,
+   "cle": "esma-ventes-decouvert-exemptions-ee",
+   "sha256": "d698533d37ca844336bf5ad5a06cb82f0cd33f3f675b1106d0c47d3a83de5ad4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8127,
+   "cle": "esma-ventes-decouvert-exemptions-es",
+   "sha256": "e8a1d8beeac9864f9522b392f76640d29aabdc2d0488c3169f9328d4658ef7c7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8128,
+   "cle": "esma-ventes-decouvert-exemptions-fi",
+   "sha256": "35e9a22dbb653e49458a96946a8d31f48dc89092b9a9bc9582534f6ea5e20073",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8129,
+   "cle": "esma-ventes-decouvert-exemptions-fr",
+   "sha256": "cd01479cad1d12ed02166b5d24c23fe772192dd6728e58d35a9cd3a35cb34637",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8130,
+   "cle": "esma-ventes-decouvert-exemptions-gb",
+   "sha256": "bbc134d9abec43b47eb257de03a2b3fb86b93438a849ff5c0e8d58a840167d98",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8131,
+   "cle": "esma-ventes-decouvert-exemptions-gr",
+   "sha256": "5862a26b96b7e4d42a6d1e6c0999971f052dd038684d7d9327eefacc957610a3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8132,
+   "cle": "esma-ventes-decouvert-exemptions-hr",
+   "sha256": "fcf84d6637e92bbee0527c17afb0a20ec9c38e73fd6ea82188c764ed25445971",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8133,
+   "cle": "esma-ventes-decouvert-exemptions-hu",
+   "sha256": "e9a7a2539d3f1322550228f60a4a36d189864eb8d5da67610fb5b609438f2928",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8134,
+   "cle": "esma-ventes-decouvert-exemptions-ie",
+   "sha256": "c7f4122ef2a40501ed9750886a115df3f23eec415fbcceab115f0edef06900a9",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8136,
+   "cle": "esma-ventes-decouvert-exemptions-it",
+   "sha256": "704209a5e6c8a602681fc03fe366de5f0ed7ce9d5de0e62d81c77c46e0d76ba5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8139,
+   "cle": "esma-ventes-decouvert-exemptions-lu",
+   "sha256": "4ae83f46c77193d21a181348c69b5509fdb1108fc666fea51d2d868909340402",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8141,
+   "cle": "esma-ventes-decouvert-exemptions-mt",
+   "sha256": "3cb07828a6faa6a6541f2b470e4ba490105830a9837f7d2ac03ff7813adbca49",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8142,
+   "cle": "esma-ventes-decouvert-exemptions-nl",
+   "sha256": "fdbe7d08d9ed99b6d5e0985172d6a812e259e96bb391cf3c267880fce9854f77",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8143,
+   "cle": "esma-ventes-decouvert-exemptions-no",
+   "sha256": "3bc5c5a335e30e3119fc97ce1a100e523f79c29e5dd7fbd1feac5e1d811d409f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8144,
+   "cle": "esma-ventes-decouvert-exemptions-pl",
+   "sha256": "6a395bacb65ce195d152d3e5d8b169e28c890816390348cc8963f7ff9f657495",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8147,
+   "cle": "esma-ventes-decouvert-exemptions-se",
+   "sha256": "0e69aa5fb023aa0b307199f38b0369a82660a3eb2fae78ceb8b98a86a950a739",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8148,
+   "cle": "esma-ventes-decouvert-exemptions-si",
+   "sha256": "ef1a72da691b240f9b28968a78287768808c44a2b19c439a395962a722a1097e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8149,
+   "cle": "esma-ventes-decouvert-exemptions-sk",
+   "sha256": "364ad9707e6cf128ac74b807c698b2ee1a44d67405510a654eb325697c8b7e8f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8386,
+   "cle": "gfsc-entites-reglementees-investment",
+   "sha256": "d499fe2b754cb66f3ea0bd56193d164a5e626890ce4d53b9073037e172fa80ae",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8390,
+   "cle": "gpu-index-1",
+   "sha256": "9ca2215cea53027816d2f8a867fb2f0f4f2a0c1345a5245ebf6a81cb0de67074",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8396,
+   "cle": "gpu-index-3",
+   "sha256": "2bcf6a0f5776856d398c620d833cbd7554963441f115d0cfbd725e5e4b8b815f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8399,
+   "cle": "gpu-index-6",
+   "sha256": "569f06cae8f3f69c5b1f6a3721b8aa0f1bbf928f2fd3e9ba24e0de2d21445a0d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8400,
+   "cle": "gpu-index-7",
+   "sha256": "80ff98834314d667faf9111c667e60aadbe99c907789a694f85a6cf2d2e25873",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8401,
+   "cle": "gpu-index-8",
+   "sha256": "8deeb450ee502699be9819ab57ccb1f9227cfddc8a85ad07da148aabec602f86",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8402,
+   "cle": "gpu-index-9",
+   "sha256": "3c6e076de682c22d395e094c829d8b8cc305be6dc41315785d1f110bdcd9e655",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8620,
+   "cle": "has-medecins-accredites",
+   "sha256": "0e3a9eaef30de68ebdca690ee36fa87418cc726a2414d800f40bb3bcc9b7d3c4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8625,
+   "cle": "hr-hanfa-casp",
+   "sha256": "d89fcf6c8512a4dd923b43e74992d7bb6e5646a01c8e659d48d9444f651fc414",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8639,
+   "cle": "ia-robots-grands-sites-edition.cnn.com",
+   "sha256": "b6cf25ecc82c7881ee486c77f58af3c085f7aa7169e962c14d0cbaec2580bd85",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8732,
+   "cle": "kgc-titulaires-permis",
+   "sha256": "3f2f6f7f7c02561b56a6abbb794fa3b08e4171399709d51ef54398f667313d2d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8763,
+   "cle": "licences-spectacles",
+   "sha256": "646a85746f25deef1db2a89613850e071fbe8cec085e1552d1756ea0d8d7049e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 8765,
+   "cle": "lyon-chantiers-perturbants",
+   "sha256": "fa4c85a51fefaae81874ffeff9378abdf28b64af7e9500f24e25e4bd5850da21",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9517,
+   "cle": "ping-avis-navigateurs",
+   "sha256": "dc05b3415b1bae5419c661013e6f79e06778c5dbb1fd0415fa1fec6f82bac217",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9592,
+   "cle": "politique-generation-s-site",
+   "sha256": "2d4afd27ae643008ad0c9c842616e4c149ccf9f59e4601504679e04d82a4a283",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9641,
+   "cle": "politique-modem-actualites",
+   "sha256": "eb9db0f880fc86795811ec2911b2f4e01e5b191606ca56a0c73b87b2d262243e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9642,
+   "cle": "politique-modem-site",
+   "sha256": "1e00d27f51e01e8eac01783ea8ae778608e24fcf675165fc3662da54d477c62e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9648,
+   "cle": "politique-npa-anticapitaliste-site",
+   "sha256": "3dfb893a41498d57152f6ef786bc95941c98768a704c64aef960319f592109da",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9669,
+   "cle": "politique-ps-site",
+   "sha256": "c1474192032f3601d25146cf30f4b71a46471d6ac203575061c5c3b4213b8a2d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 9698,
+   "cle": "politique-udi-site",
+   "sha256": "9f7c8bd41feb4d96219ec939b8d2e5fdaf1fa48c3c6f9ff38b47732ce1b12341",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10147,
+   "cle": "promesses-municipales-2026/006786a544949faa63dc",
+   "sha256": "4cf691519ff4720f6051870d1aa880c7c89176a6087c52993ddd55102db0d5ad",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10312,
+   "cle": "promesses-municipales-2026/0bc6f9b84b5fe0c2dab7",
+   "sha256": "b75dfc07f8c66e1d150660c1223458433b63c8f9bdbc14f827f7a418ed59ce18",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10321,
+   "cle": "promesses-municipales-2026/0c12171a6fcb65cee164",
+   "sha256": "9d718b9bbd18059628d61a340d6a5171a6ddbb9e677fc2659f8a95e468aafa9a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10323,
+   "cle": "promesses-municipales-2026/0c39c6fa10084fa683e2",
+   "sha256": "4d32dc8c5255e45947218fdf0fb5c5e97d397f07885523bd7d1b616b692fc963",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10325,
+   "cle": "promesses-municipales-2026/0ca901855b2652ed58d7",
+   "sha256": "e59be4265ee6ad3aa87d679e8eff2962a9138c6ac0cf2ce95ddf842a5a148612",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10327,
+   "cle": "promesses-municipales-2026/0cc9f936e5728029d498",
+   "sha256": "23eedc0e1fb8cc40669999f8b0c29279574937cbeaf248e32a4f0e93878524ed",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10331,
+   "cle": "promesses-municipales-2026/0d09eb211026ba176c81",
+   "sha256": "8d91fd2fd9c2ed80868527f0ec003c31ab688e41026df9bfbafe3db47472858e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10332,
+   "cle": "promesses-municipales-2026/0d244786657995a8ca8e",
+   "sha256": "81d129e36c67d1b0088d995d95f6fc29ce00ade0a180a10dc08e7614d5c9a3bf",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10334,
+   "cle": "promesses-municipales-2026/0d4e0466c218bcd459a5",
+   "sha256": "19f5eaa7094af4caf33930a53d756e974d64d465edef4529256dd3ef5386b27a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10336,
+   "cle": "promesses-municipales-2026/0d697980792d747cb34a",
+   "sha256": "669e166166792f00417c889a8d4a54b265aa344a3fd6ba5383e2126a7ef617ec",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10340,
+   "cle": "promesses-municipales-2026/0dc85a1490e31616ad27",
+   "sha256": "5d39e87f3356ca69eec34db7f3d36bad9723254d368c62faed97818b3d25d3fa",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10341,
+   "cle": "promesses-municipales-2026/0dcb38948aca193b5f8f",
+   "sha256": "d43170687bd4be05782b9546e629201624a28cb17c6c16a8acaddde0f7beb4d6",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10344,
+   "cle": "promesses-municipales-2026/0de2cb4099bf3200e4fe",
+   "sha256": "f441639dcb58847743b4719d6054d6038692017883dd1a93c0c0ba6ab1ca5955",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10345,
+   "cle": "promesses-municipales-2026/0df3619e08d23c03af47",
+   "sha256": "e823a0635dc89e999119fa887406cf1895df1783ccae5d3f5880b8060f196760",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10347,
+   "cle": "promesses-municipales-2026/0e1ebe6846bc7286df7a",
+   "sha256": "64206ef43580ace0463ecc668b69a77519d1924513eeb2b91e43d51732b68509",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10358,
+   "cle": "promesses-municipales-2026/0ed689d3397654c5e092",
+   "sha256": "9bd81f1dbcf3fd69c4384394593b39ded5f6d0365467ead4b6dd1ab2cfac2f0a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10365,
+   "cle": "promesses-municipales-2026/0f2d8476229e8df4ed9a",
+   "sha256": "01a9f2f5d37bb8b959acc9c8f53bb372c2acc95040dfdd3eed585f34cde1742c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10366,
+   "cle": "promesses-municipales-2026/0f3e432b79ebc4a4b1fe",
+   "sha256": "2ae7eccda23409465c79a86417cb8f2cbd9b0ac4f309f1903ca67b878a6cc2b7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10368,
+   "cle": "promesses-municipales-2026/0f681eec744b896bde07",
+   "sha256": "25f88eccb3023509363822f96772fe1d5d48e83555c9edadf2a6c83c68f3d1f0",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10369,
+   "cle": "promesses-municipales-2026/0f817d83301b3ae58fcf",
+   "sha256": "d22e86182bb663159ec672473847934ad708adb5f69d8e741646861d9c2a1488",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10372,
+   "cle": "promesses-municipales-2026/0fbd0d3d7d1bf2b4dea4",
+   "sha256": "85f4b3a64b9bc10a530d7eaef9e450b684dbd9681309e0e6a22c904d0142d096",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10379,
+   "cle": "promesses-municipales-2026/1099f0c04e3f9b287529",
+   "sha256": "aef7fea2f76c2c17e7c9c6d31de279a0f27760791a6be8639fb3db192dbc29c7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10385,
+   "cle": "promesses-municipales-2026/10f0eeffcca8c0881921",
+   "sha256": "7709f5ef67a1dd41e2948de5c92384e6367aef656071969bcfb7777ee65ef366",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10388,
+   "cle": "promesses-municipales-2026/1106e07c416caf3689eb",
+   "sha256": "ce2586a07d676d0a62f625874e6ee1d036c8dfaae9af41caaa245920b21f9fc4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10389,
+   "cle": "promesses-municipales-2026/1109d82802e79ab620aa",
+   "sha256": "ec43e8d261563988496fcc87bf59864d062d7b0b972777c2b24b9ae4c0593008",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10392,
+   "cle": "promesses-municipales-2026/116830323b274c9e0279",
+   "sha256": "77d6e40a79ea803efee5b7d1a942bccf9fa34870d1fd4e64633845ece759c7f4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10396,
+   "cle": "promesses-municipales-2026/11956e90892720b8331b",
+   "sha256": "a3a5141701a8c2e7d7ecd575b8a96c522216a73c7220bbe25a95c9ca3337cd40",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10397,
+   "cle": "promesses-municipales-2026/11abcb49890e1019cea2",
+   "sha256": "f0df6476e4405225ea5082f569e6b0cf9ddf0344f49e19d096d9c6751dfa6804",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10403,
+   "cle": "promesses-municipales-2026/1209ee36c7cd6e38c1eb",
+   "sha256": "94aaa257e0dcb2a96213148636191749a9618bcef21227ff7395c63fa9585301",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10428,
+   "cle": "promesses-municipales-2026/13ff2ff15455a65aac6e",
+   "sha256": "27138155663f3ac6e0a838a73440b8edf9dfdddb645aa169dd0405ccd7c340f3",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10429,
+   "cle": "promesses-municipales-2026/1414b1f5d2d4ccad5a22",
+   "sha256": "eb9e2e4f58e65ab2324c9f1d3a047e891c3d7ad4eb7ad695446238db7aebce01",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10433,
+   "cle": "promesses-municipales-2026/145245784bfe28bd5603",
+   "sha256": "61812879633d9b79823f17e8d85b2500d673eda216da0f4d532b0b508c599536",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10444,
+   "cle": "promesses-municipales-2026/151d31f404ce5eea4c49",
+   "sha256": "203a370891270cfb6cc1c2125d079ef227988c0ec1ba4a87d50a7acb8154f274",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10455,
+   "cle": "promesses-municipales-2026/15fcc817ee9abfe6e995",
+   "sha256": "2d8fa6c678526a3d6816f825c8bd8bece7cd06402d62d08b25b81df56a696719",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10463,
+   "cle": "promesses-municipales-2026/1674982784d28d522e66",
+   "sha256": "692d904a00b725b729d98b348017c5eb8b0568f1664dde7a05b84203dd519c8e",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10471,
+   "cle": "promesses-municipales-2026/171948f24244c556c778",
+   "sha256": "8729ae3899f6417d0efc38f3c8cf588ed5244573516cbea5ecfd8188392c0aa1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10472,
+   "cle": "promesses-municipales-2026/1736bf928312cc489a76",
+   "sha256": "08f1dd92f8b75550cf859c990fc143dd21a536d3229de7af310b52af9a70d976",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10474,
+   "cle": "promesses-municipales-2026/1742050dd7340aff6893",
+   "sha256": "2d4395ac1bcfdfb19b063401daecac2ceda63abc63ba5e40dc20af00535e7744",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10478,
+   "cle": "promesses-municipales-2026/176e17ed240d31c59d89",
+   "sha256": "053e168aa66074796f8f722b571ff90df4b56f250ad7720073a1c27750213710",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10486,
+   "cle": "promesses-municipales-2026/17cf191640d4da2137ad",
+   "sha256": "f7d0d158722d3e0127e9921f6e83dea67ab25252373c738be44501af48aaeffa",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10490,
+   "cle": "promesses-municipales-2026/17e7ec29918a48af7fe0",
+   "sha256": "0e604045aa0c0dad4454e0f7b2297155dc482b86ecfbe8223d7ca3c643db0fbe",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10492,
+   "cle": "promesses-municipales-2026/18044f36b612b7cc8b7f",
+   "sha256": "9045f72ea87b0c04c337381f46ff064d2045e0f779fe684a52328f9204fa36b1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10495,
+   "cle": "promesses-municipales-2026/1817d0e2baf3e66afebc",
+   "sha256": "a0f5c6e641d9e20c2e8674ad2d357a632baf83df9f195a3c7d0e3eb217d8f7e8",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10502,
+   "cle": "promesses-municipales-2026/1886577a08a15c22c19b",
+   "sha256": "59ee4e7fcc4a0bbf134219876ed1d726f6b0f5ced9cfc6b128cd13ebe8c00f30",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10505,
+   "cle": "promesses-municipales-2026/18d0239e767dcec48991",
+   "sha256": "7ca98034f90f11e3cf1c6255a822058c795caa79173cdea2821c8a1b99c37dc8",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10510,
+   "cle": "promesses-municipales-2026/193df3128f204f80963f",
+   "sha256": "aad3b83c9b12b7a76ce3a9d4f6f4bd63061e93d7fc8285cadf45248e709124b1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10522,
+   "cle": "promesses-municipales-2026/1a08da653bfa0269537c",
+   "sha256": "a288c5fc4819de5868f13e81d8d8cca0544a198b13f145ccbb7a4cc7c1f1da5d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10530,
+   "cle": "promesses-municipales-2026/1af10a8a03c89854164b",
+   "sha256": "7bffec44682fd4278f11711ff34d67c0dc8be13da641c7eaa8cee0717899c15a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10535,
+   "cle": "promesses-municipales-2026/1b0ea55ce8a4e28a9aef",
+   "sha256": "9a72934b6fc66db7b7a62f97c353943fc7d1e365cb1c96c3d317122bf9304ce5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10543,
+   "cle": "promesses-municipales-2026/1b6d45e58c162eb196db",
+   "sha256": "a138a2ecf1709146d4da231fd3b3df9c0e6477264a8d4c282172e51107984233",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10546,
+   "cle": "promesses-municipales-2026/1ba205d26573a0f1f9ec",
+   "sha256": "cc4cb119edc48ae8a03d212797f0d212e0a3d38d07c998af4e7aae9360c5aa2b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10549,
+   "cle": "promesses-municipales-2026/1bb3a98c7480752fd4db",
+   "sha256": "d905cf2f72f8af3d55861d8d82273474a9033e75dd771c2b5487d3697b86f121",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10551,
+   "cle": "promesses-municipales-2026/1bc60a3c931db3649dcb",
+   "sha256": "a68d585a6b985ea02d2b7c4bc7ff8cc391dd4c9a316a0c492ef3ffc3ac57587f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10558,
+   "cle": "promesses-municipales-2026/1c36a31846f116d18cbb",
+   "sha256": "36a84b9402cba91c404b5cdfe246ff232fb7052cfec10f276cbe485671a90ea8",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10564,
+   "cle": "promesses-municipales-2026/1cb110697ab664af18e5",
+   "sha256": "882a51c0cec7024f65bd008733ae289c7a3864360faef6197206336700adc420",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10570,
+   "cle": "promesses-municipales-2026/1d22883728d2f4cecdc1",
+   "sha256": "21faeedabf6df6ae794f1a6463b99659568ab0ffdfc7744187636bfb95e11696",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10571,
+   "cle": "promesses-municipales-2026/1d282c6e4119fdd00fe1",
+   "sha256": "db39af5c703aa09ff394c42f003eadb161b703155801d1aa3725b0ff3d681c39",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10578,
+   "cle": "promesses-municipales-2026/1dc9206120c9556d1cb1",
+   "sha256": "e7f9a52def84d03c16605de70f37ee63ee812a923e8884a7efe756f007a4e44d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10581,
+   "cle": "promesses-municipales-2026/1dec404981603768969c",
+   "sha256": "f6eb4029cb240be02778dcdbb1b3106b1fd14abac6099debbb5c9e19a8a5ef62",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10587,
+   "cle": "promesses-municipales-2026/1e624c515e253c43c99f",
+   "sha256": "6157d7a11b7899da820764dc96b37fb28d759cb68298be7438d8019e927e3bce",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10591,
+   "cle": "promesses-municipales-2026/1e90de9e16f95600ed6a",
+   "sha256": "b141e6ed455ff8a4e8e374b21514b82e7e89d048dd60638c95420b4c73433fcb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10596,
+   "cle": "promesses-municipales-2026/1f2d2df200f7061a1104",
+   "sha256": "e6c8a5604dd27ba5e27ad4a9647e9c5f4ebbbbff3f0de7b5c21fa082b7f4aa83",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10599,
+   "cle": "promesses-municipales-2026/1f8651d61b8c33dc8db3",
+   "sha256": "2695cd66e685f7a99ddbc0675a8df7cdba77e4b011d5ba6a0f1f8a4390cf546d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10600,
+   "cle": "promesses-municipales-2026/1f8d7624766c2eabae8c",
+   "sha256": "fe5e0d28a23abf25fa91ebaaa842a73b58cfd9d6ea0adc3d4ec1ba1c3e9211d7",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10606,
+   "cle": "promesses-municipales-2026/1ff8b16861defac51420",
+   "sha256": "8b0cfc24d461687f8376249a4e621bdaf79a4942b5d6ecc6c99ff55afffa0921",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10610,
+   "cle": "promesses-municipales-2026/202c84c4da902b0f29a4",
+   "sha256": "7663912cabc2f03dbe527b6e056219df23afd991a8554c9a1bd995501c07d2a1",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10613,
+   "cle": "promesses-municipales-2026/205ac703d5bbf795d54b",
+   "sha256": "77a5206fb8a38cd5210699cf40f49af87644bd3680559015ac7016f9fefdaf09",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10623,
+   "cle": "promesses-municipales-2026/2131e0b9f60817c6f705",
+   "sha256": "10bf383bf85424e3f429555d5aea4354560fd4c520e9e461f308dfea376bfd4f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10632,
+   "cle": "promesses-municipales-2026/2198863520aa18869093",
+   "sha256": "3db61d011fc40599b152f821920edd8ba87dfc389151994f3cc89d07f62dd11a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 10638,
+   "cle": "promesses-municipales-2026/22523b646a6b908c8916",
+   "sha256": "aaa7df1de556d3550fe6a9bdcc6dbfa1946b65c087f06b9bc50cf98e4e888641",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 16384,
+   "cle": "se-fi-krypto-FIINST",
+   "sha256": "879c517f067be08f73fdfbecffae4897a6a41b70c72b11966a3eb29165547ac5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 16385,
+   "cle": "se-fi-krypto-UTCASP",
+   "sha256": "d177084f551c9df18fb24c91bf4527ea73cebd4d42d3524c1bb6b9cce26787ac",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 16393,
+   "cle": "sfc-hk-plateformes-suspectes",
+   "sha256": "c4f9d2e7f8cdc877bf4a23edc461bd236673571af981f9ec64c1d8c46fdd989c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 16414,
+   "cle": "spk-crypto-prestataires-faaliyette-bulunanlar-listesi",
+   "sha256": "5c3d884b55480ee4b9530d68b2c0c308d02e245b45fcc41272244d6eaeb9d06c",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 16415,
+   "cle": "spk-crypto-prestataires-tasfiye-surecinde-olanlar-listesi",
+   "sha256": "f9e9b258e12e21113c69b31d4d4dec61e0a35666d6d2775246721fb0b6b70790",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17386,
+   "cle": "tech-scaleway-gpu-prix",
+   "sha256": "f6f11c5dc96d8baa869e302e8168dc7c3266e4da5344d8aef569fef5ead164cd",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17396,
+   "cle": "uk-carburants-jet",
+   "sha256": "73424f271e41777301afbc047d9fa570a01e912de3e5978aa0d33af7d235501f",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17766,
+   "cle": "uk-opss-enforcement/6f08d05f590b398e764f",
+   "sha256": "bb51310cc7a3a171a5b22e2c6248217d9b26cb4828b2dd5a62c952a6b9c80895",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17767,
+   "cle": "uk-opss-enforcement/7eac3581ca7f5a58f0d6",
+   "sha256": "d9c7e42888c4213e15695086a63f41b4ba16f0ad8d20341f23c67a390c7913a4",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17768,
+   "cle": "uk-opss-enforcement/8689a8d122d2d75e0c76",
+   "sha256": "c4118693fd225c71a0facfc067777aefa07d0af470a9a5068c8b980973c5e522",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17769,
+   "cle": "uk-opss-enforcement/a2b5e17b082fe414fc1c",
+   "sha256": "e9f52776565b071cef0c8f7c965e478a15a3513b64ebefce0066d8433a25f88b",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17798,
+   "cle": "vigicrues-vigilance",
+   "sha256": "c5da0f5c8bbe92843c0e144ca7936d8c703ad176f2f9df38b6581fbe4cac9ccb",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17800,
+   "cle": "manifeste:2026-11-18",
+   "sha256": "574f1a1ae508ca76fec8ab1b98bcf0b48a2abf31dc88157dc44e4035d5c13cb5",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17801,
+   "cle": "evenements:20261118T161900Z",
+   "sha256": "ae6b22774282cc13799de0b942471a0b591a76648b5b08090ba31f9867a74dc1",
+   "jour": null
+  },
+  {
+   "index": 17802,
+   "cle": "consultations:166",
+   "sha256": "ee94b66e913c52bcd0df089e2e04f7cdb97ad61686c01e058d239253b5dfd584",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17803,
+   "cle": "depots:155983",
+   "sha256": "756abab3a237285abbdde7e92a31b78353ed0058ee53e480a56aebdc5d774b2d",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17805,
+   "cle": "actes:153899",
+   "sha256": "c08d2f7b51fc44a38b0e872e010174b6ce2d22cb61415632027873b19033742a",
+   "jour": "2026-11-18"
+  },
+  {
+   "index": 17807,
+   "cle": "versements:1242",
+   "sha256": "3675e78906c66ac5bbbe5df236922e58342586e016a921f765ffeec5df590fac",
+   "jour": "2026-11-18"
+  }
+ ],
+ "retirees": [
+  "evenements:20261118T053155Z",
+  "consultations:164",
+  "depots:151544",
+  "actes:149478",
+  "versements:1227"
+ ]
+}
