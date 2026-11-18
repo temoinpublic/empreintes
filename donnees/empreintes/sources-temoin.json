@@ -96,6 +96,14 @@
   "extension": "json"
  },
  {
+  "nom": "gels-dgtresor",
+  "url": "https://gels-avoirs.dgtresor.gouv.fr/ApiPublic/api/v1/publication/derniere-publication-fichier-json",
+  "famille": "sanctions",
+  "theme": "sanctions-france",
+  "pourquoi": "Le registre national des gels d'avoirs de la DG Tresor, en JSON : chaque personne ou societe gelee, ses alias, son fondement juridique ; reecrit a chaque publication, une radiation en sort sans trace. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "json"
+ },
+ {
   "nom": "hatvp-repertoire",
   "url": "https://www.hatvp.fr/agora/opendata/agora_repertoire_opendata.json",
   "famille": "reecrit",
@@ -133,6 +141,70 @@
   "famille": "reecrit",
   "theme": "registres",
   "pourquoi": "Liste reecrite chaque jour : qui perd sa certification Qualiopi et quand.",
+  "extension": "csv"
+ },
+ {
+  "nom": "sanctions-ca-sema",
+  "url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La liste consolidee des sanctions autonomes du Canada (LMES), XML : ecrasee a chaque modification. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-ch-seco",
+  "url": "https://www.sesam.search.admin.ch/sesam-search-web/pages/downloadXmlGesamtliste.xhtml?lang=en&action=downloadXmlGesamtlisteAction",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La liste globale des sanctions du SECO (Suisse), XML : ecrasee a chaque modification ; la place financiere ou les societes francaises ont le plus de comptes. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-ofac-consolidee",
+  "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONSOLIDATED.XML",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "Les listes hors SDN de l'OFAC (SSI, NS-MBS, FSE, CAPTA...), XML consolide : ecrase a chaque publication. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-ofac-sdn",
+  "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.XML",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La liste SDN de l'OFAC (Tresor americain), XML : ecrasee a chaque publication, une entree retiree (delisting) n'y laisse rien. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-onu-consolidee",
+  "url": "https://scsanctions.un.org/resources/xml/en/consolidated.xml",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La liste consolidee du Conseil de securite des Nations unies, XML : ecrasee a chaque modification, une radiation en sort. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-ue-consolidee",
+  "url": "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content?token=dG9rZW4tMjAxNw",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La liste consolidee des sanctions financieres de l'Union europeenne (FSF), XML : un fichier unique ecrase a chaque modification, la Commission ne publie pas ses versions passees. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-uk-fcdo",
+  "url": "https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.xml",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La UK Sanctions List du FCDO (qui remplace la liste consolidee de l'OFSI depuis janvier 2026), XML : ecrasee chaque jour ouvre. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328). Acheteur : editeurs du controle anti-blanchiment (Kanta, BeCLM, AML Factory).",
+  "extension": "xml"
+ },
+ {
+  "nom": "sanctions-us-csl",
+  "url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv",
+  "famille": "sanctions",
+  "theme": "sanctions-etranger",
+  "pourquoi": "La Consolidated Screening List americaine (Entity List, Denied Persons, Unverified, Military End User, listes de l'OFAC et du Departement d'Etat), un CSV ecrase a chaque mise a jour : une radiation n'y laisse rien ; 4 jours sur 90 chez l'Internet Archive. Liste officielle qui nomme des personnes : garde privee, jamais servie a une clef tierce ni sur une page (D-328).",
   "extension": "csv"
  }
 ]

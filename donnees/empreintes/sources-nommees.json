@@ -48,6 +48,10 @@
   "url": "https://registers.esma.europa.eu/solr/esma_registers_mifid_shsexs/select?q=shs_countryCode:{v}&fl=id,shs_isin,shs_name,shs_countryCode,shs_relevantAuthority,shs_status,shs_modificationDateStr,shs_exemptionStartDateStr,shs_exemptionEndDateStr&rows=300000&sort=id%20asc&wt=json"
  },
  {
+  "nom": "gels-dgtresor",
+  "url": "https://gels-avoirs.dgtresor.gouv.fr/ApiPublic/api/v1/publication/derniere-publication-fichier-json"
+ },
+ {
   "nom": "hatvp-repertoire",
   "url": "https://www.hatvp.fr/agora/opendata/agora_repertoire_opendata.json"
  },
@@ -3030,5 +3034,37 @@
  {
   "nom": "qualiopi-organismes-formation",
   "url": "https://www.monactiviteformation.emploi.gouv.fr/mon-activite-formation/public/listePubliqueOF?format=csv"
+ },
+ {
+  "nom": "sanctions-ca-sema",
+  "url": "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml"
+ },
+ {
+  "nom": "sanctions-ch-seco",
+  "url": "https://www.sesam.search.admin.ch/sesam-search-web/pages/downloadXmlGesamtliste.xhtml?lang=en&action=downloadXmlGesamtlisteAction"
+ },
+ {
+  "nom": "sanctions-ofac-consolidee",
+  "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONSOLIDATED.XML"
+ },
+ {
+  "nom": "sanctions-ofac-sdn",
+  "url": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.XML"
+ },
+ {
+  "nom": "sanctions-onu-consolidee",
+  "url": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
+ },
+ {
+  "nom": "sanctions-ue-consolidee",
+  "url": "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content?token=dG9rZW4tMjAxNw"
+ },
+ {
+  "nom": "sanctions-uk-fcdo",
+  "url": "https://sanctionslist.fcdo.gov.uk/docs/UK-Sanctions-List.xml"
+ },
+ {
+  "nom": "sanctions-us-csl",
+  "url": "https://data.trade.gov/downloadable_consolidated_screening_list/v1/consolidated.csv"
  }
 ]

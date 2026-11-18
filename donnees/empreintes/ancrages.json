@@ -1,5 +1,5 @@
 {
- "dernier": "20261116T221556Z",
+ "dernier": "20261118T053155Z",
  "tours": {
   "20261011T041935Z": {
    "ots": "bitcoin",
@@ -3620,11 +3620,11 @@
    "bloc": 976170
   },
   "20261116T221556Z": {
-   "ots": "calendrier",
+   "ots": "bitcoin",
    "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
    "racine": "92ed30fb82d680d2a19dbf710502729ba7169fd79f95c2e12e4c3f778d8539eb",
    "feuilles": 16799,
-   "maj": "2026-11-17T00:07:24.638Z",
+   "maj": "2026-11-18T06:50:20.607Z",
    "signature": {
     "etat": "signe",
     "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
@@ -3638,6 +3638,47 @@
    "horodatage": {
     "etat": "deja",
     "tour": "20261116T041939Z"
+   },
+   "bloc": 976203
+  },
+  "20261118T005006Z": {
+   "ots": "bitcoin",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "3fa49f5a5fbfac2bf06ab5b7e44824fdf88830c4d09397617585484d41cc0477",
+   "feuilles": 17654,
+   "maj": "2026-11-18T08:23:27.772Z",
+   "signature": {
+    "etat": "absent"
+   },
+   "signatureSlh": {
+    "etat": "absent"
+   },
+   "bloc": 976395
+  },
+  "20261118T053155Z": {
+   "ots": "calendrier",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "3e5501cb350b3e41f6ef3015b85c9bdf630461e3ee48ddf954e2a8f488d351f1",
+   "feuilles": 17927,
+   "maj": "2026-11-18T08:23:27.772Z",
+   "signature": {
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-11-18T08:23:27Z"
+   },
+   "signatureSlh": {
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
+   },
+   "horodatage": {
+    "etat": "fait",
+    "instant": "2026-11-18T08:23:31.000Z",
+    "serie": "0xEAEFB0A7621CA7A1A04DE1ABD49E1109ADB6042B",
+    "politique": "0.4.0.2023.1.1",
+    "signataire": "DirName:/C=ES/O=Sectigo (Europe) SL/CN=Sectigo Qualified Time Stamping Signer #3",
+    "prestataire": "timestamp.sectigo.com",
+    "verifie": true
    }
   }
  }
