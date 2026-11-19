@@ -1,0 +1,53 @@
+{
+ "jour": "2026-11-19",
+ "evenements": [
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2024/10/5c3ba980-48be-44ed-a10c-44ee355d074d-Statuts-Novapierre-Allemagne-212-07-2022.pdf",
+   "date": "2026-11-19",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "d1a55a1045edd2d539a2c97e0d9db5b28df879b76fbb0a84f7ce0b6935a0cb15"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2024/10/a1161dd5-26b1-4dbb-9db1-095ad38d08b2-Note-informationNovapierre-Allemagne-2MAJ-19-12-2023VF.pdf",
+   "date": "2026-11-19",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "7aaccd9fe57b0c4096126098d235a60e85584df2041b994f2649e31c79ea0f8e"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-paref",
+   "url": "https://paref-gestion.com/wp-content/uploads/2025/05/5f1c08f2-047c-47b4-b7e6-0015d3b87f35-NotedeconjoncturePGT125.pdf",
+   "date": "2026-11-19",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "cb800419430c8bd368e866e4348b85658420e185367c982ec54c7b49a15dcabf"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-perial",
+   "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/69b0310e5dadbf6102a717a8_Proce%CC%81dure%20de%20re%CC%81clamations%20clients.pdf",
+   "date": "2026-11-19",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "1050a01b4e9f578626b8f9c3c888d250c5bbed20af7483d635a843aa520d9959"
+   },
+   "apres": null
+  }
+ ]
+}
