@@ -1,5 +1,5 @@
 {
- "dernier": "20261121T190802Z",
+ "dernier": "20261121T221918Z",
  "tours": {
   "20261011T041935Z": {
    "ots": "bitcoin",
@@ -4032,15 +4032,37 @@
    "bloc": 976940
   },
   "20261121T190802Z": {
-   "ots": "calendrier",
+   "ots": "bitcoin",
    "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
    "racine": "a62476f512a0b5461354f4c97b2d236d017d2f1af87d817a3c83e854ef016a0e",
    "feuilles": 18336,
-   "maj": "2026-11-21T21:15:43.424Z",
+   "maj": "2026-11-21T23:54:29.389Z",
    "signature": {
     "etat": "signe",
     "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
     "sigT": "2026-11-21T21:15:43Z"
+   },
+   "signatureSlh": {
+    "etat": "signe",
+    "cle": "c1eccce60b9e07019b60e86f8c65836332a302f5140e09df54e7c762bc989f9c",
+    "octets": 7856
+   },
+   "horodatage": {
+    "etat": "deja",
+    "tour": "20261121T041233Z"
+   },
+   "bloc": 976951
+  },
+  "20261121T221918Z": {
+   "ots": "calendrier",
+   "detail": "https://a.pool.opentimestamps.org https://b.pool.opentimestamps.org https://a.pool.eternitywall.com https://ots.btc.catallaxy.com",
+   "racine": "90e10a1743c2b61c01f185ea7155023f9949a8eacf466a6db774ee6243f05e2e",
+   "feuilles": 18356,
+   "maj": "2026-11-21T23:54:29.389Z",
+   "signature": {
+    "etat": "signe",
+    "certificat": "5263feba5fc71c4725c93328c0c75a94fc4e1b632bb9ff01574239551ab34b80",
+    "sigT": "2026-11-21T23:54:29Z"
    },
    "signatureSlh": {
     "etat": "signe",
