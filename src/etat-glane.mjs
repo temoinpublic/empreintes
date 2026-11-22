@@ -29,57 +29,82 @@ export function* lignesDeLEtat(etat) {
 
 const estUnObjet = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 
+/** Ecrit tous les octets : `writeSync` peut en ecrire moins sans lever. */
+function ecrireTout(fs, fd, octets) {
+	for (let fait = 0; fait < octets.length; ) fait += fs.writeSync(fd, octets, fait, octets.length - fait);
+}
+
 /**
- * Ecrit l'etat par lots d'au plus `lot` octets (plus une ligne), dans un fichier
- * voisin puis un renommage : une interruption laisse l'ancien etat entier.
- * `fs` est passe pour que ce module reste sans acces disque.
+ * Ecrit l'etat par lots d'au plus `lot` octets UTF-8 (plus une ligne), dans un
+ * fichier voisin puis un renommage : une interruption laisse l'ancien etat
+ * entier, et le voisin s'efface. `fs` est passe pour que ce module reste sans
+ * acces disque.
  */
 export function ecrireLEtat(fs, chemin, etat, { lot = LOT_OCTETS } = {}) {
 	const voisin = `${chemin}.${process.pid}.tmp`;
 	const fd = fs.openSync(voisin, 'w');
 	try {
-		let tampon = '';
-		for (const ligne of lignesDeLEtat(etat)) {
-			tampon += `${ligne}\n`;
-			if (tampon.length >= lot) {
-				fs.writeSync(fd, tampon);
-				tampon = '';
+		try {
+			let tampon = [];
+			let octets = 0;
+			for (const ligne of lignesDeLEtat(etat)) {
+				tampon.push(ligne, '\n');
+				octets += Buffer.byteLength(ligne) + 1;
+				if (octets >= lot) {
+					ecrireTout(fs, fd, Buffer.from(tampon.join('')));
+					tampon = [];
+					octets = 0;
+				}
 			}
+			if (octets) ecrireTout(fs, fd, Buffer.from(tampon.join('')));
+		} finally {
+			fs.closeSync(fd);
 		}
-		if (tampon) fs.writeSync(fd, tampon);
-	} finally {
-		fs.closeSync(fd);
+		fs.renameSync(voisin, chemin);
+	} catch (e) {
+		fs.rmSync(voisin, { force: true });
+		throw e;
 	}
-	fs.renameSync(voisin, chemin);
+}
+
+class EtatIncomplet extends Error {}
+
+/** Pose `valeur` comme propriete propre, meme pour une cle `__proto__`. */
+function poser(cible, ligne) {
+	const entree = JSON.parse(`{${ligne.endsWith(',') ? ligne.slice(0, -1) : ligne}}`);
+	for (const cle of Object.keys(entree)) Object.defineProperty(cible, cle, { value: entree[cle], writable: true, enumerable: true, configurable: true });
 }
 
 /**
  * Relit l'etat ligne par ligne (`lignes` : un iterable, asynchrone ou non, des
  * lignes du fichier). Un etat ecrit d'un bloc par une version d'avant tient sur
- * une ligne et se lit d'un `JSON.parse`, une seule fois.
+ * une ligne et se lit d'un `JSON.parse`, une seule fois. Comme `JSON.parse`, un
+ * fichier vide, coupe ou suivi d'autre chose est refuse : sauve ensuite, il
+ * effacerait l'historique.
  */
 export async function lireLEtat(lignes) {
-	const etat = {};
+	let etat = {};
 	let section = null;
-	let premiere = true;
+	let debut = null;
+	let ferme = false;
 	for await (const brute of lignes) {
 		const ligne = brute.trimEnd();
-		if (premiere) {
-			premiere = false;
-			if (ligne !== '{') return JSON.parse(ligne);
-			continue;
-		}
-		if (ligne === '}' || ligne === '},') {
-			section = null;
-			continue;
-		}
 		if (!ligne) continue;
-		if (section === null && ligne.endsWith(':{')) {
-			section = JSON.parse(ligne.slice(0, -2));
-			etat[section] = {};
+		if (ferme) throw new EtatIncomplet('etat de la glane : du texte apres la fin');
+		if (debut === null) {
+			debut = ligne;
+			if (ligne === '{') continue;
+			etat = JSON.parse(ligne);
+			ferme = true;
 			continue;
 		}
-		Object.assign(section === null ? etat : etat[section], JSON.parse(`{${ligne.endsWith(',') ? ligne.slice(0, -1) : ligne}}`));
+		if (ligne === '}' && section === null) ferme = true;
+		else if (section !== null && (ligne === '}' || ligne === '},')) section = null;
+		else if (section === null && ligne.endsWith(':{')) {
+			section = JSON.parse(ligne.slice(0, -2));
+			poser(etat, `${JSON.stringify(section)}:{}`);
+		} else poser(section === null ? etat : etat[section], ligne);
 	}
+	if (!ferme) throw new EtatIncomplet('etat de la glane coupe ou vide');
 	return etat;
 }

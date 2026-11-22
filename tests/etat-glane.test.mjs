@@ -53,11 +53,45 @@ test('une ecriture interrompue laisse l ancien etat entier', () => {
 	const casse = { ...fs, writeSync: () => { throw new Error('disque plein'); } };
 	assert.throws(() => ecrireLEtat(casse, chemin, { pdfs: { c: {} } }), /disque plein/);
 	assert.equal(fs.readFileSync(chemin, 'utf8'), avant);
+	assert.deepEqual(fs.readdirSync(path.dirname(chemin)), ['glane.json'], 'le voisin d une ecriture ratee s efface');
 });
 
 test('un etat ecrit d un bloc par la version d avant se relit tel quel', async () => {
 	assert.deepEqual(await lireLEtat([JSON.stringify(ETAT)]), ETAT);
-	assert.deepEqual(await lireLEtat([]), {});
 	assert.deepEqual(await lireLEtat(['{', '"pdfs":{}', '}']), { pdfs: {} });
 	assert.deepEqual(await lireLEtat(['{', '"pdfs":{', '"u":{"id":1}', '},', '', '"n":3', '}']), { pdfs: { u: { id: 1 } }, n: 3 });
+});
+
+test('un etat vide, coupe ou suivi d autre chose est refuse, comme le refusait JSON.parse', async () => {
+	const lignes = [...lignesDeLEtat(ETAT)];
+	await assert.rejects(lireLEtat([]), /coupe ou vide/);
+	await assert.rejects(lireLEtat(['', '  ']), /coupe ou vide/);
+	await assert.rejects(lireLEtat(lignes.slice(0, 5)), /coupe ou vide/, 'coupe entre deux entrees');
+	await assert.rejects(lireLEtat(lignes.slice(0, -1)), /coupe ou vide/, 'sans sa derniere accolade');
+	await assert.rejects(lireLEtat([...lignes, '{}']), /apres la fin/);
+	await assert.rejects(lireLEtat([JSON.stringify(ETAT), '{"pdfs":{}}']), /apres la fin/);
+	await assert.rejects(lireLEtat(['{"pdfs":{"a"']), SyntaxError);
+});
+
+test('une cle __proto__ reste une entree, jamais le prototype du dictionnaire', async () => {
+	const lu = await lireLEtat(['{', '"pdfs":{', '"__proto__":{"id":"piege"},', '"https://x.fr/a.pdf":{"id":"r1"}', '}', '}']);
+	assert.deepEqual(Object.keys(lu.pdfs), ['__proto__', 'https://x.fr/a.pdf']);
+	assert.equal(Object.getPrototypeOf(lu.pdfs), Object.prototype);
+	assert.equal(Object.getOwnPropertyDescriptor(lu.pdfs, '__proto__').value.id, 'piege');
+});
+
+test('le lot se compte en octets UTF-8 et une ecriture partielle est completee', () => {
+	const libelle = 'Délibération « école » '.repeat(20);
+	const etat = { pdfs: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`https://x.fr/${i}.pdf`, { id: `r${i}`, libelle }])) };
+	const ecrits = [];
+	const lent = { ...fs, writeSync: (fd, octets, depuis, n) => { const k = Math.min(n, 1000); ecrits.push(k); return fs.writeSync(fd, octets, depuis, k); } };
+	const chemin = path.join(dossier(), 'glane.json');
+	ecrireLEtat(lent, chemin, etat, { lot: 4096 });
+	assert.deepEqual(JSON.parse(fs.readFileSync(chemin, 'utf8')), etat, 'aucun octet perdu par une ecriture partielle');
+	assert.ok(Math.max(...ecrits) <= 1000);
+	const lots = [];
+	const compte = { ...fs, writeSync: (fd, octets, depuis, n) => { lots.push(n); return fs.writeSync(fd, octets, depuis, n); } };
+	ecrireLEtat(compte, chemin, etat, { lot: 4096 });
+	const ligne = Buffer.byteLength([...lignesDeLEtat(etat)][2]) + 1;
+	assert.ok(Math.max(...lots) < 4096 + ligne, `plus grand lot ${Math.max(...lots)} octets`);
 });
