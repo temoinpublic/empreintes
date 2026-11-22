@@ -84,12 +84,12 @@ export const TEXTES = {
 		fr: [
 			['Déposez', 'Un devis, un contrat, une photo, un PDF.'],
 			['Gardez le reçu', 'Daté, à imprimer, avec le document.'],
-			['Vérifiez', 'N’importe qui, à tout moment, sans compte.']
+			['Vérifiez', 'Comparez le document à son reçu, ici ou avec le script du journal.']
 		],
 		de: [
 			['Ablegen', 'Ein Angebot, ein Vertrag, ein Foto, ein PDF.'],
 			['Beleg aufbewahren', 'Datiert, zum Ausdrucken, zusammen mit dem Dokument.'],
-			['Prüfen', 'Jeder, jederzeit, ohne Konto.']
+			['Prüfen', 'Vergleichen Sie das Dokument mit seinem Beleg, hier oder mit dem Prüfskript.']
 		]
 	},
 	accueil: {
@@ -99,7 +99,7 @@ export const TEXTES = {
 			de: 'Beweisen Sie kostenlos, dass ein Dokument an einem bestimmten Tag unverändert existiert hat. Ohne Konto; nur seine Prüfsumme wird veröffentlicht, nie das Dokument.'
 		},
 		h1: { fr: 'Prouvez qu’un document existait à une date, sans modification.', de: 'Beweisen Sie, dass ein Dokument an einem Tag unverändert existiert hat.' },
-		chapeau: { fr: 'Gratuit, sans compte. Vérifiable par tous, même sans ce site.', de: 'Kostenlos, ohne Konto. Für jeden nachprüfbar, auch ohne diese Website.' },
+		chapeau: { fr: 'Le reçu se vérifie par tous, même sans ce site.', de: 'Der Beleg ist für jeden prüfbar, auch ohne diese Website.' },
 		deja: { fr: `Déjà daté${NBSP}?`, de: 'Schon datiert?' },
 		compte: { fr: (n, j) => `${nombreFr(n)} dates enregistrées depuis le ${j}.`, de: (n, j) => `${nombreDe(n)} Datierungen seit dem ${j}.` }
 	},

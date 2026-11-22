@@ -260,3 +260,12 @@ test('les textes de l archivage : une page chacun, versionnee, liee depuis la do
 	assert.match(textes[1], /Le prestataire est l’éditeur nommé aux <a href="\/mentions-legales">Mentions légales<\/a>\./);
 	assert.match(textes[1], /ne jamais republier l’archive/);
 });
+
+// Regle de la flotte du 2026-11-09 : « Gratuit » et « sans compte » une fois au plus, pres du bouton ; jamais en slogan d'accueil.
+test("l'accueil ne porte ni « Gratuit, sans compte » ni l'anaphore « à tout moment, sans compte »", () => {
+	for (const langue of ['fr', 'de']) {
+		const texte = texteDe(pageAccueil([t], langue));
+		assert.doesNotMatch(texte, /Gratuit, sans compte|Kostenlos, ohne Konto/);
+		assert.doesNotMatch(texte, /à tout moment, sans compte|jederzeit, ohne Konto/);
+	}
+});
