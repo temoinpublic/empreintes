@@ -616,17 +616,6 @@ export function lotsDuPassage(vus, absents, { parVus = 400, parAbsents = 100 } =
 }
 
 /**
- * Ecrit l'etat de la glane d'un bloc : un fichier voisin, puis un renommage.
- * Une interruption laisse l'ancien etat entier, jamais un fichier tronque.
- * `fs` est passe pour que ce module reste sans acces disque.
- */
-export function ecrireAtomique(fs, chemin, texte) {
-	const voisin = `${chemin}.${process.pid}.tmp`;
-	fs.writeFileSync(voisin, texte);
-	fs.renameSync(voisin, chemin);
-}
-
-/**
  * Une reponse de la passerelle (502, 503, 504) dit que le service est absent, pas
  * que l'acte est en cause : elle ne s'inscrit pas a l'etat de l'acte et ne
  * consomme aucun essai, comme une absence de reponse.
