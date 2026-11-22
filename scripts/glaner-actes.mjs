@@ -29,14 +29,16 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
 import fs from 'node:fs';
 import path from 'node:path';
+import readline from 'node:readline';
 import { parseArgs } from 'node:util';
 import { inflateSync } from 'node:zlib';
 import { renouvelerLesConnexions } from '../src/connexions.mjs';
 import { DEPARTEMENTS } from '../src/departements.mjs';
 import { EcheanceDepassee, sousEcheance, tantQue } from '../src/echeance.mjs';
+import { ecrireLEtat, lireLEtat } from '../src/etat-glane.mjs';
 import { armerLaGardeDArret } from '../src/garde-arret.mjs';
 import { Sentinelle, veiller } from '../src/sentinelle.mjs';
-import { AGENT_GLANE, Disjoncteur, aRelire, relireSansPasserSonTour, acteDuLien, communesDuReleve, coucheTexte, communesServies, documentBudgetaireDe, enLargeurDAbord, identiteDuPdf, ecrireAtomique, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
+import { AGENT_GLANE, Disjoncteur, aRelire, relireSansPasserSonTour, acteDuLien, communesDuReleve, coucheTexte, communesServies, documentBudgetaireDe, enLargeurDAbord, identiteDuPdf, estUnePasserelle, issueDeRelecture, liensDe, lotsDuPassage, pagesBudget, pagesCandidates, pdfsDe, refusDeDepot, reglesRobots, robotsPermet, statutLu, telechargementsDe } from '../src/glane.mjs';
 
 const { values: options } = parseArgs({
 	options: {
@@ -89,9 +91,13 @@ const LECTURES_DE_DOCUMENTS = 4;
 const jour = new Date().toISOString().slice(0, 10);
 fs.mkdirSync(options.etat, { recursive: true });
 const fichierEtat = path.join(options.etat, 'glane.json');
-const etat = fs.existsSync(fichierEtat) ? JSON.parse(fs.readFileSync(fichierEtat, 'utf8')) : { robots: {}, pdfs: {} };
+const lignesDe = (fichier) => readline.createInterface({ input: fs.createReadStream(fichier), crlfDelay: Infinity });
+// Lu et ecrit une entree par ligne : jamais une chaine de la taille de l'etat (src/etat-glane.mjs).
+const etat = fs.existsSync(fichierEtat) ? await lireLEtat(lignesDe(fichierEtat)) : {};
+etat.robots ??= {};
+etat.pdfs ??= {};
 etat.budgets ??= {};
-const sauver = () => ecrireAtomique(fs, fichierEtat, `${JSON.stringify(etat)}\n`);
+const sauver = () => ecrireLEtat(fs, fichierEtat, etat);
 
 // L'ouvrier courant (un numero, ou `r<n>` pour un relecteur) suit chaque await de sa commune.
 const ouvrierCourant = new AsyncLocalStorage();
@@ -315,7 +321,9 @@ async function deposer(code, acte) {
 function passageDe(code, site, pdfs) {
 	const vus = [];
 	const absents = [];
-	for (const [url, e] of Object.entries(etat.pdfs)) {
+	// `for in` et non `Object.entries` : une copie de tout l'etat par commune, 35 000 fois par passage.
+	for (const url in etat.pdfs) {
+		const e = etat.pdfs[url];
 		if (!e.id || !(e.code === code || (!e.code && url.startsWith(`https://${site}/`)))) continue;
 		(pdfs.has(url) ? vus : absents).push(e.id);
 	}
@@ -445,12 +453,12 @@ async function relire(url, e) {
 }
 
 /** Les actes nommes dans les releves des passages, pour ceux que l'etat garde sans leur nature. */
-function completerLesNatures() {
+async function completerLesNatures() {
 	// Une nature absente des releves reste null : l'acte ne se relit pas et les releves ne se relisent pas a chaque passage.
 	const sans = Object.values(etat.pdfs).filter((e) => e.id && e.nature === undefined);
 	if (!sans.length) return;
 	for (const nom of fs.readdirSync(options.etat).filter((n) => /^glane-\d{4}-\d{2}-\d{2}-actes\.jsonl$/.test(n)))
-		for (const ligne of fs.readFileSync(path.join(options.etat, nom), 'utf8').split('\n')) {
+		for await (const ligne of lignesDe(path.join(options.etat, nom))) {
 			if (!ligne) continue;
 			const a = JSON.parse(ligne);
 			const e = etat.pdfs[a.url];
@@ -461,7 +469,7 @@ function completerLesNatures() {
 
 const relectures = {};
 if (!options.sec && Number(options.relectures) > 0) {
-	completerLesNatures();
+	await completerLesNatures();
 	const file = aRelire(etat.pdfs, { jour, jours: Number(options['relecture-jours']), max: Number(options.relectures), parCommune: Number(options['par-commune']) });
 	const jusqua = Date.now() + RELECTURES_ATTENTE_MS;
 	const detailRelectures = path.join(options.etat, `glane-${jour}-relectures.jsonl`);
