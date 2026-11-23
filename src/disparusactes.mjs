@@ -43,13 +43,15 @@ async function entreeDe(classe, l) {
 	};
 }
 
+const recentesDAbord = (a, b) => (a.date === b.date ? a.url.localeCompare(b.url) : a.date < b.date ? 1 : -1);
+
 /**
  * Les entrees de `/disparus` pour les actes des communes, les plus recentes
- * d'abord, au plus `max` : `{ classe, date, http, url, collectivite, objet,
+ * d'abord, au plus `max` PAR CLASSE (un site vide en un jour ne chasse pas les
+ * remplacements, plus rares) : `{ classe, date, http, url, collectivite, objet,
  * avant, preuve }`, `preuve` l'adresse perenne de la version d'avant.
  */
 export async function entreesDesActes({ disparus = [], remplaces = [] }, max = 100) {
-	const lignes = [...disparus.map((l) => ['disparu', l]), ...remplaces.map((l) => ['remplace', l])];
-	const entrees = (await Promise.all(lignes.map(([classe, l]) => entreeDe(classe, l)))).filter(Boolean);
-	return entrees.sort((a, b) => (a.date === b.date ? a.url.localeCompare(b.url) : a.date < b.date ? 1 : -1)).slice(0, max);
+	const deLaClasse = async (classe, lignes) => (await Promise.all(lignes.map((l) => entreeDe(classe, l)))).filter(Boolean).sort(recentesDAbord).slice(0, max);
+	return [...(await deLaClasse('disparu', disparus)), ...(await deLaClasse('remplace', remplaces))].sort(recentesDAbord);
 }

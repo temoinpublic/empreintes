@@ -72,7 +72,11 @@ test('les actes disparus et remplaces : version d avant, preuve, aucune personne
 	assert.equal(remplace.avant.sha256, hex('b'));
 	assert.equal(remplace.objet, 'Travaux de voirie, version corrigee');
 	assert.equal(eclairage.objet, null, 'un objet qui pourrait nommer ne s affiche pas');
-	assert.equal((await entreesDesActes(lu, 1)).length, 1);
+	assert.deepEqual(
+		(await entreesDesActes(lu, 1)).map((e) => e.classe),
+		['remplace', 'disparu'],
+		'le plafond vaut par classe : des disparitions en nombre ne chassent pas un remplacement'
+	);
 	assert.deepEqual(await entreesDesActes({}), []);
 });
 
