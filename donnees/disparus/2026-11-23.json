@@ -12,6 +12,18 @@
     "sha256": "40089225baaa5c4da84908a5fb4c8c28290381ce3ff85457691a80b1d5c94a0f"
    },
    "apres": null
+  },
+  {
+   "classe": "disparu",
+   "source": "choisir-service-public-offres",
+   "url": "https://static.data.gouv.fr/resources/les-offres-diffusees-sur-choisir-le-service-public/20261117-110356/offres-datagouv-20261115.csv",
+   "date": "2026-11-23",
+   "http": 404,
+   "avant": {
+    "jour": "2026-11-17",
+    "sha256": "40089225baaa5c4da84908a5fb4c8c28290381ce3ff85457691a80b1d5c94a0f"
+   },
+   "apres": null
   }
  ]
 }
