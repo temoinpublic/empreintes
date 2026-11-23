@@ -41,6 +41,10 @@ export const SCHEMA = [
 	// une version nouvelle a la meme adresse n'est « remplacee » que si elle change, a methode egale (`METHODE_DU_TEXTE`).
 	// Table creee le 2026-10-30, `methode` ajoutee le 2026-11-03 par ALTER TABLE sur la base en service (1 pour les empreintes d'avant).
 	'CREATE TABLE IF NOT EXISTS texte (recu TEXT PRIMARY KEY, sha256 TEXT NOT NULL, methode INTEGER NOT NULL DEFAULT 1) WITHOUT ROWID',
+	// D-193 : le jugement d'une version nouvelle contre celle d'avant, pose par le juge des remplacements, qui compare les deux
+	// fichiers gardes (nombre de pages, image des pages) : `change`, ou `reecrit` quand un outil a reecrit les memes pages. Mesure du
+	// 2026-11-23 sur 1 574 versions nouvelles : 5 changements, 1 569 reecritures par Stirling-PDF (`methode` : celle du juge).
+	'CREATE TABLE IF NOT EXISTS jugement (recu TEXT PRIMARY KEY, verdict TEXT NOT NULL, methode INTEGER NOT NULL, jour TEXT NOT NULL) WITHOUT ROWID',
 	// D-200 : la liste d'attente d'une offre pas encore ouverte (`src/attente.mjs`) ; l'adresse electronique et le profil, rien d'autre.
 	'CREATE TABLE IF NOT EXISTS attente (offre TEXT NOT NULL, adresse TEXT NOT NULL, profil TEXT NOT NULL, jour TEXT NOT NULL, PRIMARY KEY (offre, adresse)) WITHOUT ROWID',
 	// D-167 : le produit de la flotte qui a depose un recu de consultation, et l'adresse publique de ce recu (table ajoutee le 2026-10-20).
@@ -609,6 +613,9 @@ export async function noterPassage({ db, corps, maintenant = new Date() }) {
 /** L'etat de la source d'un acte au dernier passage de la glane, `{ jour, etat }`, ou null. */
 export const passageDeLActe = ({ db, recu }) => un(db, 'SELECT jour, etat FROM passage WHERE recu = ?', recu);
 
+/** Le verdict du juge des remplacements qui laisse paraitre une version nouvelle comme « remplacee ». */
+export const VERDICT_CHANGE = 'change';
+
 /** Au plus autant d'evenements d'actes par classe sur `/disparus` (D-193). */
 export const DISPARUS_DES_ACTES_MAX = 100;
 
@@ -616,12 +623,13 @@ export const DISPARUS_DES_ACTES_MAX = 100;
  * Les actes des communes dont la source a change (D-193), les plus recents
  * d'abord, `{ disparus, remplaces }` : `disparus`, ceux que leur
  * adresse ne sert plus (relecture 404 ou 410, `date` le premier jour de ce
- * statut) ; `remplaces`, chaque version nouvelle datee a la meme adresse dont
- * le TEXTE change, avec la version qui la precede (`avant_*`). Une version
- * dont seuls les octets changent (recompression, autre `Producer`) reste
- * datee mais n'est pas un remplacement ; sans empreinte de texte des deux
- * cotes, ou deux empreintes de methodes differentes, rien n'est prouve, rien ne parait (les 857 recompressions de
- * l'Aveyron d'octobre 2026). Bruts : le filtre de ce qui se publie est
+ * statut) ; `remplaces`, chaque version nouvelle datee a la meme adresse que
+ * le juge des remplacements a dite `change` (table `jugement`), avec la
+ * version qui la precede (`avant_*`). Sans ce jugement rien ne parait : une
+ * version dont seuls les octets changent reste datee mais n'est pas un
+ * remplacement, et l'empreinte de texte ne le prouve pas (un outil qui reecrit
+ * le fichier la change sans toucher une lettre, 556 fois sur 697 le
+ * 2026-11-23 ; un scan n'en a pas). Bruts : le filtre de ce qui se publie est
  * `entreesDesActes`.
  */
 export async function actesDisparus({ db, max = DISPARUS_DES_ACTES_MAX }) {
@@ -633,7 +641,7 @@ export async function actesDisparus({ db, max = DISPARUS_DES_ACTES_MAX }) {
 		.all();
 	const remplaces = await db
 		.prepare(
-			`SELECT * FROM (SELECT d.jour AS date, d.sha256 AS apres, t.sha256 AS texte, LAG(d.jour) OVER suite AS avant_jour, LAG(d.sha256) OVER suite AS avant, LAG(t.sha256) OVER suite AS avant_texte, t.methode AS methode, LAG(t.methode) OVER suite AS avant_methode, LAG(a.nature) OVER suite AS nature, a.collectivite, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu LEFT JOIN texte t ON t.recu = a.recu WHERE a.url IS NOT NULL WINDOW suite AS (PARTITION BY a.collectivite, a.url ORDER BY d.jour, d.place)) WHERE avant IS NOT NULL AND texte IS NOT NULL AND avant_texte IS NOT NULL AND methode = avant_methode AND texte <> avant_texte ORDER BY date DESC, url LIMIT ?`
+			`SELECT * FROM (SELECT a.recu AS apres_recu, d.jour AS date, d.sha256 AS apres, LAG(d.jour) OVER suite AS avant_jour, LAG(d.sha256) OVER suite AS avant, LAG(a.nature) OVER suite AS nature, a.collectivite, a.objet, a.url FROM acte a JOIN depot d ON d.recu = a.recu WHERE a.url IN (SELECT c.url FROM jugement j JOIN acte c ON c.recu = j.recu WHERE j.verdict = '${VERDICT_CHANGE}') WINDOW suite AS (PARTITION BY a.collectivite, a.url ORDER BY d.jour, d.place)) WHERE avant IS NOT NULL AND apres_recu IN (SELECT recu FROM jugement WHERE verdict = '${VERDICT_CHANGE}') ORDER BY date DESC, url LIMIT ?`
 		)
 		.bind(max)
 		.all();

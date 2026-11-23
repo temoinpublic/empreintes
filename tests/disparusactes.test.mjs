@@ -13,15 +13,16 @@ import { onRequestGet as fluxGet } from '../functions/disparus.xml.js';
 const hex = (c) => c.repeat(64);
 const SITE = 'https://www.cravans.fr/docs';
 
-/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture, texte]`, `relecture` = [statut, depuis] ou null, `texte` la lettre de son empreinte de texte (ou `[lettre, methode]`) ou rien. */
+/** Une base ou chaque acte est `[lettre, jour, url, objet, relecture, texte]`, `relecture` = [statut, depuis] ou null, `texte` la lettre de son empreinte de texte ou rien, `verdict` celui du juge des remplacements ou rien. */
 function base(actes) {
 	const db = baseDeTest();
-	actes.forEach(([lettre, jour, url, objet, relecture, texte], place) => {
+	actes.forEach(([lettre, jour, url, objet, relecture, texte, verdict], place) => {
 		const recu = `f${hex(lettre).slice(1)}`;
 		db.sqlite.prepare('INSERT INTO depot (jour, place, sha256, recu) VALUES (?, ?, ?, ?)').run(jour, place, hex(lettre), recu);
 		db.sqlite.prepare('INSERT INTO acte (recu, collectivite, nature, objet, url) VALUES (?, ?, ?, ?, ?)').run(recu, '17133', 'deliberation', objet, url);
 		if (relecture) db.sqlite.prepare('INSERT INTO relecture (recu, jour, depuis, statut) VALUES (?, ?, ?, ?)').run(recu, '2026-10-23', relecture[1], relecture[0]);
-		if (texte) db.sqlite.prepare('INSERT INTO texte (recu, sha256, methode) VALUES (?, ?, ?)').run(recu, hex(Array.isArray(texte) ? texte[0] : texte), Array.isArray(texte) ? texte[1] : 1);
+		if (texte) db.sqlite.prepare('INSERT INTO texte (recu, sha256, methode) VALUES (?, ?, 1)').run(recu, hex(texte));
+		if (verdict) db.sqlite.prepare('INSERT INTO jugement (recu, verdict, methode, jour) VALUES (?, ?, 1, ?)').run(recu, verdict, jour);
 	});
 	return db;
 }
@@ -29,39 +30,43 @@ function base(actes) {
 const ACTES = [
 	['a', '2026-10-15', `${SITE}/budget-2026.pdf`, 'Budget primitif 2026', [404, '2026-10-22']],
 	['b', '2026-10-15', `${SITE}/voirie.pdf`, 'Travaux de voirie', null, '5'],
-	['c', '2026-10-22', `${SITE}/voirie.pdf`, 'Travaux de voirie, version corrigee', null, '6'],
+	['c', '2026-10-22', `${SITE}/voirie.pdf`, 'Travaux de voirie, version corrigee', null, '6', 'change'],
 	['d', '2026-10-15', `${SITE}/delegation-signature-maingot.pdf`, 'Delegation', [410, '2026-10-22']],
 	['e', '2026-10-15', null, 'Sans objet', [404, '2026-10-22']],
 	['1', '2026-10-15', `${SITE}/eclairage.pdf`, 'Occupation du domaine public SIMON', [410, '2026-10-21']],
 	['2', '2026-10-15', `${SITE}/cantine.pdf`, 'Tarifs de la cantine', [200, '2026-10-22']],
-	// Les memes octets recompresses (le meme texte) : dates, jamais « remplaces ».
+	// Une version nouvelle sans jugement, quoi que dise son empreinte de texte : datee, jamais « remplacee ».
 	['3', '2026-10-15', `${SITE}/tarifs.pdf`, 'Tarifs 2026', null, '7'],
-	['4', '2026-10-22', `${SITE}/tarifs.pdf`, 'Tarifs 2026', null, '7'],
-	// Sans empreinte de texte d'un cote ou de l'autre, rien n'est prouve.
-	['5', '2026-10-15', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null],
-	['6', '2026-10-22', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null, '8'],
-	['7', '2026-10-15', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null, '9'],
-	['8', '2026-10-22', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null],
-	// Deux empreintes de methodes differentes ne se comparent pas : l'ancienne lisait aussi le texte invisible.
-	['g', '2026-10-15', `${SITE}/pv-avril.pdf`, 'Proces-verbal d avril', null, ['A', 1]],
-	['h', '2026-10-22', `${SITE}/pv-avril.pdf`, 'Proces-verbal d avril', null, ['B', 2]]
+	['4', '2026-10-22', `${SITE}/tarifs.pdf`, 'Tarifs 2026', null, '8'],
+	// Les memes pages reecrites par un outil : le juge l'a dit, rien ne parait.
+	['5', '2026-10-15', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null, '9'],
+	['6', '2026-10-22', `${SITE}/pv-juin.pdf`, 'Proces-verbal de juin', null, 'A', 'reecrit'],
+	// Un scan, sans texte d'aucun cote : son jugement suffit.
+	['7', '2026-10-15', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null],
+	['8', '2026-10-23', `${SITE}/pv-mai.pdf`, 'Proces-verbal de mai', null, null, 'change'],
+	// Un jugement sur une premiere version ne fait pas un remplacement : il n'y a pas d'avant.
+	['g', '2026-10-15', `${SITE}/pv-avril.pdf`, 'Proces-verbal d avril', null, null, 'change']
 ];
 
 test('les actes disparus et remplaces : version d avant, preuve, aucune personne', async () => {
 	const lu = await actesDisparus({ db: base(ACTES) });
 	assert.equal(lu.disparus.length, 3, 'une adresse retiree en base ne se relit pas, un 200 non plus');
-	assert.equal(lu.remplaces.length, 1, 'le meme texte recompresse, une version sans empreinte de texte et deux methodes differentes ne sont pas des remplacements');
-	assert.equal(lu.remplaces[0].apres, hex('c'));
+	assert.deepEqual(
+		lu.remplaces.map((r) => r.apres),
+		[hex('8'), hex('c')],
+		'une version sans jugement, jugee reecrite ou sans version d avant n est pas un remplacement'
+	);
 	const entrees = await entreesDesActes(lu);
 	assert.deepEqual(
 		entrees.map((e) => [e.classe, e.date, e.http, e.url.slice(SITE.length + 1)]),
 		[
+			['remplace', '2026-10-23', null, 'pv-mai.pdf'],
 			['disparu', '2026-10-22', 404, 'budget-2026.pdf'],
 			['remplace', '2026-10-22', null, 'voirie.pdf'],
 			['disparu', '2026-10-21', 410, 'eclairage.pdf']
 		]
 	);
-	const [disparu, remplace, eclairage] = entrees;
+	const [, disparu, remplace, eclairage] = entrees;
 	assert.deepEqual(disparu.avant, { jour: '2026-10-15', sha256: hex('a') });
 	assert.equal(disparu.preuve, `/actes/17133/2026-10-15/deliberation-${'a'.repeat(12)}`);
 	assert.equal(remplace.avant.sha256, hex('b'));
@@ -91,7 +96,7 @@ test('la section des actes prend la place de sa marque dans /disparus', async ()
 	assert.ok(!avecLesActes(page, '').includes(MARQUE_DES_ACTES));
 	const entrees = await entreesDesActes(await actesDisparus({ db: base(ACTES) }));
 	const section = sectionDesActes({ entrees });
-	assert.match(section, /<h2>3 actes de communes<\/h2>/);
+	assert.match(section, /<h2>4 actes de communes<\/h2>/);
 	assert.match(section, /<a href="\/collectivite\/17133">17133<\/a>/);
 	assert.match(section, /Remplacé à la même adresse/);
 	assert.match(section, /eclairage\.pdf/);
@@ -110,7 +115,7 @@ test('GET /disparus sert la page publiee avec les actes, et laisse passer une pa
 	assert.equal(r.status, 200);
 	assert.equal(r.headers.get('cache-control'), 'public, max-age=300');
 	const html = await r.text();
-	assert.match(html, /3 actes de communes/);
+	assert.match(html, /4 actes de communes/);
 	assert.ok(!html.includes(MARQUE_DES_ACTES));
 	const absente = await onRequestGet({ env: env(404), request: new Request('https://temoinpublic.fr/disparus') });
 	assert.equal(absente.status, 404);
@@ -133,7 +138,7 @@ test('GET /disparus.xml sert le flux publie avec un item par acte, aucune person
 	assert.equal(r.headers.get('content-type'), 'application/rss+xml; charset=utf-8');
 	const xml = await r.text();
 	assert.ok(!xml.includes(MARQUE_DES_ACTES));
-	assert.equal((xml.match(/<item>/g) ?? []).length, 3);
+	assert.equal((xml.match(/<item>/g) ?? []).length, 4);
 	assert.match(xml, /<title>Remplacé à la même adresse, 17133, Travaux de voirie, version corrigee<\/title>/);
 	assert.match(xml, /<link>https:\/\/temoinpublic\.fr\/actes\/17133\/2026-10-15\/deliberation-a{12}<\/link>/);
 	assert.match(xml, /<guid isPermaLink="false">acte:disparu:a{64}:/);

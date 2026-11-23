@@ -259,9 +259,12 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   et jamais `node:zlib`) : le sha256 des chaines imprimees par les flux de contenu, hors
   mise en page, polices, images et metadonnees. Le service la pose dans la table D1
   `texte` a la datation d'un acte, et sur un acte date avant elle quand la glane relit
-  les memes octets. `/disparus` ne dit « remplace a la meme adresse » que si le texte
-  des deux versions est connu ET change : une recompression (857 PDF de 60 sites de
-  l'Aveyron en octobre 2026, `Producer: Stirling-PDF`, memes textes) reste une version
+  les memes octets. `/disparus` ne dit « remplace a la meme adresse » que sur un jugement
+  `change` de la version nouvelle (table D1 `jugement`, posee par le juge des
+  remplacements qui compare les deux fichiers gardes : nombre de pages, image des pages).
+  L'empreinte de texte ne le prouve pas : Stirling-PDF (60 sites de l'Aveyron) la change
+  556 fois sur 697 sans toucher une lettre, et un scan n'en a pas (mesure du 2026-11-23,
+  1 574 versions nouvelles : 5 changements). Sans jugement, une version nouvelle reste
   datee, pas un remplacement. Mesure : qpdf (recompression, objets en flux, mise a plat)
   garde l'empreinte, Ghostscript la change (polices re-sous-ensemblees), limite connue.
 - Les documents budgetaires (D-185) : la glane les RELEVE, elle ne les depose pas
@@ -342,7 +345,7 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   (« Relecture ») ; la fiche JSON ne le porte pas encore (champ requis = version 2 du schema).
 - Les actes des communes sur `/disparus` (D-193) : la Function `functions/disparus.js` sert la page publiee et met
   a la place de `MARQUE_DES_ACTES` la section lue dans D1 (`actesDisparus`) : `disparu`, une relecture 404/410
-  (date = `depuis`) ; `remplace`, chaque version nouvelle datee a la meme adresse et la precedente (`LAG`). Le
+  (date = `depuis`) ; `remplace`, chaque version nouvelle jugee `change` (table `jugement`) et la precedente (`LAG`). Le
   filtre est `src/disparusactes.mjs` (pur) : adresse que `adresseNommante` refuse ou retenue (`RETENUES`, sha256
   de l'adresse, partages avec `disparus.mjs` par `src/retenues.mjs`, sans `node:`) ne parait pas, objet qui
   pourrait nommer ne s'affiche pas ; la preuve est l'adresse perenne de la version d'avant.
