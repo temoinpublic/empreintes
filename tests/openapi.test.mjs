@@ -9,7 +9,7 @@ const openapi = JSON.parse(readFileSync(new URL('../public/openapi.json', import
 const chemins = Object.keys(openapi.paths);
 
 // Les Functions de `functions/api/` que l'API publique ne decrit pas : un formulaire HTML, une ecriture de la flotte sous jeton, une offre fermee.
-const INTERNES = new Set(['attente', 'passages', 'verifications']);
+const INTERNES = new Set(['attente', 'jugements', 'passages', 'verifications']);
 
 test('chaque Function publique de functions/api/ est decrite, avec un contact et une licence', () => {
 	for (const fichier of readdirSync(new URL('../functions/api', import.meta.url))) {

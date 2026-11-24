@@ -265,7 +265,11 @@ Surface publique et miroir du journal des empreintes de l'entrepot (D-158).
   L'empreinte de texte ne le prouve pas : Stirling-PDF (60 sites de l'Aveyron) la change
   556 fois sur 697 sans toucher une lettre, et un scan n'en a pas (mesure du 2026-11-23,
   1 574 versions nouvelles : 5 changements). Sans jugement, une version nouvelle reste
-  datee, pas un remplacement. Mesure : qpdf (recompression, objets en flux, mise a plat)
+  datee, pas un remplacement. Le juge tourne hors du depot (il lit les fichiers gardes) et ne
+  parle au service que par `/api/jugements` sous le jeton de la flotte (`src/jugement.mjs`) :
+  `GET` rend les versions nouvelles sans verdict avec la version d'avant, `POST` pose
+  `change`, `reecrit` ou `indecis` (juge, hors des seuils : ne parait pas, ne se rejuge pas).
+  Mesure : qpdf (recompression, objets en flux, mise a plat)
   garde l'empreinte, Ghostscript la change (polices re-sous-ensemblees), limite connue.
 - Les documents budgetaires (D-185) : la glane les RELEVE, elle ne les depose pas
   (un compte administratif n'est pas un acte du registre). `documentBudgetaireDe`
