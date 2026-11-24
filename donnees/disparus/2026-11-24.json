@@ -1,0 +1,209 @@
+{
+ "jour": "2026-11-24",
+ "evenements": [
+  {
+   "classe": "disparu",
+   "source": "choisir-service-public-offres",
+   "url": "https://static.data.gouv.fr/resources/les-offres-diffusees-sur-choisir-le-service-public/20261109-070111/offres-datagouv-20261018.csv",
+   "date": "2026-11-24",
+   "http": 404,
+   "avant": {
+    "jour": "2026-11-09",
+    "sha256": "0ef3ef0226aa548ac982feadb92c7d211be388cf1233fbc33cee6989353c0389"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2025/07/Coeur-dAvenir-Bulletin-Trimestriel-2T2025.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "15f8735fb9c2dc009b5c4c866000eeeb72efd465c5200fe1d47a3d6358fbbaec"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2025/10/Bulletin-Trimestriel-3T-2025-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "be895674cd20c8fa0fbf93a8f3377d72645beda5e4582aec1a8595e899224f52"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/03/Bulletin-Trimestriel-4T-2025-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "a6a789ed177da2732a5d07e9780fd3d52f90136cf592fde9b83899ba8be5b698"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/04/Bulletin-Trimestriel-1T-2026-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "b961dcca40a9d8f16a7cee05ae2fad3d6b088311cac06f898c27ca6fcbf3d196"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/05/Rapport-annuel-2025-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "516f683e8bb90588d512df2c4018af9a8ea3e9171deae3e7536d27b5f5d3ab7b"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/07/Bulletin-Trimestriel-2T-2026-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "6001873e5def84d0754a75859195f0421edc74d57cfdd84ac058f0ef8283f6dd"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/08/Note-dinformation-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "b1295864b2911ac4f9f199b3ef497a764df3e47fbf4835b8c8f7d544f20fb363"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/08/Statuts-%E2%80%93-Coeur-dAvenir.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "9ddc41347664c994007df0ebfec62d6128da6b616c3ab551fc533cf374bf9a55"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/09/Coeur-dAvenir-Dossier-de-souscription.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-11",
+    "sha256": "27f94f200ee8423185486ee52b43951ddb857d91bb2660266b9084b21e86475e"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-dEurope-Bulletin-de-souscription-Mes-options.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "a0fa7747f72c758d07f737e6cef6b939f821d8a78797e24b2c4f801c9f12ee14"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-dEurope-Dossier-de-souscription.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "6197abfc88e6da716a0a2304662c8205d8ad60bbb813192c3e82be305dee1dba"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-de-Regions-Bulletin-de-souscription-Mes-options.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "f2ff7f1f6d2560a33bb80fa0ee826e4ca8450e562d833abbbf1f323aa0dab051"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-de-Regions-Dossier-de-souscription.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "5df307e250e594b4206222b6d9746eaa4e38dfc0c01c42c7102b23be83cb5a86"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-de-Ville-Bulletin-de-souscription-Mes-options.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "b55ea39a13985cbaa4838c10a70b1e7379de5deda59c72b98bd34ecf83d799ac"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/10/Coeur-de-Ville-Dossier-de-souscription.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-10-29",
+    "sha256": "fea5b812bdab8ed53685a65a5530c93665d4f9fe0bbffb6de3b031d358a34b14"
+   },
+   "apres": null
+  },
+  {
+   "classe": "retire",
+   "source": "scpi-sogenial",
+   "url": "https://www.sogenial.fr/wp-content/uploads/2026/11/Coeur-dAvenir-Bulletin-Trimestriel-3T2026.pdf",
+   "date": "2026-11-24",
+   "http": null,
+   "avant": {
+    "jour": "2026-11-03",
+    "sha256": "08104b29c8f7d0c5b86d7d7c0878afaacae9a884f4e15176edb27f3196333677"
+   },
+   "apres": null
+  }
+ ]
+}
