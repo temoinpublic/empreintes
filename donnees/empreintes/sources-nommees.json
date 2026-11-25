@@ -86,6 +86,18 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure",
+  "url": "https://attalpresident.fr/programme/mesures/{v}",
+  "libelle": "Mesures du programme découvertes sur sa page index",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-aesh-cent-euros-corps-dedie",
+  "url": "https://attalpresident.fr/programme/mesures/aesh-cent-euros-corps-dedie",
+  "libelle": "Revaloriser les AESH : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-aide-professionnels-vehicule",
   "url": "https://attalpresident.fr/programme/mesures/aide-professionnels-vehicule",
   "libelle": "Aide aux professionnels dépendants de leur véhicule",
@@ -95,6 +107,12 @@
   "nom": "presidentielle-2027-attal-mesure-aides-directes-plutot-que-baisses-de-taxes",
   "url": "https://attalpresident.fr/programme/mesures/aides-directes-plutot-que-baisses-de-taxes",
   "libelle": "Aides directes ciblées pour le pouvoir d’achat",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-amenager-cours-college",
+  "url": "https://attalpresident.fr/programme/mesures/amenager-cours-college",
+  "libelle": "Collège : un quart du temps scolaire différencié",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -122,9 +140,21 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-assurance-vie-pme",
+  "url": "https://attalpresident.fr/programme/mesures/assurance-vie-pme",
+  "libelle": "Assurance-vie et PME : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-attestation-honorabilite-mineurs",
   "url": "https://attalpresident.fr/programme/mesures/attestation-honorabilite-mineurs",
   "libelle": "Attestation d’honorabilité pour tous les encadrants",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-aucune-hausse-impot-heritage",
+  "url": "https://attalpresident.fr/programme/mesures/aucune-hausse-impot-heritage",
+  "libelle": "Attal : aucune hausse de la fiscalité sur l’héritage",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -149,6 +179,24 @@
   "nom": "presidentielle-2027-attal-mesure-big-bang-territorial",
   "url": "https://attalpresident.fr/programme/mesures/big-bang-territorial",
   "libelle": "Réforme territoriale : supprimer un échelon",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-boitiers-e85",
+  "url": "https://attalpresident.fr/programme/mesures/boitiers-e85",
+  "libelle": "Boîtier E85 : l’État finance la moitié",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-bonus-voiture-electrique-occasion",
+  "url": "https://attalpresident.fr/programme/mesures/bonus-voiture-electrique-occasion",
+  "libelle": "Bonus électrique voiture d’occasion : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-bouclier-antimissile-parapluie-nucleaire",
+  "url": "https://attalpresident.fr/programme/mesures/bouclier-antimissile-parapluie-nucleaire",
+  "libelle": "Le parapluie nucléaire français étendu à l’Europe",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -206,6 +254,12 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-commande-publique-plutot-que-subventions",
+  "url": "https://attalpresident.fr/programme/mesures/commande-publique-plutot-que-subventions",
+  "libelle": "Commande publique plutôt que subventions",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-comparution-immediate-mineurs",
   "url": "https://attalpresident.fr/programme/mesures/comparution-immediate-mineurs",
   "libelle": "Comparution immédiate pour les mineurs récidivistes",
@@ -227,6 +281,30 @@
   "nom": "presidentielle-2027-attal-mesure-contractualisation-pluriannuelle",
   "url": "https://attalpresident.fr/programme/mesures/contractualisation-pluriannuelle",
   "libelle": "Contrats pluriannuels agricoles : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-contrat-entreprise-lyceen-professionnel",
+  "url": "https://attalpresident.fr/programme/mesures/contrat-entreprise-lyceen-professionnel",
+  "libelle": "Un contrat entreprise pour chaque lycéen pro",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-controle-investissements-chinois",
+  "url": "https://attalpresident.fr/programme/mesures/controle-investissements-chinois",
+  "libelle": "Investissements chinois : le contrôle proposé par Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-corps-professionnel-aesh",
+  "url": "https://attalpresident.fr/programme/mesures/corps-professionnel-aesh",
+  "libelle": "Créer un corps professionnel pour les AESH",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-darpa-europeenne",
+  "url": "https://attalpresident.fr/programme/mesures/darpa-europeenne",
+  "libelle": "Une DARPA européenne pour la défense",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -308,9 +386,21 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-ecoles-adaptees-changement-climatique",
+  "url": "https://attalpresident.fr/programme/mesures/ecoles-adaptees-changement-climatique",
+  "libelle": "Adapter les écoles au climat : le plan d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-encadrer-ventes-animaux-en-ligne",
   "url": "https://attalpresident.fr/programme/mesures/encadrer-ventes-animaux-en-ligne",
   "libelle": "Ventes d’animaux en ligne : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-entrer-plus-tot-vie-active",
+  "url": "https://attalpresident.fr/programme/mesures/entrer-plus-tot-vie-active",
+  "libelle": "Entrer plus tôt dans la vie active",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -320,9 +410,27 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-etats-unis-d-europe",
+  "url": "https://attalpresident.fr/programme/mesures/etats-unis-d-europe",
+  "libelle": "Gabriel Attal et les États-Unis d’Europe",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-excuse-de-minorite-attenuee",
+  "url": "https://attalpresident.fr/programme/mesures/excuse-de-minorite-attenuee",
+  "libelle": "Excuse de minorité : la réforme d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-extension-batiments-elevage",
   "url": "https://attalpresident.fr/programme/mesures/extension-batiments-elevage",
   "libelle": "Bâtiments d’élevage : simplifier les extensions",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-faciliter-donations",
+  "url": "https://attalpresident.fr/programme/mesures/faciliter-donations",
+  "libelle": "Donations aux jeunes générations : la proposition d’Attal",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -332,9 +440,21 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-fermer-cent-colleges-difficulte",
+  "url": "https://attalpresident.fr/programme/mesures/fermer-cent-colleges-difficulte",
+  "libelle": "Fermer 100 collèges en difficulté",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-fichier-interdits-de-detention",
   "url": "https://attalpresident.fr/programme/mesures/fichier-interdits-de-detention",
   "libelle": "Fichier national des interdits de détenir un animal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-fiscalite-assurance-vie-stable",
+  "url": "https://attalpresident.fr/programme/mesures/fiscalite-assurance-vie-stable",
+  "libelle": "Attal : pas de hausse fiscale sur l’assurance-vie",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -365,6 +485,12 @@
   "nom": "presidentielle-2027-attal-mesure-groupes-de-niveau-college",
   "url": "https://attalpresident.fr/programme/mesures/groupes-de-niveau-college",
   "libelle": "Groupes de niveau au collège : le projet d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-horaires-adaptes-vie-de-famille",
+  "url": "https://attalpresident.fr/programme/mesures/horaires-adaptes-vie-de-famille",
+  "libelle": "Horaires de travail adaptés à la vie de famille",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -416,15 +542,39 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-juge-statue-sous-quarante-huit-heures",
+  "url": "https://attalpresident.fr/programme/mesures/juge-statue-sous-quarante-huit-heures",
+  "libelle": "Gens du voyage : évacuation en 48 heures",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-lithium-massif-central-alsace",
+  "url": "https://attalpresident.fr/programme/mesures/lithium-massif-central-alsace",
+  "libelle": "Lithium français : Massif central et Alsace",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-livre-blanc-defense-2027",
   "url": "https://attalpresident.fr/programme/mesures/livre-blanc-defense-2027",
   "libelle": "Défense nationale : la doctrine d’Attal pour 2027",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-livret-garde-d-enfant",
+  "url": "https://attalpresident.fr/programme/mesures/livret-garde-d-enfant",
+  "libelle": "Livret garde d’enfant : financer les crèches",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-loi-de-stabilite-fiscale",
   "url": "https://attalpresident.fr/programme/mesures/loi-de-stabilite-fiscale",
   "libelle": "Loi de programmation fiscale sur dix ans",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-loi-programmation-logement",
+  "url": "https://attalpresident.fr/programme/mesures/loi-programmation-logement",
+  "libelle": "Loi logement sur cinq ans : la proposition d’Attal",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -440,9 +590,21 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-mille-euros-par-nouveau-ne",
+  "url": "https://attalpresident.fr/programme/mesures/mille-euros-par-nouveau-ne",
+  "libelle": "1 000 € versés par l’État à chaque nouveau-né",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-ministere-de-l-eau",
   "url": "https://attalpresident.fr/programme/mesures/ministere-de-l-eau",
   "libelle": "Ministère de l’Eau : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-moins-d-echelons-chefs-de-terrain",
+  "url": "https://attalpresident.fr/programme/mesures/moins-d-echelons-chefs-de-terrain",
+  "libelle": "Moins d’échelons, plus d’autonomie locale",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -512,9 +674,27 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-preference-travail-constitution",
+  "url": "https://attalpresident.fr/programme/mesures/preference-travail-constitution",
+  "libelle": "Préférence travail dans la Constitution : le projet Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-premiere-economie-circulaire",
+  "url": "https://attalpresident.fr/programme/mesures/premiere-economie-circulaire",
+  "libelle": "France, première économie circulaire au monde",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-premiers-actes-quarante-huit-heures",
   "url": "https://attalpresident.fr/programme/mesures/premiers-actes-quarante-huit-heures",
   "libelle": "Crimes sur mineurs : enquête sous 48h dès la plainte",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-prisons-operation-interet-national",
+  "url": "https://attalpresident.fr/programme/mesures/prisons-operation-interet-national",
+  "libelle": "Nouvelles prisons : la loi d’exception d’Attal",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -548,6 +728,24 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-reconversion-geoenergie",
+  "url": "https://attalpresident.fr/programme/mesures/reconversion-geoenergie",
+  "libelle": "Formation aux métiers de la géoénergie",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-recruter-professeurs-secteur-prive",
+  "url": "https://attalpresident.fr/programme/mesures/recruter-professeurs-secteur-prive",
+  "libelle": "Recruter des professeurs venus du privé",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reecrire-code-procedure-penale",
+  "url": "https://attalpresident.fr/programme/mesures/reecrire-code-procedure-penale",
+  "libelle": "Réécrire le Code de procédure pénale",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-referendums-locaux-facilites",
   "url": "https://attalpresident.fr/programme/mesures/referendums-locaux-facilites",
   "libelle": "Référendums locaux : la réforme proposée par Attal",
@@ -560,6 +758,12 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-reforme-institutionnelle-referendum",
+  "url": "https://attalpresident.fr/programme/mesures/reforme-institutionnelle-referendum",
+  "libelle": "Réforme institutionnelle par référendum",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-reforme-nominations-hautes-fonctions",
   "url": "https://attalpresident.fr/programme/mesures/reforme-nominations-hautes-fonctions",
   "libelle": "Réformer les nominations aux hautes fonctions de l’État",
@@ -569,6 +773,24 @@
   "nom": "presidentielle-2027-attal-mesure-refuser-mercosur",
   "url": "https://attalpresident.fr/programme/mesures/refuser-mercosur",
   "libelle": "Gabriel Attal contre le traité Mercosur",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-registre-national-grands-convois",
+  "url": "https://attalpresident.fr/programme/mesures/registre-national-grands-convois",
+  "libelle": "Registre national des convois de caravanes",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-regle-d-or-constitution",
+  "url": "https://attalpresident.fr/programme/mesures/regle-d-or-constitution",
+  "libelle": "Règle d’or budgétaire dans la Constitution",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-regulation-internationale-ia",
+  "url": "https://attalpresident.fr/programme/mesures/regulation-internationale-ia",
+  "libelle": "Réguler l’IA à l’échelle internationale",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -596,15 +818,93 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-reseaux-sociaux-moins-de-quinze-ans",
+  "url": "https://attalpresident.fr/programme/mesures/reseaux-sociaux-moins-de-quinze-ans",
+  "libelle": "Réseaux sociaux interdits aux moins de 15 ans",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-responsabilite-budgetaire-gouvernement",
+  "url": "https://attalpresident.fr/programme/mesures/responsabilite-budgetaire-gouvernement",
+  "libelle": "Responsabilité budgétaire des ministres et gouvernements",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-responsabilite-deux-parents-mineurs",
+  "url": "https://attalpresident.fr/programme/mesures/responsabilite-deux-parents-mineurs",
+  "libelle": "Responsabilité des deux parents pour les actes des mineurs",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-retablir-redoublement",
   "url": "https://attalpresident.fr/programme/mesures/retablir-redoublement",
   "libelle": "Rétablir le redoublement scolaire",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-retenues-d-eau-agricoles",
+  "url": "https://attalpresident.fr/programme/mesures/retenues-d-eau-agricoles",
+  "libelle": "Retenues d’eau agricoles : le plan d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-retour-royaume-uni-union-europeenne",
+  "url": "https://attalpresident.fr/programme/mesures/retour-royaume-uni-union-europeenne",
+  "libelle": "Attal et le retour du Royaume-Uni dans l’UE",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-retraite-duree-cotisation",
+  "url": "https://attalpresident.fr/programme/mesures/retraite-duree-cotisation",
+  "libelle": "Retraites : cotisation plutôt qu’âge légal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-reutilisation-eaux-usees",
+  "url": "https://attalpresident.fr/programme/mesures/reutilisation-eaux-usees",
+  "libelle": "Réutilisation des eaux usées : le plan d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-revalorisation-salaires-professeurs",
   "url": "https://attalpresident.fr/programme/mesures/revalorisation-salaires-professeurs",
   "libelle": "Revalorisation des enseignants : +200 à +500 €/mois",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-revoir-journees-scolaires",
+  "url": "https://attalpresident.fr/programme/mesures/revoir-journees-scolaires",
+  "libelle": "Réformer le temps scolaire en France",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-saisir-avoirs-russes-geles",
+  "url": "https://attalpresident.fr/programme/mesures/saisir-avoirs-russes-geles",
+  "libelle": "Avoirs russes gelés : la position de Gabriel Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-sanctions-alertes-secheresse",
+  "url": "https://attalpresident.fr/programme/mesures/sanctions-alertes-secheresse",
+  "libelle": "Sanctions sécheresse : la proposition d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-sanctions-animaleries-appliquees",
+  "url": "https://attalpresident.fr/programme/mesures/sanctions-animaleries-appliquees",
+  "libelle": "Animaleries : appliquer les sanctions existantes",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-sanctuariser-budgets-regaliens",
+  "url": "https://attalpresident.fr/programme/mesures/sanctuariser-budgets-regaliens",
+  "libelle": "Budgets régaliens et éducation sanctuarisés",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-semaine-quatre-jours",
+  "url": "https://attalpresident.fr/programme/mesures/semaine-quatre-jours",
+  "libelle": "Semaine en quatre jours : la proposition d’Attal",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -626,9 +926,33 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-supprimer-juge-application-peines",
+  "url": "https://attalpresident.fr/programme/mesures/supprimer-juge-application-peines",
+  "libelle": "Supprimer les remises de peine automatiques",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-supprimer-plafond-heures-supplementaires",
+  "url": "https://attalpresident.fr/programme/mesures/supprimer-plafond-heures-supplementaires",
+  "libelle": "Supprimer le plafond d’heures supplémentaires",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-taxer-produits-chinois-vendus-a-perte",
+  "url": "https://attalpresident.fr/programme/mesures/taxer-produits-chinois-vendus-a-perte",
+  "libelle": "Taxes sur les produits chinois vendus à perte",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-test-pme-avant-chaque-loi",
   "url": "https://attalpresident.fr/programme/mesures/test-pme-avant-chaque-loi",
   "libelle": "Test PME obligatoire avant chaque loi : la proposition Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-trois-cent-cinquante-deputes",
+  "url": "https://attalpresident.fr/programme/mesures/trois-cent-cinquante-deputes",
+  "libelle": "Réduire les députés à 350 et les sénateurs à 200",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
@@ -656,9 +980,39 @@
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
+  "nom": "presidentielle-2027-attal-mesure-valoriser-dechets-nucleaires",
+  "url": "https://attalpresident.fr/programme/mesures/valoriser-dechets-nucleaires",
+  "libelle": "Cycle du combustible nucléaire : le plan Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-versement-automatique-pensions",
+  "url": "https://attalpresident.fr/programme/mesures/versement-automatique-pensions",
+  "libelle": "Pension alimentaire versée dès la séparation",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-vingt-eleves-par-classe",
+  "url": "https://attalpresident.fr/programme/mesures/vingt-eleves-par-classe",
+  "libelle": "Moins de 20 élèves par classe en primaire",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
   "nom": "presidentielle-2027-attal-mesure-vingt-millions-salaries-ia",
   "url": "https://attalpresident.fr/programme/mesures/vingt-millions-salaries-ia",
   "libelle": "Former 20 millions de salariés à l’IA d’ici 2030",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-zero-deficit-2037",
+  "url": "https://attalpresident.fr/programme/mesures/zero-deficit-2037",
+  "libelle": "Zéro déficit public en 2037 : le plan d’Attal",
+  "editeur": "Gabriel Attal (Renaissance)"
+ },
+ {
+  "nom": "presidentielle-2027-attal-mesure-zero-papier-juridictions",
+  "url": "https://attalpresident.fr/programme/mesures/zero-papier-juridictions",
+  "libelle": "Zéro papier dans les juridictions : la proposition d’Attal",
   "editeur": "Gabriel Attal (Renaissance)"
  },
  {
